@@ -16,5 +16,5 @@
 	</mvc:view-resolvers>
 
 	<!-- Controller scan -->
-	<context:component-scan base-package="com/sssystem/edu/*/web"></context:component-scan>
+	<context:component-scan base-package="com.sssystem.edu"></context:component-scan>
 </beans>
