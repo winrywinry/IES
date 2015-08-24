@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+	<bean id="messageSource" class="org.springframework.context.support.ReloadableResourceBundleMessageSource">
+		<property name="basenames">
+			<list>
+				<value>classpath:/com/sssystem/edu/message/message</value>
+			</list>
+		</property>
+		<property name="cacheSeconds">
+			<value>60</value>
+		</property>
+	</bean>
+	<bean class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer">
+		<property name="location">
+			<value>classpath:/com/sssystem/edu/property/conn.properties</value>
+		</property>
+	</bean>
+	<bean id= "driverManagerDataSource" class="org.springframework.jdbc.datasource.DriverManagerDataSource" >
+		<property name= "driverClassName" value ="${jdbc.driver}" />
+		<property name= "url" value ="${jdbc.url}" />
+		<property name= "username" value ="${jdbc.user}" />
+		<property name= "password" value ="${jdbc.password}" />
+	</bean>
+	<!-- MyBatis Environment -->
+	<bean id= "sqlSessionFactoryBean" class="org.mybatis.spring.SqlSessionFactoryBean" >
+		<property name= "dataSource" ref ="driverManagerDataSource" />
+		<property name= "mapperLocations" value="classpath:/or/kr/sssystem/edu/sqlmap/query/*.xml" />
+		<property name= "configLocation" value="classpath:/or/kr/sssystem/edu/sqlmap/config/mybatisConfig.xml" ></property>
+	</bean>
+	<bean class= "org.mybatis.spring.SqlSessionTemplate" >
+		<constructor-arg index= "0" ref ="sqlSessionFactoryBean" />
+	</bean>
+</beans>
