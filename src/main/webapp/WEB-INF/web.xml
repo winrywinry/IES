@@ -52,9 +52,9 @@
 		<welcome-file>/index</welcome-file>
 	</welcome-file-list>
 
-	<!-- jsessionid disabled -->
+	<!-- jsessionid disabled
 	<session-config>
 		<tracking-mode>COOKIE</tracking-mode>
-	</session-config>
+	</session-config> -->
 
 </web-app>
