@@ -27,7 +27,7 @@
 	<!-- MyBatis Environment -->
 	<bean id= "sqlSessionFactoryBean" class="org.mybatis.spring.SqlSessionFactoryBean" >
 		<property name= "dataSource" ref ="driverManagerDataSource" />
-		<property name= "mapperLocations" value="classpath:/or/kr/sssystem/edu/sqlmap/query/*.xml" />
+		<property name= "mapperLocations" value="classpath:/or/kr/sssystem/e6du/sqlmap/query/*.xml" />
 		<property name= "configLocation" value="classpath:/or/kr/sssystem/edu/sqlmap/config/mybatisConfig.xml" ></property>
 	</bean>
 	<bean class= "org.mybatis.spring.SqlSessionTemplate" >
