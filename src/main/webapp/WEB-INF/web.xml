@@ -5,8 +5,8 @@
 
 	<!-- The definition of the Root Spring Container shared by all Servlets and Filters -->
 	<context-param>
-		<param-name>contextConfigLocation</param-name>
-		<param-value>/WEB-INF/spring/root-context.xml</param-value>
+		<param-name>root</param-name>
+		<param-value>/IES</param-value>
 	</context-param>
 	
 	<!-- Creates the Spring Container shared by all Servlets and Filters -->
@@ -20,7 +20,10 @@
 		<servlet-class>org.springframework.web.servlet.DispatcherServlet</servlet-class>
 		<init-param>
 			<param-name>contextConfigLocation</param-name>
-			<param-value>/WEB-INF/spring/appServlet/servlet-context.xml</param-value>
+			<param-value>
+				classpath:com/sssystem/edu/spring/config.xml
+				classpath:com/sssystem/edu/spring/beans.xml			
+			</param-value>
 		</init-param>
 		<load-on-startup>1</load-on-startup>
 	</servlet>
@@ -29,5 +32,29 @@
 		<servlet-name>appServlet</servlet-name>
 		<url-pattern>/</url-pattern>
 	</servlet-mapping>
+
+	<!-- Encoding Setting -->
+	<filter>
+		<filter-name>encFilter</filter-name>
+		<filter-class>org.springframework.web.filter.CharacterEncodingFilter</filter-class>
+		<init-param>
+			<param-name>encoding</param-name>
+			<param-value>utf-8</param-value>
+		</init-param>
+	</filter>
+	<filter-mapping>
+		<filter-name>encFilter</filter-name>
+		<url-pattern>/*</url-pattern>
+	</filter-mapping>
+
+	<!-- The Usual Welcome File List -->
+	<welcome-file-list>
+		<welcome-file>/index</welcome-file>
+	</welcome-file-list>
+
+	<!-- jsessionid disabled -->
+	<session-config>
+		<tracking-mode>COOKIE</tracking-mode>
+	</session-config>
 
 </web-app>
