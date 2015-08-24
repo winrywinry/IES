@@ -33,4 +33,6 @@
 	<bean class= "org.mybatis.spring.SqlSessionTemplate" >
 		<constructor-arg index= "0" ref ="sqlSessionFactoryBean" />
 	</bean>
+	
+	<import resource="classpath:com/sssystem/edu/spring/DI.xml"/>
 </beans>

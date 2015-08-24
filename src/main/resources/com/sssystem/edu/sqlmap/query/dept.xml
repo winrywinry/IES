@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-config.dtd" >
+<mapper namespace="dept">
+  <select id="selectAll" resultType="deptVO">
+  <![CDATA[
+	SELECT DEPT_NO
+	     , DEPT_NM
+	     , SECTION_NM
+	     , TEAM_NM
+	     , USER_NO 
+	  FROM T_EDU_DEPT
+  ]]>
+  </select>
+</mapper>

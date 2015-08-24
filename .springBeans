@@ -7,6 +7,7 @@
 	</configSuffixes>
 	<enableImports><![CDATA[true]]></enableImports>
 	<configs>
+		<config>src/main/resources/com/sssystem/edu/spring/DI.xml</config>
 	</configs>
 	<autoconfigs>
 		<config>src/main/resources/com/sssystem/edu/spring/beans.xml</config>
