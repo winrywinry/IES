@@ -7,5 +7,5 @@
 	<bean id="jobService" class="com.sssystem.edu.job.JobServiceImpl"/>
 	<bean id="caetgoryService" class="com.sssystem.edu.category.CategoryServiceImpl"/>
 	<bean id="testService" class="com.sssystem.edu.test.TestServiceImpl"/>
-	
+	<bean id="qnaService" class="com.sssystem.edu.qna.QnaServiceImpl"/>
 </beans>
