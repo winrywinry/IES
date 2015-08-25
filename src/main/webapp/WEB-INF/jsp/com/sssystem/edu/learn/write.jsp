@@ -7,16 +7,16 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=EUC-KR">
-<link rel="stylesheet" type="text/css" href="learn.css" />
+<link rel="stylesheet" type="text/css" href="${initParam.root }/css/learn.css" />
 <title>사내교육시스템 - 교육 등록</title>
 <script src= "//code.jquery.com/jquery-1.11.3.min.js" ></script>
 <script src= "//code.jquery.com/jquery-migrate-1.2.1.min.js" ></script>
-<script type= "text/javascript" src ="/iessvn/js/SEditor.js" charset="euc-kr" ></script>
-<script type= "text/javascript" src ="/iessvn/js/common.js" charset="euc-kr" ></script>
-<script src="/iessvn/js/jquery-ui.js"></script>
-<link href="/iessvn/css/jquery-ui.css" rel="stylesheet">
-<script type="text/javascript" src="/iessvn/js/ajax.js"></script>
-<script type="text/javascript" src="/iessvn/js/learn.js"></script>
+<script type= "text/javascript" src ="${initParam.root }/js/SEditor.js" charset="euc-kr" ></script>
+<script type= "text/javascript" src ="${initParam.root }/js/common.js" charset="euc-kr" ></script>
+<script src="${initParam.root }/js/jquery-ui.js"></script>
+<link href="${initParam.root }/css/jquery-ui.css" rel="stylesheet">
+<script type="text/javascript" src="${initParam.root }/js/ajax.js"></script>
+<script type="text/javascript" src="${initParam.root }/js/learn.js"></script>
 </head>
 <body>
 	<div id="wrap">
