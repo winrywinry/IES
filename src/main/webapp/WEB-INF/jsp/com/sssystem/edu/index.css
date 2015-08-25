@@ -1,0 +1,28 @@
+@CHARSET "EUC-KR";
+@IMPORT url("/iessvn/common.css");
+
+section { width:100%; margin:0 auto; }
+section #top { width:100%; height:205px; margin-top:10px; }
+section #userInfo { width:208px; height:195px; border:1px dashed #CCC; padding-bottom:10px; border-radius:5px; }
+section #userInfo dl { width:188px; height:45px; margin:10px; border-bottom:1px dotted #CCC; }
+section #userInfo dl dt.prfl_thmb { overflow:hidden; float:left; position:relative; width:35px; height:35px; border-radius:35px }
+section #userInfo dl dt.prfl_thmb img { width:35px; margin-left:0; }
+section #userInfo dl dt.prfl_thmb .mask{position:absolute;top:0;left:0;width:33px;height:33px;border-radius:33px;border:1px solid #000;filter:alpha(opacity=10);opacity:0.1}
+section #userInfo dl dd { float:left; width:140px; font:12px Dotum; color:#666; margin:0 0 0 10px; }
+section #userInfo dl dd em { font-style: normal; text-decoration: none; color:#333; font-weight:bold; font-size:14px; }
+section #userInfo p { clear:both; width:163px; margin:0 20px 5px 20px; padding:0; font:12px Dotum; color:#666; }
+section #userInfo p span { float:right; text-align:right; font-weight:bold; color:#333; }
+
+section #imgSection { width:978px; height:207px; }
+
+section #mid { width:100%; padding:20px 0 10px 0;  }
+section #mid span.title { font:13px Dotum; font-weight:bold; padding-right:20px; }
+section #mid p { margin:0; padding:0; font:11px Dotum; color:#666;  }
+
+section #bot #calendar { width:600px;}
+section #bot #summary { width:570px; vertical-align:top; }
+section #bot #summary dl { text-align:left; display:inline-block; width:250px; margin:0 5px 10px 5px; padding:10px; border:1px dashed #CCC; background:#FFF; }
+section #bot #summary dl dt { font:12px Dotum; padding:5px 0 5px 10px; border-bottom:1px solid #CCC; font:12px Dotum; color:#000; font-weight:bold; background:#EFEFEF; }
+section #bot #summary dl dd { padding:5px 0 0 0; font:11px Dotum; color:#666; margin:0 0 0 5px;  }
+.left { float:left;}
+.right { float:right;}
