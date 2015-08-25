@@ -3,10 +3,10 @@ package com.sssystem.edu.service;
 import java.util.ArrayList;
 import java.util.List;
 
+import com.sssystem.edu.vo.AtttachFileVO;
 import com.sssystem.edu.vo.BoardVO;
+import com.sssystem.edu.vo.ReplyVO;
 import com.sssystem.edu.vo.search.SearchBoardVO;
-import com.sssystem.edu.vo.support.AtttachFileVO;
-import com.sssystem.edu.vo.support.ReplyVO;
 
 
 public interface BoardService  {
@@ -34,7 +34,6 @@ public interface BoardService  {
 	public boolean replyUpdate(ReplyVO reply); //업데이트
 	public boolean replyDelete(int comment_no); //삭제
 	public boolean replyInsert(ReplyVO reply); //등록
-	
 	public int selectMaxNo(); //최대갯수
 	public ReplyVO replySelect(int comment_no);//리플정보 가져옴
 	public ArrayList<String> notice();
