@@ -1,4 +1,4 @@
-package com.sssystem.edu.dept.service;
+package com.sssystem.edu.dept;
 
 public class DeptVO {
 	private int dept_no;

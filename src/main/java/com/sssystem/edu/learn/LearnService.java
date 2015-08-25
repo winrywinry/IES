@@ -1,4 +1,4 @@
-package com.sssystem.edu.learn.service;
+package com.sssystem.edu.learn;
 
 public interface LearnService {
 	

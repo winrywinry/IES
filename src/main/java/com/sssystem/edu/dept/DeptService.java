@@ -1,4 +1,4 @@
-package com.sssystem.edu.dept.service;
+package com.sssystem.edu.dept;
 
 import java.util.List;
 
