@@ -3,5 +3,6 @@
 <configuration>
 	<typeAliases>
 		<typeAlias type="com.sssystem.edu.dept.DeptVO" alias="deptVO"/>
+		<typeAlias type="com.sssystem.edu.job.JobVO" alias="jobVO"/>
 	</typeAliases>
 </configuration>
