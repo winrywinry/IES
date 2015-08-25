@@ -3,6 +3,11 @@ package com.sssystem.edu.service;
 import java.util.ArrayList;
 import java.util.List;
 
+import com.sssystem.edu.vo.BoardVO;
+import com.sssystem.edu.vo.search.SearchBoardVO;
+import com.sssystem.edu.vo.support.AtttachFileVO;
+import com.sssystem.edu.vo.support.ReplyVO;
+
 
 public interface BoardService  {
 	
@@ -32,7 +37,6 @@ public interface BoardService  {
 	
 	public int selectMaxNo(); //최대갯수
 	public ReplyVO replySelect(int comment_no);//리플정보 가져옴
-	public CheckAuthVO checkManage(int user_no);//권한체크
 	public ArrayList<String> notice();
 	public String selectReply(int user_no);
 	public ArrayList<String> replyContents(int user_no);
