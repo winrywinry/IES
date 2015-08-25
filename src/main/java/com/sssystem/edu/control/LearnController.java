@@ -9,15 +9,15 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 
-import com.sssystem.edu.SessionVO;
-import com.sssystem.edu.category.CategoryService;
-import com.sssystem.edu.category.CategoryVO;
-import com.sssystem.edu.dept.DeptService;
-import com.sssystem.edu.dept.DeptVO;
-import com.sssystem.edu.job.JobService;
-import com.sssystem.edu.job.JobVO;
-import com.sssystem.edu.test.TestService;
-import com.sssystem.edu.test.TestVO;
+import com.sssystem.edu.service.CategoryService;
+import com.sssystem.edu.service.DeptService;
+import com.sssystem.edu.service.JobService;
+import com.sssystem.edu.service.TestService;
+import com.sssystem.edu.vo.CategoryVO;
+import com.sssystem.edu.vo.DeptVO;
+import com.sssystem.edu.vo.JobVO;
+import com.sssystem.edu.vo.TestVO;
+import com.sssystem.edu.vo.support.SessionVO;
 
 @Controller
 public class LearnController {

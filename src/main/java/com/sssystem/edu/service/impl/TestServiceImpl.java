@@ -6,6 +6,9 @@ import java.util.List;
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
 
+import com.sssystem.edu.service.TestService;
+import com.sssystem.edu.vo.TestVO;
+
 public class TestServiceImpl implements TestService {
 
 	@Autowired

@@ -6,6 +6,8 @@ import javax.servlet.http.HttpSession;
 
 import org.springframework.web.servlet.handler.HandlerInterceptorAdapter;
 
+import com.sssystem.edu.vo.support.SessionVO;
+
 public class LoginCheckIntercepter extends HandlerInterceptorAdapter {
 	
 	@Override

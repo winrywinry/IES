@@ -17,9 +17,9 @@
 
 	<!-- LOGIN CHECK -->
 	<mvc:interceptors>
-		<bean class="com.sssystem.edu.LoginCheckIntercepter" />
+		<bean class="com.sssystem.edu.common.LoginCheckIntercepter" />
 	</mvc:interceptors>
 	
 	<!-- Controller scan -->
-	<context:component-scan base-package="com.sssystem.edu"></context:component-scan>
+	<context:component-scan base-package="com.sssystem.edu.control"></context:component-scan>
 </beans>
