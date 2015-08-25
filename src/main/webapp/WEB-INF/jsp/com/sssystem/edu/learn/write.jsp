@@ -20,9 +20,9 @@
 </head>
 <body>
 	<div id="wrap">
-		<%--<jsp:include page="/include/header.jsp" /> --%>
+		<jsp:include page="/include/header" />
 		<div id="content">
-			<%--<jsp:include page="/include/left_menu_learn.jsp" /> --%>
+			<jsp:include page="/include/left_menu_learn" />
 			<section id="cen">
 				<div id="top">
 					<h3>±³À° µî·Ï</h3>
@@ -125,7 +125,7 @@
 					</div>
 			</section>
 		</div>
-		<%--<jsp:include page="/include/footer.jsp" /> --%>
+		<jsp:include page="/include/footer" />
 	</div>
 </body>
 </html>

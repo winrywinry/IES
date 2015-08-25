@@ -1,6 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=EUC-KR"
     pageEncoding="EUC-KR"%>
-<jsp:useBean id="learn" class="kr.or.sssystem.edu.learn.model.beans.LearnBean" scope="request"></jsp:useBean>
 <aside id="left">
 	<h3>±³À°</h3>
 	<ul class="leftMenu">
