@@ -1,0 +1,125 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="qna">
+	
+	<insert id="qnaBoardInsert" parameterType="QnaBoardVO">
+		INSERT INTO
+			T_EDU_QNA 
+				(QNA_NO, EDU_NO, BOARD_GB, SECRET_YN, TITLE, Q_CONTENTS, 
+				 Q_USER_NO, VISIT_NO, QUESTION_DT)
+			VALUES
+				(SEQ_EDU_QNA.NEXTVAL, #{edu_no}, #{board_gb}, #{secret_yn}, 
+				#{title}, #{q_contents}, #{q_user_no}, #{visit_no} ,SYSDATE)	
+	</insert>
+	<select id="qnaBoardListSelectAll" parameterType="SearchVO" resultType="QnaBoardVO">
+		SELECT
+			ROWNUM, QNA_NO, TITLE, QUESTION_DT, VISIT_NO, BOARD_GB, Q_CONTENTS
+			FROM(
+		SELECT 
+			QNA_NO, TITLE, QUESTION_DT, VISIT_NO, BOARD_GB, q_contents
+		FROM T_EDU_QNA
+		WHERE 1=1 and BOARD_GB=#{board_gb}
+			<!-- AND TITLE LIKE '%' || '#{searchWord}' || '%' -->
+			<if test="searchWord != null and searchWord != ''"><![CDATA[
+			  (TITLE LIKE CONCAT('%',CONCAT(#{searchWord},'%')) 
+		  OR Q_CONTENTS LIKE CONCAT('%',CONCAT(#{searchWord},'%')))
+			]]></if>
+			ORDER BY QNA_NO)
+			ORDER BY ROWNUM DESC
+	 </select>
+ 	 <select id="selectCnt" parameterType="SearchVO" resultType="int">
+		SELECT
+				COUNT(*)
+		FROM T_EDU_QNA
+		WHERE 1=1 and BOARD_GB=#{board_gb}
+		<!-- AND TITLE LIKE '%' || '#{searchWord}' || '%' -->
+					<!-- AND TITLE LIKE '%' || '#{searchWord}' || '%' -->
+			<if test="searchWord != null and searchWord != ''"><![CDATA[
+			  (TITLE LIKE CONCAT('%',CONCAT(#{searchWord},'%')) 
+		  OR Q_CONTENTS LIKE CONCAT('%',CONCAT(#{searchWord},'%')))
+					]]></if>
+	</select>
+	
+	<select id="qnaBoardView" parameterType="java.util.HashMap" resultType="QnaBoardVO">
+    	SELECT * FROM(
+    		SELECT 
+			QNA_NO,EDU_NO,BOARD_GB,SECRET_YN,TITLE,Q_CONTENTS,A_CONTENTS,Q_USER_NO,A_USER_NO,VISIT_NO,QUESTION_DT,ANSWER_DT,TIME_STAMP,
+			         lead(QNA_NO, 1, 0) over(order by QNA_NO) next_idx,
+      				 lead(TITLE, 1, 0) over(order by QNA_NO) next_title,
+      				 lead(QUESTION_DT, 1, '1111-11-11') over(order by QNA_NO) next_dt,
+      				 lag(QNA_NO, 1, 0) over(order by QNA_NO) pre_idx,
+         			 lag(TITLE, 1, 0) over(order by QNA_NO) pre_title,
+      				 lag(QUESTION_DT, 1, '1111-11-11') over(order by QNA_NO) pre_dt
+		FROM
+			T_EDU_QNA
+		WHERE
+			BOARD_GB=#{board_gb}
+			)WHERE QNA_NO=#{qna_no}
+	</select>	
+	
+	<update id="updateAnswer" parameterType="QnaBoardVO">
+		UPDATE
+			T_EDU_QNA
+		SET
+			A_USER_NO=#{a_user_no},
+			A_CONTENTS=#{a_contents}
+		WHERE
+			QNA_NO=#{qna_no}
+	</update>
+	
+	<delete id="boardDelete" parameterType="int">
+			DELETE
+		FROM 
+			T_EDU_QNA
+		WHERE QNA_NO = #{board_no}
+	</delete>
+	
+	<update id="uphits" parameterType="int">
+		UPDATE
+			T_EDU_QNA
+		SET
+			Visit_no = Visit_no+1,
+			ANSWER_DT = SYSDATE
+		WHERE
+			QNA_NO = #{qna_no}
+	</update>
+
+	<select id="checkManage" parameterType="int" resultType="CheckAuthVO">
+		SELECT
+			MANAGE_YN,ADMIN_YN
+		FROM
+			T_EDU_USER
+		WHERE
+			USER_NO = #{qna_no}
+	</select>
+	
+	<update id="qnaBoardUpdate" parameterType="QnaBoardVO">
+		UPDATE
+			T_EDU_QNA
+		SET
+			TITLE=#{title},
+			Q_CONTENTS=#{q_contents}
+		WHERE
+			QNA_NO=#{qna_no}
+	</update>
+	
+	<select id="recommendView" resultType="String">
+	  SELECT TITLE FROM (
+  	    SELECT TITLE
+  	    FROM T_EDU_QNA
+  	    WHERE BOARD_GB = 60
+  	    ORDER BY QUESTION_DT DESC)
+	  WHERE ROWNUM BETWEEN 1 AND 6
+	</select>
+	
+	<select id="selectAuserNm" parameterType="int" resultType="String">
+		SELECT
+			USER_NM
+		FROM
+			T_EDU_USER
+		WHERE
+			USER_NO=#{user_no}
+	
+	</select>
+</mapper>
