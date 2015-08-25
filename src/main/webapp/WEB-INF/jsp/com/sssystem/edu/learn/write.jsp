@@ -28,7 +28,7 @@
 					<h3>±³À° µî·Ï</h3>
 				</div>
 				<div id="con">
-					<form action="input.do" name="frm" method="POST" onsubmit="return formchk();">
+					<form action="input.do" name="writeFrm" method="POST">
 					<input type="hidden" name="state" value="${update }">
 					<input type="hidden" name="edu_no" value="${learn.edu_no }" />
 					<input type="hidden" name="dn" value="${learn.dept_no }" />

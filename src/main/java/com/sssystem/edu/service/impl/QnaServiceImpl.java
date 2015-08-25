@@ -7,7 +7,13 @@ import org.apache.ibatis.session.RowBounds;
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
 
-public class QnaServiceImpl implements QnaService{
+import com.sssystem.edu.service.QnaService;
+import com.sssystem.edu.vo.AtttachFileVO;
+import com.sssystem.edu.vo.QnaBoardVO;
+import com.sssystem.edu.vo.search.SearchBoardVO;
+import com.sssystem.edu.vo.support.SessionVO;
+
+public class QnaServiceImpl implements QnaService {
 
 	@Autowired
 	SqlSession session;
@@ -70,7 +76,7 @@ public class QnaServiceImpl implements QnaService{
 	}
 
 	@Override
-	public CheckAuthVO authorityCheck(int qna_no) {//권한 체크
+	public SessionVO authorityCheck(int qna_no) {//권한 체크
 		 return session.selectOne("qna.authorityCheck",qna_no);
 	}
 

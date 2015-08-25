@@ -2,12 +2,12 @@
 <!DOCTYPE configuration PUBLIC "-//mybatis.org//DTD Config 3.0//EN" "http://mybatis.org/dtd/mybatis-3-config.dtd" >
 <configuration>
 	<typeAliases>
-		<typeAlias type="com.sssystem.edu.dept.DeptVO" alias="deptVO"/>
-		<typeAlias type="com.sssystem.edu.job.JobVO" alias="jobVO"/>
-		<typeAlias type="com.sssystem.edu.category.CategoryVO" alias="categoryVO"/>
-		<typeAlias type="com.sssystem.edu.test.TestVO" alias="testVO"/>
-		<typeAlias type="com.sssystem.edu.qna.QnaBoardVO" alias="qnaVO"/>
-      	<typeAlias type="com.sssystem.edu.qna.SearchVO" alias="SearchVO"/>
-      	<typeAlias type="com.sssystem.edu.qna.CheckAuthVO" alias="CheckAuthVO"/>
+		<typeAlias type="com.sssystem.edu.vo.DeptVO" alias="deptVO"/>
+		<typeAlias type="com.sssystem.edu.vo.JobVO" alias="jobVO"/>
+		<typeAlias type="com.sssystem.edu.vo.CategoryVO" alias="categoryVO"/>
+		<typeAlias type="com.sssystem.edu.vo.TestVO" alias="testVO"/>
+		<typeAlias type="com.sssystem.edu.vo.QnaBoardVO" alias="qnaVO"/>
+      	<typeAlias type="com.sssystem.edu.vo.search.SearchVO" alias="searchVO"/>
+      	<typeAlias type="com.sssystem.edu.vo.support.SessionVO" alias="sessionVO"/>
 	</typeAliases>
 </configuration>

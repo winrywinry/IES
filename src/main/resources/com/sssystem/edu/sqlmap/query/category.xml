@@ -12,10 +12,10 @@
 		   	   LEFT OUTER JOIN (SELECT COUNT(*) AS CATEGORY_CNT
 										  , CATEGORY_NO
 									FROM T_EDU
-								   WHERE DEPT_NO = #dept_no#
+								   WHERE DEPT_NO = #{dept_no}
 								   GROUP BY CATEGORY_NO
 				) B ON (A.CATEGORY_NO = B.CATEGORY_NO)
-		 WHERE A.DEPT_NO = #dept_no#
+		 WHERE A.DEPT_NO = #{dept_no}
 		 START WITH A.REF_NO = 0
 		CONNECT BY PRIOR A.CATEGORY_NO = A.REF_NO
 	]]>

@@ -13,11 +13,11 @@
 		     , USER_NO
 		     , INPUT_DT
 		  FROM T_EDU_TEST A
-		 WHERE A.EDU_NO = #edu_no#
+		 WHERE A.EDU_NO = #{edu_no}
 	]]>
 	<if test="edu_no == 0">
 	<![CDATA[
-		   AND A.USER_NO = #user_no#
+		   AND A.USER_NO = #{user_no}
 	]]>
 	</if>
 	<![CDATA[

@@ -8,6 +8,13 @@ import org.apache.ibatis.session.RowBounds;
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
 
+import com.sssystem.edu.service.BoardService;
+import com.sssystem.edu.vo.AtttachFileVO;
+import com.sssystem.edu.vo.BoardVO;
+import com.sssystem.edu.vo.ReplyVO;
+import com.sssystem.edu.vo.search.SearchBoardVO;
+import com.sssystem.edu.vo.support.SessionVO;
+
 public class BoardServiceImpl implements BoardService {
 
 	@Autowired
@@ -162,7 +169,7 @@ public class BoardServiceImpl implements BoardService {
 	}
 
 	@Override
-	public CheckAuthVO checkManage(int user_no) {
+	public SessionVO checkManage(int user_no) {
 		// TODO Auto-generated method stub
 		return null;
 	}
@@ -183,6 +190,12 @@ public class BoardServiceImpl implements BoardService {
 	public ArrayList<String> replyContents(int user_no) {
 		// TODO Auto-generated method stub
 		return null;
+	}
+
+	@Override
+	public int selectMaxNo() {
+		// TODO Auto-generated method stub
+		return 0;
 	}
 	
 	
