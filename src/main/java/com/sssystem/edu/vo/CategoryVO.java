@@ -1,4 +1,4 @@
-package com.sssystem.edu.vo.support;
+package com.sssystem.edu.vo;
 
 public class CategoryVO {
 	private int category_no;

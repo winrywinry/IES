@@ -1,4 +1,4 @@
-package com.sssystem.edu.vo;
+package com.sssystem.edu.vo.support;
 
 public class SessionVO {
 	private int user_no;
