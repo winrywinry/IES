@@ -143,18 +143,17 @@ public class BoardServiceImpl implements BoardService {
 	public boolean replyInsert(ReplyVO reply) {
 		session.insert("notice.replyInsert",reply);
 			return true;
-		return false;
 	}
 
 	/**
 	 * 
 	 */
-	@Override
+/*	@Override
 	public int selectMaxNo() {
 		int no = 0;
 		no = (Integer)session.queryForObject("notice.replyMaxNo");
 		return no;
-	}
+	}*/
 
 	@Override
 	public ReplyVO replySelect(int comment_no) {
