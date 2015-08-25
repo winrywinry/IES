@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-config.dtd" >
+<mapper namespace="job">
+	<select id="selectAll" resultType="categoryVO" parameterType="int">
+	<![CDATA[
+		SELECT A.CATEGORY_NO
+		      , A.REF_NO
+		      , A.LEV_NO
+		      , LPAD(' ', 4*(LEVEL-1)) || A.CATEGORY_NM AS CATEGORY_NM
+		      , NVL(B.CATEGORY_CNT, 0) AS CATEGORY_CNT
+		  FROM T_EDU_CATEGORY A
+		   	   LEFT OUTER JOIN (SELECT COUNT(*) AS CATEGORY_CNT
+										  , CATEGORY_NO
+									FROM T_EDU
+								   WHERE DEPT_NO = #dept_no#
+								   GROUP BY CATEGORY_NO
+				) B ON (A.CATEGORY_NO = B.CATEGORY_NO)
+		 WHERE A.DEPT_NO = #dept_no#
+		 START WITH A.REF_NO = 0
+		CONNECT BY PRIOR A.CATEGORY_NO = A.REF_NO
+	]]>
+	</select>
+</mapper>

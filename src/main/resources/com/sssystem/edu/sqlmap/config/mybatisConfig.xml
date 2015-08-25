@@ -4,5 +4,7 @@
 	<typeAliases>
 		<typeAlias type="com.sssystem.edu.dept.DeptVO" alias="deptVO"/>
 		<typeAlias type="com.sssystem.edu.job.JobVO" alias="jobVO"/>
+		<typeAlias type="com.sssystem.edu.category.CategoryVO" alias="categoryVO"/>
+		<typeAlias type="com.sssystem.edu.test.TestVO" alias="testVO"/>
 	</typeAliases>
 </configuration>

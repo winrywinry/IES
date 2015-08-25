@@ -35,4 +35,9 @@ public class CommonController {
 	public String includeLeftPropose(){
 		return "include/left_menu_propose";
 	}
+	
+	@RequestMapping("LOGOUT")
+	public String Logout(){
+		return "redirect:member/login";
+	}
 }

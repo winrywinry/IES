@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-config.dtd" >
+<mapper namespace="test">
+	<select id="selectAll" resultType="testVO" parameterType="hashmap">
+	<![CDATA[
+		SELECT TEST_NO
+		     , EDU_NO
+		     , GUBUN
+		     , Q_NO
+		     , QUESTION
+		     , ANSWER_NM
+		     , CORR_ANSWER
+		     , USER_NO
+		     , INPUT_DT
+		  FROM T_EDU_TEST A
+		 WHERE A.EDU_NO = #edu_no#
+	]]>
+	<if test="edu_no == 0">
+	<![CDATA[
+		   AND A.USER_NO = #user_no#
+	]]>
+	</if>
+	<![CDATA[
+		 ORDER BY Q_NO ASC
+	]]>
+	</select>
+
+</mapper>

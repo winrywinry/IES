@@ -3,7 +3,9 @@
 	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
 
-	<bean id="deptService" class="com.sssystem.edu.dept.DeptServiceImpl"></bean>
-	<bean id="jobService" class="com.sssystem.edu.job.JobServiceImpl"></bean>
-
+	<bean id="deptService" class="com.sssystem.edu.dept.DeptServiceImpl"/>
+	<bean id="jobService" class="com.sssystem.edu.job.JobServiceImpl"/>
+	<bean id="caetgoryService" class="com.sssystem.edu.category.CategoryServiceImpl"/>
+	<bean id="testService" class="com.sssystem.edu.test.TestServiceImpl"/>
+	
 </beans>
