@@ -13,7 +13,10 @@ import com.sssystem.edu.vo.AtttachFileVO;
 import com.sssystem.edu.vo.BoardVO;
 import com.sssystem.edu.vo.ReplyVO;
 import com.sssystem.edu.vo.search.SearchBoardVO;
+<<<<<<< HEAD
 import com.sssystem.edu.vo.support.SessionVO;
+=======
+>>>>>>> branch 'master' of https://github.com/winrywinry/IES.git
 
 public class BoardServiceImpl implements BoardService {
 
@@ -155,21 +158,19 @@ public class BoardServiceImpl implements BoardService {
 	/**
 	 * 
 	 */
-/*	@Override
+	@Override
 	public int selectMaxNo() {
 		int no = 0;
-		no = (Integer)session.queryForObject("notice.replyMaxNo");
+		//no = (Integer)session.queryForObject("notice.replyMaxNo");
 		return no;
-	}*/
-
-	@Override
-	public ReplyVO replySelect(int comment_no) {
-		// TODO Auto-generated method stub
-		return null;
 	}
 
 	@Override
+<<<<<<< HEAD
 	public SessionVO checkManage(int user_no) {
+=======
+	public ReplyVO replySelect(int comment_no) {
+>>>>>>> branch 'master' of https://github.com/winrywinry/IES.git
 		// TODO Auto-generated method stub
 		return null;
 	}
