@@ -72,7 +72,7 @@ public class AdminMemberController {
     List<DeptVO> deptlist = deptService.selectAll();
     List<JobVO> joblist = jobService.selectAll();
     
-    model.addAttribute("deptlit",deptlist);
+    model.addAttribute("deptlist",deptlist);
     model.addAttribute("joblist",joblist);
     
     //-------------------------------리스트 출력----------------------------//
