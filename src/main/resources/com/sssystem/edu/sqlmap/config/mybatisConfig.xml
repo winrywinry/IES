@@ -15,7 +15,8 @@
 		<typeAlias type="com.sssystem.edu.vo.ReplyVO" alias="replyVO"/>
 		<typeAlias type="com.sssystem.edu.vo.AttachFileVO" alias="attachVO"/>
 		
+		<!-- admin
 		<typeAlias type="com.sssystem.edu.admin.vo.MemberVO" alias="adminMemberVO"/>
-		<typeAlias type="com.sssystem.edu.admin.vo.pageVO" alias="adminPageVO"/>
+		<typeAlias type="com.sssystem.edu.admin.vo.pageVO" alias="adminPageVO"/> -->
 	</typeAliases>
 </configuration>
