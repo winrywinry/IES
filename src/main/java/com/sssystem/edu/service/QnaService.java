@@ -1,12 +1,10 @@
 package com.sssystem.edu.service;
 
-import java.util.ArrayList;
 import java.util.List;
 
-import com.sssystem.edu.vo.AtttachFileVO;
 import com.sssystem.edu.vo.QnaBoardVO;
 import com.sssystem.edu.vo.search.SearchBoardVO;
-import com.sssystem.edu.vo.support.SessionVO;
+import com.sssystem.edu.vo.AtttachFileVO;
 
 public interface QnaService {
 
@@ -19,6 +17,5 @@ public interface QnaService {
 	public void hitsUpdate(int qna_no);//조회수
 	public int cntSelect(SearchBoardVO bean);//검색관련
 	public void answerUpdate(QnaBoardVO bean);//답변 등록
-	public SessionVO authorityCheck(int qna_no);//권한 체크
 	public String answerNmSelect(int user_no);//답변자 이름 검색
 }
