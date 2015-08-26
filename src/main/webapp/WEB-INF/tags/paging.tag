@@ -4,8 +4,13 @@
 <%@ attribute name="totalCnt" %>
 <%@ attribute name="par" %>
 <%
-int page = Integer.parseInt((String)getJspContext().findAttribute("page"));
-int totalCnt = Integer.parseInt((String)getJspContext().findAttribute("totalCnt"));
+String str_page = (String)getJspContext().findAttribute("page");
+String str_total = (String)getJspContext().findAttribute("totalCnt");
+if (str_page == null || str_page.equals("")) str_page = "0";
+if (str_total == null || str_total.equals("")) str_total = "0";
+
+int page = Integer.parseInt(str_page);
+int totalCnt = Integer.parseInt(str_total);
 
 Paging paging = new Paging();
 paging.setPageNo(page);
