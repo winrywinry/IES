@@ -2,4 +2,145 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="admin.member">
 
+	<select id="selectAll" parameterType="pageBean" resultType="adminMember">
+		SELECT A.USER_NO
+         , A.EMP_SERIAL
+		     , A.USER_NM
+		     , A.BIRTH_DT
+		     , A.GENDER_YN
+		     , B.DEPT_NM
+		     , C.JOB_NM
+		     , A.LINE_NO
+		     , A.PHONE_NO
+		     , A.ADDRESS
+		     , A.HIREDATE
+		     , A.INPUT_DT
+		     , A.ADMIN_YN
+		     , A.MANAGE_YN
+     FROM T_EDU_USER A
+	        LEFT OUTER JOIN T_EDU_DEPT B ON (A.DEPT_NO = B.DEPT_NO)
+          LEFT OUTER JOIN T_EDU_JOB C ON (A.JOB_NO = C.JOB_NO)
+		 WHERE 1=1
+		 	<!-- <isNotEqual prepend="AND" property="dept_no" compareValue="0">
+				A.DEPT_NO = #{dept_no}
+			</isNotEqual>
+			<isNotEqual prepend="AND" property="job_no" compareValue="0">
+				A.JOB_NO = #{job_no}
+			</isNotEqual>
+			<isNotEqual prepend="AND" property="admin_yn" compareValue="0">
+				A.ADMIN_YN = #{admin_yn}
+			</isNotEqual>
+			<isNotEqual prepend="AND" property="manage_yn" compareValue="0">
+				A.MANAGE_YN = #{manage_yn}
+			</isNotEqual>
+			<isNotEmpty prepend="AND" property="searchWord"><![CDATA[
+			  A.USER_NM LIKE CONCAT('%',CONCAT(#{searchWord},'%'))
+			]]></isNotEmpty> -->
+		ORDER BY A.USER_NO DESC
+	</select>
+	
+	<select id="selectTotal" parameterType="pageBean" resultType="int">
+		SELECT COUNT(*) FROM T_EDU_USER
+	  WHERE 1=1
+			<!-- <isNotEqual prepend="AND" property="dept_no" compareValue="0">
+				dept_no = #{dept_no}
+			</isNotEqual>
+			<isNotEmpty prepend="AND" property="searchWord">
+			<![CDATA[
+			  (user_nm LIKE CONCAT('%',CONCAT(#{searchWord},'%')))
+			]]>
+			</isNotEmpty> -->
+	</select>
+	
+	<insert id="insert" parameterType="adminMember">
+		INSERT INTO T_EDU_USER (
+			   USER_NO
+			 , EMP_SERIAL
+			 , USER_NM
+			 , BIRTH_DT
+			 , GENDER_YN
+			 , HIREDATE
+			 , INPUT_DT
+			 , JOB_NO
+			 , DEPT_NO
+			 , LINE_NO
+			 , PHONE_NO
+			 , SECOND_NO
+			 , POST
+			 , ADDRESS
+			 , EMAIL
+			 , MANAGE_YN
+			 , ADMIN_YN
+			 , PROFIL_PICTURE
+		) VALUES (
+			   SEQ_EDU_USER.NEXTVAL
+			 , (SELECT TO_CHAR(SYSDATE,'YYMM')||'-'||LPAD((NVL(MAX(SUBSTR(EMP_SERIAL, 6, 3)),0) + 1),3,'0')
+			      FROM T_EDU_USER
+			     WHERE HIREDATE BETWEEN TRUNC(SYSDATE,'MONTH') AND LAST_DAY(SYSDATE))
+			 , #{user_nm}
+			 , #{birth_dt}
+			 , #{gender_yn}
+			 , #{hiredate}
+			 , sysdate
+			 , #{job_no}
+			 , #{dept_no}
+			 , #{line_no}
+			 , #{phone_no}
+			 , #{second_no}
+			 , #{post}
+			 , #{address}
+			 , #{email}
+			 , #{manage_yn}
+			 , #{admin_yn}
+			 , #{profil_picture}
+		)
+	</insert>
+	
+	<select id="selectDuple" parameterType="adminMember" resultType="int">
+		SELECT count(*) as cnt FROM t_edu_user WHERE user_nm=#{user_nm} and birth_dt = #{birth_dt}
+	</select>
+	
+	<delete id="delete" parameterType="int">
+			DELETE FROM t_edu_user WHERE user_no = #{no}
+	</delete>
+	
+	<select id="select" parameterType="int" resultType="adminMember">
+		SELECT USER_NO
+		     , USER_NM
+		     , BIRTH_DT
+		     , GENDER_YN
+		     , HIREDATE
+		     , DEPT_NO
+		     , JOB_NO
+		     , LINE_NO
+		     , PHONE_NO
+		     , SECOND_NO
+		     , POST
+		     , ADDRESS
+		     , EMAIL
+		     , PROFIL_PICTURE
+		     , ADMIN_YN
+		     , MANAGE_YN
+		  FROM T_EDU_USER
+		 WHERE USER_NO = #{user_no}
+	</select>
+	
+	<update id="update" parameterType="adminMember">
+		UPDATE T_EDU_USER SET
+			   DEPT_NO = #{dept_no}
+			 , JOB_NO = #{job_no}
+			 , LINE_NO = #{line_no}
+			 , PHONE_NO = #{phone_no}
+			 , SECOND_NO = #{second_no}
+			 , POST = #{post}
+			 , ADDRESS = #{address}
+			 , EMAIL = #{email}
+		<!-- <isNotNull prepend="," property="profil_picture">
+			   PROFIL_PICTURE = #{profil_picture}
+		</isNotNull> -->
+			 , ADMIN_YN = #{admin_yn}
+			 , MANAGE_YN = #{manage_yn}
+			 , TIME_STAMP = SYSDATE
+		 WHERE USER_NO = #{user_no}
+	</update>
 </mapper>
