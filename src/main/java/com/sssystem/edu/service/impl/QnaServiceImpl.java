@@ -8,7 +8,7 @@ import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import com.sssystem.edu.service.QnaService;
-import com.sssystem.edu.vo.AtttachFileVO;
+import com.sssystem.edu.vo.AttachFileVO;
 import com.sssystem.edu.vo.QnaBoardVO;
 import com.sssystem.edu.vo.search.SearchBoardVO;
 
@@ -25,7 +25,7 @@ public class QnaServiceImpl implements QnaService {
 	}
 
 	@Override
-	public boolean atchBoardinsert(AtttachFileVO bean) {//파일등록, 현재 구현되어있지 않음
+	public boolean atchBoardinsert(AttachFileVO bean) {//파일등록, 현재 구현되어있지 않음
 		// TODO Auto-generated method stub
 		return false;
 	}

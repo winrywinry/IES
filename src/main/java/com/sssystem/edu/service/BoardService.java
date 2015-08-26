@@ -3,7 +3,7 @@ package com.sssystem.edu.service;
 import java.util.ArrayList;
 import java.util.List;
 
-import com.sssystem.edu.vo.AtttachFileVO;
+import com.sssystem.edu.vo.AttachFileVO;
 import com.sssystem.edu.vo.BoardVO;
 import com.sssystem.edu.vo.ReplyVO;
 import com.sssystem.edu.vo.search.SearchBoardVO;
@@ -17,7 +17,7 @@ public interface BoardService  {
 	 * @return
 	 */
 	public boolean boardInsert(BoardVO bean); // 등록
-	public boolean atchBoardInsert(AtttachFileVO atchBean); //첨부파일
+	public boolean atchBoardInsert(AttachFileVO atchBean); //첨부파일
 	public boolean boardDelete(int board_no); //삭제
 	public boolean boardUpdate(BoardVO bean); //수정
 	public BoardVO boardDetailSelect(int no,int gb); //검색(특정행)

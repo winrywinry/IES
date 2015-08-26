@@ -4,12 +4,12 @@ import java.util.List;
 
 import com.sssystem.edu.vo.QnaBoardVO;
 import com.sssystem.edu.vo.search.SearchBoardVO;
-import com.sssystem.edu.vo.AtttachFileVO;
+import com.sssystem.edu.vo.AttachFileVO;
 
 public interface QnaService {
 
 	public boolean qnaBoardInsert(QnaBoardVO bean);//게시글 등록
-	public boolean atchBoardinsert(AtttachFileVO bean);//첨부파일 등록
+	public boolean atchBoardinsert(AttachFileVO bean);//첨부파일 등록
 	public boolean qnaBoardDelete(int qna_no);//게시글 삭제
 	public boolean qnaBoardUpdate(QnaBoardVO bean);//게시글 업데이트
 	public QnaBoardVO qnaBoardView(int qna_no, int board_gb);//게시글 보기
