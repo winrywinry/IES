@@ -2,7 +2,7 @@ package com.sssystem.edu.vo;
 
 import java.sql.Date;
 
-public class AtttachFileVO {
+public class AttachFileVO {
 
 	//첨부파일 beans
 	private int attach_no; //첨부파일번호
@@ -13,7 +13,7 @@ public class AtttachFileVO {
 	private Date attachTime_stamp; //첨부수정일 
 	private int attach_seq;//파일순서
 	
-	public AtttachFileVO() {
+	public AttachFileVO() {
 		// TODO Auto-generated constructor stub
 	}
 

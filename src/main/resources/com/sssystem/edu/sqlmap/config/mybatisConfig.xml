@@ -13,7 +13,6 @@
       	<!-- board -->
 		<typeAlias alias="boardVO" type="com.sssystem.edu.vo.BoardVO"/>
 		<typeAlias alias="replyVO" type="com.sssystem.edu.vo.ReplyVO"/>
-		<typeAlias alias="searchVO" type="com.sssystem.edu.vo.SearchVO"/>
-		<typeAlias alias="atchFileVO" type="com.sssystem.edu.vo.AtchFileVO"/>
+		<typeAlias alias="attachVO" type="com.sssystem.edu.vo.AttachFileVO"/>
 	</typeAliases>
 </configuration>
