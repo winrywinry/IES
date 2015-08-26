@@ -1,11 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE sqlMap PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN" "http://ibatis.apache.org/dtd/sql-map-2.dtd" >
 <sqlMap namespace="notice">
-	<typeAlias alias="BoardBean" type="kr.or.sssystem.edu.board.model.beans.BoardBean"/>
-	<typeAlias alias="ReplyBean" type="kr.or.sssystem.edu.board.model.beans.ReplyBean"/>
-	<typeAlias alias="SearchBean" type="kr.or.sssystem.edu.board.model.beans.SearchBean"/>
-	<typeAlias alias="AtchFileBean" type="kr.or.sssystem.edu.board.model.beans.AtchFileBean"/>
-	<typeAlias alias="CheckAuthBean" type="kr.or.sssystem.edu.board.model.beans.CheckAuthBean"/>
 	<!-- 
 	<insert id="atchBoardInsert" parameterClass="AtchFileBean">
 	INSERT INTO
@@ -15,7 +10,7 @@
 			(SEQ_EDU_ATTACH.NEXTVAL, #ref_no#, #table_nm#, #attach_file#, SYSDATE, #attach_seq#)
 	</insert>
 	 -->
-	<insert id="boardInsert" parameterClass="BoardBean">
+	<insert id="boardInsert" parameterClass="boardVO">
 	INSERT INTO
 		T_EDU_BOARD 
 			(BOARD_NO, USER_NO, BOARD_GB, TITLE, CONTENTS, INPUT_DT)
@@ -23,7 +18,7 @@
 			(SEQ_EDU_BOARD.NEXTVAL,#user_no#,#board_gb#,#title#,#contents#,SYSDATE)
 	</insert>
 	
-	<select id="boardListSelectAll" parameterClass="SearchBean"  resultClass="BoardBean">
+	<select id="boardListSelectAll" parameterClass="SearchVO"  resultClass="boardVO">
 		SELECT
 			ROWNUM, BOARD_NO, TITLE, INPUT_DT, VIEW_CNT, BOARD_GB
 			FROM(
@@ -40,7 +35,7 @@
 			ORDER BY ROWNUM DESC
 	</select>
 	
-	<select id="selectCnt" parameterClass="SearchBean"  resultClass="int">
+	<select id="selectCnt" parameterClass="SearchVO"  resultClass="int">
 		SELECT
 				COUNT(*)
 		FROM T_EDU_BOARD
@@ -51,7 +46,7 @@
 		  OR CONTENTS LIKE CONCAT('%',CONCAT(#searchWord#,'%')))
 		]]></isNotEmpty>
 	</select>
-	<select id="boardDetailSelect" parameterClass="java.util.HashMap" resultClass="BoardBean">
+	<select id="boardDetailSelect" parameterClass="java.util.HashMap" resultClass="boardVO">
     	SELECT * FROM(
     		SELECT 
 			USER_NO, BOARD_NO, TITLE, CONTENTS, INPUT_DT, VIEW_CNT,BOARD_GB,
@@ -67,7 +62,7 @@
 			BOARD_GB=#board_gb#
 			)WHERE BOARD_NO=#board_no#
 	</select>	
-	<update id="boardUpdate" parameterClass="BoardBean">
+	<update id="boardUpdate" parameterClass="boardVO">
 		UPDATE 
 			T_EDU_BOARD 
 		SET 
@@ -94,7 +89,7 @@
 			BOARD_NO = #board_no#
 	</update>
 	
-	<select id="replyList" parameterClass="int" resultClass="ReplyBean">
+	<select id="replyList" parameterClass="int" resultClass="replyVO">
 		SELECT
 			COMMENT_NO,
 			BOARD_NO,
@@ -111,7 +106,7 @@
 			COMMENT_NO
 	</select>
 	
-	<update id="replyUpdate" parameterClass="ReplyBean">
+	<update id="replyUpdate" parameterClass="replyVO">
 		UPDATE
 			T_EDU_COMMENT
 		SET
@@ -129,7 +124,7 @@
 		COMMENT_NO = #no#
 	</delete>
 	
-	<insert id="replyInsert" parameterClass="ReplyBean">
+	<insert id="replyInsert" parameterClass="replyVO">
 		INSERT INTO 
 			T_EDU_COMMENT
 		VALUES
@@ -150,7 +145,7 @@
 		T_EDU_COMMENT
   </select>
 
-	<select id="replySelect" parameterClass="int" resultClass="ReplyBean">
+	<select id="replySelect" parameterClass="int" resultClass="replyVO">
 		SELECT
 			COMMENT_NO,
 			BOARD_NO,
@@ -165,14 +160,14 @@
 			COMMENT_NO = #comment_no# AND T_EDU_COMMENT.USER_NO = T_EDU_USER.USER_NO
 	</select>
 	
-	<select id="checkManage" parameterClass="int" resultClass="CheckAuthBean">
+<!-- 	<select id="checkManage" parameterClass="int" resultClass="CheckAuthBean">
 		SELECT
 			MANAGE_YN,ADMIN_YN
 		FROM
 			T_EDU_USER
 		WHERE
 			USER_NO = #user_no#
-	</select>
+	</select> -->
 	
 	<select id="notice" resultClass="String">
 		SELECT TITLE FROM (

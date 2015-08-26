@@ -9,5 +9,11 @@
 		<typeAlias type="com.sssystem.edu.vo.QnaBoardVO" alias="qnaVO"/>
       	<typeAlias type="com.sssystem.edu.vo.search.SearchVO" alias="searchVO"/>
       	<typeAlias type="com.sssystem.edu.vo.support.SessionVO" alias="sessionVO"/>
+      	
+      	<!-- board -->
+		<typeAlias alias="boardVO" type="com.sssystem.edu.vo.BoardVO"/>
+		<typeAlias alias="replyVO" type="com.sssystem.edu.vo.ReplyVO"/>
+		<typeAlias alias="searchVO" type="com.sssystem.edu.vo.SearchVO"/>
+		<typeAlias alias="atchFileVO" type="com.sssystem.edu.vo.AtchFileVO"/>
 	</typeAliases>
 </configuration>
