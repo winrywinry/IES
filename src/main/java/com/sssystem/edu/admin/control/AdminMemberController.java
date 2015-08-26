@@ -76,7 +76,7 @@ public class AdminMemberController {
     model.addAttribute("joblist",joblist);
     
     //-------------------------------리스트 출력----------------------------//
-    List<MemberVO> list = adminMembeerService.selectAll(pageVO);
+    List<MemberVO> list = adminMembeerService.selectAll(pageVO, pageVO.getPage());
     
     model.addAttribute("member", list);
     model.addAttribute("nowDate", new Date());

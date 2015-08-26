@@ -10,7 +10,7 @@ import com.sssystem.edu.vo.JobVO;
 
 public interface AdminMemberService {
   
-  public List<MemberVO> selectAll(PageVO pageVO);
+  public List<MemberVO> selectAll(PageVO pageVO, int page);
   public int selectDuple(MemberVO member);
   public int selectTotal(PageVO pageVO);
   public List<DeptVO> selectDept();

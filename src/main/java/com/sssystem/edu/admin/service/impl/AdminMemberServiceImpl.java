@@ -2,6 +2,7 @@ package com.sssystem.edu.admin.service.impl;
 
 import java.util.List;
 
+import org.apache.ibatis.session.RowBounds;
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
 
@@ -17,56 +18,59 @@ public class AdminMemberServiceImpl implements AdminMemberService {
   private SqlSession session;
 
   @Override
-  public List<MemberVO> selectAll(PageVO pageVO) {
-    // TODO Auto-generated method stub
-    return null;
+  public List<MemberVO> selectAll(PageVO pageVO, int page) {
+    List<MemberVO> list = session.selectList("admin.member.selectAll",pageVO,new RowBounds(page*10-10,10));
+    return list;
   }
 
   @Override
   public int selectDuple(MemberVO member) {
-    // TODO Auto-generated method stub
-    return 0;
+    int t = session.selectOne("admin.member.selectDuple",member);
+    return t;
   }
 
   @Override
   public int selectTotal(PageVO pageVO) {
-    // TODO Auto-generated method stub
-    return 0;
+    int cnt = session.selectOne("admin.member.selectTotal",pageVO);
+    return cnt;
   }
 
   @Override
   public List<DeptVO> selectDept() {
-    // TODO Auto-generated method stub
-    return null;
+    List<DeptVO> list = session.selectList("dept.selectAll");
+    return list;
   }
 
   @Override
   public List<JobVO> selectJob() {
-    // TODO Auto-generated method stub
-    return null;
+    List<JobVO> list = session.selectList("job.selectAll");
+    return list;
   }
 
   @Override
   public boolean insert(MemberVO member) {
-    // TODO Auto-generated method stub
+    int t = session.delete("admin.member.insert",member);
+    if(t > 0) return true;
     return false;
   }
 
   @Override
   public MemberVO select(int user_no) {
-    // TODO Auto-generated method stub
-    return null;
+    MemberVO member = session.selectOne("admin.member.select",user_no);
+    return member;
   }
 
   @Override
   public boolean delete(int no) {
-    // TODO Auto-generated method stub
+    int t = session.delete("admin.member.delete",no);
+    if(t > 0) return true;
     return false;
   }
 
   @Override
   public boolean update(MemberVO member) {
-    // TODO Auto-generated method stub
+    int t = session.update("admin.member.update",member);
+    if(t > 0) return true;
     return false;
   }
 
