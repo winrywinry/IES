@@ -65,6 +65,7 @@ public class QnaServiceImpl implements QnaService {
 
 	@Override
 	public int cntSelect(SearchBoardVO bean) {//검색관련
+		System.out.println("체크1");
 		int cnt = session.selectOne("qna.cntSelect",bean);
 		return cnt;
 	}
@@ -80,4 +81,12 @@ public class QnaServiceImpl implements QnaService {
 		return anm;
 	}
 
+	@Override
+	public int haha() {
+		// TODO Auto-generated method stub
+		int haha = session.selectOne("qna.hahaha");
+		return haha;
+	}
+	
+	
 }
