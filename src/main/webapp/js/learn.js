@@ -68,7 +68,6 @@ function categoryReload(jsonData){
 		alert(jsonData.msg);
 	} else {
 		var json = eval(jsonData.data);
-		alert(json.length);
 		$("#category_no option[value!='']").remove();
 		for (var i=0;i<json.length;i++) {
 			var option = $("<option value='"+ json[i].no +"'>"+ json[i].nm.replace(" ", "&nbsp;") +"</option>");

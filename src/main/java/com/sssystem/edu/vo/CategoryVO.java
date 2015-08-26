@@ -1,6 +1,10 @@
 package com.sssystem.edu.vo;
 
 public class CategoryVO {
+	private String action;
+	private String no;
+	private String nm;
+	
 	private int category_no;
 	private int ref_no;
 	private int lev_no;
@@ -21,6 +25,36 @@ public class CategoryVO {
 		this.category_nm = category_nm;
 		this.category_cnt = category_cnt;
 		this.dept_no = dept_no;
+	}
+
+
+	public String getAction() {
+		return action;
+	}
+
+
+	public void setAction(String action) {
+		this.action = action;
+	}
+
+
+	public String getNo() {
+		return no;
+	}
+
+
+	public void setNo(String no) {
+		this.no = no;
+	}
+
+
+	public String getNm() {
+		return nm;
+	}
+
+
+	public void setNm(String nm) {
+		this.nm = nm;
 	}
 
 

@@ -8,7 +8,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
 
 import com.sssystem.edu.common.ValidateParamChk;
 import com.sssystem.edu.service.CategoryService;
@@ -25,10 +24,7 @@ public class CategoryContoller {
 	
 	@RequestMapping("/learn/category")
 	public String category(
-			  @RequestParam(value="action") String action
-			, @RequestParam(value="no") String no
-			, @RequestParam(value="nm") String category_nm
-			, HttpSession session
+			  HttpSession session
 			, CategoryVO bean
 			, Model model){
 		SessionVO sessionBean = (SessionVO) session.getAttribute("user");
@@ -38,9 +34,9 @@ public class CategoryContoller {
 		int ref_no = 0;
 		int lev_no = 0;
 
-		if (!chk.isEmpty(no)){
-			if (chk.isNumeric(no)){
-				category_no = chk.toInteger(no);
+		if (!chk.isEmpty(bean.getNo())){
+			if (chk.isNumeric(bean.getNo())){
+				category_no = chk.toInteger(bean.getNo());
 				ref_no = category_no;
 				lev_no = categoryService.selectLev(ref_no);
 			}
@@ -48,20 +44,20 @@ public class CategoryContoller {
 		bean.setCategory_no(category_no);
 		bean.setRef_no(ref_no);
 		bean.setLev_no(lev_no);
-		bean.setCategory_nm(category_nm);
+		bean.setCategory_nm(bean.getNm());
 		bean.setDept_no(dept_no);
 
-		if (action.equals("add")){
+		if (bean.getAction().equals("add")){
 			HashMap<String, Object> map = new HashMap<String, Object>();
 			map.put("dept_no", dept_no);
-			map.put("category_nm", category_nm);
+			map.put("category_nm", bean.getCategory_nm());
 			if (!categoryService.selectNm(map)) {
 				categoryService.insert(bean);
 				model.addAttribute("categorylist", categoryService.selectAll(dept_no));
 			} else {
 				//msgs.add(ActionMessages.GLOBAL_MESSAGE, new ActionMessage("category.error.duplicate"));
 			}
-		} else if(action.equals("del")){
+		} else if(bean.getAction().equals("del")){
 			if(categoryService.delete(category_no)){
 				model.addAttribute("categorylist", categoryService.selectAll(dept_no));
 			} else {
