@@ -10,5 +10,6 @@
 	<bean id="qnaService" class="com.sssystem.edu.service.impl.QnaServiceImpl"/>
 	<bean id="BoardService" class="com.sssystem.edu.service.impl.BoardServiceImpl"/>
 	<bean id="chk" class="com.sssystem.edu.common.ValidateParamChk"/>
+	<bean id="adminMemberService" class="com.sssystem.edu.admin.service.impl.AdminMemberServiceImpl"/>
 	
 </beans>
