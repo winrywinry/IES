@@ -2,7 +2,8 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="admin.member">
 
-	<select id="selectAll" parameterType="pageBean" resultType="adminMember">
+	<select id="selectAll" parameterType="adminPageVO" resultType="adminMemberVO">
+		<![CDATA[
 		SELECT A.USER_NO
          , A.EMP_SERIAL
 		     , A.USER_NM
@@ -21,38 +22,54 @@
 	        LEFT OUTER JOIN T_EDU_DEPT B ON (A.DEPT_NO = B.DEPT_NO)
           LEFT OUTER JOIN T_EDU_JOB C ON (A.JOB_NO = C.JOB_NO)
 		 WHERE 1=1
-		 	<!-- <isNotEqual prepend="AND" property="dept_no" compareValue="0">
-				A.DEPT_NO = #{dept_no}
-			</isNotEqual>
-			<isNotEqual prepend="AND" property="job_no" compareValue="0">
-				A.JOB_NO = #{job_no}
-			</isNotEqual>
-			<isNotEqual prepend="AND" property="admin_yn" compareValue="0">
-				A.ADMIN_YN = #{admin_yn}
-			</isNotEqual>
-			<isNotEqual prepend="AND" property="manage_yn" compareValue="0">
-				A.MANAGE_YN = #{manage_yn}
-			</isNotEqual>
-			<isNotEmpty prepend="AND" property="searchWord"><![CDATA[
-			  A.USER_NM LIKE CONCAT('%',CONCAT(#{searchWord},'%'))
-			]]></isNotEmpty> -->
+		 ]]>
+		 	<if test="dept_no != 0">
+		 		<![CDATA[
+				AND A.DEPT_NO = #{dept_no}
+				]]>
+			</if>
+			<if test="job_no != 0">
+				<![CDATA[
+				AND A.JOB_NO = #{job_no}
+				]]>
+			</if>
+			<if test="admin_yn != 0">
+				<![CDATA[
+				AND A.ADMIN_YN = #{admin_yn}
+				]]>
+			</if>
+			<if test="manage_yn != 0">
+				<![CDATA[
+				AND A.MANAGE_YN = #{manage_yn}
+				]]>
+			</if>
+			<if test="searchWord != null and searchWord != ''">
+			<![CDATA[
+			  AND A.USER_NM LIKE CONCAT('%',CONCAT(#{searchWord},'%'))
+			]]>
+			</if>
 		ORDER BY A.USER_NO DESC
 	</select>
 	
-	<select id="selectTotal" parameterType="pageBean" resultType="int">
+	<select id="selectTotal" parameterType="adminPageVO" resultType="int">
+	<![CDATA[
 		SELECT COUNT(*) FROM T_EDU_USER
 	  WHERE 1=1
-			<!-- <isNotEqual prepend="AND" property="dept_no" compareValue="0">
-				dept_no = #{dept_no}
-			</isNotEqual>
-			<isNotEmpty prepend="AND" property="searchWord">
+	  ]]>
+			<if test="dept_no != 0">
+				<![CDATA[
+				AND dept_no = #{dept_no}
+				]]>
+			</if>
+			<if test="searchWord != null and searchWord != ''">
 			<![CDATA[
-			  (user_nm LIKE CONCAT('%',CONCAT(#{searchWord},'%')))
+			  AND (user_nm LIKE CONCAT('%',CONCAT(#{searchWord},'%')))
 			]]>
-			</isNotEmpty> -->
+			</if>
 	</select>
 	
-	<insert id="insert" parameterType="adminMember">
+	<insert id="insert" parameterType="adminMemberVO">
+		<![CDATA[
 		INSERT INTO T_EDU_USER (
 			   USER_NO
 			 , EMP_SERIAL
@@ -94,17 +111,23 @@
 			 , #{admin_yn}
 			 , #{profil_picture}
 		)
+		]]>
 	</insert>
 	
-	<select id="selectDuple" parameterType="adminMember" resultType="int">
+	<select id="selectDuple" parameterType="adminMemberVO" resultType="int">
+		<![CDATA[
 		SELECT count(*) as cnt FROM t_edu_user WHERE user_nm=#{user_nm} and birth_dt = #{birth_dt}
+		]]>
 	</select>
 	
 	<delete id="delete" parameterType="int">
-			DELETE FROM t_edu_user WHERE user_no = #{no}
+		<![CDATA[
+		DELETE FROM t_edu_user WHERE user_no = #{no}
+		]]>
 	</delete>
 	
-	<select id="select" parameterType="int" resultType="adminMember">
+	<select id="select" parameterType="int" resultType="adminMemberVO">
+	<![CDATA[
 		SELECT USER_NO
 		     , USER_NM
 		     , BIRTH_DT
@@ -123,9 +146,11 @@
 		     , MANAGE_YN
 		  FROM T_EDU_USER
 		 WHERE USER_NO = #{user_no}
+		 ]]>
 	</select>
 	
-	<update id="update" parameterType="adminMember">
+	<update id="update" parameterType="adminMemberVO">
+		<![CDATA[
 		UPDATE T_EDU_USER SET
 			   DEPT_NO = #{dept_no}
 			 , JOB_NO = #{job_no}
@@ -135,12 +160,17 @@
 			 , POST = #{post}
 			 , ADDRESS = #{address}
 			 , EMAIL = #{email}
-		<!-- <isNotNull prepend="," property="profil_picture">
-			   PROFIL_PICTURE = #{profil_picture}
-		</isNotNull> -->
+			 ]]>
+		<if test="profil_picture != null and profil_picture != ''">
+			<![CDATA[
+		  	, PROFIL_PICTURE = #{profil_picture}
+	   	]]>
+		</if>
+		<![CDATA[
 			 , ADMIN_YN = #{admin_yn}
 			 , MANAGE_YN = #{manage_yn}
 			 , TIME_STAMP = SYSDATE
 		 WHERE USER_NO = #{user_no}
+		 ]]>
 	</update>
 </mapper>
