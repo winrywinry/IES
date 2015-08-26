@@ -11,6 +11,7 @@ public class PageVO {
   private int total;
 
   public PageVO() {
+    
   }
 
   public PageVO(int dept_no, int job_no, int manage_yn, int admin_yn,
