@@ -7,11 +7,7 @@ import com.sssystem.edu.vo.AtttachFileVO;
 import com.sssystem.edu.vo.BoardVO;
 import com.sssystem.edu.vo.ReplyVO;
 import com.sssystem.edu.vo.search.SearchBoardVO;
-<<<<<<< HEAD
 import com.sssystem.edu.vo.support.SessionVO;
-=======
-
->>>>>>> branch 'master' of https://github.com/winrywinry/IES.git
 
 public interface BoardService  {
 	
