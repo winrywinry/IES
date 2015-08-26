@@ -39,7 +39,7 @@ public interface BoardService  {
 	public SessionVO checkManage(int user_no);
 	public ArrayList<String> notice();
 	public String selectReply(int user_no);
-	public ArrayList<String> replyContents(int user_no);
+	public List<String> replyContents(int user_no);
 	
 
 	}

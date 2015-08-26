@@ -159,7 +159,7 @@ public class BoardServiceImpl implements BoardService {
 	@Override
 	public int selectMaxNo() {
 		int no = 0;
-		//no = (Integer)session.queryForObject("notice.replyMaxNo");
+		//no = (Integer)session.selectList("notice.replyMaxNo");
 		return no;
 	}
 
@@ -168,28 +168,34 @@ public class BoardServiceImpl implements BoardService {
 	
 		return null;
 	}
+	
+	/**
+	 * 리플 출력
+	 */
 	public ReplyVO replySelect(int comment_no) {
-
-		// TODO Auto-generated method stub
-		return null;
+		ReplyVO reply = null;
+		reply = (ReplyVO) session.selectList("notice.replySelect",comment_no);
+		return reply;
 	}
 
 	@Override
 	public ArrayList<String> notice() {
-		// TODO Auto-generated method stub
-		return null;
+		ArrayList<String> notice = null;
+		notice = (ArrayList) session.selectList("notice.notice");
+		return notice;
 	}
 
 	@Override
 	public String selectReply(int user_no) {
-		// TODO Auto-generated method stub
+		String reply = null;
+	//	reply = (String) session.selectList("notice.reply",user_no);
 		return null;
 	}
 
 	@Override
-	public ArrayList<String> replyContents(int user_no) {
-		// TODO Auto-generated method stub
-		return null;
+	public List<String> replyContents(int user_no) {
+		List<String> list = session.selectList("notice.replyContents", user_no);
+		return list;
 	}
 
 	
