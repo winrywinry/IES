@@ -1,7 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=EUC-KR"
 	pageEncoding="EUC-KR"%>
-<%@page import="com.sssystem.edu.qna.QnaBoardVO"%>
-<%@page import="com.sssystem.edu.SessionVO"%>
+<%@page import="com.sssystem.edu.vo.QnaBoardVO"%>
+<%@page import="com.sssystem.edu.vo.support.SessionVO"%>
 <%-- <%@page import="kr.or.sssystem.edu.qnaBoard.model.beans.CheckAuthBean"%> --%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fm" %>

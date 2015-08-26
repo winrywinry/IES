@@ -1,7 +1,6 @@
-<%@page import="common.SetBoardTitle"%>
-<%@page import="org.apache.catalina.filters.SetCharacterEncodingFilter"%>
-<%@page import="com.sssystem.edu.qna.QnaBoardVO"%>
-<%@page import="com.sssystem.edu.qna.SearchVO"%>
+<%@page import="com.sssystem.edu.common.SetBoardTitle"%>
+<%@page import="com.sssystem.edu.vo.QnaBoardVO"%>
+<%@page import="com.sssystem.edu.vo.SearchVO"%>
 <%@ page language="java" contentType="text/html; charset=EUC-KR"
 	pageEncoding="EUC-KR"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
@@ -81,7 +80,7 @@
 									<c:if test="${param.board_gb==60 }"><h3>건의사항</h3><br></c:if>
 								</th>
 								<td>
-								<td width="20%"><input type="text" id=pSearchWord name="pSearchWord" value="${searchBean.searchWord }"/></td>
+								<td width="20%"><input type="text" id=pSearchWord name="pSearchWord" value="${searchVO.searchWord }"/></td>
 								<td width="6%" id="text"><img src="../images/glasses2.png" onclick="document.searchFrm.submit();"></td>
 								<td width="6%"><img src="../images/write.png" onclick="location.href='/iessvn/qna/writeForm.do?board_gb=${param.board_gb }';"></td>
 							</tr>
@@ -99,7 +98,7 @@
 						<c:forEach var="qnaBoard" items="${list }">
 						<tr>
 							<td>${qnaBoard.rownum }</td>
-							<td class="left"><a href="view.do?board_gb=${qnaBoard.board_gb}&no=${qnaBoard.qna_no }&user_no=${user.user_no }">${qnaBoard.title }</a></td>
+							<td class="left"><a href="view?board_gb=${qnaBoard.board_gb}&no=${qnaBoard.qna_no }&user_no=${user.user_no }">${qnaBoard.title }</a></td>
 							<td><a href=#><img src="../images/ico_file_def.gif"></a></td>
 							<td><fmt:formatDate value="${qnaBoard.question_dt}" pattern="yyyy-MM-dd'<br>'HH:mm"/>${qnaboard.question_dt }</td>
 							<td>${qnaBoard.visit_no }</td>
@@ -151,7 +150,7 @@
 								<a href="/iessvn/qna/writeForm.do?board_gb=${param.board_gb }" class="css_btn_class">등록</a>
 							</form>
 						</div> --%>
-				<custom:paging page="${searchBean.page_no}" totalCnt="${searchBean.total}" par="&board_gb=${param.board_gb}&pSearchWord=${searchBean.searchWord}"></custom:paging>
+				<custom:paging page="${searchVO.page_no}" totalCnt="${searchVO.total}" par="&board_gb=${param.board_gb}&pSearchWord=${searchVO.searchWord}"></custom:paging>
 				</div>				
 			</section>
 		</div>

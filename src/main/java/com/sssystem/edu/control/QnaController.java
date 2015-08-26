@@ -46,6 +46,9 @@ public class QnaController {
 	    int total = qnaService.cntSelect(searchVO);
 	    searchVO.setTotal(total);
 	    
+	    int t = qnaService.haha();
+	    System.out.println("hahaha"+t);
+	    
 	    List<QnaBoardVO> list = qnaService.qnaBoardListSelectAll(searchVO,page_no);
 	    
 	    model.addAttribute("list",list);
@@ -62,7 +65,7 @@ public class QnaController {
 		qnaVO.setA_user_nm(qnaService.answerNmSelect(qnaVO.getA_user_no()));
 		qnaService.hitsUpdate(no);
 		
-		model.addAttribute("qnaVO",qnaVO);
+		model.addAttribute("qnaboard",qnaVO);
 		return "qna/view";
 	}
 	
@@ -141,7 +144,7 @@ public class QnaController {
 			qnaService.qnaBoardDelete(no);
 			return "60";
 		}
-		return "qna/delete";
+		return "redirect:qna/list?board_gb="+board_gb;
 	}
 	
 	@RequestMapping("qna/answer")
@@ -159,4 +162,5 @@ public class QnaController {
 		return "qna/answer";
 		
 	}
+	
 }
