@@ -11,7 +11,6 @@ import com.sssystem.edu.service.QnaService;
 import com.sssystem.edu.vo.AtttachFileVO;
 import com.sssystem.edu.vo.QnaBoardVO;
 import com.sssystem.edu.vo.search.SearchBoardVO;
-import com.sssystem.edu.vo.support.SessionVO;
 
 public class QnaServiceImpl implements QnaService {
 
@@ -73,11 +72,6 @@ public class QnaServiceImpl implements QnaService {
 	@Override
 	public void answerUpdate(QnaBoardVO bean) {//답변 등록
 		session.update("qna.answerUpdate",bean);
-	}
-
-	@Override
-	public SessionVO authorityCheck(int qna_no) {//권한 체크
-		 return session.selectOne("qna.authorityCheck",qna_no);
 	}
 
 	@Override
