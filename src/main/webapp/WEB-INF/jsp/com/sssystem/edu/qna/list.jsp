@@ -36,7 +36,7 @@
 		$("#navMenu").navgoco({accordion: true});
 	});
 	function jsGoPage(p,param){
-	       location.href= "list.do?page="+ p + param;
+	       location.href= "list?page="+ p + param;
 	}
 	
 	</script>
@@ -71,7 +71,7 @@
 			</c:choose>
 			<section id="cen">
 				<div id="center">
-					<form name="searchFrm" action="/iessvn/qna/list.do?board_gb=${param.board_gb }" method="post" id="searchFrm" onsubmit="return formchk();">
+					<form name="searchFrm" action="/IES/qna/list?board_gb=${param.board_gb }" method="post" id="searchFrm" onsubmit="return formchk();">
 					<table class="listtop">
 							<tr>
 								<th valign="bottom" >
@@ -82,7 +82,7 @@
 								<td>
 								<td width="20%"><input type="text" id=pSearchWord name="pSearchWord" value="${searchVO.searchWord }"/></td>
 								<td width="6%" id="text"><img src="../images/glasses2.png" onclick="document.searchFrm.submit();"></td>
-								<td width="6%"><img src="../images/write.png" onclick="location.href='/iessvn/qna/writeForm.do?board_gb=${param.board_gb }';"></td>
+								<td width="6%"><img src="../images/write.png" onclick="location.href='/IES/qna/write?board_gb=${param.board_gb }';"></td>
 							</tr>
 						</table>
 					</form>	
@@ -121,8 +121,8 @@
                      				<dd>
                      					<img alt="" src="../images/faq.gif">
                      					${qnaBoard.q_contents }<br>
-                     					<a class="link1" onclick="location.href='/iessvn/qna/updateForm.do?no=${qnaBoard.qna_no }&board_gb=${param.board_gb }';">수정</a>|
-                     					<a class="link1" onclick="location.href='/iessvn/qna/deleteForm.do?no=${qnaBoard.qna_no }&board_gb=${param.board_gb}';">삭제</a>
+                     					<a class="link1" onclick="location.href='/IES/qna/update?no=${qnaBoard.qna_no }&board_gb=${param.board_gb }';">수정</a>|
+                     					<a class="link1" onclick="location.href='/IES/qna/delete?no=${qnaBoard.qna_no }&board_gb=${param.board_gb}';">삭제</a>
                     				</dd>
 						</dl>
 						</td>
@@ -136,7 +136,7 @@
                      			<dt style="CURSOR: pointer">&nbsp; ${qnaBoard.rownum } &nbsp; &nbsp; <b>${qnaBoard.title }</b></dt>
                      				<dd>
                      					<img alt="" src="../images/faq.gif">
-                     					${qnaBoard.q_contents }<br><a class="link1">수정</a>|<a class="link1" onclick="location.href='/iessvn/qna/deleteForm.do?no=${qnaBoard.qna_no }&board_gb=${param.board_gb }&board_no';">삭제</a>
+                     					${qnaBoard.q_contents }<br><a class="link1">수정</a>|<a class="link1" onclick="location.href='/IES/qna/deleteForm?no=${qnaBoard.qna_no }&board_gb=${param.board_gb }&board_no';">삭제</a>
                     				</dd>
 							</c:forEach>	
 						</dl>
@@ -145,9 +145,9 @@
 				<div id="bot">
 					<div id="paging"></div>
 <%-- 					<div id="btn">
-							<form action="writeForm.do" method="post">
+							<form action="writeForm" method="post">
 								<input type ="hidden" name ="board_gb" value="${param.board_gb }" >
-								<a href="/iessvn/qna/writeForm.do?board_gb=${param.board_gb }" class="css_btn_class">등록</a>
+								<a href="/IES/qna/writeForm?board_gb=${param.board_gb }" class="css_btn_class">등록</a>
 							</form>
 						</div> --%>
 				<custom:paging page="${searchVO.page_no}" totalCnt="${searchVO.total}" par="&board_gb=${param.board_gb}&pSearchWord=${searchVO.searchWord}"></custom:paging>

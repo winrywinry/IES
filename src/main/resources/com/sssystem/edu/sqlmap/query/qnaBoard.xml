@@ -83,11 +83,11 @@
 			QNA_NO=#{qna_no}
 	</update>
 	
-	<delete id="boardDelete" parameterType="int">
+	<delete id="qnaBoardDelete" parameterType="int">
 			DELETE
 		FROM 
 			T_EDU_QNA
-		WHERE QNA_NO = #{board_no}
+		WHERE QNA_NO = #{qna_no}
 	</delete>
 	
 	<update id="hitsUpdate" parameterType="int">

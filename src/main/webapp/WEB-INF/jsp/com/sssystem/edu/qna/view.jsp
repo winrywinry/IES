@@ -15,7 +15,7 @@
 	
 	function delConfirm() {
 	    if (confirm("삭제하시겠습니까?")){
-	       location.href='/IES/qna/deleteForm.do?no=${qnaboard.qna_no }&board_gb=${param.board_gb }';
+	       location.href='/IES/qna/delete?no=${qnaboard.qna_no }&board_gb=${param.board_gb }';
 	    } else {
 	       return false;
 	    }
@@ -82,7 +82,7 @@
 								이전글이 없습니다
 								</c:when>
 								<c:otherwise>
-								<a href="/IES/qna/view.do?board_gb=${qnaboard.board_gb}&no=${qnaboard.pre_idx }">${qnaboard.pre_title }</a>
+								<a href="/IES/qna/view?board_gb=${qnaboard.board_gb}&no=${qnaboard.pre_idx }">${qnaboard.pre_title }</a>
 								</c:otherwise>
 							</c:choose>
 							</td>
@@ -104,7 +104,7 @@
 								다음글이 없습니다
 								</c:when>
 								<c:otherwise>
-								<a href="/IES/qna/view.do?board_gb=${qnaboard.board_gb}&no=${qnaboard.next_idx }">${qnaboard.next_title }</a>
+								<a href="/IES/qna/view?board_gb=${qnaboard.board_gb}&no=${qnaboard.next_idx }">${qnaboard.next_title }</a>
 								</c:otherwise>
 							</c:choose>
 							</td>
@@ -120,13 +120,13 @@
 						</tr>
 					</table>
 						<c:if test="${manage.manage_yn==1 && 0 eq qnaboard.a_user_no}">
-						<input type="button" class="ml-button-1" value="답변" onclick="location.href='/IES/qna/answerForm.do?no=${qnaboard.qna_no }&board_gb=${param.board_gb }';">
+						<input type="button" class="ml-button-1" value="답변" onclick="location.href='/IES/qna/answerForm?no=${qnaboard.qna_no }&board_gb=${param.board_gb }';">
 						</c:if>
 						<c:if test="${manage.manage_yn==1 && 0 ne qnaboard.a_user_no}">
-						<input type="button" class="ml-button-1" value="답변수정" onclick="location.href='/IES/qna/answerForm.do?no=${qnaboard.qna_no }&board_gb=${param.board_gb }';">
+						<input type="button" class="ml-button-1" value="답변수정" onclick="location.href='/IES/qna/answerForm?no=${qnaboard.qna_no }&board_gb=${param.board_gb }';">
 						</c:if>
 						<input type="button" class="ml-button-1" value="삭제" onclick="delConfirm()">
-						<input type="button" class="ml-button-1" value="목록으로" onclick="location.href='/IES/qna/list.do?board_gb=${qnaboard.board_gb}';">
+						<input type="button" class="ml-button-1" value="목록으로" onclick="location.href='/IES/qna/list?board_gb=${qnaboard.board_gb}';">
 					</form>
 				</div>
 			</section>
