@@ -26,7 +26,6 @@ public class MemberVO {
   private Date input_dt;
   
   public MemberVO() {
-    // TODO Auto-generated constructor stub
   }
 
   public MemberVO(int user_no, String user_nm, String emp_serial,

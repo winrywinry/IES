@@ -11,7 +11,6 @@ public class PageVO {
   private int total;
 
   public PageVO() {
-    // TODO Auto-generated constructor stub
   }
 
   public PageVO(int dept_no, int job_no, int manage_yn, int admin_yn,
