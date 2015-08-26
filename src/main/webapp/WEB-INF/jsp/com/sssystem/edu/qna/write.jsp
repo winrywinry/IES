@@ -68,7 +68,7 @@
 						</table>
 						<table class="contentTab">
 							<tr>
-								<th width="100">Á¦¸ñ</th>
+								<th width="100">${qnaboard.qna_no },${qnaboard.q_user_no }</th>
 								<td class="left"><input type="text" name="title" style="width: 700px;" value="${qnaboard.title }"></td>
 							</tr>
 							<tr>

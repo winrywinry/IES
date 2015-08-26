@@ -119,10 +119,10 @@
 							</td>
 						</tr>
 					</table>
-						<c:if test="${manage.manage_yn==1 && 0 eq qnaboard.a_user_no}">
-						<input type="button" class="ml-button-1" value="답변" onclick="location.href='/IES/qna/answerForm?no=${qnaboard.qna_no }&board_gb=${param.board_gb }';">
+						<c:if test="${user.manage_yn==1 && 0 eq qnaboard.a_user_no}">
+						<input type="button" class="ml-button-1" value="답변" onclick="location.href='/IES/qna/answer?qna_no=${qnaboard.qna_no }&board_gb=${param.board_gb }';">
 						</c:if>
-						<c:if test="${manage.manage_yn==1 && 0 ne qnaboard.a_user_no}">
+						<c:if test="${user.manage_yn==1 && 0 ne qnaboard.a_user_no}">
 						<input type="button" class="ml-button-1" value="답변수정" onclick="location.href='/IES/qna/answerForm?no=${qnaboard.qna_no }&board_gb=${param.board_gb }';">
 						</c:if>
 						<input type="button" class="ml-button-1" value="삭제" onclick="delConfirm()">

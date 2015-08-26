@@ -39,8 +39,12 @@ public class QnaServiceImpl implements QnaService {
 
 	@Override
 	public boolean qnaBoardUpdate(QnaBoardVO bean) {//게시글 업데이트
+		System.out.println("impl호출"+bean.getTitle());
+		System.out.println("impl호출"+bean.getQ_contents());
+		System.out.println("impl호출"+bean.getQna_no());
 		int t = session.update("qna.qnaBoardUpdate",bean);
-		if(t==1)return true;
+		System.out.println(t);
+		if(t>0)return true;
 		return false;
 	}
 
