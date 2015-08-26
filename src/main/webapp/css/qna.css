@@ -1,5 +1,5 @@
 @CHARSET "EUC-KR";
-@IMPORT url("/iessvn/common.css");
+@IMPORT url("/IES/common.css");
 
 #con { margin:20px; } 
 .listTab { clear:both; width:850px; border-top:2px solid #666666; border-bottom:2px solid #666666; border-spacing: 0px;}

@@ -90,7 +90,7 @@
 		WHERE QNA_NO = #{board_no}
 	</delete>
 	
-	<update id="uphits" parameterType="int">
+	<update id="hitsUpdate" parameterType="int">
 		UPDATE
 			T_EDU_QNA
 		SET
