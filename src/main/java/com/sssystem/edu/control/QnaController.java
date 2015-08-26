@@ -5,6 +5,7 @@ import java.util.List;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.dao.support.DaoSupport;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -56,7 +57,8 @@ public class QnaController {
 	public String qnaView(HttpSession session,Model model,
 			@RequestParam(value="no")int no,
 			@RequestParam(value="board_gb")int board_gb){
-		QnaBoardVO qnaVO = qnaService.qnaBoardView(no,board_gb);
+		int qna_no = no;
+		QnaBoardVO qnaVO = qnaService.qnaBoardView(qna_no,board_gb);
 		qnaVO.setA_user_nm(qnaService.answerNmSelect(qnaVO.getA_user_no()));
 		qnaService.hitsUpdate(no);
 		
@@ -89,8 +91,72 @@ public class QnaController {
 			qnaVO.setQna_no(Integer.parseInt(qna_no));
 		}
 		
-		
+		if(board_gb.equals("60")){
+			if(!(q_contents==null)){
+				if(qnaService.qnaBoardInsert(qnaVO)){
+					return "60";
+				}
+			}else if(q_contents==null){
+				if(qnaService.qnaBoardUpdate(qnaVO)){
+					return "60";
+				}
+			}
+		}else if(board_gb.equals("50")){
+			if(qna_no.isEmpty()){
+				if(qnaService.qnaBoardUpdate(qnaVO)){
+					return "50";
+				}
+			}else{
+				if(qnaService.qnaBoardInsert(qnaVO)){
+					return"50";
+				}
+			}
+		}else if(board_gb.equals("40")){
+			if(!(q_contents==null)){
+				if(qnaService.qnaBoardInsert(qnaVO)){
+					return "40";
+				}
+			}else if(q_contents==null){
+				if(qnaService.qnaBoardUpdate(qnaVO)){
+					return "40";
+				}
+			}
+		}
 		
 		return "qna/write";
+	}
+	
+	@RequestMapping("qna/delete")
+	public String qnaDelete(Model model,
+			@RequestParam(value="no")int no,
+			@RequestParam(value="board_gb")int board_gb){
+		
+		if(board_gb==40){
+			qnaService.qnaBoardDelete(no);
+			return "40";
+		}else if(board_gb==50){
+			qnaService.qnaBoardDelete(no);
+			return "50";
+		}else if(board_gb==60){
+			qnaService.qnaBoardDelete(no);
+			return "60";
+		}
+		return "qna/delete";
+	}
+	
+	@RequestMapping("qna/answer")
+	public String qnaAnswer(HttpSession session,Model model,
+			@RequestParam(value="qna_no")int qna_no,
+			@RequestParam(value="a_contents")String a_contents){
+		SessionVO sessionVO = (SessionVO) session.getAttribute("user");
+		QnaBoardVO qnaVO = new QnaBoardVO();
+		qnaVO.setQna_no(qna_no);
+		qnaVO.setA_user_no(sessionVO.getUser_no());
+		qnaVO.setA_contents(a_contents);
+		
+		qnaService.answerUpdate(qnaVO);
+		
+		return "qna/answer";
+		
 	}
 }
