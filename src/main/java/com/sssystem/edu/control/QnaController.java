@@ -70,11 +70,16 @@ public class QnaController {
 	}
 	
 	@RequestMapping("qna/write")
+	public String qnaWriteForm(){
+		
+		return "qna/write";
+	}
+	
+	@RequestMapping("qna/writeForm")
 	public String qnaWrite(HttpSession session,Model model,
-			@RequestParam(value="edu_no",required=false)int edu_no,
 			@RequestParam(value="board_gb")String board_gb,
-			@RequestParam(value="title")String title,
-			@RequestParam(value="q_contents",required=false)String q_contents,
+			@RequestParam(value="title",required=false)String title,
+			@RequestParam(value="contents",required=false)String q_contents,
 			@RequestParam(value="a_contents",required=false)String a_contents,
 			@RequestParam(value="qna_no",required=false)String qna_no
 			){
@@ -90,44 +95,49 @@ public class QnaController {
 		qnaVO.setA_user_no(sessionVO.getUser_no());
 		qnaVO.setA_contents(a_contents);
 		qnaVO.setVisit_no(0);
-		if(!qna_no.isEmpty()){
-			qnaVO.setQna_no(Integer.parseInt(qna_no));
-		}
-		
+		System.out.println("gkgkgkgk");
+		System.out.println(qna_no);
+		System.out.println("q_contents="+q_contents);
 		if(board_gb.equals("60")){
 			if(!(q_contents==null)){
+				System.out.println("gb60 입력시도");
 				if(qnaService.qnaBoardInsert(qnaVO)){
-					return "60";
-				}
+					System.out.println("gb60 입력성공");
+					return "redirect:list?board_gb="+board_gb;				}
 			}else if(q_contents==null){
+				System.out.println("gb60 수정시도");
 				if(qnaService.qnaBoardUpdate(qnaVO)){
-					return "60";
-				}
+					System.out.println("gb60 수정성공");
+					return "redirect:list?board_gb="+board_gb;				}
 			}
 		}else if(board_gb.equals("50")){
 			if(qna_no.isEmpty()){
+				System.out.println("gb50,수정시도");
 				if(qnaService.qnaBoardUpdate(qnaVO)){
-					return "50";
-				}
+					System.out.println("gb50,수정성공");
+					return "redirect:list?board_gb="+board_gb;				}
 			}else{
+				System.out.println("gb50입력시도");
 				if(qnaService.qnaBoardInsert(qnaVO)){
-					return"50";
-				}
+					System.out.println("gb50,입력성공");
+					return "redirect:list?board_gb="+board_gb;				}
 			}
 		}else if(board_gb.equals("40")){
 			if(!(q_contents==null)){
+				System.out.println("gb40,입력시도");
 				if(qnaService.qnaBoardInsert(qnaVO)){
-					return "40";
-				}
+					System.out.println("gb40,입력성공");
+					return "redirect:list?board_gb="+board_gb;				}
 			}else if(q_contents==null){
+				System.out.println("gb40,수정시도");
 				if(qnaService.qnaBoardUpdate(qnaVO)){
-					return "40";
-				}
+					System.out.println("gb40,수정성공");
+					return "redirect:list?board_gb="+board_gb;				}
 			}
 		}
-		
-		return "qna/write";
-	}
+		System.out.println("실패");
+		return "redirect:list?board_gb="+board_gb;
+			}
 	
 	@RequestMapping("qna/delete")
 	public String qnaDelete(Model model,
@@ -136,15 +146,12 @@ public class QnaController {
 		
 		if(board_gb==40){
 			qnaService.qnaBoardDelete(no);
-			return "40";
 		}else if(board_gb==50){
 			qnaService.qnaBoardDelete(no);
-			return "50";
 		}else if(board_gb==60){
 			qnaService.qnaBoardDelete(no);
-			return "60";
 		}
-		return "redirect:qna/list?board_gb="+board_gb;
+		return "redirect:list?board_gb="+board_gb;
 	}
 	
 	@RequestMapping("qna/answer")

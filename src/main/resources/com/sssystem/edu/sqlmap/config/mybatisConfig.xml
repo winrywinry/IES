@@ -11,8 +11,12 @@
       	<typeAlias type="com.sssystem.edu.vo.support.SessionVO" alias="sessionVO"/>
       	
       	<!-- board -->
-		<typeAlias alias="boardVO" type="com.sssystem.edu.vo.BoardVO"/>
-		<typeAlias alias="replyVO" type="com.sssystem.edu.vo.ReplyVO"/>
-		<typeAlias alias="attachVO" type="com.sssystem.edu.vo.AttachFileVO"/>
+		<typeAlias type="com.sssystem.edu.vo.BoardVO" alias="boardVO"/>
+		<typeAlias type="com.sssystem.edu.vo.ReplyVO" alias="replyVO"/>
+		<typeAlias type="com.sssystem.edu.vo.AttachFileVO" alias="attachVO"/>
+		
+		<!-- admin
+		<typeAlias type="com.sssystem.edu.admin.vo.MemberVO" alias="adminMemberVO"/>
+		<typeAlias type="com.sssystem.edu.admin.vo.pageVO" alias="adminPageVO"/> -->
 	</typeAliases>
 </configuration>

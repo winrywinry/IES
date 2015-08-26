@@ -1,17 +1,17 @@
 <%@ page language="java" contentType="text/html; charset=EUC-KR"
 	pageEncoding="EUC-KR"%>
-<%@page import="com.sssystem.edu.qna.QnaBoardVO"%>
+<%@page import="com.sssystem.edu.vo.QnaBoardVO"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <% request.setCharacterEncoding("euc-kr"); %>
 <!DOCTYPE html>
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=EUC-KR">
-<link rel="stylesheet" type="text/css" href="qna.css" />
+<link rel="stylesheet" type="text/css" href="${initParam.root }/css/qna.css" />
 <title>Insert title here</title>
 	<script src= "//code.jquery.com/jquery-1.11.3.min.js" ></script>
 	<script src= "//code.jquery.com/jquery-migrate-1.2.1.min.js" ></script>
-	<script type= "text/javascript" src ="/iessvn/js/SEditor.js" charset="euc-kr" ></script>
+	<script type= "text/javascript" src ="${initParam.root }/js/SEditor.js" charset="euc-kr" ></script>
 	<script type= "text/javascript">
 	$(function(){
 	       callEditor( "ta1");   
@@ -54,7 +54,7 @@
 			</c:choose>
 			<section id="cen">
 				<div id="center"> 	
-				<form action="write.do" method="post" name="pWriteForm" onsubmit="return formchk();">
+				<form action="writeForm" method="post" name="pWriteForm" onsubmit="return formchk();">
 					<input type = "hidden" name="board_gb" value="${param.board_gb }">
 					<input type = "hidden" name="qna_no" value="${qnaboard.qna_no }">
 					<input type = "hidden" name="user_no" value="${qnaboard.q_user_no }">
