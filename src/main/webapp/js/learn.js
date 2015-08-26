@@ -7,7 +7,6 @@ $(function(){
       
     if(document.writeFrm.state.value=="update"){
     	document.getElementById("sub").innerHTML = "수정";
-    	//document.frm.submit.value="수정";
    		document.getElementById('pagetitle').innerHTML = "글수정";
     }
 	$(".chkAll").click(function(){
@@ -30,7 +29,7 @@ $(function(){
 			return false;
 		}
 		var params = "action=add&nm="+ nm +"&no="+ no;
-		new ajax.xhr.Request("/iessvn/learn/category.do", params, categoryList, "POST");
+		new ajax.xhr.Request("/IES/learn/category", params, categoryList, "POST");
 	})
 	$("#category_del").click(function(){
 		var no = $("#category_no option:selected").val();

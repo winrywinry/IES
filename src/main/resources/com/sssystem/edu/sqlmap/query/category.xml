@@ -20,4 +20,42 @@
 		CONNECT BY PRIOR A.CATEGORY_NO = A.REF_NO
 	]]>
 	</select>
+	<select id="selectLev" parameterType="int" resultType="int">
+	<![CDATA[
+		SELECT NVL(MAX(LEV_NO), 0) + 1
+		  FROM T_EDU_CATEGORY
+		 WHERE REF_NO = #{ref_no}
+	]]>
+	</select>
+	<select id="selectNm" parameterType="hashmap" resultType="int">
+	<![CDATA[
+		SELECT COUNT(*) AS CNT
+		  FROM T_EDU_CATEGORY
+		 WHERE CATEGORY_NM = #{category_nm}
+		   AND DEPT_NO = #{dept_no}
+	]]>
+	</select>
+	<insert id="insert" parameterType="categoryVO">
+	<![CDATA[
+		INSERT INTO T_EDU_CATEGORY (
+		       CATEGORY_NO
+		     , REF_NO
+		     , LEV_NO
+		     , CATEGORY_NM
+		     , DEPT_NO
+		) VALUES (
+			   SEQ_EDU_CATEGORY.NEXTVAL
+			 , #{ref_no}
+			 , #{lev_no}
+			 , #{category_nm}
+			 , #{dept_no}
+		)
+	]]>
+	</insert>
+	<delete id="delete" parameterType="int">
+	<![CDATA[
+		DELETE T_EDU_CATEGORY
+		 WHERE CATEGORY_NO = #{category_no}
+	]]>
+	</delete>
 </mapper>
