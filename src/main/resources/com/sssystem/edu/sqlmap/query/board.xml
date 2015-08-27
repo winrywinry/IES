@@ -29,7 +29,7 @@
 		WHERE 1=1 and BOARD_GB=#{board_gb}
 			<!-- AND TITLE LIKE '%' || '#{searchWord}' || '%' -->
 			<if test="searchWord != null and searchWord != ''"><![CDATA[			
-			  (TITLE LIKE CONCAT('%',CONCAT(#{searchWord},'%')) 
+			and (TITLE LIKE CONCAT('%',CONCAT(#{searchWord},'%')) 
 		  OR CONTENTS LIKE CONCAT('%',CONCAT(#{searchWord},'%')))
 			]]></if>
 			ORDER BY BOARD_NO)
@@ -43,7 +43,7 @@
 		WHERE 1=1 and BOARD_GB=#{board_gb}
 		<!-- AND TITLE LIKE '%' || '#{searchWord}' || '%' -->
 		<if test="searchWord != null and searchWord != ''"><![CDATA[		
-			  (TITLE LIKE CONCAT('%',CONCAT(#{searchWord},'%')) 
+			and (TITLE LIKE CONCAT('%',CONCAT(#{searchWord},'%')) 
 		  OR CONTENTS LIKE CONCAT('%',CONCAT(#{searchWord},'%')))
 		]]></if>
 	</select>
