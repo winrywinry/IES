@@ -26,7 +26,7 @@ public class QnaController {
 	
 	@RequestMapping("qna/list")
 	public String qnaList(@RequestParam(value="board_gb")int board_gb,
-			@RequestParam(value="searchWord",required=false)String searchWord,
+			@RequestParam(value="pSearchWord",required=false)String searchWord,
 			@RequestParam(value="page",required=false)String page,
 			Model model){
 		SearchBoardVO searchVO = new SearchBoardVO();
