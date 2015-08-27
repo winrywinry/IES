@@ -73,7 +73,7 @@
 			)WHERE QNA_NO=#{qna_no}
 	</select>	
 	
-	<update id="updateAnswer" parameterType="qnaVO">
+	<update id="answerUpdate" parameterType="qnaVO">
 		UPDATE
 			T_EDU_QNA
 		SET

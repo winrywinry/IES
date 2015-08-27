@@ -107,8 +107,9 @@ public class QnaController {
 		qnaVO.setA_contents(a_contents);
 		qnaVO.setVisit_no(0);
 		
-		if(!qna_no.isEmpty()){
-			qnaVO.setQna_no(Integer.parseInt(qna_no));
+		System.out.println("파라미터로 받아온 qna_no의 값은 "+qna_no);
+		if(!(qna_no.isEmpty())){
+			System.out.println("qna_no"+qna_no);
 			qnaVO.setQna_no(Integer.parseInt(qna_no));
 		}
 		
@@ -129,18 +130,18 @@ public class QnaController {
 			}
 		}else if(board_gb.equals("50")){
 			System.out.println("qna_no="+qna_no);
-			if(!(qna_no==null)){
+			if(!(qna_no.isEmpty())){
 				System.out.println("gb50,수정시도");
 				System.out.println("q_contents="+qnaVO.getQ_contents());
 				System.out.println("title="+qnaVO.getTitle());
 				if(qnaService.qnaBoardUpdate(qnaVO)){
 					System.out.println("gb50,수정성공");
-					return "redirect:list?board_gb="+board_gb;				}
+					return "redirect:list?board_gb="+board_gb;	}
 			}else{
 				System.out.println("gb50입력시도");
 				if(qnaService.qnaBoardInsert(qnaVO)){
 					System.out.println("gb50,입력성공");
-					return "redirect:list?board_gb="+board_gb;				}
+					return "redirect:list?board_gb="+board_gb;	}
 			}
 		}else if(board_gb.equals("40")){
 			if(!(q_contents==null)){
@@ -155,6 +156,7 @@ public class QnaController {
 					return "redirect:list?board_gb="+board_gb;				}
 			}
 		}
+	
 		System.out.println("실패");
 		return "redirect:list?board_gb="+board_gb;
 			}
@@ -175,18 +177,26 @@ public class QnaController {
 	}
 	
 	@RequestMapping("qna/answer")
-	public String qnaAnswer(HttpSession session,Model model,
-			@RequestParam(value="qna_no")int qna_no,
-			@RequestParam(value="a_contents")String a_contents){
-		SessionVO sessionVO = (SessionVO) session.getAttribute("user");
-		QnaBoardVO qnaVO = new QnaBoardVO();
-		qnaVO.setQna_no(qna_no);
-		qnaVO.setA_user_no(sessionVO.getUser_no());
-		qnaVO.setA_contents(a_contents);
-		
-		qnaService.answerUpdate(qnaVO);
+	public String qnaAnswer(){
 		
 		return "qna/answerwrite";
+	}
+	
+	@RequestMapping("qna/answerForm")
+	public String qnaAnswerForm(HttpSession session,Model model,
+			@RequestParam(value="qna_no")String qna_no,
+			@RequestParam(value="a_contents")String a_contents){
+		System.out.println("qna_no="+qna_no);
+		System.out.println("a_contents="+a_contents);
+		SessionVO sessionVO = (SessionVO) session.getAttribute("user");
+		QnaBoardVO qnaVO = new QnaBoardVO();
+		qnaVO.setQna_no(Integer.parseInt(qna_no));
+		qnaVO.setA_user_no(sessionVO.getUser_no());
+		qnaVO.setA_contents(a_contents);
+		System.out.println("하하하하");
+		qnaService.answerUpdate(qnaVO);
+		
+		return "redirect:view?board_gb=60&no="+qna_no+"&user_no="+sessionVO.getUser_no();
 		
 	}
 	
