@@ -58,7 +58,6 @@ public class BoardController {
 			
 		BoardVO boardVO = boardServie.boardDetailSelect(no, gb);
 		boardServie.upHits(no);	
-		System.out.println("board_title="+boardVO.getTitle());
 		model.addAttribute("board", boardVO);
 		return "board/view";
 	}
@@ -74,28 +73,51 @@ public class BoardController {
 			@RequestParam (value="board_gb", required=false)String board_gb,
 			@RequestParam (value="title", required=false)String title,
 			@RequestParam (value="contents", required=false)String contents,
-			@RequestParam (value="board_no", required=false)int board_no) {
-		
+			@RequestParam (value="board_no", required=false)String board_no) {
 		BoardVO boardVO = new BoardVO();
 		SessionVO sessionVO = (SessionVO) session.getAttribute("user");
-		System.out.println("board_no"+board_no);
 		
-		boardVO.setBoard_no(board_no);
 		boardVO.setUser_no(sessionVO.getUser_no());
 		boardVO.setBoard_gb(board_gb);
 		boardVO.setTitle(title);
 		boardVO.setContents(contents);
+		if(!(board_no.isEmpty())){
+			boardVO.setBoard_no(Integer.parseInt(board_no));
+		}
+
+		if(board_gb.equals("10")){
+			if(!(board_no.isEmpty())){
+				if(boardServie.boardUpdate(boardVO)){
+					return "redirect:view?board_gb="+board_gb+"&no="+board_no;
+				}
+			}else{
+				if(boardServie.boardInsert(boardVO)){
+					return "redirect:list?board_gb="+board_gb;
+				}
+			}
+		}else if(board_gb.equals("20")){
+			if(!(board_no.isEmpty())){
+				if(boardServie.boardUpdate(boardVO)){
+					return "redirect:view?board_gb="+board_gb+"&no="+board_no;
+				}
+			}else{
+				if(boardServie.boardInsert(boardVO)){
+					return "redirect:list?board_gb="+board_gb;
+				}
+			}
+		}else if(board_gb.equals("30")){
+			if(!(board_no.isEmpty())){
+				if(boardServie.boardUpdate(boardVO)){
+					return "redirect:view?board_gb="+board_gb+"&no="+board_no;
+				}
+			}else{
+				if(boardServie.boardInsert(boardVO)){
+					return "redirect:list?board_gb="+board_gb;
+				}
+			}
+		}
 		
-		
-/*		if(!(board_no.isEmpty())) {
-			boardVO.setBoard_no(board_no);
-		}*/
-		
-		
-		
-		
-		
-		return "board/writeForm";
+		return "board/list";
 	}
 	
 	@RequestMapping("board/update")
@@ -103,17 +125,23 @@ public class BoardController {
 			@RequestParam (value="no", required=false)int no,
 			@RequestParam (value="board_gb", required=false)int board_gb) {
 		
-			
+			int board_no = no;
+			BoardVO boardVO = boardServie.boardDetailSelect(board_no, board_gb);
+			model.addAttribute("board",boardVO);
 		
-		return "board/update";
+		return "board/write";
 	}
 	
 	@RequestMapping("board/delete")
 	public String boardDelete(HttpSession session, Model model,
 			@RequestParam (value="no", required=false)int no,
 			@RequestParam (value="board_gb", required=false)int board_gb) {
+		System.out.println("no="+no);
+		System.out.println("board_gb="+board_gb);
+
+		boardServie.boardDelete(no);
 		
-		return "board/delete";
+		return "redirect:list?board_gb="+board_gb;
 	}
 	
 	@RequestMapping("board/reply")

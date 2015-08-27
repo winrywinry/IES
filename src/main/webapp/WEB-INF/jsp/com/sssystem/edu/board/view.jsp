@@ -19,7 +19,7 @@
 	
 	function delConfirm() {
 	    if (confirm("삭제하시겠습니까?")){
-	       location.href='/iessvn/qna/deleteForm.do?no=${qnaboard.qna_no }&board_gb=${param.board_gb }';
+	       location.href='/IES/board/delete?no=${param.no }&board_gb=${param.board_gb }';
 	    } else {
 	       return false;
 	    }
@@ -27,7 +27,7 @@
 	
 	function replyAdd(){//리플 추가
 	  	var params='content='+document.addForm.content.value+'&board_no='+${param.no};
-	  	new ajax.xhr.Request('/iessvn/board/reply.do?action=insert',params,
+	  	new ajax.xhr.Request('/IES/board/reply?action=insert',params,
 	  			                       replyAddResult,'POST');    	
 	   }
    
@@ -47,7 +47,7 @@
    
 function setReplyList(){//리플 출력
    	var params='no='+${param.no}+'&action=list'
-   new ajax.xhr.Request('/iessvn/board/reply.do',params,replyListResult,'POST');
+   new ajax.xhr.Request('/IES/board/reply',params,replyListResult,'POST');
     }
 function replyListResult(xhr){
    	if(xhr.readyState==4 && xhr.status==200){
@@ -67,7 +67,7 @@ function replyUpdate(){//수정요청
  	var content = document.updateForm.content.value;
  	var params = 'comment_no='+no+'&content='+content+'&name='+name;
  	
-    new ajax.xhr.Request('/iessvn/board/reply.do?action=update',params,replyUpdateResult,'POST');
+    new ajax.xhr.Request('/IES/board/reply?action=update',params,replyUpdateResult,'POST');
   } 
   
  function replyUpdateResult(xhr){
@@ -84,7 +84,7 @@ function replyUpdate(){//수정요청
  		 
  		 //수정폼 모시기와 감추기
  		  var replyUpdate = document.getElementById('replyUpdate');
- 		  document.documentElement.appendChild(replyUpdate);
+ 		  documentcumentElement.appendChild(replyUpdate);
  		  replyUpdate.style.display='none';
  		 oldDiv.parentNode.replaceChild(upDiv,oldDiv);
  	   }else{
@@ -126,7 +126,7 @@ function replyUpdate(){//수정요청
    function replyDelete(no){
 		if(!confirm('댓글을 삭제하시겠습니까?'))return;
 	 	var param = 'comment_no='+no;
-	    new ajax.xhr.Request('/iessvn/board/reply.do?action=delete',param,
+	    new ajax.xhr.Request('/IES/board/reply?action=delete',param,
 	     replyDeleteResult,'POST');
   }//replyDelete
  
@@ -190,9 +190,9 @@ window.onload=function(){
 							<a class="link1" onclick="delConfirm()" >삭제</a> | 
 						</c:if>
 						<c:if test="${user.user_no==board.user_no }">
-							<a class="link1" onclick="location.href='/iessvn/board/updateForm.do?no=${board.board_no }&board_gb=${param.board_gb }';">수정</a> | 
+							<a class="link1" onclick="location.href='/IES/board/update?no=${board.board_no }&board_gb=${param.board_gb }';">수정</a> | 
 						</c:if>
-						<a class="link1" onclick="location.href='/iessvn/board/list.do?board_gb=${board.board_gb}';">목록으로</a>
+						<a class="link1" onclick="location.href='/IES/board/list?board_gb=${board.board_gb}';">목록으로</a>
 					</span>	
 				</form>
 					<!-- 댓글 -->
@@ -226,14 +226,14 @@ window.onload=function(){
 <!-- 다음글/이전글 -->
 				<table class="moveTab">
 					<tr>
-						<td width="20%"><img src='/iessvn/images/up.png' /> 이전글</td>
+						<td width="20%"><img src='/IES/images/up.png' /> 이전글</td>
 						<td width="50%" class="left">
 						<c:choose>
 							<c:when test="${board.pre_idx==0 }">
 							이전글이 없습니다
 							</c:when>
 							<c:otherwise>
-							<a href="/iessvn/board/view.do?board_gb=${board.board_gb}&no=${board.pre_idx }">${board.pre_title }</a>
+							<a href="/IES/board/view?board_gb=${board.board_gb}&no=${board.pre_idx }">${board.pre_title }</a>
 							</c:otherwise>
 						</c:choose>
 						</td>
@@ -248,14 +248,14 @@ window.onload=function(){
 						</td>
 					</tr>
 					<tr>
-						<td><img src='/iessvn/images/down.png' /> 다음글</td>
+						<td><img src='/IES/images/down.png' /> 다음글</td>
 						<td width="50%" class="left">
 						<c:choose>
 							<c:when test="${board.next_idx==0 }">
 							다음글이 없습니다
 							</c:when>
 							<c:otherwise>
-							<a href="/iessvn/board/view.do?board_gb=${board.board_gb}&no=${board.next_idx }">${board.next_title }</a>
+							<a href="/IES/board/view?board_gb=${board.board_gb}&no=${board.next_idx }">${board.next_title }</a>
 							</c:otherwise>
 						</c:choose>
 						</td>

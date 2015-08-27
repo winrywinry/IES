@@ -118,42 +118,34 @@ public class QnaController {
 		System.out.println("q_contents="+q_contents);
 		if(board_gb.equals("60")){
 			if(!(q_contents==null)){
-				System.out.println("gb60 입력시도");
 				if(qnaService.qnaBoardInsert(qnaVO)){
-					System.out.println("gb60 입력성공");
-					return "redirect:list?board_gb="+board_gb;				}
+					return "redirect:list?board_gb="+board_gb;
+					}
 			}else if(q_contents==null){
-				System.out.println("gb60 수정시도");
 				if(qnaService.qnaBoardUpdate(qnaVO)){
-					System.out.println("gb60 수정성공");
-					return "redirect:list?board_gb="+board_gb;				}
+					return "redirect:view?board_gb="+board_gb+"&no="+qna_no+"&user_no="+sessionVO.getUser_no();
+					}
 			}
 		}else if(board_gb.equals("50")){
 			System.out.println("qna_no="+qna_no);
 			if(!(qna_no.isEmpty())){
-				System.out.println("gb50,수정시도");
-				System.out.println("q_contents="+qnaVO.getQ_contents());
-				System.out.println("title="+qnaVO.getTitle());
 				if(qnaService.qnaBoardUpdate(qnaVO)){
-					System.out.println("gb50,수정성공");
-					return "redirect:list?board_gb="+board_gb;	}
+					return "redirect:view?board_gb="+board_gb+"&no="+qna_no+"&user_no="+sessionVO.getUser_no();
+					}
 			}else{
-				System.out.println("gb50입력시도");
 				if(qnaService.qnaBoardInsert(qnaVO)){
-					System.out.println("gb50,입력성공");
-					return "redirect:list?board_gb="+board_gb;	}
+					return "redirect:list?board_gb="+board_gb;
+					}
 			}
 		}else if(board_gb.equals("40")){
 			if(!(q_contents==null)){
-				System.out.println("gb40,입력시도");
 				if(qnaService.qnaBoardInsert(qnaVO)){
-					System.out.println("gb40,입력성공");
-					return "redirect:list?board_gb="+board_gb;				}
+					return "redirect:list?board_gb="+board_gb;
+					}
 			}else if(q_contents==null){
-				System.out.println("gb40,수정시도");
 				if(qnaService.qnaBoardUpdate(qnaVO)){
-					System.out.println("gb40,수정성공");
-					return "redirect:list?board_gb="+board_gb;				}
+					return "redirect:view?board_gb="+board_gb+"&no="+qna_no+"&user_no="+sessionVO.getUser_no();
+					}
 			}
 		}
 	
@@ -166,13 +158,7 @@ public class QnaController {
 			@RequestParam(value="no")int no,
 			@RequestParam(value="board_gb")int board_gb){
 		
-		if(board_gb==40){
 			qnaService.qnaBoardDelete(no);
-		}else if(board_gb==50){
-			qnaService.qnaBoardDelete(no);
-		}else if(board_gb==60){
-			qnaService.qnaBoardDelete(no);
-		}
 		return "redirect:list?board_gb="+board_gb;
 	}
 	

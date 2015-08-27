@@ -70,7 +70,7 @@ function jsGoPage(p,param){
 								<td>
 								<td width="20%"><input type="text" id=pSearchWord name="pSearchWord" value="${searchBean.searchWord }"/></td>
 								<td width="6%" id="text"><img src="../images/glasses2.png" onclick="document.searchFrm.submit();"></td>
-								<td width="6%"><img src="../images/write.png" onclick="location.href='/IES/board/writeForm?board_gb=${param.board_gb }';"></td>
+								<td width="6%"><img src="../images/write.png" onclick="location.href='/IES/board/write?board_gb=${param.board_gb }';"></td>
 							</tr>
 						</table>
 					</form>	

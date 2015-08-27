@@ -79,7 +79,7 @@
 			<div id="center">
 <!--<form action="/iessvn/board/write.do?" name="pAtchFile" method="post" enctype="multipart/form-data">
  -->
-				<form action="write.do" method="post" name="pWriteForm" onsubmit="return formchk();">
+				<form action="writeForm" method="post" name="pWriteForm" onsubmit="return formchk();">
 					<input type = "hidden" name="board_gb" value="${param.board_gb }">
 					<input type = "hidden" name="board_no" value="${board.board_no }">
 					<input type = "hidden" name="user_no" value="${board.user_no }">
