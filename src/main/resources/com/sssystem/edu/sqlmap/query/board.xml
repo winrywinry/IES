@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="UTF-8"?>
+<?xml version="1.0" encoding="UTF-8"?><!--Converted at: Wed Aug 26 16:46:53 KST 2015-->
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
 "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="notice">
@@ -8,7 +8,7 @@
 		T_EDU_ATTCH
 			(ATTCH_NO, REFNO, TABLE_NM, ATTACH_FILE, INPUT_DT, ATTACH_SEQ)
 		VALUES
-			(SEQ_EDU_ATTACH.NEXTVAL, #ref_no#, #table_nm#, #attach_file#, SYSDATE, #attach_seq#)
+			(SEQ_EDU_ATTACH.NEXTVAL, #{ref_no}, #{table_nm}, #{attach_file}, SYSDATE, #{attach_seq})
 	</insert>
 	 -->
 	<insert id="boardInsert" parameterType="boardVO">
@@ -16,35 +16,35 @@
 		T_EDU_BOARD 
 			(BOARD_NO, USER_NO, BOARD_GB, TITLE, CONTENTS, INPUT_DT)
 		VALUES
-			(SEQ_EDU_BOARD.NEXTVAL,#user_no#,#board_gb#,#title#,#contents#,SYSDATE)
+			(SEQ_EDU_BOARD.NEXTVAL,#{user_no},#{board_gb},#{title},#{contents},SYSDATE)
 	</insert>
 	
-	<select id="boardListSelectAll" parameterType="searchVO"  resultType="boardVO">
+	<select id="boardListSelectAll" parameterType="searchVO" resultType="boardVO">
 		SELECT
 			ROWNUM, BOARD_NO, TITLE, INPUT_DT, VIEW_CNT, BOARD_GB
 			FROM(
 		SELECT 
 			BOARD_NO, TITLE, INPUT_DT, VIEW_CNT, BOARD_GB
 		FROM T_EDU_BOARD
-		WHERE 1=1 and BOARD_GB=#board_gb#
-			<!-- AND TITLE LIKE '%' || '#searchWord#' || '%' -->
-			<if test="searchWord != null"><![CDATA[
-			AND  (TITLE LIKE CONCAT('%',CONCAT(#searchWord#,'%')) 
-		  OR CONTENTS LIKE CONCAT('%',CONCAT(#searchWord#,'%')))
+		WHERE 1=1 and BOARD_GB=#{board_gb}
+			<!-- AND TITLE LIKE '%' || '#{searchWord}' || '%' -->
+			<if test="searchWord != null and searchWord != ''"><![CDATA[			
+			  (TITLE LIKE CONCAT('%',CONCAT(#{searchWord},'%')) 
+		  OR CONTENTS LIKE CONCAT('%',CONCAT(#{searchWord},'%')))
 			]]></if>
 			ORDER BY BOARD_NO)
 			ORDER BY ROWNUM DESC
 	</select>
 	
-	<select id="selectCnt" parameterType="searchVO"  resultType="int">
+	<select id="cntSelect" parameterType="searchVO" resultType="int">
 		SELECT
 				COUNT(*)
 		FROM T_EDU_BOARD
-		WHERE 1=1 and BOARD_GB=#board_gb#
-		<!-- AND TITLE LIKE '%' || '#searchWord#' || '%' -->
-		<if test="searchWord != null"><![CDATA[
-			 AND (TITLE LIKE CONCAT('%',CONCAT(#searchWord#,'%')) 
-		  OR CONTENTS LIKE CONCAT('%',CONCAT(#searchWord#,'%')))
+		WHERE 1=1 and BOARD_GB=#{board_gb}
+		<!-- AND TITLE LIKE '%' || '#{searchWord}' || '%' -->
+		<if test="searchWord != null and searchWord != ''"><![CDATA[		
+			  (TITLE LIKE CONCAT('%',CONCAT(#{searchWord},'%')) 
+		  OR CONTENTS LIKE CONCAT('%',CONCAT(#{searchWord},'%')))
 		]]></if>
 	</select>
 	<select id="boardDetailSelect" parameterType="java.util.HashMap" resultType="boardVO">
@@ -60,25 +60,25 @@
 		FROM
 			T_EDU_BOARD
 		WHERE
-			BOARD_GB=#board_gb#
-			)WHERE BOARD_NO=#board_no#
+			BOARD_GB=#{board_gb}
+			)WHERE BOARD_NO=#{board_no}
 	</select>	
 	<update id="boardUpdate" parameterType="boardVO">
 		UPDATE 
 			T_EDU_BOARD 
 		SET 
-			USER_NO = #user_no#,
-			BOARD_GB = #board_gb#,
-			TITLE = #title#,
-			CONTENTS = #contents#,
+			USER_NO = #{user_no},
+			BOARD_GB = #{board_gb},
+			TITLE = #{title},
+			CONTENTS = #{contents},
 			TIME_STAMP = SYSDATE
-		WHERE BOARD_NO = #board_no#
+		WHERE BOARD_NO = #{board_no}
 	</update>
 	<delete id="boardDelete" parameterType="int">
 		DELETE
 		FROM 
 			T_EDU_BOARD
-		WHERE BOARD_NO = #board_no#
+		WHERE BOARD_NO = #{board_no}
 	</delete>		
 	
 	<update id="uphits" parameterType="int">
@@ -87,10 +87,10 @@
 		SET
 			VIEW_CNT = VIEW_CNT+1
 		WHERE
-			BOARD_NO = #board_no#
+			BOARD_NO = #{board_no}
 	</update>
 	
-	<select id="replyList" parameterType="int" resultType="replyVO">
+	<select id="replyList" parameterType="int" resultType="ReplyVO">
 		SELECT
 			COMMENT_NO,
 			BOARD_NO,
@@ -102,19 +102,19 @@
 		FROM
 			T_EDU_COMMENT,T_EDU_USER
 		WHERE
-			BOARD_NO = #board_no# AND T_EDU_COMMENT.USER_NO = T_EDU_USER.USER_NO
+			BOARD_NO = #{board_no} AND T_EDU_COMMENT.USER_NO = T_EDU_USER.USER_NO
 		ORDER BY
 			COMMENT_NO
 	</select>
 	
-	<update id="replyUpdate" parameterType="replyVO">
+	<update id="replyUpdate" parameterType="ReplyVO">
 		UPDATE
 			T_EDU_COMMENT
 		SET
-			CONTENTS=#contents#,
+			CONTENTS=#{contents},
 			TIME_STAMP=SYSDATE
 		WHERE
-			COMMENT_NO = #comment_no#
+			COMMENT_NO = #{comment_no}
 	</update>
 	
 	<delete id="replyDelete" parameterType="int">
@@ -122,18 +122,18 @@
 			FROM
 		T_EDU_COMMENT
 			WHERE
-		COMMENT_NO = #no#
+		COMMENT_NO = #{no}
 	</delete>
 	
-	<insert id="replyInsert" parameterType="replyVO">
+	<insert id="replyInsert" parameterType="ReplyVO">
 		INSERT INTO 
 			T_EDU_COMMENT
 		VALUES
 		(
 			SEQ_EDU_COMMENT.nextval,
-			#board_no#,
-			#user_no#,
-			#contents#,
+			#{board_no},
+			#{user_no},
+			#{contents},
 			SYSDATE,
 			SYSDATE
 		)
@@ -146,7 +146,7 @@
 		T_EDU_COMMENT
   </select>
 
-	<select id="replySelect" parameterType="int" resultType="replyVO">
+	<select id="replySelect" parameterType="int" resultType="ReplyVO">
 		SELECT
 			COMMENT_NO,
 			BOARD_NO,
@@ -158,16 +158,16 @@
 		FROM
 			T_EDU_COMMENT,T_EDU_USER
 		WHERE
-			COMMENT_NO = #comment_no# AND T_EDU_COMMENT.USER_NO = T_EDU_USER.USER_NO
+			COMMENT_NO = #{comment_no} AND T_EDU_COMMENT.USER_NO = T_EDU_USER.USER_NO
 	</select>
 	
-<!-- 	<select id="checkManage" parameterClass="int" resultClass="CheckAuthBean">
+<!-- 	<select id="checkManage" parameterType="int" resultType="CheckAuthBean">
 		SELECT
 			MANAGE_YN,ADMIN_YN
 		FROM
 			T_EDU_USER
 		WHERE
-			USER_NO = #user_no#
+			USER_NO = #{user_no}
 	</select> -->
 	
 	<select id="notice" resultType="String">
@@ -182,14 +182,14 @@
 	<select id="reply" parameterType="int" resultType="String">
 		SELECT COUNT(*)
 		FROM T_EDU_COMMENT
-		WHERE USER_NO = #user_no#
+		WHERE USER_NO = #{user_no}
 	</select>
 	
 	<select id="replyContents" parameterType="int" resultType="String">
 		SELECT CONTENTS FROM(
 		SELECT CONTENTS
 		FROM T_EDU_COMMENT
-		WHERE USER_NO = #user_no#
+		WHERE USER_NO = #{user_no}
 		ORDER BY INPUT_DT DESC)
 		WHERE ROWNUM BETWEEN 1 AND 6
 	</select>

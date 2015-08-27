@@ -1,6 +1,6 @@
 <%@page import="com.sssystem.edu.common.SetBoardTitle"%>
 <%@page import="com.sssystem.edu.vo.BoardVO"%>
-<%@page import="com.sssystem.edu.vo.SearchVO"%>  
+<%@page import="com.sssystem.edu.vo.search.SearchVO"%>  
 <%@ page language="java" contentType="text/html; charset=EUC-KR"
 	pageEncoding="EUC-KR"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
@@ -41,7 +41,7 @@ function jsGoPage(p,param){
 	
 	</script>
 <meta http-equiv="Content-Type" content="text/html; charset=EUC-KR">
-<link rel="stylesheet" type="text/css" href="board.css" />
+<link rel="stylesheet" type="text/css" href="${initParam.root }/css/board.css" /> 
 <title>공지사항</title>
 
 </head>
@@ -101,7 +101,7 @@ function jsGoPage(p,param){
 							<input type ="hidden" name ="board_gb" value="${param.board_gb }" >
 						</form>
 					</div>
-				<custom:paging page="${searchBean.page_no}" totalCnt="${searchBean.total}" par="&board_gb=${param.board_gb}&pSearchWord=${searchBean.searchWord}"></custom:paging>
+				<custom:paging page="${searchVO.page_no}" totalCnt="${searchVO.total}" par="&board_gb=${param.board_gb}&pSearchWord=${searchVO.searchWord}"></custom:paging>
 				</div>				
 			</section>
 		</div>
