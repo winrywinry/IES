@@ -37,8 +37,10 @@ $(function(){
 			alert("삭제하실 카테고리를 선택해 주세요!");
 			return false;
 		}
-		var params = "action=del&no="+ no;
-		new ajax.xhr.Request("/iessvn/learn/category.do", params, categoryList, "POST");
+		if (confirm("정말로 삭제하시겠습니까?")){
+			var params = "action=del&no="+ no;
+			new ajax.xhr.Request("/IES/learn/category", params, categoryList, "POST");
+		}
 	})
 	$("#test_add").css("cursor", "pointer");
 	$("#test_add").click(function(){
@@ -60,6 +62,7 @@ function testWinOpen(url){
 function categoryList(xhr){
 	if (xhr.readyState==4 && xhr.status==200) {
 		var jsonData = eval('('+ xhr.responseText +')');
+		$("#category_nm").val("");
 		categoryReload(jsonData);
 	}
 }
