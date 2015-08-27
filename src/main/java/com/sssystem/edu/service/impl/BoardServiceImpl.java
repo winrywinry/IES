@@ -80,9 +80,11 @@ public class BoardServiceImpl implements BoardService {
 	public BoardVO boardDetailSelect(int no, int gb) {
 		BoardVO board = null;
 		HashMap<String, Object> map = new HashMap<String, Object>(); 
+		
 		map.put("board_gb", gb);
 		map.put("board_no", no);		
 		
+		board = session.selectOne("notice.boardDetailSelect", map);
 		return board;
 	}
 

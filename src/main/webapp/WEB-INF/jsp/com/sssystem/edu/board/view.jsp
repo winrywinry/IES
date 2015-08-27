@@ -10,7 +10,7 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=EUC-KR">
-<link rel="stylesheet" type="text/css" href="board.css" />
+<link rel="stylesheet" type="text/css" href="${initParam.root }/css/board.css" />
 <title>Insert title here</title>
 <%BoardVO board = (BoardVO)request.getAttribute("board");%>
 <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.6.3/jquery.min.js"></script>

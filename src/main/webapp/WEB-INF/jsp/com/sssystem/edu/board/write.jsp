@@ -15,11 +15,11 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=EUC-KR">
-<link rel="stylesheet" type="text/css" href="board.css" />
+<link rel="stylesheet" type="text/css" href="${initParam.root }/css/board.css" />
 <title>Insert title here</title>
 	<script src= "//code.jquery.com/jquery-1.11.3.min.js" ></script>
 	<script src= "//code.jquery.com/jquery-migrate-1.2.1.min.js" ></script>
-	<script type= "text/javascript" src ="/iessvn/js/SEditor.js" charset="euc-kr" ></script>
+	<script type= "text/javascript" src ="${initParam.root }/js/SEditor.js" charset="euc-kr" ></script>
 	<script type= "text/javascript">
 	$(function(){
 	       callEditor( "ta1");   

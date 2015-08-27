@@ -59,7 +59,7 @@ function jsGoPage(p,param){
 			</c:choose>
 			<section id="cen">
 				<div id="center">				
-					<form name="searchFrm" action="/iessvn/board/list.do?board_gb=${param.board_gb }" method="post" id="searchFrm" onsubmit="return formchk();">
+					<form name="searchFrm" action="/IES/board/list?board_gb=${param.board_gb }" method="post" id="searchFrm" onsubmit="return formchk();">
 					<table class="listtop">
 							<tr>
 								<th valign="bottom" >
@@ -70,7 +70,7 @@ function jsGoPage(p,param){
 								<td>
 								<td width="20%"><input type="text" id=pSearchWord name="pSearchWord" value="${searchBean.searchWord }"/></td>
 								<td width="6%" id="text"><img src="../images/glasses2.png" onclick="document.searchFrm.submit();"></td>
-								<td width="6%"><img src="../images/write.png" onclick="location.href='/iessvn/board/writeForm.do?board_gb=${param.board_gb }';"></td>
+								<td width="6%"><img src="../images/write.png" onclick="location.href='/IES/board/writeForm?board_gb=${param.board_gb }';"></td>
 							</tr>
 						</table>
 					</form>	
@@ -85,7 +85,7 @@ function jsGoPage(p,param){
 						<c:forEach var="board" items="${list }">
 						<tr>
 							<td>${board.rownum }</td>
-							<td class="left"><a href="view.do?board_gb=${board.board_gb}&no=${board.board_no }">${board.title }</a></td>
+							<td class="left"><a href="view?board_gb=${board.board_gb}&no=${board.board_no }">${board.title }</a></td>
 
 							<c:if test="${param.board_gb != 30 }"><td><a href=#><img src="../images/ico_file_def.gif"></a></td></c:if>
 							<td><fm:formatDate value="${board.input_dt }" pattern="yyyy-MM-dd'<br>'HH:mm"/></td>
