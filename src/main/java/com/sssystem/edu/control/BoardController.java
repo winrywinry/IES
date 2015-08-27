@@ -1,6 +1,9 @@
 package com.sssystem.edu.control;
 
+import java.util.HashMap;
 import java.util.List;
+
+import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -12,7 +15,6 @@ import com.sssystem.edu.common.ValidateParamChk;
 import com.sssystem.edu.service.BoardService;
 import com.sssystem.edu.vo.BoardVO;
 import com.sssystem.edu.vo.search.SearchBoardVO;
-import com.sssystem.edu.vo.search.SearchVO;
 
 @Controller
 public class BoardController {
@@ -47,4 +49,19 @@ public class BoardController {
 		model.addAttribute("searchVO",searchVO);
 		return "board/list";
 	}
+	
+/*	@RequestMapping("board/view")
+	public String boardView (HttpSession session,Model model, 
+			@RequestParam (value="no", required=false)int no,
+			@RequestParam(value="board_gb", required=false)int gb) {
+
+		HashMap<String, Object> map = new HashMap<String, Object>(); 
+		map.put("board_gb", gb);
+		map.put("board_no", no);
+		
+		
+		
+		model.addAttribute("board",boardVO);
+		return "board/view";
+	}*/
 }
