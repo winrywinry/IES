@@ -1,5 +1,5 @@
 @CHARSET "EUC-KR";
-@IMPORT url("/iessvn/admin/common.css");
+@IMPORT url("/IES/admin/common.css");
 
 #content h3 { float:left; font:18px Dotum; font-weight:bold;}
 #content #search { float:right; text-align:right; font:12px Gulim; color:#666; }
