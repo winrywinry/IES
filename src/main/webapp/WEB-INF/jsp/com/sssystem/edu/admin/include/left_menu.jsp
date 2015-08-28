@@ -2,8 +2,8 @@
     pageEncoding="EUC-KR"%>
 		<nav>
 			<ul id="navMenu" class="nav">
-				<li><a href="/iessvn/admin/member/list.do">Main</a></li>
-				<li><a href="/iessvn/admin/member/list.do">雀盔包府</a></li>
+				<li><a href="/IES/admin/member/list">Main</a></li>
+				<li><a href="/IES/admin/member/list">雀盔包府</a></li>
 					<!-- <ul>
 						<li><a href="#"> Setting Up the ADT Bundle</a></li>
 						<li><a href="#">Setting Up an Existing IDE</a>

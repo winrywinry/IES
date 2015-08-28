@@ -186,7 +186,7 @@ window.onload=function(){
 					</table>
 					<br>
 					<span style="font-size: 80%; font-weight: bolder; float: right;">
-						<c:if test="${(user.user_no==board.user_no)||manage.manage_yn==1}">
+						<c:if test="${(user.user_no==board.user_no)||user.manage_yn==1}">
 							<a class="link1" onclick="delConfirm()" >ªË¡¶</a> | 
 						</c:if>
 						<c:if test="${user.user_no==board.user_no }">
