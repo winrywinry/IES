@@ -46,8 +46,8 @@
    
    
 function setReplyList(){//리플 출력
-   	var params='no='+${param.no}+'&action=list'
-   new ajax.xhr.Request('/IES/board/reply',params,replyListResult,'POST');
+   	var params='no='+${param.no}
+   new ajax.xhr.Request('/IES/board/replyList',params,replyListResult,'POST');
     }
 function replyListResult(xhr){
    	if(xhr.readyState==4 && xhr.status==200){
@@ -65,18 +65,20 @@ function replyUpdate(){//수정요청
  	var no = document.updateForm.no.value;
  	var name = document.updateForm.name.value;
  	var content = document.updateForm.content.value;
- 	var params = 'comment_no='+no+'&content='+content+'&name='+name;
- 	
-    new ajax.xhr.Request('/IES/board/reply?action=update',params,replyUpdateResult,'POST');
+ 	var input_dt = document.updateForm.input_dt.value;
+ 	var params = 'comment_no='+no+'&content='+content+'&name='+name+'&input_dt='+input_dt;
+    new ajax.xhr.Request('/IES/board/replyUpdate',params,replyUpdateResult,'POST');
   } 
   
  function replyUpdateResult(xhr){
  	if(xhr.readyState==4 && xhr.status==200){
+ 		alert('gkgkgkgk');
  	   var doc = xhr.responseXML;
  	   var result = 
  		   doc.getElementsByTagName('code').item(0).firstChild.nodeValue;
  	   //result: "success", "fail"
- 	   if(result=='success'){
+ 	   if(xhr.readyState==4){
+ 		   alert('hlglglglgl')
  		 var dataText = doc.getElementsByTagName('data').item(0).firstChild.nodeValue;
  		 var dataJson =  eval('('+dataText+')');
  		 var upDiv = makeDiv(dataJson);//변경될 DIV
@@ -118,7 +120,8 @@ function replyUpdate(){//수정요청
 	upDiv.appendChild(replyUpdate);
 	document.updateForm.no.value=upDiv.reply.no;
 	document.updateForm.content.value=upDiv.reply.content;    	 
-	document.updateForm.name.value=upDiv.reply.name;    	 
+	document.updateForm.name.value=upDiv.reply.name;  	 
+	document.updateForm.input_dt.value=upDiv.reply.input_dt;  	 
 	replyUpdate.style.display='';
    }//viewUpdateForm
 
@@ -126,7 +129,7 @@ function replyUpdate(){//수정요청
    function replyDelete(no){
 		if(!confirm('댓글을 삭제하시겠습니까?'))return;
 	 	var param = 'comment_no='+no;
-	    new ajax.xhr.Request('/IES/board/reply?action=delete',param,
+	    new ajax.xhr.Request('/IES/board/replyDelete',param,
 	     replyDeleteResult,'POST');
   }//replyDelete
  
@@ -219,6 +222,7 @@ window.onload=function(){
 					<form name="updateForm">
 						<input type="hidden" name="no">
 						<input type="hidden" name="name">
+						<input type="hidden" name="input_dt">
 						수정내용: <textarea rows="3" cols="20" name="content"></textarea><br>
 						<input type="button" value="등록" onclick="replyUpdate()" class="css_btn_class">
 					</form>

@@ -1,5 +1,6 @@
 package com.sssystem.edu.control;
 
+import java.sql.Date;
 import java.util.List;
 
 import javax.servlet.http.HttpSession;
@@ -10,9 +11,11 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import com.sssystem.edu.common.ConvertStr;
 import com.sssystem.edu.common.ValidateParamChk;
 import com.sssystem.edu.service.BoardService;
 import com.sssystem.edu.vo.BoardVO;
+import com.sssystem.edu.vo.ReplyVO;
 import com.sssystem.edu.vo.search.SearchBoardVO;
 import com.sssystem.edu.vo.support.SessionVO;
 
@@ -144,12 +147,42 @@ public class BoardController {
 		return "redirect:list?board_gb="+board_gb;
 	}
 	
-	@RequestMapping("board/reply")
-	public String boardReply(HttpSession session, Model model,
-			@RequestParam (value="action", required=false)String action) {
+	@RequestMapping("board/replyList")
+	public String boardReplyList(HttpSession session, Model model,
+			@RequestParam(value="no",required=false)int no){
+			List<ReplyVO> list = boardServie.replyList(no);
+			model.addAttribute("list",list);
+			return "board/replyList";
+		}
+	
+	@RequestMapping("board/replyDelete")
+	public String boardReplyDelete(Model model,
+			@RequestParam(value="comment_no")int comment_no){
+		if(boardServie.replyDelete(comment_no)){
+			model.addAttribute("comment_no",comment_no);
+		}
 		
-		
-		return "board/reply";
+		return "board/replyDelete";
 	}
 	
+	@RequestMapping("board/replyUpdate")
+	public String boardReplyUpdate(Model model,
+			@RequestParam(value="comment_no")int comment_no,
+			@RequestParam(value="content")String content,
+			@RequestParam(value="name")String name,
+			@RequestParam(value="input_dt")Date input_dt){
+		ReplyVO replyVO = new ReplyVO();
+		System.out.println("기본 = "+content);
+		System.out.println("변형 = "+ConvertStr.toJS(content));
+		replyVO.setContents(ConvertStr.toJS(content));
+		replyVO.setComment_no(comment_no);
+		if(boardServie.replyUpdate(replyVO)){
+			replyVO.setUser_nm(name);
+			replyVO.setInput_dt(input_dt);
+			model.addAttribute("reply",replyVO);
+		}
+		
+		return "board/replyUpdate";
+	}
+
 }	
