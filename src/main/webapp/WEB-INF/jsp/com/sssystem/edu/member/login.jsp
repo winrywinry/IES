@@ -11,7 +11,7 @@
 <title>사내교육시스템 - 로그인</title>
 <script src= "//code.jquery.com/jquery-1.11.3.min.js" ></script>
 <script src= "//code.jquery.com/jquery-migrate-1.2.1.min.js" ></script>
-<link rel="stylesheet" type="text/css" href="login.css">
+<link rel="stylesheet" type="text/css" href="${initParam.root }/css/login.css">
 
 <script type="text/javascript">
 function FormChkModule(f){
@@ -31,6 +31,7 @@ $(function(){
 	document.frmLogin.id.focus();
 });
 </script>
+<%--
 <html:messages id="msg" message="true"> <!-- Action의 GLOBAL_MESSAGE와 mapping -->
 	<script type="text/javascript">alert('<bean:write name ="msg"/>');</script>
 </html:messages>
@@ -40,8 +41,8 @@ $(function(){
 <html:messages id= "msg" property ="errpass">
 	<script type="text/javascript">alert('<bean:write name="msg"/>');</script>
 </html:messages>
+--%>
 </head>
-
 <body>
 <div id="wrap">
 	<!-- header -->
