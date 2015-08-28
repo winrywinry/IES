@@ -3,6 +3,6 @@
 <aside id="left">
 	<h3>건의사항</h3>
 	<ul class="leftMenu">
-		<li class="this"><a href="/iessvn/qna/list.do?board_gb=60">건의사항</a></li>
+		<li class="this"><a href="/IES/qna/list?board_gb=60">건의사항</a></li>
 	</ul>
 </aside>

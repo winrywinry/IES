@@ -15,11 +15,11 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=EUC-KR">
-<link rel="stylesheet" type="text/css" href="board.css" />
+<link rel="stylesheet" type="text/css" href="${initParam.root }/css/board.css" />
 <title>Insert title here</title>
 	<script src= "//code.jquery.com/jquery-1.11.3.min.js" ></script>
 	<script src= "//code.jquery.com/jquery-migrate-1.2.1.min.js" ></script>
-	<script type= "text/javascript" src ="/iessvn/js/SEditor.js" charset="euc-kr" ></script>
+	<script type= "text/javascript" src ="${initParam.root }/js/SEditor.js" charset="euc-kr" ></script>
 	<script type= "text/javascript">
 	$(function(){
 	       callEditor( "ta1");   
@@ -79,7 +79,7 @@
 			<div id="center">
 <!--<form action="/iessvn/board/write.do?" name="pAtchFile" method="post" enctype="multipart/form-data">
  -->
-				<form action="write.do" method="post" name="pWriteForm" onsubmit="return formchk();">
+				<form action="writeForm" method="post" name="pWriteForm" onsubmit="return formchk();">
 					<input type = "hidden" name="board_gb" value="${param.board_gb }">
 					<input type = "hidden" name="board_no" value="${board.board_no }">
 					<input type = "hidden" name="user_no" value="${board.user_no }">

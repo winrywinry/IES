@@ -10,7 +10,7 @@
 	<!-- config.xml -->
 	<mvc:annotation-driven />
 	<mvc:default-servlet-handler/>
-  
+
 	<mvc:view-resolvers>
 		<mvc:jsp prefix="/WEB-INF/jsp/com/sssystem/edu/" />
 	</mvc:view-resolvers>

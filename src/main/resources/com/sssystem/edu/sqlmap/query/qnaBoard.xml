@@ -22,7 +22,7 @@
 		WHERE 1=1 and BOARD_GB=#{board_gb}
 			<!-- AND TITLE LIKE '%' || '#{searchWord}' || '%' -->
 			<if test="searchWord != null and searchWord != ''"><![CDATA[
-			  (TITLE LIKE CONCAT('%',CONCAT(#{searchWord},'%')) 
+			 and (TITLE LIKE CONCAT('%',CONCAT(#{searchWord},'%')) 
 		  OR Q_CONTENTS LIKE CONCAT('%',CONCAT(#{searchWord},'%')))
 			]]></if>
 			ORDER BY QNA_NO)
@@ -46,14 +46,14 @@
  	 <select id="cntSelect" parameterType="searchVO" resultType="int">
 		SELECT
 				COUNT(*)
-		FROM T_EDU_QNA
-		WHERE 1=1 and BOARD_GB=#{board_gb}
+		FROM T_EDU_QNA 
+		WHERE 1=1 and BOARD_GB=#{board_gb} 
 		<!-- AND TITLE LIKE '%' || '#{searchWord}' || '%' -->
 					<!-- AND TITLE LIKE '%' || '#{searchWord}' || '%' -->
 			<if test="searchWord != null and searchWord != ''"><![CDATA[
-			  (TITLE LIKE CONCAT('%',CONCAT(#{searchWord},'%')) 
-		  OR Q_CONTENTS LIKE CONCAT('%',CONCAT(#{searchWord},'%')))
-					]]></if>
+			 and (TITLE LIKE CONCAT('%',CONCAT(#{ searchWord},'%')) 
+		  OR Q_CONTENTS LIKE CONCAT('%',CONCAT(#{ searchWord},'%')))
+		  ]]></if>
 	</select>
 	
 	<select id="qnaBoardView" parameterType="hashmap" resultType="qnaVO">
@@ -73,7 +73,7 @@
 			)WHERE QNA_NO=#{qna_no}
 	</select>	
 	
-	<update id="updateAnswer" parameterType="qnaVO">
+	<update id="answerUpdate" parameterType="qnaVO">
 		UPDATE
 			T_EDU_QNA
 		SET

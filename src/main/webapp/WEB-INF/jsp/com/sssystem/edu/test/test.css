@@ -1,0 +1,22 @@
+@CHARSET "EUC-KR";
+@IMPORT url("/iessvn/common.css");
+
+/* Test */
+#winWrap { width:398px; height:398px; margin:0: padding:0; border:1px solid #666; }
+#winHeader{ height:45px; background:#666; }
+#winHeader h3 { padding:10px 0 0 20px; font:16px Gulim; color:#FFF; font-weight:bold;}
+#winCon { width:100%; padding-top:20px; }
+#btnArea { width:100%; padding-top:20px; text-align:center;}
+.answer_add { cursor:pointer;}
+.answer_del { cursor:pointer;}
+
+.testWrite { width:378px; margin-left:10px;  }
+.testWrite th { width:78px; font:12px Dotum; color:#666; border-bottom:1px dotted #CCC; font-weight:bold; }
+.testWrite td { width:300px; font:12px Dotum; color:#666; border-bottom:1px dotted #CCC; }
+.testWrite p { margin:0; padding:0; }
+.testWrite td .txt { width:50px; font:11px Dotum; color:#333; border:1px solid #CCC; padding:3px 5px; margin-bottom:2px;}
+.testWrite td .w280 { width:280px }
+.testWrite td .w200 { width:185px; }
+.testWrite td .txtArea { width:280px; height:30px; font:11px Dotum; color:#333; border:1px solid #CCC; padding:2px 5px;}
+.testWrite .btn { margin-top:-3px; vertical-align: text-top;}
+

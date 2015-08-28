@@ -1,13 +1,18 @@
 package com.sssystem.edu.control;
 
 import java.util.HashMap;
+import java.util.Properties;
 
+import javax.annotation.Resource;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
+import org.springframework.validation.Errors;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import com.sssystem.edu.common.ValidateParamChk;
 import com.sssystem.edu.service.CategoryService;
@@ -55,13 +60,13 @@ public class CategoryContoller {
 				categoryService.insert(bean);
 				model.addAttribute("categorylist", categoryService.selectAll(dept_no));
 			} else {
-				//msgs.add(ActionMessages.GLOBAL_MESSAGE, new ActionMessage("category.error.duplicate"));
+				model.addAttribute("msg", "카테고리명이 존재합니다.");
 			}
 		} else if(bean.getAction().equals("del")){
 			if(categoryService.delete(category_no)){
 				model.addAttribute("categorylist", categoryService.selectAll(dept_no));
 			} else {
-				//msgs.add(ActionMessages.GLOBAL_MESSAGE, new ActionMessage("category.error.delete"));
+				model.addAttribute("msg", "삭제되지 않았습니다.");
 			}
 		}
 
