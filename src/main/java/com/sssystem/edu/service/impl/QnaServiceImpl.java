@@ -39,11 +39,7 @@ public class QnaServiceImpl implements QnaService {
 
 	@Override
 	public boolean qnaBoardUpdate(QnaBoardVO bean) {//게시글 업데이트
-		System.out.println("impl호출"+bean.getTitle());
-		System.out.println("impl호출"+bean.getQ_contents());
-		System.out.println("impl호출"+bean.getQna_no());
 		int t = session.update("qna.qnaBoardUpdate",bean);
-		System.out.println(t);
 		if(t>0)return true;
 		return false;
 	}
@@ -69,7 +65,6 @@ public class QnaServiceImpl implements QnaService {
 
 	@Override
 	public int cntSelect(SearchBoardVO bean) {//검색관련
-		System.out.println("체크1");
 		int cnt = session.selectOne("qna.cntSelect",bean);
 		return cnt;
 	}

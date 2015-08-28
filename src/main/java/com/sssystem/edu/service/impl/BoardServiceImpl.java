@@ -109,7 +109,7 @@ public class BoardServiceImpl implements BoardService {
 	
 	@Override
 	public int selectCnt(SearchBoardVO bean) {
-		int cnt = session.selectOne("qna.cntSelect",bean);
+		int cnt = session.selectOne("notice.cntSelect",bean);
 		return cnt;
 	}
 	

@@ -46,9 +46,6 @@ public class QnaController {
 	    int total = qnaService.cntSelect(searchVO);
 	    searchVO.setTotal(total);
 	    
-	    int t = qnaService.haha();
-	    System.out.println("hahaha"+t);
-	    
 	    List<QnaBoardVO> list = qnaService.qnaBoardListSelectAll(searchVO,page_no);
 	    
 	    model.addAttribute("list",list);

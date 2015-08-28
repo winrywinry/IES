@@ -27,7 +27,6 @@
 			BOARD_NO, TITLE, INPUT_DT, VIEW_CNT, BOARD_GB
 		FROM T_EDU_BOARD
 		WHERE 1=1 and BOARD_GB=#{board_gb}
-			<!-- AND TITLE LIKE '%' || '#{searchWord}' || '%' -->
 			<if test="searchWord != null and searchWord != ''"><![CDATA[			
 			and (TITLE LIKE CONCAT('%',CONCAT(#{searchWord},'%')) 
 		  OR CONTENTS LIKE CONCAT('%',CONCAT(#{searchWord},'%')))
@@ -41,7 +40,6 @@
 				COUNT(*)
 		FROM T_EDU_BOARD
 		WHERE 1=1 and BOARD_GB=#{board_gb}
-		<!-- AND TITLE LIKE '%' || '#{searchWord}' || '%' -->
 		<if test="searchWord != null and searchWord != ''"><![CDATA[		
 			and (TITLE LIKE CONCAT('%',CONCAT(#{searchWord},'%')) 
 		  OR CONTENTS LIKE CONCAT('%',CONCAT(#{searchWord},'%')))

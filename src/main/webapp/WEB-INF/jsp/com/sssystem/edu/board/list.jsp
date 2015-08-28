@@ -36,7 +36,7 @@ $(document).ready(function() {
 	$("#navMenu").navgoco({accordion: true});
 });
 function jsGoPage(p,param){
-       location.href= "list.do?page="+ p + param;
+       location.href= "list?page="+ p + param;
 }
 	
 	</script>

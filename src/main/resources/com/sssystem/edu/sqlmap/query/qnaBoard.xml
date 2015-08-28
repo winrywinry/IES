@@ -20,7 +20,6 @@
 			QNA_NO, TITLE, QUESTION_DT, VISIT_NO, BOARD_GB, q_contents
 		FROM T_EDU_QNA
 		WHERE 1=1 and BOARD_GB=#{board_gb}
-			<!-- AND TITLE LIKE '%' || '#{searchWord}' || '%' -->
 			<if test="searchWord != null and searchWord != ''"><![CDATA[
 			 and (TITLE LIKE CONCAT('%',CONCAT(#{searchWord},'%')) 
 		  OR Q_CONTENTS LIKE CONCAT('%',CONCAT(#{searchWord},'%')))
@@ -48,8 +47,6 @@
 				COUNT(*)
 		FROM T_EDU_QNA 
 		WHERE 1=1 and BOARD_GB=#{board_gb} 
-		<!-- AND TITLE LIKE '%' || '#{searchWord}' || '%' -->
-					<!-- AND TITLE LIKE '%' || '#{searchWord}' || '%' -->
 			<if test="searchWord != null and searchWord != ''"><![CDATA[
 			 and (TITLE LIKE CONCAT('%',CONCAT(#{ searchWord},'%')) 
 		  OR Q_CONTENTS LIKE CONCAT('%',CONCAT(#{ searchWord},'%')))
