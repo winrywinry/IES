@@ -1,10 +1,13 @@
 package com.sssystem.edu.control;
 
+import java.io.UnsupportedEncodingException;
 import java.sql.Date;
 import java.util.List;
 
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
+import org.omg.CORBA.Request;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -166,11 +169,17 @@ public class BoardController {
 	}
 	
 	@RequestMapping("board/replyUpdate")
-	public String boardReplyUpdate(Model model,
+	public String boardReplyUpdate(Model model,HttpServletRequest requeset,
 			@RequestParam(value="comment_no")int comment_no,
 			@RequestParam(value="content")String content,
 			@RequestParam(value="name")String name,
 			@RequestParam(value="input_dt")Date input_dt){
+		try {
+			requeset.setCharacterEncoding("UTF-8");
+		} catch (UnsupportedEncodingException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 		ReplyVO replyVO = new ReplyVO();
 		System.out.println("기본 = "+content);
 		System.out.println("변형 = "+ConvertStr.toJS(content));
@@ -183,6 +192,30 @@ public class BoardController {
 		}
 		
 		return "board/replyUpdate";
+	}
+	
+	@RequestMapping("board/replyInsert")
+	public String boardReplyInsert(HttpSession session,Model model,HttpServletRequest request,
+			@RequestParam(value="content")String content,
+			@RequestParam(value="board_no")String board_no){
+		try {
+			request.setCharacterEncoding("UTF-8");
+		} catch (UnsupportedEncodingException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		SessionVO sessionVO = (SessionVO) session.getAttribute("user");
+		ReplyVO replyVO = new ReplyVO();
+		replyVO.setUser_no(sessionVO.getUser_no());
+		replyVO.setContents(ConvertStr.toJS(content));//8859_1체크해볼것
+		replyVO.setBoard_no(Integer.parseInt(board_no));
+		if(boardServie.replyInsert(replyVO)){
+			replyVO.setComment_no(boardServie.selectMaxNo());
+			ReplyVO rep = boardServie.replySelect(boardServie.selectMaxNo());
+			model.addAttribute("reply",rep);
+		}
+		
+		return "board/replyInsert";
 	}
 
 }	
