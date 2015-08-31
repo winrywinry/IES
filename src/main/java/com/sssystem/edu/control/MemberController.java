@@ -55,22 +55,20 @@ public class MemberController{
 			  				 BindingResult result,
 			  				 Model model){
 		
-		System.out.println(user_nm);
-		System.out.println(emp_serial);
-		System.out.println(memberVO);
-		
 		JoinValidator validator = new JoinValidator();
 		validator.validate(memberVO, result);
-		System.out.println(validator);
 		
 		if(result.hasErrors()) {
-			System.out.println(result);
+			System.out.println("asdsad");
 			return "member/join_check";
 		}
 		
-		//if(memberService.selectEmp(user_nm, emp_serial)==null) 
+		else if(memberService.selectEmp(user_nm, emp_serial)==null) {
+			model.addAttribute("msg", "사원번호를 정확히 입력하세요");
+			return "member/join_check";
+		}
 		
-		if(memberService.selectEmp(user_nm, emp_serial).equals(user_nm)){
+		else if(memberService.selectEmp(user_nm, emp_serial).equals(user_nm)){
 			HashMap<String, String> map = new HashMap<String, String>();
 			map.put("user_nm", user_nm);
 			map.put("emp_serial", emp_serial);
