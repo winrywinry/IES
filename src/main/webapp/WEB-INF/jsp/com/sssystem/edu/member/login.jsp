@@ -31,8 +31,7 @@ $(function(){
 	document.frmLogin.id.focus();
 });
 </script>
-<%--
-<html:messages id="msg" message="true"> <!-- Action의 GLOBAL_MESSAGE와 mapping -->
+<!-- <html:messages id="msg" message="true"> Action의 GLOBAL_MESSAGE와 mapping
 	<script type="text/javascript">alert('<bean:write name ="msg"/>');</script>
 </html:messages>
 <html:messages id= "msg" property ="errid">
@@ -40,20 +39,20 @@ $(function(){
 </html:messages>
 <html:messages id= "msg" property ="errpass">
 	<script type="text/javascript">alert('<bean:write name="msg"/>');</script>
-</html:messages>
---%>
+</html:messages> -->
 </head>
+
 <body>
 <div id="wrap">
 	<!-- header -->
 	<div id="header">
-		<h1><a href="login.do" class="logo hid_txt" tabindex="1">사내교육시스템</a></h1>
+		<h1><a href="login" class="logo hid_txt" tabindex="1">사내교육시스템</a></h1>
 	</div>
 	<!-- container -->
 	<div id="container">
 		<!-- content -->
 		<div id="content">
-			<form id="frmLogin" name="frmLogin" target="_top" AUTOCOMPLETE="off" action="loginAccess.do" method="post" onsubmit="return FormChkModule(this)">
+			<form id="frmLogin" name="frmLogin" target="_top" AUTOCOMPLETE="off" action="loginAccess" method="post" onsubmit="return FormChkModule(this)">
 			<fieldset class="login_form">
 			<legend class="blind">로그인</legend>
 				<div class="input_row" id="id_area">
@@ -74,7 +73,7 @@ $(function(){
 			</fieldset>
 			</form>
 			<div class="find_info">
-				<a href="id.do" onclick="">아이디 찾기</a> / <a href="pass.do" onclick="">비밀번호 찾기</a> <span class="bar">|</span> <a href="check.do">회원가입</a>
+				<a href="findIdCheck" onclick="">아이디 찾기</a> / <a href="findPasswordCheck" onclick="">비밀번호 찾기</a> <span class="bar">|</span> <a href="joinCheck">회원가입</a>
 			</div>
 		</div>
 	</div>
