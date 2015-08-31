@@ -30,9 +30,6 @@ public class JoinValidator implements Validator{
 		}else if(chk.isNumeric(memberVO.getEmp_serial())){
 			errors.rejectValue("emp_serial", "required", "사원번호를 정확히 입력하세요");
 		}
-		
-	
-		
 
 		
 	}

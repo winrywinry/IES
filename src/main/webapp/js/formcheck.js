@@ -84,7 +84,7 @@ function joinFormCheck(f) {
 }
 function idCheck(val) {
 	var params = "id="+ val;
-	new ajax.xhr.Request("/iessvn/member/idCheck.do", params, idCheckResult, "POST");
+	new ajax.xhr.Request("/IES/member/idCheck", params, idCheckResult, "POST");
 }
 function idCheckResult(xhr){
 	if (xhr.readyState == 4 && xhr.status == 200) {
