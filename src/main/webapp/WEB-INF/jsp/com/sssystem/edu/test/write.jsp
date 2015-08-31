@@ -14,8 +14,6 @@
 <script src="${initParam.root }/js/jquery-ui.js"></script>
 <script type="text/javascript" src="${initParam.root }/js/test.js"></script>
 <link href="${initParam.root }/css/jquery-ui.css" rel="stylesheet">
-<form:errors path="test.question" cssClass="msgAlert" />
-<script type="text/javascript">alert("<form:errors path='test.error' />");</script>
 <c:if test="${msg != null }">
 <script type="text/javascript">alert("${msg }");</script>
 </c:if>
@@ -28,7 +26,7 @@
 <div id="winWrap">
 	<div id="winHeader"><h3>시험 등록</h3></div>
 	<div id="winCon">	
-		<form method="post" name="writeFrm" action="save.do">
+		<form method="post" name="writeFrm" action="save">
 		<input type="hidden" name="test" value="${test_no }" />
 		<input type="hidden" name="edu" value="${edu_no }" />
 		<table class="testWrite">

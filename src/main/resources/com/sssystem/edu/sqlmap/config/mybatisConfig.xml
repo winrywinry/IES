@@ -18,5 +18,8 @@
 		<!-- admin -->
 		<typeAlias type="com.sssystem.edu.admin.vo.MemberVO" alias="adminMemberVO"/>
 		<typeAlias type="com.sssystem.edu.admin.vo.PageVO" alias="adminPageVO"/>
+		
+		<!-- Learn -->
+		<typeAlias type="com.sssystem.edu.vo.LearnVO" alias="learnVO"/>
 	</typeAliases>
 </configuration>

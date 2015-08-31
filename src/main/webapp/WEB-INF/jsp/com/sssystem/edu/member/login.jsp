@@ -54,7 +54,7 @@ $(function(){
 		<div id="content">
 			<form id="frmLogin" name="frmLogin" target="_top" AUTOCOMPLETE="off" action="loginAccess" method="post" onsubmit="return FormChkModule(this)">
 			<fieldset class="login_form">
-			<legend class="blind">로그인</legend>
+			<legend class="blind">로그인 </legend>
 				<div class="input_row" id="id_area">
 					<span class="input_box">
 						<label for="id" id="label_id_area" class="lbl">아이디</label>
