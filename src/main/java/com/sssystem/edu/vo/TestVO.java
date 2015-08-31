@@ -3,6 +3,11 @@ package com.sssystem.edu.vo;
 import java.util.Date;
 
 public class TestVO {
+	private String test;
+	private String edu;
+	private String[] answer_arr;
+	private String corr_answer2;
+
 	private int test_no;
 	private int edu_no;
 	private int q_no;
@@ -29,6 +34,38 @@ public class TestVO {
 		this.corr_answer = corr_answer;
 		this.user_no = user_no;
 		this.input_dt = input_dt;
+	}
+
+	public String getTest() {
+		return test;
+	}
+
+	public void setTest(String test) {
+		this.test = test;
+	}
+
+	public String getEdu() {
+		return edu;
+	}
+
+	public void setEdu(String edu) {
+		this.edu = edu;
+	}
+
+	public String[] getAnswer_arr() {
+		return answer_arr;
+	}
+
+	public void setAnswer_arr(String[] answer_arr) {
+		this.answer_arr = answer_arr;
+	}
+
+	public String getCorr_answer2() {
+		return corr_answer2;
+	}
+
+	public void setCorr_answer2(String corr_answer2) {
+		this.corr_answer2 = corr_answer2;
 	}
 
 	public int getUser_no() {

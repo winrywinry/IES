@@ -11,8 +11,8 @@
 <script src="//code.jquery.com/jquery-1.11.3.min.js"></script>
 <script src="//code.jquery.com/jquery-migrate-1.2.1.min.js"></script>
 <script type="text/javascript" src="${initParam.root }/admin/js/jquery.navgoco.min.js"></script>
-<link rel="stylesheet" type="text/css" href="${initParam.root }/admin/css/jquery.navgoco.css" />
-<link rel="stylesheet" type="text/css" href="${initParam.root }/admin/css/member.css" />
+<link rel="stylesheet" type="text/css" href="${initParam.root}/admin/css/jquery.navgoco.css" />
+<link rel="stylesheet" type="text/css" href="${initParam.root}/admin/css/member.css" />
 <script type="text/javascript" id="demo2-javascript">
 $(document).ready(function() {
 	$("#navMenu").navgoco({accordion: true});
