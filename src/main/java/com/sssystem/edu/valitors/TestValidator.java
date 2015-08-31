@@ -35,14 +35,14 @@ public class TestValidator implements Validator {
 			}
 		}
 		if (chk.isEmpty(testVO.getGubun())){
-			err.rejectValue("gubun", "test.gubun");
+			err.rejectValue("gubun", "test.error.gubun");
 		}
 		if (chk.isEmpty(testVO.getQuestion())){
-			err.rejectValue("question", "test.question");
+			err.rejectValue("question", "test.error.question");
 		}
 		if (testVO.getGubun().equals("A")){
 			if (testVO.getAnswer_arr().length == 0){
-				err.rejectValue("answer_nm", "test.answer_nm");
+				err.rejectValue("answer_nm", "test.error.answer_nm");
 			} else {
 				String answer_nm = "";
 				for (String answer : testVO.getAnswer_arr()) {
@@ -54,7 +54,7 @@ public class TestValidator implements Validator {
 			}
 		} else {
 			if (chk.isEmpty(testVO.getCorr_answer2())){
-				err.rejectValue("corr_answer2", "test.corr_answer");
+				err.rejectValue("corr_answer2", "test.error.corr_answer");
 			} else {
 				testVO.setCorr_answer(testVO.getCorr_answer2());
 			}

@@ -33,6 +33,10 @@ $(function(){
 		var src = $(this).attr("src").replace("_over", "");
 		$(this).attr("src", src);
 	})
+	$(".msgAlert").hide();
+	$(".msgAlert").each(function(){
+		alert($(this).text());		
+	})
 })
 function answerDelAction(){
 	$(".answer_del").click(function(){
