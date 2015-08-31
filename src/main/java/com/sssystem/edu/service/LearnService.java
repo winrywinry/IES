@@ -12,5 +12,6 @@ public interface LearnService {
 	public LearnVO select(int no);
 	public LearnVO selectNext(PageVO pageVO);
 	public LearnVO selectPrev(PageVO pageVO);
+	public void delete(int no);
 	
 }

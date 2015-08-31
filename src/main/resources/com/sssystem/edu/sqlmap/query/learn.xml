@@ -85,7 +85,7 @@
 		<![CDATA[
 
 	SELECT * from t_edu
-	WHERE edu_no IN (SELECT  MAX(edu_no) FROM t_edu WHERE edu_no &lt; #{seq_no} )
+	WHERE edu_no IN (SELECT  MAX(edu_no) FROM t_edu WHERE edu_no < #{seq_no} )
 	]]>
 		
 		<if test="dept_no!=0">
@@ -102,7 +102,7 @@
 	<select id="selectPrev" parameterType="adminPageVO" resultType="learnVO">
 	<![CDATA[
 	SELECT * from t_edu
-	WHERE edu_no IN (SELECT  MIN(edu_no) FROM t_edu WHERE edu_no &gt; #{seq_no})
+	WHERE edu_no IN (SELECT  MIN(edu_no) FROM t_edu WHERE edu_no > #{seq_no})
 	]]>
 		
 		<if test="dept_no!=0">

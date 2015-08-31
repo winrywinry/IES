@@ -118,7 +118,14 @@ public class LearnController {
 		model.addAttribute("learnNext",learnNext);
 		model.addAttribute("learnPrev",learnPrev);
 		
-		return "learn/test";
+		return "learn/view";
+	}
+	
+	@RequestMapping("learn/delete")
+	public String delete(Model model,
+			@RequestParam(value="edu_no")int edu_no){
+		learnService.delete(edu_no);
+		return "redirect:list";
 	}
 	
 }
