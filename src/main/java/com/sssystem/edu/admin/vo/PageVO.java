@@ -1,7 +1,6 @@
 package com.sssystem.edu.admin.vo;
 
 public class PageVO {
-
   private int dept_no;
   private int job_no;
   private int manage_yn;
