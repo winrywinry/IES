@@ -6,7 +6,8 @@ import org.springframework.validation.Validator;
 import com.sssystem.edu.admin.vo.MemberVO;
 import com.sssystem.edu.common.ValidateParamChk;
 
-public class JoinValidator implements Validator{
+public class PasswordFindValidator implements
+ Validator{
 
 	@Override
 	public boolean supports(Class<?> clazz) {
@@ -20,8 +21,11 @@ public class JoinValidator implements Validator{
 		ValidateParamChk chk = new ValidateParamChk();
 	
 		System.out.println(memberVO.getUser_nm()+"  "+memberVO.getEmp_serial());
-		
-		if(chk.isEmpty(memberVO.getUser_nm())){
+		if(chk.isEmpty(memberVO.getUser_id())){
+			errors.rejectValue("user_id", "required", "아이디를 정확히 입력하세요");
+		}else if(chk.isNumeric(memberVO.getUser_id())){
+			errors.rejectValue("user_id", "required", "아이디를 정확히 입력하세요");
+		}else if(chk.isEmpty(memberVO.getUser_nm())){
 			errors.rejectValue("user_nm", "required", "이름을 정확히 입력하세요");
 		}else if(chk.isNumeric(memberVO.getUser_nm())){
 			errors.rejectValue("user_nm", "required", "이름을 정확히 입력하세요");	
@@ -30,9 +34,7 @@ public class JoinValidator implements Validator{
 		}else if(chk.isNumeric(memberVO.getEmp_serial())){
 			errors.rejectValue("emp_serial", "required", "사원번호를 정확히 입력하세요");
 		}
-
 		
 	}
-
 
 }

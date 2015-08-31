@@ -1,5 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=EUC-KR"
     pageEncoding="EUC-KR"%>
+<%@taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
+<%@taglib prefix="tags" uri="http://www.springframework.org/tags"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -44,15 +46,10 @@ $(function(){
 							<input type="tel" pattern="\d{4}\-\d{3}" title="0000-000" class="int" placeholder="사원번호" required="required" value="" maxlength="8" name="emp_serial" id="serial" style="ime-mode:disabled;">
 						</span>
 						<!-- 아래 에러 출력 div는 인라인으로 style 넣어주세요. 디폴트 : display:none -->
-						<html:messages id="msg" property="errnm">
-						<div class="error" id="serialMsg"><bean:write name="msg" /></div>
-						</html:messages>
-						<html:messages id="msg" property="errEmpno">
-						<div class="error" id="serialMsg"><bean:write name="msg" /></div>
-						</html:messages>
-						<html:messages id="msg" message="true">
-						<div class="error" id="serialMsg"><bean:write name="msg" /></div>
-						</html:messages>
+						<form:errors path="comm.emp_serial" cssClass="error" id="serialMsg" element="div"/>
+						<c:if test="${msg != null }">
+						<div class="error" id="serialMsg">${msg }</div>
+						</c:if>
 					</div>
 				</div>
 				<div class="btn_join">
