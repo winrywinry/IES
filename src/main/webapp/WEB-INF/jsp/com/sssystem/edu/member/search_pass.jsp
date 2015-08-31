@@ -1,12 +1,12 @@
-<%@ page language="java" contentType="text/html; charset=EUC-KR"
-    pageEncoding="EUC-KR"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
 <%@taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
 <%@taglib prefix="tags" uri="http://www.springframework.org/tags"%>
 <!DOCTYPE html>
 <html>
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=EUC-KR">
-<title>»ç³»±³À°½Ã½ºÅÛ - ºñ¹Ð¹øÈ£ Ã£±â</title>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>ì‚¬ë‚´êµìœ¡ì‹œìŠ¤í…œ - ë¹„ë°€ë²ˆí˜¸ ì°¾ê¸°</title>
 <script src= "//code.jquery.com/jquery-1.11.3.min.js" ></script>
 <script src= "//code.jquery.com/jquery-migrate-1.2.1.min.js" ></script>
 <script type="text/javascript" src="/IES/js/common.js"></script>
@@ -21,7 +21,7 @@ $(function(){
 <div id="wrap">
 	<!-- header -->
 	<div id="header">
-		<h1><a href="login" class="logo hid_txt" tabindex="1">»ç³»±³À°½Ã½ºÅÛ</a></h1>
+		<h1><a href="login" class="logo hid_txt" tabindex="1">ì‚¬ë‚´êµìœ¡ì‹œìŠ¤í…œ</a></h1>
 	</div>
 	<!-- container -->
 	<div id="container">
@@ -29,23 +29,23 @@ $(function(){
 		<div id="content">
 			<form id="frmChk" name="frmChk" target="_top" AUTOCOMPLETE="off" action="findPasswordAccess" method="post">
 			<fieldset class="join_form">
-			<legend class="blind">»ç¿øÀÎÁõ</legend>
+			<legend class="blind">ì‚¬ì›ì¸ì¦</legend>
 				<div class="row_group">
 					<div class="join_row_name" id="idDiv">
 						<span class="ps_box id">
-							<input type="text" class="int" placeholder="¾ÆÀÌµð" value="" maxlength="40" name="user_id" required="required" id="id">
+							<input type="text" class="int" placeholder="ì•„ì´ë””" value="" maxlength="40" name="user_id" required="required" id="id">
 						</span>
 					</div>
 					<div class="join_row" id="nmDiv">
 						<span class="ps_box">
-							<input type="text" class="int" placeholder="ÀÌ¸§" value="" maxlength="40" name="user_nm" required="required" id="name">
+							<input type="text" class="int" placeholder="ì´ë¦„" value="" maxlength="40" name="user_nm" required="required" id="name">
 						</span>
 					</div>
 					<div class="join_row join_serial" id="serialDiv">
 						<span class="ps_box int_serial">
-							<input type="tel" pattern="\d{4}\-\d{3}" title="0000-000" class="int" placeholder="»ç¿ø¹øÈ£" required="required" value="" maxlength="8" name="emp_serial" id="serial" style="ime-mode:disabled;">
+							<input type="tel" pattern="\d{4}\-\d{3}" title="0000-000" class="int" placeholder="ì‚¬ì›ë²ˆí˜¸" required="required" value="" maxlength="8" name="emp_serial" id="serial" style="ime-mode:disabled;">
 						</span>
-						<!-- ¾Æ·¡ ¿¡·¯ Ãâ·Â div´Â ÀÎ¶óÀÎÀ¸·Î style ³Ö¾îÁÖ¼¼¿ä. µðÆúÆ® : display:none -->
+						<!-- ì•„ëž˜ ì—ëŸ¬ ì¶œë ¥ divëŠ” ì¸ë¼ì¸ìœ¼ë¡œ style ë„£ì–´ì£¼ì„¸ìš”. ë””í´íŠ¸ : display:none -->
 						<form:errors path="comm.emp_serial" cssClass="error" id="serialMsg" element="div"/>
 						<c:if test="${msg != null }">
 						<div class="error" id="serialMsg">${msg }</div>
@@ -53,7 +53,7 @@ $(function(){
 					</div>
 				</div>
 				<div class="btn_join">
-					<input type="submit" title="»ç¿øÀÎÁõ" alt="»ç¿øÀÎÁõ" tabindex="12" value="Confirm" onclick="">
+					<input type="submit" title="ì‚¬ì›ì¸ì¦" alt="ì‚¬ì›ì¸ì¦" tabindex="12" value="Confirm" onclick="">
 				</div>
 			</fieldset>
 			</form>

@@ -89,15 +89,15 @@ public class MemberController{
 	}//joinAccess
 	
 	@RequestMapping("member/joinAction")
-	public String joinAction(@RequestParam(value="user_no") int user_no,
-							 @RequestParam(value="user_id") String user_id,
-							 @RequestParam(value="user_pwd") String user_pwd,
-							 @RequestParam(value="line_no") String line_no,
-							 @RequestParam(value="phone") String phone_no,
-							 @RequestParam(value="second") String second_no,
-							 @RequestParam(value="post") String post,
-							 @RequestParam(value="address") String address,
-							 @RequestParam(value="email") String email,
+	public String joinAction(@RequestParam(value="user_no",required=false) int user_no,
+							 @RequestParam(value="user_id",required=false) String user_id,
+							 @RequestParam(value="user_pwd",required=false) String user_pwd,
+							 @RequestParam(value="line_no",required=false) String line_no,
+							 @RequestParam(value="phone",required=false) String phone_no,
+							 @RequestParam(value="second",required=false) String second_no,
+							 @RequestParam(value="post",required=false) String post,
+							 @RequestParam(value="address",required=false) String address,
+							 @RequestParam(value="email",required=false) String email,
 							 Model model){
 		
 		MemberVO memberVO = new MemberVO();
