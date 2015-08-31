@@ -7,7 +7,7 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=EUC-KR">
-<link rel="stylesheet" type="text/css" href="learn.css" />
+<link rel="stylesheet" type="text/css" href="${initParam.root }/css/learn.css" />
 <title>Insert title here</title>
 <% LearnVO learn = (LearnVO)request.getAttribute("learn");%>
 	<script type="text/javascript">
@@ -97,12 +97,12 @@
 					<table class="moveTab">
 						<tr>
 							<td width="20%"><img src='/IES/images/up.png' /> 이전글</td>
-							<td width="60%" class="left"><a href="contentsView?no=${learnPrev.edu_no}">${learnPrev.title }</a></td>
+							<td width="60%" class="left"><a href="contentsView?no=${learnPrev.edu_no}&dept_no=${param.dept_no}&page=${param.page}">${learnPrev.title }</a></td>
 							<td width="20%"><fmt:formatDate value="${learnPrev.input_dt }" pattern="MM-dd HH:mm" /></td>
 						</tr>
 						<tr>
 							<td><img src='/IES/images/down.png' /> 다음글</td>
-							<td class="left"><a href="contentsView?no=${learnNext.edu_no}">${learnNext.title }</a></td>
+							<td class="left"><a href="contentsView?no=${learnNext.edu_no}&dept_no=${param.dept_no}&page=${param.page}">${learnNext.title }</a></td>
 							<td><fmt:formatDate value="${learnNext.input_dt }" pattern="MM-dd HH:mm" /></td>
 						</tr>
 					</table>

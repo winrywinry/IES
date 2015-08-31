@@ -55,4 +55,9 @@ public class LearnServiceImpl implements LearnService{
 		return learnPrev;
 	}
 
+	@Override
+	public void delete(int no) {
+		session.delete("learn.delete",no);
+	}
+
 }
