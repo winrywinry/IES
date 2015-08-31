@@ -35,7 +35,7 @@
 		AND dept_no = #{dept_no}
 		</if>
 			<if test="searchWord != null and searchWord != ''"><![CDATA[			
-			  (title LIKE CONCAT('%',CONCAT(#{searchWord},'%')) 
+			AND  (title LIKE CONCAT('%',CONCAT(#{searchWord},'%')) 
 		  OR contents LIKE CONCAT('%',CONCAT(#{searchWord},'%')))
 				]]></if>
 		
@@ -85,13 +85,12 @@
 		<![CDATA[
 
 	SELECT * from t_edu
-	WHERE edu_no IN (SELECT  MAX(edu_no) FROM t_edu WHERE edu_no &lt; #{seq_no} )
+	WHERE edu_no IN (SELECT  MAX(edu_no) FROM t_edu WHERE edu_no < #{seq_no} )
 	]]>
 		
 		<if test="dept_no!=0">
 			AND dept_no = #{dept_no}
 		</if>
-		
 		
 			<if test="searchWord != null and searchWord != ''"><![CDATA[			
 			  AND (title LIKE CONCAT('%',CONCAT(#{searchWord},'%')) 
@@ -103,7 +102,7 @@
 	<select id="selectPrev" parameterType="adminPageVO" resultType="learnVO">
 	<![CDATA[
 	SELECT * from t_edu
-	WHERE edu_no IN (SELECT  MIN(edu_no) FROM t_edu WHERE edu_no &gt; #{seq_no})
+	WHERE edu_no IN (SELECT  MIN(edu_no) FROM t_edu WHERE edu_no > #{seq_no})
 	]]>
 		
 		<if test="dept_no!=0">
@@ -111,7 +110,7 @@
 		</if>
 		
 			<if test="searchWord != null and searchWord != ''"><![CDATA[			
-			  (title LIKE CONCAT('%',CONCAT(#{searchWord},'%')) 
+			 AND (title LIKE CONCAT('%',CONCAT(#{searchWord},'%')) 
 		  OR contents LIKE CONCAT('%',CONCAT(#{searchWord},'%')))
 			]]></if>
 		

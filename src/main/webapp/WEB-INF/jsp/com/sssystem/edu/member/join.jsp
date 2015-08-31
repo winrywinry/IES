@@ -45,7 +45,7 @@
 					<div class="join_row" id="idDiv">
 						<input type="text" class="int" placeholder="아이디" maxlength="18" value="" name="user_id" id="id" required>
 						<!-- class:error e_info, error, error gm  -->
-						<div class="error" id="idMsg">6~18자리의 영문/숫자 조합</div>
+						<div class="error" id="idMsg">6~18자리의 영문/숫자 조합 </div>
 					</div>				
 					<div class="join_row" id="pswd1Div">
 						<input type="password" class="int" placeholder="비밀번호" maxlength="18" name="user_pwd" id="pswd1" required>				

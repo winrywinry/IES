@@ -176,7 +176,6 @@ public class QnaController {
 		qnaVO.setQna_no(Integer.parseInt(qna_no));
 		qnaVO.setA_user_no(sessionVO.getUser_no());
 		qnaVO.setA_contents(a_contents);
-		System.out.println("馬馬馬馬");
 		qnaService.answerUpdate(qnaVO);
 		
 		return "redirect:view?board_gb=60&no="+qna_no+"&user_no="+sessionVO.getUser_no();

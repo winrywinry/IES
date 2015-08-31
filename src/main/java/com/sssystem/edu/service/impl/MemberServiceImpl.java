@@ -88,8 +88,8 @@ public class MemberServiceImpl implements MemberService{
 
 	@Override
 	public int selectID(String id) {
-		// TODO Auto-generated method stub
-		return 0;
+		int result = session.selectOne("member.selectID", id);
+		return result;
 	}
 
 	@Override

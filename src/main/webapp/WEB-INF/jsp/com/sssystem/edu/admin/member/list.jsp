@@ -1,13 +1,13 @@
 <%@page import="java.util.Date"%>
-<%@ page language="java" contentType="text/html; charset=EUC-KR"
-    pageEncoding="EUC-KR"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
 <%@ taglib tagdir="/WEB-INF/tags" prefix="custom" %>
 <!DOCTYPE html>
 <html>
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=EUC-KR">
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <script src="//code.jquery.com/jquery-1.11.3.min.js"></script>
 <script src="//code.jquery.com/jquery-migrate-1.2.1.min.js"></script>
 <script type="text/javascript" src="${initParam.root }/admin/js/jquery.navgoco.min.js"></script>
@@ -29,7 +29,7 @@ function jsGoPage(p){
 }
 </script>
 
-<title>°ü¸®ÀÚ : È¸¿ø°ü¸® - »ç³»±³À°½Ã½ºÅÛ</title>
+<title>ê´€ë¦¬ì : íšŒì›ê´€ë¦¬ - ì‚¬ë‚´êµìœ¡ì‹œìŠ¤í…œ</title>
 </head>
 <body>
 <div id="wrap">
@@ -37,59 +37,60 @@ function jsGoPage(p){
 	<section>
 		<div id="content">
 			<div id="top">
-				<h3>È¸¿ø°ü¸®</h3>
+				<h3>íšŒì›ê´€ë¦¬</h3>
 				
-		<!-- ----------------------------------°Ë»öÃ¢------------------------------------------>
+		<!-- ----------------------------------ê²€ìƒ‰ì°½------------------------------------------>
 				<div id="search">
-					<form name="searchFrm" action="/iessvn/admin/member/list.do" method="POST">
-						<input type="hidden" name="page" value="${pageBean.page}">
+					<form name="searchFrm" action="${initParam.root}/admin/member/list" method="POST">
+						<input type="hidden" name="page" value="${pageVO.page}">
 						<select name="dept_no">
-								<option value="0">==ºÎ¼­==</option>
+								<option value="0">==ë¶€ì„œ==</option>
 							<c:forEach var="dept" items="${deptlist }">
 								<option value="${dept.dept_no }">${dept.dept_nm }</option>
 							</c:forEach>
 						</select>
 						<select name="job_no">
-								<option value="0">==Á÷Ã¥==</option>
+								<option value="0">==ì§ì±…==</option>
 							<c:forEach var="job" items="${joblist }">
 								<option value="${job.job_no }">${job.job_nm }</option>
 							</c:forEach>
 						</select>
-						<input type="checkbox" name="manage_yn"/><label for="auth" >Manager</label>
+						<input type="checkbox" name="manage_yn"/><label for="manager" >Manager</label>
 						<input type="checkbox" name="admin_yn"/><label for="admin">Admin</label>
 						<input type="text" name="searchWord"/>
-						<input type="submit" value="°Ë»ö" />
+						<input type="submit" value="ê²€ìƒ‰" />
 					</form>
 				</div>
 			</div>
 			
-		<!-- ----------------------------------¸®½ºÆ® Ãâ·Â------------------------------------------>
+		<!-- ----------------------------------ë¦¬ìŠ¤íŠ¸ ì¶œë ¥------------------------------------------>
 			<div id="con">
 				<table border="0" cellspacing="0" cellpadding="0" class="listTable">
 					<tr>
-						<th width="40"><input type="checkbox" id="checkAll" /></th>
-						<th width="70">»ç¿ø¹øÈ£</th>
-						<th width="80">ÀÌ¸§</th>
-						<th width="50">³ªÀÌ</th>
-						<th width="60">ºÎ¼­</th>
-						<th width="60">Á÷Ã¥</th>
-						<th width="100">³»¼±</th>
-						<th width="100">¿¬¶ôÃ³</th>
-						<th width="60">ÀÔ»çÀÏ</th>
-						<th width="60">°¡ÀÔÀÏ</th>
-						<th width="30">At.</th>
+						<th width="40">ë²ˆí˜¸</th>
+						<th width="70">ì‚¬ì›ë²ˆí˜¸</th>
+						<th width="80">ì´ë¦„</th>
+						<th width="50">ë‚˜ì´</th>
+						<th width="60">ë¶€ì„œ</th>
+						<th width="60">ì§ì±…</th>
+						<th width="100">ë‚´ì„ </th>
+						<th width="100">ì—°ë½ì²˜</th>
+						<th width="60">ì…ì‚¬ì¼</th>
+						<th width="60">ê°€ì…ì¼</th>
+						<th width="30">Ma.</th>
 						<th width="30">Ad.</th>
 					</tr>
+					<c:set var="firstNo" value="${pageVO.total - ((pageVO.page-1) * 10) }" />
 					<c:forEach var="member" items="${member }">
 					<tr>
-						<td><input type="checkbox" name="check" value="${member.user_no}"/></td>
+						<td>${firstNo }<br/><c:set var="firstNo" value="${firstNo-1 }"/></td>
 						<td>${member.emp_serial }</td>
 						<fmt:formatDate value="${member.birth_dt }" var="b_dt" pattern="yyyy-MM-dd" />
-						<td><a href="writePage.do?page=${pageBean.page}&no=${member.user_no }&name=${member.user_nm}&birth=${b_dt}&phone_no=${member.phone_no}">${member.user_nm }</a></td>
+						<td><a href="writePage?page=${pageVO.page}&no=${member.user_no }&name=${member.user_nm}&birth=${b_dt}&phone_no=${member.phone_no}">${member.user_nm }</a></td>
 						<fmt:formatDate var="NowYear" value="${nowDate }" pattern="yyyy" />
 						<fmt:formatDate var="BirthYear" value="${member.birth_dt }" pattern="yyyy" />
 						<td>${NowYear-BirthYear+1 }
-							(<c:choose><c:when test="${member.gender_yn == 1 }">¿©</c:when><c:otherwise>³²</c:otherwise></c:choose>)
+							(<c:choose><c:when test="${member.gender_yn == 1 }">ì—¬</c:when><c:otherwise>ë‚¨</c:otherwise></c:choose>)
 						</td>
 						<td>${member.dept_nm }</td>
 						<td>${member.job_nm }</td>
@@ -97,17 +98,17 @@ function jsGoPage(p){
 						<td>${member.phone_no }</td>
 						<td><fmt:formatDate value="${member.hiredate }" pattern="yy/MM/dd"/></td>
 						<td><fmt:formatDate value="${member.input_dt }" pattern="yy/MM/dd"/></td>
-						<td><c:if test="${member.manage_yn == 1 }"><img src="/iessvn/admin/images/check.png" alt="±ÇÇÑÀÚ" title="±ÇÇÑÀÚ" /></c:if></td>
-						<td><c:if test="${member.admin_yn == 1 }"><img src="/iessvn/admin/images/check.png" alt="°ü¸®ÀÚ" title="°ü¸®ÀÚ" /></c:if></td>
+						<td><c:if test="${member.manage_yn == 1 }"><img src="${initParam.root}/admin/images/check.png" alt="ê¶Œí•œì" title="ê¶Œí•œì" /></c:if></td>
+						<td><c:if test="${member.admin_yn == 1 }"><img src="${initParam.root}/admin/images/check.png" alt="ê´€ë¦¬ì" title="ê´€ë¦¬ì" /></c:if></td>
 					</tr>
 					</c:forEach>
 			</table>
-				<div id="right"><a href="writePage.do?page=${pageBean.page }" class="css_btn_class">»ç¿øÃß°¡</a></div>
+				<div id="right"><a href="writePage?page=${pageVO.page }" class="css_btn_class">ì‚¬ì›ì¶”ê°€</a></div>
 			</div>
 			
-		<!-- ----------------------------------ÆäÀÌÂ¡------------------------------------------>
+		<!-- ----------------------------------í˜ì´ì§•------------------------------------------>
 			<div id="bot">
-				<custom:paging page="${pageBean.page }" totalCnt="${pageBean.total }" par="&dept_no=${pageBean.dept_no}&searchWord=${pageBean.searchWord}&job_no=${pageBean.job_no}&manage_yn=${pageBean.manage_yn}&admin_yn=${pageBean.admin_yn }"></custom:paging>
+				<custom:paging page="${pageVO.page }" totalCnt="${pageVO.total }" par="&dept_no=${pageVO.dept_no}&searchWord=${pageVO.searchWord}&job_no=${pageVO.job_no}&manage_yn=${pageVO.manage_yn}&admin_yn=${pageVO.admin_yn }"></custom:paging>
 			</div>
 			
 		</div>

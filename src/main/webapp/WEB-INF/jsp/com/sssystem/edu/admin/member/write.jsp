@@ -2,6 +2,7 @@
     pageEncoding="EUC-KR"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>    
 <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
+<%@ taglib uri="http://www.springframework.org/tags/form" prefix="form" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -15,7 +16,7 @@
 <script type="text/javascript" src="${initParam.root }/admin/js/formcheck.js"></script>
 <link rel="stylesheet" type="text/css" href="${initParam.root }/admin/css/member.css" />
 <script type="text/javascript" id="demo2-javascript">
-$(document).ready(function() {
+$(function() {
 	$("#navMenu").navgoco({accordion: true});
 	var no = $("input[name='no']").val();
 	if (no > 0){
@@ -39,7 +40,7 @@ $(document).ready(function() {
 		if (confirm("취소하시겠습니까?")){
 			var origin = $("input[name='origin']").val();
 			if (origin != ""){
-				$("#profil").prop("src", "/iessvn/images/profile/"+origin);
+				$("#profil").prop("src", "/IES/images/profile/"+origin);
 			} else {
 				$("#profil").prop("src", "");
 			}
@@ -49,11 +50,15 @@ $(document).ready(function() {
 			
 		}
 	})
+    $(".msgAlert").hide();
+    $(".msgAlert").each(function (){
+         alert($(this).text());            
+    })	
 });
 
 function del(){
 	if (confirm("정말 삭제하시겠습니까??")){    //확인
-		location.href="./delete.do?no="+document.insertFrm.no.value;
+		location.href="./delete?no="+document.insertFrm.no.value;
 	}else{   //취소
 	    return;
 	}
@@ -73,7 +78,7 @@ function del(){
        var user_nm = document.getElementById("user_nm").value;
        var birth = document.getElementById("birth").value;
 	       xmlReq.onreadystatechange = callBack; // 괄호 열고닫고가 틀리다.!
-	       xmlReq.open("GET", "receive.do?user_nm="+user_nm+"&birth="+birth, true);
+	       xmlReq.open("GET", "receive?user_nm="+user_nm+"&birth="+birth, true);
 	       xmlReq.send(null);
        // send가 끝나고나면 비동기식이기 때문에 프로그램이 계속 진행된다.
    }
@@ -111,9 +116,22 @@ function del(){
        }
    }
 </script>
-<html:messages id="msgs" property="errors">
-<script type="text/javascript">alert('<bean:write name="msgs"/>');</script>
-</html:messages>
+<form:errors path="member.user_nm" cssClass="msgAlert" />
+<form:errors path="member.birth" cssClass="msgAlert" />
+<form:errors path="member.birth_dt" cssClass="msgAlert" />
+<form:errors path="member.gender_yn" cssClass="msgAlert" />
+<form:errors path="member.hire" cssClass="msgAlert" />
+<form:errors path="member.hiredate" cssClass="msgAlert" />
+<form:errors path="member.dept" cssClass="msgAlert" />
+<form:errors path="member.dept_no" cssClass="msgAlert" />
+<form:errors path="member.job" cssClass="msgAlert" />
+<form:errors path="member.job_no" cssClass="msgAlert" />
+<form:errors path="member.line_no" cssClass="msgAlert" />
+<form:errors path="member.phone_no" cssClass="msgAlert" />
+<form:errors path="member.second_no" cssClass="msgAlert" />
+<form:errors path="member.post" cssClass="msgAlert" />
+<form:errors path="member.address" cssClass="msgAlert" />
+<form:errors path="member.email" cssClass="msgAlert" />
 <title>관리자 : 회원관리 - 사내교육시스템</title>
 </head>
 <body>
@@ -124,7 +142,7 @@ function del(){
 			<div id="top">
 				<h3>회원관리</h3><span id="error" style="margin-left:20px"></span>
 			</div>
-			<form method="post" name="insertFrm" action="/iessvn/admin/member/writeAction.do" onsubmit="return Formchk(this)" novalidate="novalidate" enctype="multipart/form-data">
+			<form method="post" name="insertFrm" action="/IES/admin/member/writeAction" onsubmit="return Formchk(this)" novalidate="novalidate" enctype="multipart/form-data">
 			<input type="hidden" name="page" value="${page }" />
 			<input type="hidden" name="no" value="${member.user_no }"/>	
 			<div id="con">
@@ -187,22 +205,22 @@ function del(){
 						<td>
 							<c:if test="${member.manage_yn == 1 }"><c:set var="manage_yn" value="checked" /></c:if>
 							<c:if test="${member.admin_yn == 1 }"><c:set var="admin_yn" value="checked" /></c:if>
-							<input type="checkbox" name="manage_yn" value="1" id="manage_yn" ${manage_yn } /><label for="manage_yn">권한자</label>
-							<input type="checkbox" name="admin_yn" value="1" id="admin_yn" ${admin_yn } /><label for="admin_yn">관리자</label> 
+							<input type="checkbox" name="manage_yn" value="1" id="manage_yn" ${manage_yn } /><label for="manage_yn">Manager</label>
+							<input type="checkbox" name="admin_yn" value="1" id="admin_yn" ${admin_yn } /><label for="admin_yn">Admin</label> 
 						</td>
 					</tr>
 					<tr>
 						<th>사진</th>
 						<td colspan="5">
 							<input type="hidden" name="origin" value="${member.profil_picture }" />
-							<c:set var="origin_pic" value="/iessvn/images/profile/${member.profil_picture }" />
-							<c:if test="${member.profil_picture != null }"><c:set var="profil_url" value="/iessvn/images/profile/${member.profil_picture }" /></c:if>
+							<c:set var="origin_pic" value="/IES/images/profile/${member.profil_picture }" />
+							<c:if test="${member.profil_picture != null }"><c:set var="profil_url" value="/IES/images/profile/${member.profil_picture }" /></c:if>
 							<img id="profil" src="${profil_url }" width="150" height="200" /><br /><input type="file" name="profil_picture" id="profil_picture" onchange="imageURL(this)" /></td>
 					</tr>
 				</table>
 				
 				<div id="left">
-					<a href="list.do?page=${page }" class="css_btn_class">목록</a>
+					<a href="list?page=${page }" class="css_btn_class">목록</a>
 				</div>
 				<div id="right">
 					<a onclick="document.insertFrm.submit();" class="css_btn_class" id="addbt"><span id="add">추가</span></a>
