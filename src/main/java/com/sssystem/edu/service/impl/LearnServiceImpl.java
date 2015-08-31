@@ -29,4 +29,30 @@ public class LearnServiceImpl implements LearnService{
 		return cnt;
 	}
 
+	@Override
+	public void updateViewCnt(int no) {
+		session.update("learn.updateViewCnt",no);
+	}
+
+	@Override
+	public LearnVO select(int no) {
+		LearnVO learnVO = null;
+		learnVO = session.selectOne("learn.select",no);
+		return learnVO;
+	}
+
+	@Override
+	public LearnVO selectNext(PageVO pageVO) {
+		LearnVO learnNext = null;
+		learnNext = session.selectOne("learn.selectNext",pageVO);
+		return learnNext;
+	}
+
+	@Override
+	public LearnVO selectPrev(PageVO pageVO) {
+		LearnVO learnPrev = null;
+		learnPrev = session.selectOne("learn.selectPrev",pageVO);
+		return learnPrev;
+	}
+
 }

@@ -35,7 +35,7 @@
 		AND dept_no = #{dept_no}
 		</if>
 			<if test="searchWord != null and searchWord != ''"><![CDATA[			
-			  (title LIKE CONCAT('%',CONCAT(#{searchWord},'%')) 
+			AND  (title LIKE CONCAT('%',CONCAT(#{searchWord},'%')) 
 		  OR contents LIKE CONCAT('%',CONCAT(#{searchWord},'%')))
 				]]></if>
 		
@@ -92,7 +92,6 @@
 			AND dept_no = #{dept_no}
 		</if>
 		
-		
 			<if test="searchWord != null and searchWord != ''"><![CDATA[			
 			  AND (title LIKE CONCAT('%',CONCAT(#{searchWord},'%')) 
 		  OR contents LIKE CONCAT('%',CONCAT(#{searchWord},'%')))
@@ -111,7 +110,7 @@
 		</if>
 		
 			<if test="searchWord != null and searchWord != ''"><![CDATA[			
-			  (title LIKE CONCAT('%',CONCAT(#{searchWord},'%')) 
+			 AND (title LIKE CONCAT('%',CONCAT(#{searchWord},'%')) 
 		  OR contents LIKE CONCAT('%',CONCAT(#{searchWord},'%')))
 			]]></if>
 		

@@ -60,15 +60,19 @@ public class LearnController {
 	public String list(Model model,
 			@RequestParam(value="dept_no", required=false)String dn,
 			@RequestParam(value="page", required=false)String pn,
-			@RequestParam(value="serach", required=false)String searchTp,
 			@RequestParam(value="searchWord", required=false)String searchWord
 			){
+		System.out.println("dept_no = "+dn+" page = "+pn+" searchWord = "+searchWord);
 		int dept_no = 0;
 		int page_no = 1;
 		PageVO pageVO = new PageVO();
 		ValidateParamChk chk = new ValidateParamChk();
 		if(!chk.isEmpty(dn)) if(chk.isNumeric(dn)) dept_no = chk.toInteger(dn);
 		if(!chk.isEmpty(pn)) if(chk.isNumeric(pn)) page_no = chk.toInteger(pn);
+		
+		if(!chk.isEmpty(searchWord)) pageVO.setSearchWord(searchWord);
+		if(dept_no != 0) pageVO.setDept_no(dept_no);
+		if(page_no > 0) pageVO.setPage_no(page_no);
 		
 		int total = learnService.selectCnt(pageVO);
 		pageVO.setTotal(total);
@@ -79,4 +83,42 @@ public class LearnController {
 		
 		return "learn/list";
 	}
+	
+	@RequestMapping("/learn/contentsView")
+	public String contentsView(Model model,
+			@RequestParam(value="searchWord",required=false)String searchWord,
+			@RequestParam(value="dept_no")String dn,
+			@RequestParam(value="page")String pn,
+			@RequestParam(value="no")int no){
+		
+		ValidateParamChk chk = new ValidateParamChk();
+		PageVO pageVO = new PageVO();
+		
+		int dept_no = 0;
+		int page_no = 1;
+		
+		if(!chk.isEmpty(dn)) if(chk.isNumeric(dn)) dept_no = chk.toInteger(dn);
+		if(!chk.isEmpty(pn)) if(chk.isNumeric(pn)) page_no = chk.toInteger(pn);
+		
+		if(!chk.isEmpty(searchWord)) pageVO.setSearchWord(searchWord);
+		if(dept_no != 0) pageVO.setDept_no(dept_no);
+		if(dept_no > 0) pageVO.setPage_no(page_no);
+		
+		pageVO.setSeq_no(no);
+		
+		learnService.updateViewCnt(no);
+			
+		System.out.println("seq_no= "+no+" dept_no = "+dept_no+" searchWord = "+searchWord);
+		
+		LearnVO learn = learnService.select(no);
+		LearnVO learnNext = learnService.selectNext(pageVO);
+		LearnVO learnPrev = learnService.selectPrev(pageVO);
+		
+		model.addAttribute("learn",learn);
+		model.addAttribute("learnNext",learnNext);
+		model.addAttribute("learnPrev",learnPrev);
+		
+		return "learn/test";
+	}
+	
 }

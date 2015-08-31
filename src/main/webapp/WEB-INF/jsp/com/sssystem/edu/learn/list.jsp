@@ -53,7 +53,7 @@
 			
 						<!-------------------------------------°Ë»ö------------------------------------------------------------------>
 				<div id="center">
-				<form name="searchFrm" action="/IES/learn/list" method="POST" onsubmit="return formchk();">
+				<form name="searchFrm" action="/IES/learn/list" method="POST" onsubmit="return formchk();" id="searchFrm">
 					<input type="hidden" name="dept_no" value="${pageBean.dept_no }" />
 						<table class="listtop">
 							<tr>
