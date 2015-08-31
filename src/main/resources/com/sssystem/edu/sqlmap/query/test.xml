@@ -25,5 +25,61 @@
 		 ORDER BY Q_NO ASC
 	]]>
 	</select>
-
+	<select id="select" parameterType="int" resultType="testVO">
+	<![CDATA[
+		SELECT TEST_NO
+		     , EDU_NO
+		     , GUBUN
+		     , Q_NO
+		     , QUESTION
+		     , ANSWER_NM
+		     , CORR_ANSWER
+		     , USER_NO
+		     , INPUT_DT
+		  FROM T_EDU_TEST
+		 WHERE TEST_NO = #test_no#
+	]]>
+	</select>
+	<update id="update" parameterType="testVO">
+	<![CDATA[
+		UPDATE T_EDU_TEST SET
+		       GUBUN = #gubun#
+		     , QUESTION = #question#
+		     , ANSWER_NM = #answer_nm#
+		     , CORR_ANSWER = #corr_answer#
+		     , TIME_STAMP = SYSDATE
+		  WHERE TEST_NO = #test_no#
+	]]>
+	</update>
+	<insert id="insert" parameterType="testVO">
+	<![CDATA[
+		INSERT INTO T_EDU_TEST (
+		       TEST_NO
+		     , EDU_NO
+		     , GUBUN
+		     , Q_NO
+		     , QUESTION
+		     , ANSWER_NM
+		     , CORR_ANSWER
+		     , USER_NO
+		) VALUES (
+			   SEQ_EDU_TEST.NEXTVAL
+			 , 0
+			 , #gubun#
+			 , (SELECT NVL(MAX(Q_NO), 0) + 1 AS Q_NO 
+			      FROM T_EDU_TEST 
+			     WHERE EDU_NO = #edu_no#
+			       AND USER_NO = #user_no#)
+			 , #question#
+			 , #answer_nm#
+			 , #corr_answer#
+			 , #user_no#
+		)
+	]]>
+		<selectKey keyProperty="test_no" resultType="int" >
+		<![CDATA[
+			SELECT SEQ_EDU_TEST.CURRVAL AS TEST_NO FROM DUAL
+		]]>	
+		</selectKey>
+	</insert>
 </mapper>

@@ -45,7 +45,7 @@ $(function(){
 	$("#test_add").css("cursor", "pointer");
 	$("#test_add").click(function(){
 		var no = $(this).attr("edu");
-		var url = "../test/write.do?edu="+ no;
+		var url = "../test/write?edu="+ no;
 		testWinOpen(url);
 	})
 	$("img.rollover").hover(function(){
