@@ -27,11 +27,11 @@ public class AdminMemberController {
   DeptService deptService;
   @Autowired
   JobService jobService;
+  @Autowired
+  ValidateParamChk chk;
   
   @RequestMapping("/admin/member/list")
   public String list(
-      PageVO pageVO, 
-      ValidateParamChk chk,
       @RequestParam(value="searchWord", required=false)String searchWord,
       @RequestParam(value="dept_no", required=false)String dn,
       @RequestParam(value="job_no", required=false)String jn,
@@ -39,10 +39,14 @@ public class AdminMemberController {
       @RequestParam(value="manage_yn", required=false)String mn,
       @RequestParam(value="admin_yn", required=false)String an,
       Model model){
+    PageVO pageVO = new PageVO();
+    System.out.println("list1");
+    System.out.println(mn + " / " + an);
     
     //----------------------------------검색-------------------------------//
     if(mn != null){ mn="1";}else{ mn="0";}
     if(an != null){ an="1";}else{ an="0";}
+    System.out.println(mn);
     
     int dept_no = 0;
     int job_no = 0;
@@ -67,6 +71,7 @@ public class AdminMemberController {
     pageVO.setTotal(total);
     
     model.addAttribute("pageVO", pageVO);
+    System.out.println(pageVO.toString());
     
     //------------------------------부서,직책-----------------------------//
     List<DeptVO> deptlist = deptService.selectAll();
@@ -83,9 +88,47 @@ public class AdminMemberController {
     
     return "admin/member/list";
   }
+  //---------------------------------------------------------------------------------------------------------------------------------------//  
+  @RequestMapping("/admin/member/writePage")
+  public String writePage(
+      MemberVO member,
+      @RequestParam(value="page", required=false)String spage,
+      @RequestParam(value="no", required=false)String no,
+      Model model){
+    
+  //--------------------------페이지값------------------------------//
+    int page = 1;
+    if (spage != null && spage.matches("\\d+")) {
+      page = Integer.parseInt(spage);
+    }
+
+    //--------------------------유저넘버------------------------------//
+    ValidateParamChk chk = new ValidateParamChk();
+    int user_no = 0;
+    if (!chk.isEmpty(no)) {
+      if (chk.isNumeric(no)){
+        user_no = chk.toInteger(no);
+      }
+    }
+    
+    //--------------------------------------------------------//
+    if (user_no > 0 ) member = adminMembeerService.select(user_no);
+    List<DeptVO> dept = adminMembeerService.selectDept();
+    List<JobVO> job = adminMembeerService.selectJob();
+    
+    //--------------------------setAttribute------------------------------//
+    model.addAttribute("member", member);
+    model.addAttribute("dept", dept);
+    model.addAttribute("job", job);
+    model.addAttribute("nowDate", new Date());
+    model.addAttribute("page", page);
+    model.addAttribute("no", no);
+    return "admin/member/write";
+  }
+
   @RequestMapping("/admin/member/write")
   public String write(){
     return "admin/member/write";
   }
-
+  
 }
