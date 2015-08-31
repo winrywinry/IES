@@ -1,4 +1,4 @@
-<%@page import="kr.or.sssystem.edu.learn.model.beans.LearnBean"%>
+<%@page import="com.sssystem.edu.vo.LearnVO"%>
 <%@ page language="java" contentType="text/html; charset=EUC-KR"
 	pageEncoding="EUC-KR"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
@@ -9,11 +9,11 @@
 <meta http-equiv="Content-Type" content="text/html; charset=EUC-KR">
 <link rel="stylesheet" type="text/css" href="learn.css" />
 <title>Insert title here</title>
-<% LearnBean learn = (LearnBean)request.getAttribute("learn");%>
+<% LearnVO learn = (LearnVO)request.getAttribute("learn");%>
 	<script type="text/javascript">
 		function del(){
 			if (confirm("정말 삭제하시겠습니까??")){    //확인
-				location.href="./delete.do?edu_no="+document.frm.edu_no.value;
+				location.href="./delete?edu_no="+document.frm.edu_no.value;
 			}else{   //취소
 			    return;
 			}
@@ -39,9 +39,9 @@
 </head>
 <body>
 	<div id="wrap"> 
-		<jsp:include page="/include/header.jsp" />
+		<jsp:include page="/include/header" />
 		<div id="content">
-			<jsp:include page="/include/left_menu_learn.jsp" />
+			<jsp:include page="/include/left_menu_learn" />
 			<section id="cen">
 				<div id="center">
 					<table class="listtop">
@@ -74,7 +74,7 @@
 						<tr>
 							<th style="height: 300px" rowspan="2">내용</th>
 							<td colspan="5">
-								<iframe width="700px" height="400px" src="http://www.youtube.com/embed/${learn.contents_tag }" allowfullscreen="allowfullscreen"></iframe>
+								<iframe width="700	px" height="400px" src="http://www.youtube.com/embed/${learn.contents_tag }" allowfullscreen="allowfullscreen"></iframe>
 							</td>
 <!-- <td colspan="3" bgcolor="yellow">채팅형 Q&A창</td> -->
 						</tr>
@@ -90,19 +90,19 @@
 					<br>
 					<span style="font-size: 80%; font-weight: bolder; float: right;">
 					<a class="link1" onclick="del()" >삭제</a> | 
-					<a class="link1" onclick="location.href='/iessvn/learn/updatePage.do?no=${learn.edu_no}&user_no=${learn.user_no}&update=update';">수정</a> | 
-					<a class="link1" onclick="location.href='/iessvn/learn/list.do';">목록으로</a>
+					<a class="link1" onclick="location.href='/IES/learn/updatePage?no=${learn.edu_no}&user_no=${learn.user_no}&update=update';">수정</a> | 
+					<a class="link1" onclick="location.href='/IES/learn/list';">목록으로</a>
 					</span>
 					<br><br>
 					<table class="moveTab">
 						<tr>
-							<td width="20%"><img src='/iessvn/images/up.png' /> 이전글</td>
-							<td width="60%" class="left"><a href="contentsView.do?no=${learnPrev.edu_no}">${learnPrev.title }</a></td>
+							<td width="20%"><img src='/IES/images/up.png' /> 이전글</td>
+							<td width="60%" class="left"><a href="contentsView?no=${learnPrev.edu_no}">${learnPrev.title }</a></td>
 							<td width="20%"><fmt:formatDate value="${learnPrev.input_dt }" pattern="MM-dd HH:mm" /></td>
 						</tr>
 						<tr>
-							<td><img src='/iessvn/images/down.png' /> 다음글</td>
-							<td class="left"><a href="contentsView.do?no=${learnNext.edu_no}">${learnNext.title }</a></td>
+							<td><img src='/IES/images/down.png' /> 다음글</td>
+							<td class="left"><a href="contentsView?no=${learnNext.edu_no}">${learnNext.title }</a></td>
 							<td><fmt:formatDate value="${learnNext.input_dt }" pattern="MM-dd HH:mm" /></td>
 						</tr>
 					</table>
@@ -111,7 +111,7 @@
 				</div>
 			</section>
 		</div>
-		<jsp:include page="/include/footer.jsp" />
+		<jsp:include page="/include/footer" />
 	</div>
 </body>
 </html>

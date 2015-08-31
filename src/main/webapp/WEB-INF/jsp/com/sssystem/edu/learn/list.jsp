@@ -1,4 +1,4 @@
-<%@page import="kr.or.sssystem.edu.learn.model.beans.LearnBean"%>
+<%@page import="com.sssystem.edu.vo.LearnVO"%>
 <%@ page language="java" contentType="text/html; charset=EUC-KR"
 	pageEncoding="EUC-KR"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
@@ -36,24 +36,24 @@
 	}
 	
 	function jsGoPage(p,param){
-	       location.href= "list.do?page="+ p + param;
+	       location.href= "list?page="+ p + param;
 	}
 	function viewPage(no, param) {
-			location.href="contentsView.do?no="+ no + param;
+			location.href="contentsView?no="+ no + param;
 	}
 
 </script>
 </head>
 <body> 
 	<div id="wrap">
-		<jsp:include page="/include/header.jsp" />
+		<jsp:include page="/include/header" />
 		<div id="content">
-			<jsp:include page="/include/left_menu_learn.jsp" />
+			<jsp:include page="/include/left_menu_learn" />
 			<section id="cen">
 			
 						<!-------------------------------------검색------------------------------------------------------------------>
 				<div id="center">
-				<form name="searchFrm" action="/iessvn/learn/list.do" method="POST" onsubmit="return formchk();">
+				<form name="searchFrm" action="/IES/learn/list" method="POST" onsubmit="return formchk();">
 					<input type="hidden" name="dept_no" value="${pageBean.dept_no }" />
 						<table class="listtop">
 							<tr>
@@ -61,7 +61,7 @@
 								<td>
 								<td width="20%"><input type="text" name="searchWord" value="${pageBean.searchWord }"></td>
 								<td width="6%" id="text"><img src="../images/glasses2.png" onclick="document.searchFrm.submit();"></td>
-								<td width="6%"><a href="write.do"><img src="../images/write.png"></a></td>
+								<td width="6%"><a href="write"><img src="../images/write.png"></a></td>
 							</tr>
 						</table>
 					</form>
@@ -91,7 +91,7 @@
 								</c:if>
 								<a href="#" onclick="viewPage(${learn.edu_no }, '&page=${pageBean.page_no }&dept_no=${pageBean.dept_no}&searchWord=${pageBean.searchWord}');">${learn.title }</a>
 								<c:if test="${inp == tod}">
-								<img src='/iessvn/images/new.jpg' />
+								<img src='/IES/images/new.jpg' />
 								</c:if>
 							</td>
 <!-- <td>학습상태....</td> -->
@@ -106,7 +106,7 @@
 				</div>
 			</section>
 		</div>
-		<jsp:include page="/include/footer.jsp" />
+		<jsp:include page="/include/footer" />
 	</div>
 </body>
 </html>
