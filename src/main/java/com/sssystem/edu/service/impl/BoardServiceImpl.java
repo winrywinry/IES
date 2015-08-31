@@ -161,7 +161,7 @@ public class BoardServiceImpl implements BoardService {
 	@Override
 	public int selectMaxNo() {
 		int no = 0;
-		//no = (Integer)session.selectList("notice.replyMaxNo");
+		no = session.selectOne("notice.replyMaxNo");
 		return no;
 	}
 
@@ -176,7 +176,8 @@ public class BoardServiceImpl implements BoardService {
 	 */
 	public ReplyVO replySelect(int comment_no) {
 		ReplyVO reply = null;
-		reply = (ReplyVO) session.selectList("notice.replySelect",comment_no);
+	//	reply = (ReplyVO) session.selectList("notice.replySelect",comment_no);
+		reply = session.selectOne("notice.replySelect",comment_no);
 		return reply;
 	}
 

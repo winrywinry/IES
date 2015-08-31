@@ -142,9 +142,6 @@ public class BoardController {
 	public String boardDelete(HttpSession session, Model model,
 			@RequestParam (value="no", required=false)int no,
 			@RequestParam (value="board_gb", required=false)int board_gb) {
-		System.out.println("no="+no);
-		System.out.println("board_gb="+board_gb);
-
 		boardServie.boardDelete(no);
 		
 		return "redirect:list?board_gb="+board_gb;
@@ -181,8 +178,6 @@ public class BoardController {
 			e.printStackTrace();
 		}
 		ReplyVO replyVO = new ReplyVO();
-		System.out.println("기본 = "+content);
-		System.out.println("변형 = "+ConvertStr.toJS(content));
 		replyVO.setContents(ConvertStr.toJS(content));
 		replyVO.setComment_no(comment_no);
 		if(boardServie.replyUpdate(replyVO)){
@@ -215,7 +210,7 @@ public class BoardController {
 			model.addAttribute("reply",rep);
 		}
 		
-		return "board/replyInsert";
+		return "board/replyAdd";
 	}
 
 }	

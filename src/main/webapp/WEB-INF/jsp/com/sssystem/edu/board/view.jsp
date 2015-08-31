@@ -27,7 +27,7 @@
 	
 	function replyAdd(){//리플 추가
 	  	var params='content='+document.addForm.content.value+'&board_no='+${param.no};
-	  	new ajax.xhr.Request('/IES/board/reply?action=insert',params,
+	  	new ajax.xhr.Request('/IES/board/replyInsert',params,
 	  			                       replyAddResult,'POST');    	
 	   }
    
@@ -35,6 +35,7 @@
   	if(xhr.readyState==4 && xhr.status==200){	
         document.addForm.content.value='';
   	  var doc =	xhr.responseXML;
+  	  var json = doc.getElementsByTagName("data").item(0);
   	  var jsonTxt = doc.getElementsByTagName("data").item(0).firstChild.nodeValue;
   	  var jsonObj = eval("("+jsonTxt+")");
   	  var newDiv = makeDiv(jsonObj);
@@ -72,13 +73,11 @@ function replyUpdate(){//수정요청
   
  function replyUpdateResult(xhr){
  	if(xhr.readyState==4 && xhr.status==200){
- 		alert('gkgkgkgk');
- 	   var doc = xhr.responseXML;
+ 		var doc = xhr.responseXML;
  	   var result = 
  		   doc.getElementsByTagName('code').item(0).firstChild.nodeValue;
  	   //result: "success", "fail"
  	   if(xhr.readyState==4){
- 		   alert('hlglglglgl')
  		 var dataText = doc.getElementsByTagName('data').item(0).firstChild.nodeValue;
  		 var dataJson =  eval('('+dataText+')');
  		 var upDiv = makeDiv(dataJson);//변경될 DIV
@@ -86,7 +85,7 @@ function replyUpdate(){//수정요청
  		 
  		 //수정폼 모시기와 감추기
  		  var replyUpdate = document.getElementById('replyUpdate');
- 		  documentcumentElement.appendChild(replyUpdate);
+ 		  document.documentElement.appendChild(replyUpdate);
  		  replyUpdate.style.display='none';
  		 oldDiv.parentNode.replaceChild(upDiv,oldDiv);
  	   }else{
