@@ -10,4 +10,9 @@ public class MemberController {
 	public String login(){
 		return "member/login";
 	}
+	
+	@RequestMapping("/member/joinCheck")
+	public String joinCheck(){
+		return "member/join_check";
+	}//joinCheck
 }
