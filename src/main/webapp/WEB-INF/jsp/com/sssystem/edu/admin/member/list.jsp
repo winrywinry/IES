@@ -67,7 +67,7 @@ function jsGoPage(p){
 			<div id="con">
 				<table border="0" cellspacing="0" cellpadding="0" class="listTable">
 					<tr>
-						<th width="40"><input type="checkbox" id="checkAll" /></th>
+						<th width="40">번호</th>
 						<th width="70">사원번호</th>
 						<th width="80">이름</th>
 						<th width="50">나이</th>
@@ -80,9 +80,10 @@ function jsGoPage(p){
 						<th width="30">Ma.</th>
 						<th width="30">Ad.</th>
 					</tr>
+					<c:set var="firstNo" value="${pageVO.total - ((pageVO.page-1) * 10) }" />
 					<c:forEach var="member" items="${member }">
 					<tr>
-						<td><input type="checkbox" name="check" value="${member.user_no}"/></td>
+						<td>${firstNo }<br/><c:set var="firstNo" value="${firstNo-1 }"/></td>
 						<td>${member.emp_serial }</td>
 						<fmt:formatDate value="${member.birth_dt }" var="b_dt" pattern="yyyy-MM-dd" />
 						<td><a href="writePage?page=${pageVO.page}&no=${member.user_no }&name=${member.user_nm}&birth=${b_dt}&phone_no=${member.phone_no}">${member.user_nm }</a></td>

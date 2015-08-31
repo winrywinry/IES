@@ -3,6 +3,13 @@ package com.sssystem.edu.admin.vo;
 import java.util.Date;
 
 public class MemberVO {
+  private String page;
+  private String no;
+  private String birth;
+  private String hire;
+  private String dept;
+  private String job;
+
   private int user_no;
   private String user_pwd;
   private String user_nm;
@@ -27,6 +34,54 @@ public class MemberVO {
   private Date input_dt;
   
   public MemberVO() {
+  }
+
+  public String getPage() {
+    return page;
+  }
+
+  public void setPage(String page) {
+    this.page = page;
+  }
+
+  public String getNo() {
+    return no;
+  }
+
+  public void setNo(String no) {
+    this.no = no;
+  }
+
+  public String getBirth() {
+    return birth;
+  }
+
+  public void setBirth(String birth) {
+    this.birth = birth;
+  }
+
+  public String getHire() {
+    return hire;
+  }
+
+  public void setHire(String hire) {
+    this.hire = hire;
+  }
+
+  public String getDept() {
+    return dept;
+  }
+
+  public void setDept(String dept) {
+    this.dept = dept;
+  }
+
+  public String getJob() {
+    return job;
+  }
+
+  public void setJob(String job) {
+    this.job = job;
   }
 
   public MemberVO(int user_no,String user_pwd, String user_nm, String emp_serial,
