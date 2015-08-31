@@ -1,5 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=EUC-KR"
     pageEncoding="EUC-KR"%>
+<%@taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
+<%@taglib prefix="tags" uri="http://www.springframework.org/tags"%>
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -31,12 +34,14 @@ $(function(){
 				<div class="row_group">
 					<div class="join_row" id="nmDiv">
 						<span class="ps_box">
-							<input type="text" class="int" placeholder="이름" value="" maxlength="40" name="user_nm" required="required" id="id">
+							<input type="text" class="int" placeholder="이름" value="${comm.user_nm }" maxlength="40" name="user_nm" required="required" id="id">
+							<font color="red"><form:errors path="comm.user_nm"/></font>
 						</span>
 					</div>
 					<div class="join_row join_serial" id="serialDiv">
 						<span class="ps_box int_serial">
 							<input type="tel" pattern="\d{4}\-\d{3}" title="0000-000" class="int" placeholder="사원번호" required="required" value="" maxlength="8" name="emp_serial" id="serial" style="ime-mode:disabled;">
+							<font color='red'><form:errors path="comm.emp_serial"/></font>
 						</span>
 						<!-- 아래 에러 출력 div는 인라인으로 style 넣어주세요. 디폴트 : display:none -->
 						<html:messages id="msg" property="errnm">

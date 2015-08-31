@@ -5,11 +5,14 @@ import java.util.HashMap;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import com.sssystem.edu.admin.vo.MemberVO;
 import com.sssystem.edu.service.MemberService;
+import com.sssystem.edu.valitors.JoinValidator;
 import com.sssystem.edu.vo.support.SessionVO;
 
 @Controller
@@ -31,7 +34,7 @@ public class MemberController{
 		
 		if(memberService.selectLogin(id).equals(pass)){
 		SessionVO sessionVO = memberService.selectSession(id);
-		System.out.println(sessionVO);
+		System.out.println("sessionVO: " +sessionVO);
 		model.addAttribute("user", sessionVO);
 		return "index";
 		}
@@ -47,14 +50,33 @@ public class MemberController{
 	
 	@RequestMapping("/member/joinAccess")
 	public String joinAccess(@RequestParam(value="user_nm",required=false) String user_nm,
-			  				 @RequestParam(value="emp_serial",required=false) String emp_serial, Model model){
+			  				 @RequestParam(value="emp_serial",required=false) String emp_serial,
+			  				 @ModelAttribute("comm") MemberVO memberVO,
+			  				 BindingResult result,
+			  				 Model model){
 		
-		if(memberService.selectEmp(user_nm, emp_serial)==null) return "/member/join_check";
+		System.out.println(user_nm);
+		System.out.println(emp_serial);
+		System.out.println(memberVO);
+		
+		JoinValidator validator = new JoinValidator();
+		validator.validate(memberVO, result);
+		System.out.println(validator);
+		
+		if(result.hasErrors()) {
+			System.out.println(result);
+			return "member/join_check";
+		}
+		
+		//if(memberService.selectEmp(user_nm, emp_serial)==null) 
 		
 		if(memberService.selectEmp(user_nm, emp_serial).equals(user_nm)){
 			HashMap<String, String> map = new HashMap<String, String>();
 			map.put("user_nm", user_nm);
 			map.put("emp_serial", emp_serial);
+			
+			System.out.println(user_nm);
+			System.out.println(emp_serial);
 			
 			HashMap<String, Object> deptjob = memberService.selectDept1(map);
 			int user_no = Integer.valueOf(String.valueOf(deptjob.get("USER_NO")));
@@ -64,7 +86,7 @@ public class MemberController{
 			
 			return "member/join";
 		}
-		else return "join_check";
+		else return "member/join_check";
 	}//joinAccess
 	
 	@RequestMapping("member/joinAction")
