@@ -1,0 +1,120 @@
+<?xml version="1.0" encoding="UTF-8"?><!--Converted at: Mon Aug 31 14:25:18 KST 2015-->
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="learn">
+
+	<insert id="insert" parameterType="learnVO">
+		INSERT INTO T_EDU (EDU_NO, DEPT_NO,CATEGORY_NO, ESSENTIAL_YN, TITLE,
+		CONTENTS, CONTENTS_TAG,USER_NO, INPUT_DT, TIME_STAMP)
+		VALUES(seq_edu.nextval, #{dept_no},1, #{essential_yn}, #{title},
+		#{contents}, #{contents_tag},#{user_no},sysdate,sysdate)
+		<!-- INSERT INTO T_EDU (EDU_NO, DEPT_NO, CATEGORY_NO, ESSENTIAL_YN, TITLE, 
+			CONTENTS, PERIOD_ST, PERIOD_ED, CONTENTS_TAG, USER_NO, INPUT_DT, TIME_STAMP) 
+			VALUES(seq_edu.nextval, #{dept_no}, 1, #{essential_yn}, #{title}, #{contents}, 
+			#{period_st}, #{period_ed}, #{contents_tag}, 3333,sysdate,sysdate) -->
+	</insert>
+
+	<delete id="delete" parameterType="int">
+		delete from t_edu where
+		edu_no=#{no}
+	</delete>
+
+	<select id="select" parameterType="int" resultType="learnVO">
+		select edu_no, title, input_dt, essential_yn, dept_no, view_cnt,
+		contents_tag, contents from t_edu where edu_no=#{no}
+		<!-- select edu_no, title, input_dt, essential_yn, dept_no, view_cnt, favorite_cnt, 
+			contents_tag, contents, period_st, period_ed from t_edu where edu_no=#{no} -->
+	</select>
+
+	<select id="selectList" parameterType="adminPageVO" resultType="learnVO">
+		select edu_no, title, input_dt, view_cnt, essential_yn
+		<!-- select edu_no, title, input_dt, view_cnt, favorite_cnt, essential_yn -->
+		from t_edu
+		where 1=1
+		<if test="dept_no!=0">
+		AND dept_no = #{dept_no}
+		</if>
+			<if test="searchWord != null and searchWord != ''"><![CDATA[			
+			  (title LIKE CONCAT('%',CONCAT(#{searchWord},'%')) 
+		  OR contents LIKE CONCAT('%',CONCAT(#{searchWord},'%')))
+				]]></if>
+		
+		order by edu_no desc
+	</select>
+
+	<select id="selectCnt" parameterType="adminPageVO" resultType="int">
+		select count(*) from t_edu
+		where 1=1
+		
+		<if test="dept_no!=0">
+			AND dept_no = #{dept_no}
+		</if>
+		
+			<if test="searchWord != null and searchWord != ''"><![CDATA[			
+			 AND (title LIKE CONCAT('%',CONCAT(#{searchWord},'%')) 
+		  OR contents LIKE CONCAT('%',CONCAT(#{searchWord},'%')))
+			]]></if>
+		
+	</select>
+
+	<update id="updateViewCnt" parameterType="int">
+		update t_edu set
+		view_cnt = view_cnt+1 where edu_no = #{edu_no}
+	</update>
+
+	<!-- <update id="updateFavoritewCnt" parameterClass="int"> update t_edu 
+		set favorite_cnt = favorete_cnt+1 where edu_no = #{edu_no} </update> -->
+
+	<select id="selectUpdatePage" parameterType="int" resultType="learnVO">
+		select edu_no, title, essential_yn, dept_no, view_cnt, contents_tag,
+		contents from t_edu where edu_no=#{no}
+		<!-- select edu_no, title, essential_yn, dept_no, view_cnt, favorite_cnt, 
+			contents_tag, contents, period_st, period_ed from t_edu where edu_no=#{no} -->
+	</select>
+
+	<update id="update" parameterType="learnVO">
+		update t_edu set title=#{title}, essential_yn=#{essential_yn},
+		dept_no=#{dept_no}, contents_tag=#{contents_tag}, contents=#{contents},
+		time_stamp=sysdate where edu_no=#{edu_no}
+		<!-- update t_edu set title=#{title}, essential_yn=#{essential_yn}, dept_no=#{dept_no}, 
+			contents_tag=#{contents_tag}, contents=#{contents}, period_st=#{period_st}, 
+			period_ed=#{period_ed}, time_stamp=sysdate where edu_no=#{edu_no} -->
+	</update>
+
+	<select id="selectNext" parameterType="adminPageVO" resultType="learnVO">
+		<![CDATA[
+
+	SELECT * from t_edu
+	WHERE edu_no IN (SELECT  MAX(edu_no) FROM t_edu WHERE edu_no &lt; #{seq_no} )
+	]]>
+		
+		<if test="dept_no!=0">
+			AND dept_no = #{dept_no}
+		</if>
+		
+		
+			<if test="searchWord != null and searchWord != ''"><![CDATA[			
+			  AND (title LIKE CONCAT('%',CONCAT(#{searchWord},'%')) 
+		  OR contents LIKE CONCAT('%',CONCAT(#{searchWord},'%')))
+			]]></if>
+		
+	</select>
+
+	<select id="selectPrev" parameterType="adminPageVO" resultType="learnVO">
+	<![CDATA[
+	SELECT * from t_edu
+	WHERE edu_no IN (SELECT  MIN(edu_no) FROM t_edu WHERE edu_no &gt; #{seq_no})
+	]]>
+		
+		<if test="dept_no!=0">
+			AND dept_no = #{dept_no}
+		</if>
+		
+			<if test="searchWord != null and searchWord != ''"><![CDATA[			
+			  (title LIKE CONCAT('%',CONCAT(#{searchWord},'%')) 
+		  OR contents LIKE CONCAT('%',CONCAT(#{searchWord},'%')))
+			]]></if>
+		
+	</select>
+
+</mapper>
