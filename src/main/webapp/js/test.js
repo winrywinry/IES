@@ -59,6 +59,7 @@ function submitChk(){
 	}
 }
 function FormChkModule(f){
+	return true;
 	var gubun = -1;
 	for (var i=0;i<f.gubun.length;i++){
 		if (f.gubun[i].checked==true){

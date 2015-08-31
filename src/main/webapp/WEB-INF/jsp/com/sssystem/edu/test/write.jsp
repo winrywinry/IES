@@ -2,28 +2,32 @@
     pageEncoding="EUC-KR"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn" %>
+<%@ taglib uri="http://www.springframework.org/tags/form" prefix="form" %>
 <!DOCTYPE html>
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=EUC-KR">
-<link rel="stylesheet" type="text/css" href="test.css" />
+<link rel="stylesheet" type="text/css" href="${initParam.root }/css/test.css" />
 <title>사내교육시스템 - 이수확인 등록</title>
 <script src= "//code.jquery.com/jquery-1.11.3.min.js" ></script>
 <script src= "//code.jquery.com/jquery-migrate-1.2.1.min.js" ></script>
-<script src="/iessvn/js/jquery-ui.js"></script>
-<script type="text/javascript" src="/iessvn/js/test.js"></script>
-<link href="/iessvn/css/jquery-ui.css" rel="stylesheet">
-<html:messages id="msg" property="error">
-<script type="text/javascript">alert("<bean:write name='msg' />");</script>
-</html:messages>
-<html:messages id="msg" message="true">
-<script type="text/javascript">alert("<bean:write name='msg' />");</script>
-</html:messages>
+<script src="${initParam.root }/js/jquery-ui.js"></script>
+<script type="text/javascript" src="${initParam.root }/js/test.js"></script>
+<link href="${initParam.root }/css/jquery-ui.css" rel="stylesheet">
+<form:errors path="test.question" cssClass="msgAlert" />
+<script type="text/javascript">alert("<form:errors path='test.error' />");</script>
+<c:if test="${msg != null }">
+<script type="text/javascript">alert("${msg }");</script>
+</c:if>
 </head>
 <body>
+<form:errors path="test.gubun" cssClass="msgAlert" />
+<form:errors path="test.question" cssClass="msgAlert" />
+<form:errors path="test.answer_nm" cssClass="msgAlert" />
+<form:errors path="test.corr_answer2" cssClass="msgAlert" />
 <div id="winWrap">
 	<div id="winHeader"><h3>시험 등록</h3></div>
-	<div id="winCon">
+	<div id="winCon">	
 		<form method="post" name="writeFrm" action="save.do">
 		<input type="hidden" name="test" value="${test_no }" />
 		<input type="hidden" name="edu" value="${edu_no }" />
@@ -44,7 +48,7 @@
 				<td><div id="answerList">
 					<c:if test="${testBean.answer_nm == null }">
 					<div>1. <input type="radio" name="corr_answer" value="1" /><input type="text" name="answer_arr" class="txt w200" /> 
-					<img src="/iessvn/images/bt_plus.png" class="btn answer_add rollover" /> <img src="/iessvn/images/bt_minus.png" class="btn answer_del rollover" /></div>
+					<img src="${initParam.root }/images/bt_plus.png" class="btn answer_add rollover" /> <img src="${initParam.root }/images/bt_minus.png" class="btn answer_del rollover" /></div>
 					<div>2. <input type="radio" name="corr_answer" value="2" /><input type="text" name="answer_arr" class="txt w200" /></div>
 					</c:if>
 					<c:if test="${testBean.answer_nm != null }">

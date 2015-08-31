@@ -1,5 +1,5 @@
 @CHARSET "EUC-KR";
-@IMPORT url("/iessvn/common.css");
+@IMPORT url("/IES/common.css");
 
 /* Test */
 #winWrap { width:398px; height:398px; margin:0: padding:0; border:1px solid #666; }

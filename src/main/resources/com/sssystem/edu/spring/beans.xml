@@ -6,7 +6,7 @@
 	<bean id="messageSource" class="org.springframework.context.support.ReloadableResourceBundleMessageSource">
 		<property name="basenames">
 			<list>
-				<value>classpath:/com/sssystem/edu/message/message</value>
+				<value>classpath:/com/sssystem/edu/message/messages</value>
 			</list>
 		</property>
 		<property name="cacheSeconds">
