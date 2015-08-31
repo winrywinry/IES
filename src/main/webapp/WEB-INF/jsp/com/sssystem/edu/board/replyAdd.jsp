@@ -1,7 +1,7 @@
-<?xml version='1.0' encoding='EUC-KR'?>
+<?xml version='1.0' encoding='UTF-8'?>
 <%@page import="com.sssystem.edu.vo.ReplyVO"%> 
-<%@ page language="java" contentType="text/xml; charset=EUC-KR"
-    pageEncoding="EUC-KR"%>
+<%@ page language="java" contentType="text/xml; charset=UTF-8"
+    pageEncoding="UTF-8"%>
 <%-- 0722/replyAdd.jsp --%>
 <% if(request.getAttribute("reply") != null){%>
 <result>
@@ -19,7 +19,7 @@
 <%}else{ %>
 <result>
   <code>fail</code>
-  <msg>ÀÔ·Â½ÇÆÐ!!</msg>
+  <msg>ìž…ë ¥ì‹¤íŒ¨!!</msg>
 </result>
 <%} %>
 
