@@ -17,7 +17,6 @@ public class LoginCheckIntercepter extends HandlerInterceptorAdapter {
 		//SessionVO user = (SessionVO) session.getAttribute("user");
 		SessionVO user = new SessionVO(10, "À±¼ö¿¬", 7000, 40, 1, 1);
 		request.getSession().setAttribute("user", user);
-		System.out.println("Intercepter");
 		
 		if (user == null) {
 			//response.sendRedirect("/");
