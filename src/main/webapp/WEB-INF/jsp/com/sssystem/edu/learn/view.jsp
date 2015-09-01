@@ -91,6 +91,8 @@
 					</table>
 					<br>
 					<span style="font-size: 80%; font-weight: bolder; float: right;">
+					<a class="linlk1" onclick="location.href='/IES/learn/updateComplete'">교육시작</a> |
+					<a class="link1" onclick="">교육완료</a> |
 					<a class="link1" onclick="del()" >삭제</a> | 
 					<a class="link1" onclick="location.href='/IES/learn/updatePage?no=${learn.edu_no}&user_no=${learn.user_no}&update=update';">수정</a> | 
 					<a class="link1" onclick="location.href='/IES/learn/list';">목록으로</a>

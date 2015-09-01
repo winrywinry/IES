@@ -11,17 +11,22 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import com.sssystem.edu.common.ValidateParamChk;
+import com.sssystem.edu.service.CompleteService;
 import com.sssystem.edu.service.LearnService;
+import com.sssystem.edu.vo.CompleteVO;
 import com.sssystem.edu.vo.LearnVO;
 import com.sssystem.edu.vo.search.SearchLearnVO;
 import com.sssystem.edu.vo.support.SessionVO;
 
 @Controller
-public class LearnController2 {
+public class CompleteController {
 	
 	@Autowired
 	LearnService learnService;
-
+	
+	@Autowired
+	CompleteService completeService;
+	
 	@RequestMapping("/learn/contentsView")
 	public String contentsView(HttpSession session, Model model,
 			@RequestParam(value="searchWord",required=false)String searchWord,
@@ -51,7 +56,7 @@ public class LearnController2 {
 		LearnVO learn = learnService.select(no);
 		LearnVO learnNext = learnService.selectNext(pageVO);
 		LearnVO learnPrev = learnService.selectPrev(pageVO);
-		LearnVO learnComplete = learnService.selectComplete(no,sessionVO.getUser_no());
+		CompleteVO learnComplete = completeService.selectComplete(no,sessionVO.getUser_no());
 		
 		model.addAttribute("learn",learn);
 		model.addAttribute("learnNext",learnNext);
@@ -70,15 +75,19 @@ public class LearnController2 {
 			@RequestParam(value="end_dt",required=false,defaultValue="1111-11-11")Date end_dt){
 		
 		SessionVO sessionVO = (SessionVO) session.getAttribute("user");
-		LearnVO learnVO = new LearnVO();
-		learnVO.setEdu_no(edu_no);
-		learnVO.setUser_no(sessionVO.getUser_no());
-		learnVO.setStart_dt(start_dt);
-		learnVO.setEnd_dt(end_dt);
+		CompleteVO completeVO = new CompleteVO();
+		completeVO.setEdu_no(edu_no);
+		completeVO.setUser_no(sessionVO.getUser_no());
+		completeVO.setStart_dt(start_dt);
+		completeVO.setEnd_dt(end_dt);
 		
-		if(learnService.updateComplete(learnVO)){
-			return "learn/view";
-		};
+		if(start_dt.equals("1111-11-11")){
+			if(completeService.insertComplete(completeVO)) return "learn/view";
+		}else{
+			if(completeService.updateComplete(completeVO)){
+				return "learn/view";			
+			}
+		}
 		
 		return "learn/list";
 	}
