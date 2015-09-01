@@ -20,5 +20,6 @@
 	<bean id="sessionVO" class="com.sssystem.edu.vo.support.SessionVO"/>
 	<bean id="joinvalidator" class="com.sssystem.edu.valitors.JoinValidator"/>
 	<bean id="passFindVal" class="com.sssystem.edu.valitors.PasswordFindValidator"/>
+	<bean id="memberVO" class="com.sssystem.edu.vo.MemberVO"/>
 	
 </beans>
