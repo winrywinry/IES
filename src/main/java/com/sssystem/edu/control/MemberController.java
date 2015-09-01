@@ -55,6 +55,8 @@ public class MemberController{
 		request.setAttribute("myWriteView", memberService.myWriteView(user_no));
 		request.setAttribute("myQuestionView", memberService.myQuestionView(user_no));
 		
+		
+		
 		return "index";
 	}
 	
@@ -74,7 +76,7 @@ public class MemberController{
 		}
 		
 		if(memberService.selectLogin(user_id)==null) {
-			model.addAttribute("msg", "입력 정보를 정확히 입력하세요");
+			model.addAttribute("msg", "존재하지 않는 아이디이거나 비밀번호가 일치하지 않습니다.");
 			return "member/login";
 		}
 		
