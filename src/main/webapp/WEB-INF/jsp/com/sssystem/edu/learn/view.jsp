@@ -1,4 +1,5 @@
 <%@page import="com.sssystem.edu.vo.LearnVO"%>
+<%@page import="com.sssystem.edu.vo.support.SessionVO"%>
 <%@ page language="java" contentType="text/html; charset=EUC-KR"
 	pageEncoding="EUC-KR"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
@@ -32,6 +33,7 @@
 		}		
 		
 		function favoriteCnt() {
+			location.href="./favorite?edu_no="+document.frm.edu_no.value+"&user_no="+${user.user_no};
 			document.frm.favorite
 		}
 
@@ -55,13 +57,13 @@
 					<table class="contentTab">
 						<tr>
 							<th width="15%">첨부파일</th>
-							<td width="45%"><a class="css_btn_class" onclick="favoriteCnt">추천</a><span>${learn.favorite_cnt}</span></td>
+							<td width="30%"><a class="css_btn_class" onclick="favoriteCnt">추천</a><span>${learn.favorite_cnt}</span></td>
 							<th width="10%">필수여부</th>
 							<td width="10%"><span id="essential"></span></td>
 							<th width="10%">조회수</th>
 							<td width="10%">${learn.view_cnt }</td>
-<%-- 	<th width="10%">추천수</th>
-	<td width="10%">${learn.favorite_cnt}</td>	 --%>
+						 	<th width="25%">추천수</th>
+							<td width="10%">${learn.favorite_cnt}</td>
 						</tr>
 <%-- 	<tr>
 		<th>교육기간</th>

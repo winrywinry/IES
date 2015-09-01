@@ -1,5 +1,5 @@
-<%@ page language="java" contentType="text/html; charset=EUC-KR"
-	pageEncoding="EUC-KR"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+	pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <logic:notPresent scope="session" name="user">
 <%-- <c:redirect url="/member/login.do" ></c:redirect> --%>
@@ -7,7 +7,7 @@
 <!DOCTYPE html>	
 <html>
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=EUC-KR">
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 
 <link href='${initParam.root }/fullcalendar-2.3.2/fullcalendar.css' rel='stylesheet' />
 <link href='${initParam.root }/fullcalendar-2.3.2/fullcalendar.print.css' rel='stylesheet' media='print' />
@@ -41,65 +41,65 @@ $(document).ready(function() {
 						<img src="${initParam.root }/images/iu.jpg" />
 						<div class="mask"></div>
 						</dt>
-						<dd><em>${user.user_nm }</em> ´Ô</dd>
-						<dd>È¸¿øÁ¤º¸¼öÁ¤ | <a href="${initParam.root }/member/login" onclick="return confirm('·Î±×¾Æ¿ô ÇÏ½Ã°Ú½À´Ï±î?');">·Î±×¾Æ¿ô</a></dd>
+						<dd><em>${user.user_nm }</em> ë‹˜</dd>
+						<dd>íšŒì›ì •ë³´ìˆ˜ì • | <a href="${initParam.root }/member/login" onclick="return confirm('ë¡œê·¸ì•„ì›ƒ í•˜ì‹œê² ìŠµë‹ˆê¹Œ?');">ë¡œê·¸ì•„ì›ƒ</a></dd>
 					</dl>
-					<p>Ãâ¼®¼ö<span>${log }</span></p>
-					<p>±³À°ÀÌ¼ö<span></span></p>
-					<p>±³À°¿¹Á¤<span></span></p>
-					<p>°Ô½Ã±Û¼ö<span>${write }</span></p>
-					<p>Áú¹®¼ö<span>${question }</span></p>
-					<p>´ñ±Û¼ö<span>${reply }</span></p>
+					<p>ì¶œì„ìˆ˜<span>${log }</span></p>
+					<p>êµìœ¡ì´ìˆ˜<span></span></p>
+					<p>êµìœ¡ì˜ˆì •<span></span></p>
+					<p>ê²Œì‹œê¸€ìˆ˜<span>${write }</span></p>
+					<p>ì§ˆë¬¸ìˆ˜<span>${question }</span></p>
+					<p>ëŒ“ê¸€ìˆ˜<span>${reply }</span></p>
 					</div>
 					<div id="imgSection" class="right">
-						<img src="${initParam.root }/images/5.png" alt="°ø°£Àý¾à" />
+						<img src="${initParam.root }/images/5.png" alt="ê³µê°„ì ˆì•½" />
 					</div>
 				</div>
 				<div id="mid">
-					<p><span class="title">°øÁö»çÇ×</span>
+					<p><span class="title">ê³µì§€ì‚¬í•­</span>
 					${notice } </p>
 				</div>
 				<div id="bot">
 					<div id="calendar" class="left"><div id="calendar"></div></div>
 					<div id="summary" class="right">
 						<dl>
-							<dt>ÃÖ±Ù ÀÌ¼ö ±³À°</dt>
-							<dd>¿µ¾î ÃÊ±Þ ±³À° 1</dd>
-							<dd>¿µ¾î ÃÊ±Þ ±³À° 1</dd>
-							<dd>¿µ¾î ÃÊ±Þ ±³À° 1</dd>
-							<dd>¿µ¾î ÃÊ±Þ ±³À° 1</dd>
-							<dd>¿µ¾î ÃÊ±Þ ±³À° 1</dd>
-							<dd>¿µ¾î ÃÊ±Þ ±³À° 1</dd>
+							<dt>ìµœê·¼ ì´ìˆ˜ êµìœ¡</dt>
+							<dd>ì˜ì–´ ì´ˆê¸‰ êµìœ¡ 1</dd>
+							<dd>ì˜ì–´ ì´ˆê¸‰ êµìœ¡ 1</dd>
+							<dd>ì˜ì–´ ì´ˆê¸‰ êµìœ¡ 1</dd>
+							<dd>ì˜ì–´ ì´ˆê¸‰ êµìœ¡ 1</dd>
+							<dd>ì˜ì–´ ì´ˆê¸‰ êµìœ¡ 1</dd>
+							<dd>ì˜ì–´ ì´ˆê¸‰ êµìœ¡ 1</dd>
 						</dl>
 						<dl>
-							<dt>ÀÌ¼ö ¿¹Á¤ ±³À°</dt>
-							<dd>¿µ¾î ÃÊ±Þ ±³À° 1</dd>
-							<dd>¿µ¾î ÃÊ±Þ ±³À° 1</dd>
-							<dd>¿µ¾î ÃÊ±Þ ±³À° 1</dd>
-							<dd>¿µ¾î ÃÊ±Þ ±³À° 1</dd>
-							<dd>¿µ¾î ÃÊ±Þ ±³À° 1</dd>
-							<dd>¿µ¾î ÃÊ±Þ ±³À° 1</dd>
+							<dt>ì´ìˆ˜ ì˜ˆì • êµìœ¡</dt>
+							<dd>ì˜ì–´ ì´ˆê¸‰ êµìœ¡ 1</dd>
+							<dd>ì˜ì–´ ì´ˆê¸‰ êµìœ¡ 1</dd>
+							<dd>ì˜ì–´ ì´ˆê¸‰ êµìœ¡ 1</dd>
+							<dd>ì˜ì–´ ì´ˆê¸‰ êµìœ¡ 1</dd>
+							<dd>ì˜ì–´ ì´ˆê¸‰ êµìœ¡ 1</dd>
+							<dd>ì˜ì–´ ì´ˆê¸‰ êµìœ¡ 1</dd>
 						</dl>
 						<dl>
-							<dt>³ªÀÇ Áú¹®</dt>
+							<dt>ë‚˜ì˜ ì§ˆë¬¸</dt>
 							<c:forEach var="title" items="${myWriteView }">
 							<dd>${title }</dd>
 							</c:forEach>
 						</dl>
 						<dl>
-							<dt>³ªÀÇ °Ô½Ã±Û</dt>
+							<dt>ë‚˜ì˜ ê²Œì‹œê¸€</dt>
 							<c:forEach var="title" items="${myQuestionView }">
 							<dd>${title }</dd>
 							</c:forEach>
 						</dl>
 						<dl>
-							<dt>³ªÀÇ ´ñ±Û</dt>
+							<dt>ë‚˜ì˜ ëŒ“ê¸€</dt>
 							<c:forEach var="contents" items="${replyContents }">
 							<dd>${contents }</dd>
 							</c:forEach>
 						</dl>
 						<dl>
-							<dt>°ÇÀÇ»çÇ×</dt>
+							<dt>ê±´ì˜ì‚¬í•­</dt>
 							<c:forEach var="qnaBoard" items="${recommendView }">
 							<dd>${qnaBoard }</dd>
 							</c:forEach>
