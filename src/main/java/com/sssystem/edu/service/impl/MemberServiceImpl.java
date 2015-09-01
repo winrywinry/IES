@@ -52,6 +52,7 @@ public class MemberServiceImpl implements MemberService{
 	public SessionVO selectSession(String id) {
 		SessionVO sessionVO = null;
 		sessionVO = session.selectOne("member.session", id);
+		System.out.println("서비스에서sessionVO: " +sessionVO);
 		return sessionVO;
 	}
 
