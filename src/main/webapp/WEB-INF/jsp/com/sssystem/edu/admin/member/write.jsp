@@ -215,7 +215,7 @@ function del(){
 						<td colspan="5">
 							<input type="hidden" name="origin" value="${member.profil_picture }" />
 							<c:set var="origin_pic" value="/IES/images/profile/${member.profil_picture }" />
-							<c:if test="${member.profil_picture != null }"><c:set var="profil_url" value="/IES/images/profile/${member.profil_picture }" /></c:if>
+							<c:if test="${member.profil_picture != null }"><c:set var="profil_url" value="/IES/images/profil/${member.profil_picture }" /></c:if>
 							<img id="profil" src="${profil_url }" width="150" height="200" /><br /><input type="file" name="profil" id="profil" onchange="imageURL(this)" /></td>
 					</tr>
 				</table>

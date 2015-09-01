@@ -1,7 +1,12 @@
 package com.sssystem.edu.admin.control;
 
+import java.io.File;
+import java.io.IOException;
 import java.util.Date;
 import java.util.List;
+
+import javax.servlet.ServletContext;
+import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -10,6 +15,7 @@ import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.multipart.MultipartFile;
 
 import com.sssystem.edu.admin.service.AdminMemberService;
 import com.sssystem.edu.admin.validators.MemberValidator;
@@ -161,14 +167,40 @@ public class AdminMemberController {
   MemberValidator memberVal;
   
   @RequestMapping("/admin/member/writeAction")
-  public String writeAction(@ModelAttribute("member") MemberVO memberVO
-                          , BindingResult result) {
+  public String writeAction(@ModelAttribute("member") MemberVO memberVO,
+                          HttpServletRequest request,
+                          BindingResult result) {
     memberVal.validate(memberVO, result);
     if (result.hasErrors()) return "admin/member/write";
     
     //insert
-    adminMembeerService.insert(memberVO);
-    System.out.println(memberVO.toString());
+      MultipartFile uploadfile = memberVO.getProfil();
+      if (uploadfile != null) {
+          String fileName = uploadfile.getOriginalFilename();
+          memberVO.setProfil_picture(fileName);
+          try {
+              // 1. FileOutputStream 사용
+              // byte[] fileData = file.getBytes();
+              // FileOutputStream output = new FileOutputStream("C:/images/" + fileName);
+              // output.write(fileData);
+            
+            ServletContext servletContext = request.getSession().getServletContext();
+            String relativeWebPath = "/images/profil/"+ fileName;
+            String absoluteDiskPath = servletContext.getRealPath(relativeWebPath);
+            System.out.println(absoluteDiskPath);
+              // 2. File 사용
+              File file = new File(absoluteDiskPath);
+              file.mkdir();
+              uploadfile.transferTo(file);
+          } catch (IOException e) {
+              e.printStackTrace();
+          } // try - catch
+      } // if
+      
+      adminMembeerService.insert(memberVO);
+      System.out.println(memberVO.getProfil_picture());
+
+    
     
     return "redirect:list";
   }
