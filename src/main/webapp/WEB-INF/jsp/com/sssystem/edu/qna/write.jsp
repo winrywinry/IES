@@ -72,7 +72,7 @@
 								<td class="left"><input type="text" name="title" style="width: 700px;" value="${qnaboard.title }"></td>
 							</tr>
 							<tr>
-								<th>³»¿ë</th>
+								<th>${param.edu_no }</th>
 								<td class="left">
 									<textarea name="contents" id="ta1" rows="10" cols="100" style="width :700px; height:200px; display: none;">
 										${qnaboard.q_contents }

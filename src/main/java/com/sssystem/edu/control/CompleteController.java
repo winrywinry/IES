@@ -71,22 +71,25 @@ public class CompleteController {
 	@RequestMapping("learn/updateComplete")
 	public String updateComplete(HttpSession session, Model model,
 			@RequestParam(value="no")int edu_no,
-			@RequestParam(value="start_dt",required=false,defaultValue="1111-11-11")Date start_dt,
-			@RequestParam(value="end_dt",required=false,defaultValue="1111-11-11")Date end_dt){
+			@RequestParam(value="start_dt",required=false,defaultValue="1111-11-11")String start_dt,
+			@RequestParam(value="end_dt",required=false,defaultValue="1111-11-11")String end_dt,
+			@RequestParam(value="dept_no")String dept_no,
+			@RequestParam(value="page")String page){
 		
 		SessionVO sessionVO = (SessionVO) session.getAttribute("user");
+		int user_no = sessionVO.getUser_no();
 		CompleteVO completeVO = new CompleteVO();
 		completeVO.setEdu_no(edu_no);
-		completeVO.setUser_no(sessionVO.getUser_no());
+		completeVO.setUser_no(user_no);
 		completeVO.setStart_dt(start_dt);
 		completeVO.setEnd_dt(end_dt);
 		
 		if(start_dt.equals("1111-11-11")){
-			if(completeService.insertComplete(completeVO)) return "learn/view";
-		}else{
-			if(completeService.updateComplete(completeVO)){
-				return "learn/view";			
-			}
+			System.out.println("gkgkgkgkgkgk");
+			if(completeService.insertComplete(completeVO)) return "redirect:view?dept_no="+dept_no+"&page="+page;
+		}else{//return 경로 외 완성
+			if(completeService.updateComplete(completeVO)) return "learn/view?dept_no="+dept_no+"&page="+page;		
+
 		}
 		
 		return "learn/list";

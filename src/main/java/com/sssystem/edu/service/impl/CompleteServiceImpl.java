@@ -17,6 +17,7 @@ public class CompleteServiceImpl implements CompleteService {
 		HashMap<String, Integer> map = new HashMap<String, Integer>();
 		map.put("edu_no", edu_no);
 		map.put("user_no", user_no);
+		System.out.println("edu_no = "+edu_no);
 		CompleteVO learnComplete = session.selectOne("complete.selectComplete", map);
 		return learnComplete;
 	}
