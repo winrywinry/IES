@@ -2,7 +2,6 @@ package com.sssystem.edu.vo;
 
 import java.util.Date;
 
-import org.springframework.web.multipart.MultipartFile;
 
 public class MemberVO {
 	private String page;

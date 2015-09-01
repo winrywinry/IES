@@ -3,7 +3,7 @@ package com.sssystem.edu.valitors;
 import org.springframework.validation.Errors;
 import org.springframework.validation.Validator;
 
-import com.sssystem.edu.admin.vo.MemberVO;
+import com.sssystem.edu.vo.MemberVO;
 import com.sssystem.edu.common.ValidateParamChk;
 
 public class LoginValidator implements Validator{

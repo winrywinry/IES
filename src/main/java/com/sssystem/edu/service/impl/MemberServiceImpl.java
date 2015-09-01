@@ -6,7 +6,7 @@ import java.util.HashMap;
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
 
-import com.sssystem.edu.admin.vo.MemberVO;
+import com.sssystem.edu.vo.MemberVO;
 import com.sssystem.edu.service.MemberService;
 import com.sssystem.edu.vo.support.SessionVO;
 

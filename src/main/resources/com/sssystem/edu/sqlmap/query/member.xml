@@ -84,7 +84,7 @@
 		   AND (USER_ID IS NULL OR USER_ID = '')
 		]]>
 	</select>
-	<select id="select" parameterType="int" resultType="adminMemberVO">
+	<select id="select" parameterType="int" resultType="MemberVO">
 		<![CDATA[
 		SELECT USER_NO
 		     , EMP_SERIAL

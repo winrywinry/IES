@@ -71,7 +71,7 @@ $(function(){
 			</fieldset>
 			</form>
 			<div class="find_info">
-				<a href="id.do" onclick="">아이디 찾기</a> / <a href="pass.do" onclick="">비밀번호 찾기</a> <span class="bar">|</span> <a href="check.do">회원가입</a>
+				<a href="findIdCheck" onclick="">아이디 찾기</a> / <a href="findPasswordCheck" onclick="">비밀번호 찾기</a> <span class="bar">|</span> <a href="joinCheck">회원가입</a>
 			</div>
 		</div>
 	</div>

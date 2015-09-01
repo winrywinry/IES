@@ -12,8 +12,10 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
-import com.sssystem.edu.admin.vo.MemberVO;
+import com.sssystem.edu.vo.MemberVO;
+import com.sssystem.edu.service.BoardService;
 import com.sssystem.edu.service.MemberService;
+import com.sssystem.edu.service.QnaService;
 import com.sssystem.edu.valitors.JoinValidator;
 import com.sssystem.edu.valitors.LoginValidator;
 import com.sssystem.edu.valitors.PasswordFindValidator;
@@ -32,6 +34,12 @@ public class MemberController{
 	JoinValidator joinvalidator;
 	@Autowired
 	PasswordFindValidator findPassvalidator;
+	@Autowired
+	MemberVO memberVO;
+	@Autowired
+	QnaService qna;
+	@Autowired
+	BoardService board;
 	
 
 	@RequestMapping("/member/login")
@@ -49,11 +57,11 @@ public class MemberController{
 		System.out.println("user_no :"+user_no);
 		
 //		memberService.insertLog(user_no);
-		request.setAttribute("log", memberService.selectLogSession(user_no));
-		request.setAttribute("write", memberService.selectWrite(user_no));
-		request.setAttribute("question", memberService.selectQuestion(user_no));
-		request.setAttribute("myWriteView", memberService.myWriteView(user_no));
-		request.setAttribute("myQuestionView", memberService.myQuestionView(user_no));
+		request.setAttribute("log", memberService.selectLogSession(user_no));//출석수
+		request.setAttribute("write", memberService.selectWrite(user_no));//게시글수
+		request.setAttribute("question", memberService.selectQuestion(user_no));//질문수
+		request.setAttribute("myWriteView", memberService.myWriteView(user_no));//나의질문
+		request.setAttribute("myQuestionView", memberService.myQuestionView(user_no));//나의게시글
 		
 		
 		
@@ -141,14 +149,14 @@ public class MemberController{
 							 @RequestParam(value="user_id",required=false) String user_id,
 							 @RequestParam(value="user_pwd",required=false) String user_pwd,
 							 @RequestParam(value="line_no",required=false) String line_no,
-							 @RequestParam(value="phone",required=false) String phone_no,
-							 @RequestParam(value="second",required=false) String second_no,
+							 @RequestParam(value="phone_no",required=false) String phone_no,
+							 @RequestParam(value="second_no",required=false) String second_no,
 							 @RequestParam(value="post",required=false) String post,
 							 @RequestParam(value="address",required=false) String address,
 							 @RequestParam(value="email",required=false) String email,
 							 Model model){
 		
-		MemberVO memberVO = new MemberVO();
+
 		 int result = memberService.selectID(user_id);
 
 		 

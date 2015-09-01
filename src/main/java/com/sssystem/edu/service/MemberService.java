@@ -3,7 +3,7 @@ package com.sssystem.edu.service;
 import java.util.ArrayList;
 import java.util.HashMap;
 
-import com.sssystem.edu.admin.vo.MemberVO;
+import com.sssystem.edu.vo.MemberVO;
 import com.sssystem.edu.vo.support.SessionVO;
 
 
