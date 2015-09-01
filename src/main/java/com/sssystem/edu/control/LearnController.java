@@ -7,10 +7,10 @@ import javax.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
-import com.sssystem.edu.admin.vo.PageVO;
 import com.sssystem.edu.common.ValidateParamChk;
 import com.sssystem.edu.service.CategoryService;
 import com.sssystem.edu.service.DeptService;
@@ -22,6 +22,7 @@ import com.sssystem.edu.vo.DeptVO;
 import com.sssystem.edu.vo.JobVO;
 import com.sssystem.edu.vo.LearnVO;
 import com.sssystem.edu.vo.TestVO;
+import com.sssystem.edu.vo.search.SearchLearnVO;
 import com.sssystem.edu.vo.support.SessionVO;
 
 @Controller
@@ -62,10 +63,9 @@ public class LearnController {
 			@RequestParam(value="page", required=false)String pn,
 			@RequestParam(value="searchWord", required=false)String searchWord
 			){
-		System.out.println("dept_no = "+dn+" page = "+pn+" searchWord = "+searchWord);
 		int dept_no = 0;
 		int page_no = 1;
-		PageVO pageVO = new PageVO();
+		SearchLearnVO pageVO = new SearchLearnVO();
 		ValidateParamChk chk = new ValidateParamChk();
 		if(!chk.isEmpty(dn)) if(chk.isNumeric(dn)) dept_no = chk.toInteger(dn);
 		if(!chk.isEmpty(pn)) if(chk.isNumeric(pn)) page_no = chk.toInteger(pn);
@@ -92,7 +92,7 @@ public class LearnController {
 			@RequestParam(value="no")int no){
 		
 		ValidateParamChk chk = new ValidateParamChk();
-		PageVO pageVO = new PageVO();
+		SearchLearnVO pageVO = new SearchLearnVO();
 		
 		int dept_no = 0;
 		int page_no = 1;
@@ -107,8 +107,6 @@ public class LearnController {
 		pageVO.setSeq_no(no);
 		
 		learnService.updateViewCnt(no);
-			
-		System.out.println("seq_no= "+no+" dept_no = "+dept_no+" searchWord = "+searchWord);
 		
 		LearnVO learn = learnService.select(no);
 		LearnVO learnNext = learnService.selectNext(pageVO);
@@ -121,11 +119,21 @@ public class LearnController {
 		return "learn/view";
 	}
 	
-	@RequestMapping("learn/delete")
+	@RequestMapping("/learn/delete")
 	public String delete(Model model,
 			@RequestParam(value="edu_no")int edu_no){
 		learnService.delete(edu_no);
 		return "redirect:list";
 	}
 	
+	@RequestMapping("/learn/save")
+	public String save(LearnVO learnVO){
+		return "";
+	}
+	
+	@RequestMapping("learn/favorite")
+	public String favorite(){
+		
+		return "learn/test";
+	}
 }

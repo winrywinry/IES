@@ -2,11 +2,11 @@
     pageEncoding="UTF-8"%>
 <%@taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
 <%@taglib prefix="tags" uri="http://www.springframework.org/tags"%>
-
+<%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <!DOCTYPE html>
 <html>
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta http-equiv="Content-Type" content="text/html" charset="UTF-8">
 <title>사내교육시스템 - 사원인증</title>
 <script src= "//code.jquery.com/jquery-1.11.3.min.js" ></script>
 <script src= "//code.jquery.com/jquery-migrate-1.2.1.min.js" ></script>
@@ -42,7 +42,6 @@ $(function(){
 						<span class="ps_box int_serial">
 							<input type="tel" pattern="\d{4}\-\d{3}" title="0000-000" class="int" placeholder="사원번호" required="required" value="" maxlength="8" name="emp_serial" id="serial" style="ime-mode:disabled;">
 						</span>
-						<!-- 아래 에러 출력 div는 인라인으로 style 넣어주세요. 디폴트 : display:none -->
 						<form:errors path="comm.emp_serial" cssClass="error" id="serialMsg" element="div"/>
 						<c:if test="${msg != null }">
 						<div class="error" id="serialMsg">${msg }</div>

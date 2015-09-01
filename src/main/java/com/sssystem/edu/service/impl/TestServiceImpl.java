@@ -26,7 +26,9 @@ public class TestServiceImpl implements TestService {
 	}
 	@Override
 	public int insert(TestVO testVO) {
-		int test_no = session.insert("test.insert", testVO);
+		System.out.println(testVO);
+		session.insert("test.insert", testVO);
+		int test_no = testVO.getTest_no();
 		return test_no;
 	}
 	@Override
@@ -38,6 +40,12 @@ public class TestServiceImpl implements TestService {
 	public boolean update(TestVO testVO) {
 		int t = session.update("test.update", testVO);
 		if (t==1) return true;
+		return false;
+	}
+	@Override
+	public boolean delete(int test_no) {
+		int t = session.delete("test.delete", test_no);
+		if (t>0) return true;
 		return false;
 	}
 

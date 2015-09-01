@@ -19,7 +19,11 @@
 <script type="text/javascript" src="/IES/js/common.js"></script>
 <script type="text/javascript" src="/IES/js/formcheck.js"></script>
 <link rel="stylesheet" type="text/css" href="${initParam.root }/css/join.css">
-
+<script type="text/javascript">
+$(function(){
+	document.frmjoin.user_id.focus();
+});
+</script>
 </head>
 <body>
 <div id="wrap">

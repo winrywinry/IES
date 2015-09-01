@@ -9,4 +9,5 @@ public interface TestService {
 	public TestVO select(int test_no);
 	public int insert(TestVO testVO);
 	public boolean update(TestVO testVO);
+	public boolean delete(int test_no);
 }

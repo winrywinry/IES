@@ -9,6 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import com.sssystem.edu.admin.vo.PageVO;
 import com.sssystem.edu.service.LearnService;
 import com.sssystem.edu.vo.LearnVO;
+import com.sssystem.edu.vo.search.SearchLearnVO;
 
 public class LearnServiceImpl implements LearnService{
 
@@ -16,14 +17,14 @@ public class LearnServiceImpl implements LearnService{
 	SqlSession session;
 	
 	@Override
-	public List<LearnVO> selectAll(PageVO pageVO, int page) {
+	public List<LearnVO> selectAll(SearchLearnVO pageVO, int page) {
 		List<LearnVO> list = null;
 		list = session.selectList("learn.selectList",pageVO,new RowBounds(page*10-10,10));
 		return list;
 	}
 
 	@Override
-	public int selectCnt(PageVO pageVO) {
+	public int selectCnt(SearchLearnVO pageVO) {
 		int cnt = 0;
 		cnt = session.selectOne("learn.selectCnt",pageVO);
 		return cnt;
@@ -42,14 +43,14 @@ public class LearnServiceImpl implements LearnService{
 	}
 
 	@Override
-	public LearnVO selectNext(PageVO pageVO) {
+	public LearnVO selectNext(SearchLearnVO pageVO) {
 		LearnVO learnNext = null;
 		learnNext = session.selectOne("learn.selectNext",pageVO);
 		return learnNext;
 	}
 
 	@Override
-	public LearnVO selectPrev(PageVO pageVO) {
+	public LearnVO selectPrev(SearchLearnVO pageVO) {
 		LearnVO learnPrev = null;
 		learnPrev = session.selectOne("learn.selectPrev",pageVO);
 		return learnPrev;

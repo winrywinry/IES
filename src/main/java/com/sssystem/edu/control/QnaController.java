@@ -104,15 +104,10 @@ public class QnaController {
 		qnaVO.setA_contents(a_contents);
 		qnaVO.setVisit_no(0);
 		
-		System.out.println("파라미터로 받아온 qna_no의 값은 "+qna_no);
 		if(!(qna_no.isEmpty())){
-			System.out.println("qna_no"+qna_no);
 			qnaVO.setQna_no(Integer.parseInt(qna_no));
 		}
 		
-		System.out.println("gkgkgkgk");
-		System.out.println(qna_no);
-		System.out.println("q_contents="+q_contents);
 		if(board_gb.equals("60")){
 			if(!(q_contents==null)){
 				if(qnaService.qnaBoardInsert(qnaVO)){
@@ -124,7 +119,6 @@ public class QnaController {
 					}
 			}
 		}else if(board_gb.equals("50")){
-			System.out.println("qna_no="+qna_no);
 			if(!(qna_no.isEmpty())){
 				if(qnaService.qnaBoardUpdate(qnaVO)){
 					return "redirect:view?board_gb="+board_gb+"&no="+qna_no+"&user_no="+sessionVO.getUser_no();
@@ -146,7 +140,6 @@ public class QnaController {
 			}
 		}
 	
-		System.out.println("실패");
 		return "redirect:list?board_gb="+board_gb;
 			}
 	
@@ -169,8 +162,6 @@ public class QnaController {
 	public String qnaAnswerForm(HttpSession session,Model model,
 			@RequestParam(value="qna_no")String qna_no,
 			@RequestParam(value="a_contents")String a_contents){
-		System.out.println("qna_no="+qna_no);
-		System.out.println("a_contents="+a_contents);
 		SessionVO sessionVO = (SessionVO) session.getAttribute("user");
 		QnaBoardVO qnaVO = new QnaBoardVO();
 		qnaVO.setQna_no(Integer.parseInt(qna_no));

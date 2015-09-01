@@ -26,7 +26,7 @@
 			contents_tag, contents, period_st, period_ed from t_edu where edu_no=#{no} -->
 	</select>
 
-	<select id="selectList" parameterType="adminPageVO" resultType="learnVO">
+	<select id="selectList" parameterType="SearchLearnVO" resultType="learnVO">
 		select edu_no, title, input_dt, view_cnt, essential_yn
 		<!-- select edu_no, title, input_dt, view_cnt, favorite_cnt, essential_yn -->
 		from t_edu
@@ -42,7 +42,7 @@
 		order by edu_no desc
 	</select>
 
-	<select id="selectCnt" parameterType="adminPageVO" resultType="int">
+	<select id="selectCnt" parameterType="SearchLearnVO" resultType="int">
 		select count(*) from t_edu
 		where 1=1
 		
@@ -81,7 +81,7 @@
 			period_ed=#{period_ed}, time_stamp=sysdate where edu_no=#{edu_no} -->
 	</update>
 
-	<select id="selectNext" parameterType="adminPageVO" resultType="learnVO">
+	<select id="selectNext" parameterType="SearchLearnVO" resultType="learnVO">
 		<![CDATA[
 
 	SELECT * from t_edu
@@ -99,7 +99,7 @@
 		
 	</select>
 
-	<select id="selectPrev" parameterType="adminPageVO" resultType="learnVO">
+	<select id="selectPrev" parameterType="SearchLearnVO" resultType="learnVO">
 	<![CDATA[
 	SELECT * from t_edu
 	WHERE edu_no IN (SELECT  MIN(edu_no) FROM t_edu WHERE edu_no > #{seq_no})
