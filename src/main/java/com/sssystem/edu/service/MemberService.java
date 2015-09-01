@@ -21,10 +21,10 @@ public interface MemberService {
 	public MemberVO select(int user_no);
 	public MemberVO select2(int user_no);
 	public int selectID(String id);
-	public boolean selectLogSession(int log);
-	public boolean selectWrite(int log);
+	public String selectLogSession(int log);
+	public String selectWrite(int log);
 	public void insertLog(int log);
-	public boolean selectQuestion(int log);
+	public String selectQuestion(int log);
 	public ArrayList<String> myWriteView(int log);
 	public ArrayList<String> myQuestionView(int log);
 	

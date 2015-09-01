@@ -94,39 +94,43 @@ public class MemberServiceImpl implements MemberService{
 	}
 
 	@Override
-	public boolean selectLogSession(int log) {
-		// TODO Auto-generated method stub
-		return false;
+	public String selectLogSession(int log) {
+		String att = null;
+		att = (String) session.selectOne("member.logSession", log);
+		return att;
 	}
 
 	@Override
-	public boolean selectWrite(int log) {
-		// TODO Auto-generated method stub
-		return false;
+	public String selectWrite(int log) {
+		String write = null;
+		write = (String) session.selectOne("member.selectWrite", log);
+		return write;
 	}
 
 	@Override
 	public void insertLog(int log) {
-		// TODO Auto-generated method stub
-		
+		session.insert("member.insertLog", log);
 	}
 
 	@Override
-	public boolean selectQuestion(int log) {
-		// TODO Auto-generated method stub
-		return false;
+	public String selectQuestion(int log) {
+		String question = null;
+		question = (String) session.selectOne("member.selectQuestion", log);
+		return question;
 	}
 
 	@Override
 	public ArrayList<String> myWriteView(int log) {
-		// TODO Auto-generated method stub
-		return null;
+		ArrayList<String> title = null;
+		 title = (ArrayList) session.selectList("member.myWriteView", log);
+		return title;
 	}
 
 	@Override
 	public ArrayList<String> myQuestionView(int log) {
-		// TODO Auto-generated method stub
-		return null;
+		ArrayList<String> title = null;
+		title = (ArrayList) session.selectList("member.myQuestionView", log);
+		return title;
 	}
 
 }

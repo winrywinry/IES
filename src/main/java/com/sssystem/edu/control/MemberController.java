@@ -22,6 +22,11 @@ public class MemberController{
 	
 	@Autowired
 	MemberService memberService;
+	LoginValidator logvalidator;
+	SessionVO sessionVO;
+	JoinValidator joinvalidator;
+	PasswordFindValidator findPassvalidator;
+	
 
 	@RequestMapping("/member/login")
 	public String login(){
@@ -29,7 +34,17 @@ public class MemberController{
 	}
 	
 	@RequestMapping("/member/index")
-	public String index(){
+	public String index(Model model){
+		
+		int user_no = sessionVO.getUser_no();
+		
+		model.addAttribute(memberService.selectLogSession(user_no));
+		model.addAttribute(memberService.selectWrite(user_no));
+		model.addAttribute(memberService.selectQuestion(user_no));
+		model.addAttribute(memberService.myWriteView(user_no));
+		model.addAttribute(memberService.myQuestionView(user_no));
+		
+		
 		return "index";
 	}
 	
@@ -45,8 +60,7 @@ public class MemberController{
 		
 		System.out.println("memberVO: " + memberVO);
 		
-		LoginValidator validator = new LoginValidator();
-		validator.validate(memberVO, result);
+		logvalidator.validate(memberVO, result);
 		System.out.println("result: " + result);
 		
 		if(result.hasErrors()) {
@@ -85,8 +99,7 @@ public class MemberController{
 		
 		System.out.println("memberVO: " + memberVO);
 		
-		JoinValidator validator = new JoinValidator();
-		validator.validate(memberVO, result);
+		joinvalidator.validate(memberVO, result);
 		
 		if(result.hasErrors()) {
 			System.out.println("JoinErrors");
@@ -167,8 +180,7 @@ public class MemberController{
 							  	    BindingResult result,
 							  	    Model model){
 		
-		JoinValidator validator = new JoinValidator();
-		validator.validate(memberVO, result);
+		joinvalidator.validate(memberVO, result);
 		
 		if(result.hasErrors()) {
 			System.out.println("FindIdErrors");
@@ -213,8 +225,7 @@ public class MemberController{
 		map.put("user_nm", user_nm);
 		map.put("emp_serial", emp_serial);
 		
-		PasswordFindValidator validator = new PasswordFindValidator();
-		validator.validate(memberVO, result);
+		findPassvalidator.validate(memberVO, result);
 		
 		if(result.hasErrors()) {
 			System.out.println("FindPasswordErrors");
