@@ -14,7 +14,4 @@ public interface LearnService {
 	public LearnVO selectNext(SearchLearnVO pageVO);
 	public LearnVO selectPrev(SearchLearnVO pageVO);
 	public void delete(int no);
-	public LearnVO selectComplete(int edu_no, int user_no);
-	public boolean updateComplete(LearnVO learnVO);
-	
 }

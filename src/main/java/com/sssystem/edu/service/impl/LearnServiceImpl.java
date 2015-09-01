@@ -63,21 +63,4 @@ public class LearnServiceImpl implements LearnService {
 		session.delete("learn.delete", no);
 	}
 
-	@Override
-	public LearnVO selectComplete(int edu_no, int user_no) {
-		HashMap<String, Integer> map = new HashMap<String, Integer>();
-		map.put("edu_no", edu_no);
-		map.put("user_no", user_no);
-		LearnVO learnComplete = session.selectOne("learn.selectComplete", map);
-		return learnComplete;
-	}
-
-	@Override
-	public boolean updateComplete(LearnVO learnVO) {
-		int t = session.update("learn.updateComplete", learnVO);
-		if (t > 0)
-			return true;
-		return false;
-	}
-
 }
