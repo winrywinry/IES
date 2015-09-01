@@ -15,6 +15,9 @@
 	<bean id="learnService" class="com.sssystem.edu.service.impl.LearnServiceImpl"/>
 	<bean id="testVal" class="com.sssystem.edu.valitors.TestValidator"/>
 	<bean id="memberVal" class="com.sssystem.edu.admin.validators.MemberValidator"/>
-	
+	<bean id="logvalidator" class="com.sssystem.edu.valitors.LoginValidator"/>
+	<bean id="sessionVO" class="com.sssystem.edu.vo.support.SessionVO"/>
+	<bean id="joinvalidator" class="com.sssystem.edu.valitors.JoinValidator"/>
+	<bean id="passFindVal" class="com.sssystem.edu.valitors.PasswordFindValidator"/>
 	
 </beans>
