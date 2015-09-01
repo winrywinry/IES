@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?><!--Converted at: Mon Aug 31 14:25:18 KST 2015-->
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="complete">
+
+	<select id="selectComplete" parameterType="hashmap" resultType="completeVO">
+		SELECT
+			*
+		FROM
+			T_EDU_COMPLETE
+		WHERE
+			EDU_NO = #{edu_no} AND USER_NO = #{user_no}
+	</select>
+	
+	<update id="updateComplete" parameterType="completeVO">
+		UPDATE
+			T_EDU_COMPLETE
+		SET
+			END_DT = SYSDATE
+		WHERE
+			EDU_NO = #{edu_no} AND USER_NO = #{uesr_no}		
+	</update>
+	
+	<insert id="insertComplete" parameterType="completeVO">
+		INSERT INTO 
+			T_EUD_COMPLETE
+		VALUES(
+			EDU_NO = #{edu_no},
+			USER_NO = #{user_no}
+			SCORE = -1,
+			ANSWER = '미응시',
+			INPUT_DT = SYSDATE,
+			START_DT = SYSDATE,
+			END_DT = #{end_dt}
+		)
+	</insert>
+
+
+</mapper>
