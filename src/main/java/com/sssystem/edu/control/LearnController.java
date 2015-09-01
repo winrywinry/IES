@@ -10,7 +10,6 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
-import com.sssystem.edu.admin.vo.PageVO;
 import com.sssystem.edu.common.ValidateParamChk;
 import com.sssystem.edu.service.CategoryService;
 import com.sssystem.edu.service.DeptService;
@@ -22,6 +21,7 @@ import com.sssystem.edu.vo.DeptVO;
 import com.sssystem.edu.vo.JobVO;
 import com.sssystem.edu.vo.LearnVO;
 import com.sssystem.edu.vo.TestVO;
+import com.sssystem.edu.vo.search.SearchLearnVO;
 import com.sssystem.edu.vo.support.SessionVO;
 
 @Controller
@@ -64,7 +64,7 @@ public class LearnController {
 			){
 		int dept_no = 0;
 		int page_no = 1;
-		PageVO pageVO = new PageVO();
+		SearchLearnVO pageVO = new SearchLearnVO();
 		ValidateParamChk chk = new ValidateParamChk();
 		if(!chk.isEmpty(dn)) if(chk.isNumeric(dn)) dept_no = chk.toInteger(dn);
 		if(!chk.isEmpty(pn)) if(chk.isNumeric(pn)) page_no = chk.toInteger(pn);
@@ -91,7 +91,7 @@ public class LearnController {
 			@RequestParam(value="no")int no){
 		
 		ValidateParamChk chk = new ValidateParamChk();
-		PageVO pageVO = new PageVO();
+		SearchLearnVO pageVO = new SearchLearnVO();
 		
 		int dept_no = 0;
 		int page_no = 1;

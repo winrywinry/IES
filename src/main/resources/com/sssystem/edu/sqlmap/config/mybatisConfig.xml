@@ -21,5 +21,6 @@
 		
 		<!-- Learn -->
 		<typeAlias type="com.sssystem.edu.vo.LearnVO" alias="learnVO"/>
+		<typeAlias type="com.sssystem.edu.vo.search.SearchLearnVO" alias="SearchLearnVO"/>
 	</typeAliases>
 </configuration>
