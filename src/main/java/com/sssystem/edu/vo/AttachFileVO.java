@@ -2,6 +2,8 @@ package com.sssystem.edu.vo;
 
 import java.sql.Date;
 
+import org.springframework.web.multipart.MultipartFile;
+
 public class AttachFileVO {
 
 	//첨부파일 beans
@@ -12,9 +14,18 @@ public class AttachFileVO {
 	private Date Input_DT;//첨부파일 작성일
 	private Date attachTime_stamp; //첨부수정일 
 	private int attach_seq;//파일순서
+	private MultipartFile attach;
 	
 	public AttachFileVO() {
 		// TODO Auto-generated constructor stub
+	}
+
+	public MultipartFile getAttach() {
+		return attach;
+	}
+
+	public void setAttach(MultipartFile attach) {
+		this.attach = attach;
 	}
 
 	public int getAttach_no() {

@@ -38,6 +38,7 @@ $(function() {
 	
 	$("#reset").click(function(){
 		if (confirm("취소하시겠습니까?")){
+			document.insertFrm.reset();
 			var origin = $("input[name='origin']").val();
 			if (origin != ""){
 				$("#profil").prop("src", "/IES/images/profile/"+origin);
@@ -225,7 +226,7 @@ function del(){
 				<div id="right">
 					<a onclick="document.insertFrm.submit();" class="css_btn_class" id="addbt"><span id="add">추가</span></a>
 					<a onclick="del();" class="css_btn_class" id="delete">삭제</a>
-					<a onclick="document.insertFrm.reset();" class="css_btn_class" id="reset"><span id="re">초기화</span></a>
+					<a class="css_btn_class" id="reset"><span id="re">초기화</span></a>
 				</div>
 			</div>
 			</form>

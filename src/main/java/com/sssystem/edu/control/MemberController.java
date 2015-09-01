@@ -2,6 +2,8 @@ package com.sssystem.edu.control;
 
 import java.util.HashMap;
 
+import javax.servlet.http.HttpServletRequest;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -22,9 +24,13 @@ public class MemberController{
 	
 	@Autowired
 	MemberService memberService;
+	@Autowired
 	LoginValidator logvalidator;
+	@Autowired
 	SessionVO sessionVO;
+	@Autowired
 	JoinValidator joinvalidator;
+	@Autowired
 	PasswordFindValidator findPassvalidator;
 	
 
@@ -34,15 +40,21 @@ public class MemberController{
 	}
 	
 	@RequestMapping("/member/index")
-	public String index(Model model){
+	public String index(HttpServletRequest request){//HttpServletRequest request
+		//sessionVO = (SessionVO) request.getSession().getAttribute("user");
+		sessionVO = (SessionVO) request.getSession().getAttribute("user");
+		System.out.println(sessionVO);
 		
 		int user_no = sessionVO.getUser_no();
+		System.out.println("user_no :"+user_no);
 		
-		model.addAttribute(memberService.selectLogSession(user_no));
-		model.addAttribute(memberService.selectWrite(user_no));
-		model.addAttribute(memberService.selectQuestion(user_no));
-		model.addAttribute(memberService.myWriteView(user_no));
-		model.addAttribute(memberService.myQuestionView(user_no));
+//		memberService.insertLog(user_no);
+		request.setAttribute("log", memberService.selectLogSession(user_no));
+		request.setAttribute("write", memberService.selectWrite(user_no));
+		request.setAttribute("question", memberService.selectQuestion(user_no));
+		request.setAttribute("myWriteView", memberService.myWriteView(user_no));
+		request.setAttribute("myQuestionView", memberService.myQuestionView(user_no));
+		
 		
 		
 		return "index";
@@ -55,11 +67,6 @@ public class MemberController{
 				  			  BindingResult result,
 				  			  Model model){
 		
-		System.out.println("user_id: "+user_id);
-		System.out.println("user_pwd: "+user_pwd);
-		
-		System.out.println("memberVO: " + memberVO);
-		
 		logvalidator.validate(memberVO, result);
 		System.out.println("result: " + result);
 		
@@ -69,13 +76,12 @@ public class MemberController{
 		}
 		
 		if(memberService.selectLogin(user_id)==null) {
-			model.addAttribute("msg", "입력 정보를 정확히 입력하세요");
+			model.addAttribute("msg", "존재하지 않는 아이디이거나 비밀번호가 일치하지 않습니다.");
 			return "member/login";
 		}
 		
 		if(memberService.selectLogin(user_id).equals(user_pwd)){
 		SessionVO sessionVO = memberService.selectSession(user_id);
-		System.out.println("sessionVO: " +sessionVO);
 		model.addAttribute("user", sessionVO);
 		return "redirect:index";
 		}

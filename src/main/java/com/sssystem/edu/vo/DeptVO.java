@@ -1,6 +1,7 @@
 package com.sssystem.edu.vo;
 
 public class DeptVO {
+	private int[] dept;
 	private int dept_no;
 	private String dept_nm;
 	private String section_nm;
