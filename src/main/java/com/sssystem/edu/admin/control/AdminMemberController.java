@@ -166,7 +166,11 @@ public class AdminMemberController {
     memberVal.validate(memberVO, result);
     if (result.hasErrors()) return "admin/member/write";
     
-    return "admin/member/list";
+    //insert
+    adminMembeerService.insert(memberVO);
+    System.out.println(memberVO.toString());
+    
+    return "redirect:list";
   }
 
 }

@@ -2,6 +2,8 @@ package com.sssystem.edu.admin.vo;
 
 import java.util.Date;
 
+import org.springframework.web.multipart.MultipartFile;
+
 public class MemberVO {
   private String page;
   private String no;
@@ -27,6 +29,7 @@ public class MemberVO {
   private String post;
   private String address;
   private String email;
+  private MultipartFile profil;
   private String profil_picture;
   private String admin_yn;
   private String manage_yn;
@@ -34,6 +37,46 @@ public class MemberVO {
   private Date input_dt;
   
   public MemberVO() {
+  }
+
+  public MemberVO(String page, String no, String birth, String hire,
+      String dept, String job, int user_no, String user_pwd, String user_nm,
+      String emp_serial, Date birth_dt, String gender_yn, int dept_no,
+      String dept_nm, int job_no, String job_nm, String user_id,
+      String line_no, String phone_no, String second_no, String post,
+      String address, String email, MultipartFile profil,
+      String profil_picture, String admin_yn, String manage_yn, Date hiredate,
+      Date input_dt) {
+    super();
+    this.page = page;
+    this.no = no;
+    this.birth = birth;
+    this.hire = hire;
+    this.dept = dept;
+    this.job = job;
+    this.user_no = user_no;
+    this.user_pwd = user_pwd;
+    this.user_nm = user_nm;
+    this.emp_serial = emp_serial;
+    this.birth_dt = birth_dt;
+    this.gender_yn = gender_yn;
+    this.dept_no = dept_no;
+    this.dept_nm = dept_nm;
+    this.job_no = job_no;
+    this.job_nm = job_nm;
+    this.user_id = user_id;
+    this.line_no = line_no;
+    this.phone_no = phone_no;
+    this.second_no = second_no;
+    this.post = post;
+    this.address = address;
+    this.email = email;
+    this.profil = profil;
+    this.profil_picture = profil_picture;
+    this.admin_yn = admin_yn;
+    this.manage_yn = manage_yn;
+    this.hiredate = hiredate;
+    this.input_dt = input_dt;
   }
 
   public String getPage() {
@@ -84,50 +127,20 @@ public class MemberVO {
     this.job = job;
   }
 
-  public MemberVO(int user_no,String user_pwd, String user_nm, String emp_serial,
-      Date birth_dt, String gender_yn, int dept_no, String dept_nm,
-      int job_no, String job_nm, String user_id, String line_no,
-      String phone_no, String second_no, String post, String address,
-      String email, String profil_picture, String admin_yn,
-      String manage_yn, Date hiredate, Date input_dt) {
-    super();
-    this.user_no = user_no;
-    this.user_nm = user_nm;
-    this.emp_serial = emp_serial;
-    this.birth_dt = birth_dt;
-    this.gender_yn = gender_yn;
-    this.dept_no = dept_no;
-    this.dept_nm = dept_nm;
-    this.job_no = job_no;
-    this.job_nm = job_nm;
-    this.user_id = user_id;
-    this.line_no = line_no;
-    this.phone_no = phone_no;
-    this.second_no = second_no;
-    this.post = post;
-    this.address = address;
-    this.email = email;
-    this.profil_picture = profil_picture;
-    this.admin_yn = admin_yn;
-    this.manage_yn = manage_yn;
-    this.hiredate = hiredate;
-    this.input_dt = input_dt;
-  }
-  
-  public String getUser_pwd() {
-	    return user_nm;
-	  }
-
-	  public void setUser_pwd(String user_pwd) {
-	    this.user_nm = user_nm;
-	  }
-
   public int getUser_no() {
     return user_no;
   }
 
   public void setUser_no(int user_no) {
     this.user_no = user_no;
+  }
+
+  public String getUser_pwd() {
+    return user_pwd;
+  }
+
+  public void setUser_pwd(String user_pwd) {
+    this.user_pwd = user_pwd;
   }
 
   public String getUser_nm() {
@@ -250,6 +263,14 @@ public class MemberVO {
     this.email = email;
   }
 
+  public MultipartFile getProfil() {
+    return profil;
+  }
+
+  public void setProfil(MultipartFile profil) {
+    this.profil = profil;
+  }
+
   public String getProfil_picture() {
     return profil_picture;
   }
@@ -292,15 +313,19 @@ public class MemberVO {
 
   @Override
   public String toString() {
-    return "MemberBean [user_no=" + user_no + ", user_nm=" + user_nm
+    return "MemberVO [page=" + page + ", no=" + no + ", birth=" + birth
+        + ", hire=" + hire + ", dept=" + dept + ", job=" + job + ", user_no="
+        + user_no + ", user_pwd=" + user_pwd + ", user_nm=" + user_nm
         + ", emp_serial=" + emp_serial + ", birth_dt=" + birth_dt
-        + ", gender_yn=" + gender_yn + ", dept_no=" + dept_no
-        + ", dept_nm=" + dept_nm + ", job_no=" + job_no + ", job_nm="
-        + job_nm + ", user_id=" + user_id + ", line_no=" + line_no
-        + ", phone_no=" + phone_no + ", second_no=" + second_no
-        + ", post=" + post + ", address=" + address + ", email="
-        + email + ", profil_picture=" + profil_picture + ", admin_yn="
-        + admin_yn + ", manage_yn=" + manage_yn + ", hiredate="
-        + hiredate + ", input_dt=" + input_dt + "]";
+        + ", gender_yn=" + gender_yn + ", dept_no=" + dept_no + ", dept_nm="
+        + dept_nm + ", job_no=" + job_no + ", job_nm=" + job_nm + ", user_id="
+        + user_id + ", line_no=" + line_no + ", phone_no=" + phone_no
+        + ", second_no=" + second_no + ", post=" + post + ", address="
+        + address + ", email=" + email + ", profil=" + profil
+        + ", profil_picture=" + profil_picture + ", admin_yn=" + admin_yn
+        + ", manage_yn=" + manage_yn + ", hiredate=" + hiredate + ", input_dt="
+        + input_dt + "]";
   }
+
+  
 }

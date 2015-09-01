@@ -1,12 +1,12 @@
-<%@ page language="java" contentType="text/html; charset=EUC-KR"
-    pageEncoding="EUC-KR"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>    
 <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
 <%@ taglib uri="http://www.springframework.org/tags/form" prefix="form" %>
 <!DOCTYPE html>
 <html>
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=EUC-KR">
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <script src="//code.jquery.com/jquery-1.11.3.min.js"></script>
 <script src="//code.jquery.com/jquery-migrate-1.2.1.min.js"></script>
 <script type="text/javascript" src="${initParam.root }/admin/js/jquery.navgoco.min.js"></script>
@@ -24,12 +24,12 @@ $(function() {
 		$("input[name='birth']").prop("disabled", true);
 		$("input[name='gender_yn']").prop("disabled", true);
 		$("input[name='hire']").prop("disabled", true);
-		$("#add").text("¼öÁ¤");
+		$("#add").text("ìˆ˜ì •");
 	}
 	
 	if(!no>0){
 		$("#delete").hide();
-		//$("#error").text("* ÀÌ¹Ì µî·ÏµÈ »ç¿ëÀÚÀÔ´Ï´Ù.");
+		//$("#error").text("* ì´ë¯¸ ë“±ë¡ëœ ì‚¬ìš©ìì…ë‹ˆë‹¤.");
 	}
 	
 	if($("#error").text().length>0){
@@ -37,7 +37,7 @@ $(function() {
 	}
 	
 	$("#reset").click(function(){
-		if (confirm("Ãë¼ÒÇÏ½Ã°Ú½À´Ï±î?")){
+		if (confirm("ì·¨ì†Œí•˜ì‹œê² ìŠµë‹ˆê¹Œ?")){
 			var origin = $("input[name='origin']").val();
 			if (origin != ""){
 				$("#profil").prop("src", "/IES/images/profile/"+origin);
@@ -57,33 +57,33 @@ $(function() {
 });
 
 function del(){
-	if (confirm("Á¤¸» »èÁ¦ÇÏ½Ã°Ú½À´Ï±î??")){    //È®ÀÎ
+	if (confirm("ì •ë§ ì‚­ì œí•˜ì‹œê² ìŠµë‹ˆê¹Œ??")){    //í™•ì¸
 		location.href="./delete?no="+document.insertFrm.no.value;
-	}else{   //Ãë¼Ò
+	}else{   //ì·¨ì†Œ
 	    return;
 	}
 }
 </script>
 <script type="text/javascript">
     
-    var xmlReq; // Àü¿ªº¯¼ö·Î ÁöÁ¤.
-    // Ajax °´Ã¼ »ı¼º °úÁ¤
+    var xmlReq; // ì „ì—­ë³€ìˆ˜ë¡œ ì§€ì •.
+    // Ajax ê°ì²´ ìƒì„± ê³¼ì •
     function createAjax() {
         xmlReq = new XMLHttpRequest();
     }
      
-    // Ajax °´Ã¼¸¦ ÀÌ¿ëÇÑ µ¥ÀÌÅÍ Àü¼Û °úÁ¤
+    // Ajax ê°ì²´ë¥¼ ì´ìš©í•œ ë°ì´í„° ì „ì†¡ ê³¼ì •
     function ajaxSend() {
        createAjax();
        var user_nm = document.getElementById("user_nm").value;
        var birth = document.getElementById("birth").value;
-	       xmlReq.onreadystatechange = callBack; // °ıÈ£ ¿­°í´İ°í°¡ Æ²¸®´Ù.!
+	       xmlReq.onreadystatechange = callBack; // ê´„í˜¸ ì—´ê³ ë‹«ê³ ê°€ í‹€ë¦¬ë‹¤.!
 	       xmlReq.open("GET", "receive?user_nm="+user_nm+"&birth="+birth, true);
 	       xmlReq.send(null);
-       // send°¡ ³¡³ª°í³ª¸é ºñµ¿±â½ÄÀÌ±â ¶§¹®¿¡ ÇÁ·Î±×·¥ÀÌ °è¼Ó ÁøÇàµÈ´Ù.
+       // sendê°€ ëë‚˜ê³ ë‚˜ë©´ ë¹„ë™ê¸°ì‹ì´ê¸° ë•Œë¬¸ì— í”„ë¡œê·¸ë¨ì´ ê³„ì† ì§„í–‰ëœë‹¤.
    }
     
-   // Äİ¹é ÇÔ¼ö °úÁ¤
+   // ì½œë°± í•¨ìˆ˜ ê³¼ì •
    function callBack() {
        if(xmlReq.readyState == 4) {
            if(xmlReq.status == 200) {
@@ -92,7 +92,7 @@ function del(){
        }
    }
     
-   // °á°ú Ãâ·Â °úÁ¤
+   // ê²°ê³¼ ì¶œë ¥ ê³¼ì •
    function printData() {
        var result = xmlReq.responseXML;
        
@@ -107,9 +107,9 @@ function del(){
 
        if (nameValue != 'unknown' && birthValue != 'unknown'){
 	       if(rootValue == "true") {
-	           rootTag.innerHTML = "<font color=blue>* µî·Ï °¡´ÉÇÑ »ç¿ëÀÚÀÔ´Ï´Ù.</font>";
+	           rootTag.innerHTML = "<font color=blue>* ë“±ë¡ ê°€ëŠ¥í•œ ì‚¬ìš©ìì…ë‹ˆë‹¤.</font>";
 	       } else {
-	           rootTag.innerHTML = "* ÀÌ¹Ì µî·ÏµÈ »ç¿ëÀÚÀÔ´Ï´Ù.";
+	           rootTag.innerHTML = "* ì´ë¯¸ ë“±ë¡ëœ ì‚¬ìš©ìì…ë‹ˆë‹¤.";
 	       }
        } else {
     	   rootTag.innerHTML = "";
@@ -132,7 +132,7 @@ function del(){
 <form:errors path="member.post" cssClass="msgAlert" />
 <form:errors path="member.address" cssClass="msgAlert" />
 <form:errors path="member.email" cssClass="msgAlert" />
-<title>°ü¸®ÀÚ : È¸¿ø°ü¸® - »ç³»±³À°½Ã½ºÅÛ</title>
+<title>ê´€ë¦¬ì : íšŒì›ê´€ë¦¬ - ì‚¬ë‚´êµìœ¡ì‹œìŠ¤í…œ</title>
 </head>
 <body>
 <div id="wrap">
@@ -140,43 +140,43 @@ function del(){
 	<section>
 		<div id="content">
 			<div id="top">
-				<h3>È¸¿ø°ü¸®</h3><span id="error" style="margin-left:20px"></span>
+				<h3>íšŒì›ê´€ë¦¬</h3><span id="error" style="margin-left:20px"></span>
 			</div>
-			<form method="post" name="insertFrm" action="/IES/admin/member/writeAction" onsubmit="return Formchk(this)" novalidate="novalidate" enctype="multipart/form-data">
+			<form method="post" name="insertFrm" action="writeAction" onsubmit="return Formchk(this)" novalidate="novalidate" enctype="multipart/form-data">
 			<input type="hidden" name="page" value="${page }" />
 			<input type="hidden" name="no" value="${member.user_no }"/>	
 			<div id="con">
 				<fmt:formatDate var="nowDate" value="${nowDate }" pattern="yyyy-MM-dd" />
 				<table border="0" cellspacing="0" cellpadding="0" class="viewTable">
 					<tr>
-						<th width="100">ÀÌ¸§</th>
+						<th width="100">ì´ë¦„</th>
 						<td width="150"><input type="text" id="user_nm" name="user_nm" class="txt" maxlength="20" value="${member.user_nm }" required  onkeyup="ajaxSend()"/></td>
-						<th width="100">»ı³â¿ùÀÏ</th>
+						<th width="100">ìƒë…„ì›”ì¼</th>
 						<td width="150">
 							<fmt:formatDate var="birth_dt" value="${member.birth_dt }" pattern="yyyy-MM-dd" />
-							<input type="date" id="birth" class="txt" value="${birth_dt }" max="${nowDate }" onchange="ajaxSend()"/></td>
-						<th width="100">¼ºº°</th>
+							<input type="date" name="birth" id="birth" class="txt" value="${birth_dt }" max="${nowDate }" onchange="ajaxSend()"/></td>
+						<th width="100">ì„±ë³„</th>
 						<td>
-							<input type="radio" name="gender_yn" value="0" id="gender_0" ${member.gender_yn == 0?'checked':'' } onfocus="ajaxSend()" /><label for="gender_0">³²</label>
-							<input type="radio" name="gender_yn" value="1" id="gender_1" ${member.gender_yn == 1?'checked':'' } onfocus="ajaxSend()" /><label for="gender_0">¿©</label>
+							<input type="radio" name="gender_yn" value="0" id="gender_0" ${member.gender_yn == 0?'checked':'' } onfocus="ajaxSend()" /><label for="gender_0">ë‚¨</label>
+							<input type="radio" name="gender_yn" value="1" id="gender_1" ${member.gender_yn == 1?'checked':'' } onfocus="ajaxSend()" /><label for="gender_0">ì—¬</label>
 						</td>
 					</tr>
 					<tr>
-						<th>ÀÔ»çÀÏ</th>
+						<th>ì…ì‚¬ì¼</th>
 						<td>
 							<fmt:formatDate var="hiredate" value="${member.hiredate }" pattern="yyyy-MM-dd" />
 							<input type="date" name="hire" class="txt" max="${nowDate }" value="${member.hiredate != null ? hiredate : nowDate }" />
 						</td>
-						<th>ºÎ¼­/Á÷Ã¥</th>
+						<th>ë¶€ì„œ/ì§ì±…</th>
 						<td colspan="3">
 							<select name="dept">
-								<option value="">::ºÎ¼­::</option>
+								<option value="">::ë¶€ì„œ::</option>
 							<c:forEach var="dept" items="${dept }">
 								<option value="${dept.dept_no }"<c:if test="${member.dept_no == dept.dept_no }"> selected</c:if>>${dept.dept_nm }</option>
 							</c:forEach>
 							</select>
 							<select name="job">
-								<option value="">::Á÷Ã¥::</option>
+								<option value="">::ì§ì±…::</option>
 							<c:forEach var="job" items="${job }">
 								<option value="${job.job_no }"<c:if test="${member.job_no == job.job_no }"> selected</c:if>>${job.job_nm }</option>
 							</c:forEach>
@@ -184,24 +184,24 @@ function del(){
 						</td>
 					</tr>
 					<tr>
-						<th>¿¬¶ôÃ³</th>
+						<th>ì—°ë½ì²˜</th>
 						<td><input type="text" pattern="\d{3}\-\d{4}\-\d{3}" name="phone_no" maxlength="13" class="txt" value="${member.phone_no }" /></td>
-						<th>ºñ»ó¿¬¶ôÃ³</th>
+						<th>ë¹„ìƒì—°ë½ì²˜</th>
 						<td><input type="text" pattern="\d{3}\-\d{4}\-\d{3}" name="second_no" maxlength="13" class="txt" value="${member.second_no }" /></td>
-						<th>³»¼±</th>
+						<th>ë‚´ì„ </th>
 						<td><input type="text" pattern="\d{3}\-\d{4}\-\d{3}" name="line_no" maxlength="13" class="txt" value="${member.line_no }" /></td>
 					</tr>
 					<tr>
-						<th>ÁÖ¼Ò</th>
+						<th>ì£¼ì†Œ</th>
 						<td colspan="5">
-							<input type="tel" name="post" id="addrcode" readonly pattern="\d{3}\-\d{3}" maxlength="7" class="txt" value="${member.post }" /> <a href="javascript:execDaumPostcode();" class="css_btn_small">¿ìÆí¹øÈ£Ã£±â</a><br />
+							<input type="tel" name="post" id="addrcode" readonly pattern="\d{3}\-\d{3}" maxlength="7" class="txt" value="${member.post }" /> <a href="javascript:execDaumPostcode();" class="css_btn_small">ìš°í¸ë²ˆí˜¸ì°¾ê¸°</a><br />
 							<input type="text" name="address" id="addr" class="txt1" value="${member.address }" />
 						</td>
 					</tr>
 					<tr>
-						<th>ÀÌ¸ŞÀÏ</th>
+						<th>ì´ë©”ì¼</th>
 						<td colspan="3"><input type="email" name="email" class="txt1" maxlength="20" value="${member.email }" /></td>
-						<th>±ÇÇÑ</th>
+						<th>ê¶Œí•œ</th>
 						<td>
 							<c:if test="${member.manage_yn == 1 }"><c:set var="manage_yn" value="checked" /></c:if>
 							<c:if test="${member.admin_yn == 1 }"><c:set var="admin_yn" value="checked" /></c:if>
@@ -210,22 +210,22 @@ function del(){
 						</td>
 					</tr>
 					<tr>
-						<th>»çÁø</th>
+						<th>ì‚¬ì§„</th>
 						<td colspan="5">
 							<input type="hidden" name="origin" value="${member.profil_picture }" />
 							<c:set var="origin_pic" value="/IES/images/profile/${member.profil_picture }" />
 							<c:if test="${member.profil_picture != null }"><c:set var="profil_url" value="/IES/images/profile/${member.profil_picture }" /></c:if>
-							<img id="profil" src="${profil_url }" width="150" height="200" /><br /><input type="file" name="profil_picture" id="profil_picture" onchange="imageURL(this)" /></td>
+							<img id="profil" src="${profil_url }" width="150" height="200" /><br /><input type="file" name="profil" id="profil" onchange="imageURL(this)" /></td>
 					</tr>
 				</table>
 				
 				<div id="left">
-					<a href="list?page=${page }" class="css_btn_class">¸ñ·Ï</a>
+					<a href="list?page=${page }" class="css_btn_class">ëª©ë¡</a>
 				</div>
 				<div id="right">
-					<a onclick="document.insertFrm.submit();" class="css_btn_class" id="addbt"><span id="add">Ãß°¡</span></a>
-					<a onclick="del();" class="css_btn_class" id="delete">»èÁ¦</a>
-					<a onclick="document.insertFrm.reset();" class="css_btn_class" id="reset"><span id="re">ÃÊ±âÈ­</span></a>
+					<a onclick="document.insertFrm.submit();" class="css_btn_class" id="addbt"><span id="add">ì¶”ê°€</span></a>
+					<a onclick="del();" class="css_btn_class" id="delete">ì‚­ì œ</a>
+					<a onclick="document.insertFrm.reset();" class="css_btn_class" id="reset"><span id="re">ì´ˆê¸°í™”</span></a>
 				</div>
 			</div>
 			</form>
