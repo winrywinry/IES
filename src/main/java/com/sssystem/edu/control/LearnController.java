@@ -126,15 +126,14 @@ public class LearnController {
 		return "redirect:list";
 	}
 	
-<<<<<<< HEAD
 	@RequestMapping("/learn/save")
 	public String save(LearnVO learnVO){
 		return "";
-=======
+	}
+	
 	@RequestMapping("learn/favorite")
 	public String favorite(){
 		
 		return "learn/test";
->>>>>>> branch 'master' of https://github.com/winrywinry/IES.git
 	}
 }
