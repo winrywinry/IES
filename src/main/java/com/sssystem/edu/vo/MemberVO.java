@@ -29,7 +29,6 @@ public class MemberVO {
 	private String post;
 	private String address;
 	private String email;
-	private MultipartFile profil;
 	private String profil_picture;
 	private String admin_yn;
 	private String manage_yn;
@@ -38,17 +37,6 @@ public class MemberVO {
 
 	public MemberVO() {
 	}
-
-	
-	public MultipartFile getProfil() {
-		return profil;
-	}
-
-
-	public void setProfil(MultipartFile profil) {
-		this.profil = profil;
-	}
-
 
 	public String getPage() {
 		return page;
