@@ -1,4 +1,4 @@
-package com.sssystem.edu.admin.vo;
+package com.sssystem.edu.vo;
 
 import java.util.Date;
 

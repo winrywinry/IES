@@ -19,7 +19,7 @@ public class JoinValidator implements Validator{
 		MemberVO memberVO = (MemberVO) obj;
 		ValidateParamChk chk = new ValidateParamChk();
 	
-		System.out.println(memberVO.getUser_nm()+"  "+memberVO.getEmp_serial());
+		System.out.println(memberVO.getUser_nm()+" / "+memberVO.getEmp_serial());
 		
 		if(chk.isEmpty(memberVO.getUser_nm())){
 			errors.rejectValue("user_nm", "required", "이름을 정확히 입력하세요");

@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import com.sssystem.edu.admin.vo.MemberVO;
 import com.sssystem.edu.service.MemberService;
 import com.sssystem.edu.valitors.JoinValidator;
+import com.sssystem.edu.valitors.LoginValidator;
 import com.sssystem.edu.valitors.PasswordFindValidator;
 import com.sssystem.edu.vo.support.SessionVO;
 
@@ -28,18 +29,39 @@ public class MemberController{
 	}
 	
 	@RequestMapping("member/loginAccess")
-	public String loginAccess(@RequestParam(value="id",required=false) String id,
-							  @RequestParam(value="pass",required=false) String pass, Model model){
+	public String loginAccess(@RequestParam(value="user_id",required=false) String user_id,
+							  @RequestParam(value="user_pwd",required=false) String user_pwd,
+							  @ModelAttribute("member") MemberVO memberVO,
+				  			  BindingResult result,
+				  			  Model model){
 		
-		if(memberService.selectLogin(id)==null) return "member/login";
+		System.out.println("user_id: "+user_id);
+		System.out.println("user_pwd: "+user_pwd);
 		
-		if(memberService.selectLogin(id).equals(pass)){
-		SessionVO sessionVO = memberService.selectSession(id);
+		System.out.println("memberVO: " + memberVO);
+		
+		LoginValidator validator = new LoginValidator();
+		validator.validate(memberVO, result);
+		System.out.println("result: " + result);
+		
+		if(result.hasErrors()) {
+			System.out.println("LoginErrors");
+			return "member/login";
+		}
+		
+		if(memberService.selectLogin(user_id)==null) {
+			model.addAttribute("msg", "입력 정보를 정확히 입력하세요");
+			return "member/login";
+		}
+		
+		if(memberService.selectLogin(user_id).equals(user_pwd)){
+		SessionVO sessionVO = memberService.selectSession(user_id);
 		System.out.println("sessionVO: " +sessionVO);
 		model.addAttribute("user", sessionVO);
 		return "index";
 		}
 		else {
+			model.addAttribute("msg", "입력 정보를 정확히 입력하세요");
 			return "member/login";
 		}
 	}//loginAccess
@@ -56,11 +78,13 @@ public class MemberController{
 			  				 BindingResult result,
 			  				 Model model){
 		
+		System.out.println("memberVO: " + memberVO);
+		
 		JoinValidator validator = new JoinValidator();
 		validator.validate(memberVO, result);
 		
 		if(result.hasErrors()) {
-			System.out.println("asdsad");
+			System.out.println("JoinErrors");
 			return "member/join_check";
 		}
 		
@@ -142,7 +166,7 @@ public class MemberController{
 		validator.validate(memberVO, result);
 		
 		if(result.hasErrors()) {
-			System.out.println("asdsad");
+			System.out.println("FindIdErrors");
 			return "/member/search_id";
 		}
 		
@@ -188,7 +212,7 @@ public class MemberController{
 		validator.validate(memberVO, result);
 		
 		if(result.hasErrors()) {
-			System.out.println("asdsad");
+			System.out.println("FindPasswordErrors");
 			return "redirect:findPasswordCheck";
 		}
 		
