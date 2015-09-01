@@ -62,7 +62,6 @@ public class LearnController {
 			@RequestParam(value="page", required=false)String pn,
 			@RequestParam(value="searchWord", required=false)String searchWord
 			){
-		System.out.println("dept_no = "+dn+" page = "+pn+" searchWord = "+searchWord);
 		int dept_no = 0;
 		int page_no = 1;
 		PageVO pageVO = new PageVO();
@@ -107,8 +106,6 @@ public class LearnController {
 		pageVO.setSeq_no(no);
 		
 		learnService.updateViewCnt(no);
-			
-		System.out.println("seq_no= "+no+" dept_no = "+dept_no+" searchWord = "+searchWord);
 		
 		LearnVO learn = learnService.select(no);
 		LearnVO learnNext = learnService.selectNext(pageVO);
@@ -128,4 +125,9 @@ public class LearnController {
 		return "redirect:list";
 	}
 	
+	@RequestMapping("learn/favorite")
+	public String favorite(){
+		
+		return "learn/test";
+	}
 }
