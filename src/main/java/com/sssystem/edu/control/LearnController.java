@@ -83,42 +83,7 @@ public class LearnController {
 		
 		return "learn/list";
 	}
-	
-	@RequestMapping("/learn/contentsView")
-	public String contentsView(Model model,
-			@RequestParam(value="searchWord",required=false)String searchWord,
-			@RequestParam(value="dept_no")String dn,
-			@RequestParam(value="page")String pn,
-			@RequestParam(value="no")int no){
 		
-		ValidateParamChk chk = new ValidateParamChk();
-		SearchLearnVO pageVO = new SearchLearnVO();
-		
-		int dept_no = 0;
-		int page_no = 1;
-		
-		if(!chk.isEmpty(dn)) if(chk.isNumeric(dn)) dept_no = chk.toInteger(dn);
-		if(!chk.isEmpty(pn)) if(chk.isNumeric(pn)) page_no = chk.toInteger(pn);
-		
-		if(!chk.isEmpty(searchWord)) pageVO.setSearchWord(searchWord);
-		if(dept_no != 0) pageVO.setDept_no(dept_no);
-		if(dept_no > 0) pageVO.setPage_no(page_no);
-		
-		pageVO.setSeq_no(no);
-		
-		learnService.updateViewCnt(no);
-		
-		LearnVO learn = learnService.select(no);
-		LearnVO learnNext = learnService.selectNext(pageVO);
-		LearnVO learnPrev = learnService.selectPrev(pageVO);
-		
-		model.addAttribute("learn",learn);
-		model.addAttribute("learnNext",learnNext);
-		model.addAttribute("learnPrev",learnPrev);
-		
-		return "learn/view";
-	}
-	
 	@RequestMapping("/learn/delete")
 	public String delete(Model model,
 			@RequestParam(value="edu_no")int edu_no){
