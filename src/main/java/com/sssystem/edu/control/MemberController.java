@@ -28,6 +28,11 @@ public class MemberController{
 		return "member/login";
 	}
 	
+	@RequestMapping("/member/index")
+	public String index(){
+		return "index";
+	}
+	
 	@RequestMapping("member/loginAccess")
 	public String loginAccess(@RequestParam(value="user_id",required=false) String user_id,
 							  @RequestParam(value="user_pwd",required=false) String user_pwd,
@@ -58,7 +63,7 @@ public class MemberController{
 		SessionVO sessionVO = memberService.selectSession(user_id);
 		System.out.println("sessionVO: " +sessionVO);
 		model.addAttribute("user", sessionVO);
-		return "index";
+		return "redirect:index";
 		}
 		else {
 			model.addAttribute("msg", "입력 정보를 정확히 입력하세요");
