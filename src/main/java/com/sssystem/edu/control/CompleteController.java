@@ -89,8 +89,15 @@ public class CompleteController {
 			if(completeService.insertComplete(completeVO)) return "redirect:view?dept_no="+dept_no+"&page="+page;
 		}else{//return 경로 외 완성
 			if(completeService.updateComplete(completeVO)) return "learn/view?dept_no="+dept_no+"&page="+page;		
-
-		}
+			}
+		
+		return "learn/list";
+	}
+	
+	@RequestMapping("learn/favorite")
+	public String favorite(HttpSession session, Model model,
+			@RequestParam(value="edu_no")int edu_no){
+		
 		
 		return "learn/list";
 	}

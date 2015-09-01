@@ -37,4 +37,11 @@ public class CompleteServiceImpl implements CompleteService {
 		return false;
 	}
 
+	@Override
+	public boolean insertFavorite(CompleteVO completeVO) {
+		int t = session.insert("complete.insertFavorite",completeVO);
+		if(t>0) return true;
+		return false;
+	}
+
 }

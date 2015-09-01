@@ -58,6 +58,7 @@
 					<input type = "hidden" name="board_gb" value="${param.board_gb }">
 					<input type = "hidden" name="qna_no" value="${qnaboard.qna_no }">
 					<input type = "hidden" name="user_no" value="${qnaboard.q_user_no }">
+					<input type = "hidden" name="edu_no" value="${param.edu_no }">
 					<c:if test="">
 					<input type = "hidden" name="check" value="1">
 					</c:if>
@@ -68,11 +69,11 @@
 						</table>
 						<table class="contentTab">
 							<tr>
-								<th width="100">${qnaboard.qna_no },${qnaboard.q_user_no }</th>
+								<th width="100">제목</th>
 								<td class="left"><input type="text" name="title" style="width: 700px;" value="${qnaboard.title }"></td>
 							</tr>
 							<tr>
-								<th>${param.edu_no }</th>
+								<th>내용</th>
 								<td class="left">
 									<textarea name="contents" id="ta1" rows="10" cols="100" style="width :700px; height:200px; display: none;">
 										${qnaboard.q_contents }
