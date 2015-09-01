@@ -89,12 +89,17 @@ public class QnaController {
 			@RequestParam(value="title",required=false)String title,
 			@RequestParam(value="contents",required=false)String q_contents,
 			@RequestParam(value="a_contents",required=false)String a_contents,
-			@RequestParam(value="qna_no",required=false)String qna_no
+			@RequestParam(value="qna_no",required=false)String qna_no,
+			@RequestParam(value="edu_no",required=false)String edu_no
 			){
 		
 		QnaBoardVO qnaVO = new QnaBoardVO();
 		SessionVO sessionVO = (SessionVO) session.getAttribute("user");
-		qnaVO.setEdu_no(15);
+		if(edu_no!=null){
+			qnaVO.setEdu_no(Integer.parseInt(edu_no));
+		}else{			
+			qnaVO.setEdu_no(15);
+		}
 		qnaVO.setBoard_gb(board_gb);
 		qnaVO.setSecret_yn(0);
 		qnaVO.setTitle(title);

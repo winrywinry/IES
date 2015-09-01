@@ -33,6 +33,15 @@
 			#{end_dt}
 		)
 	</insert>
-
+	
+	<insert id="insertFavorite" parameterType="completeVO">
+		INSERT INTO 
+			T_FAVORITE
+		VALUES(
+			#{edu_no},
+			#{user_no},
+			SYSDATE
+		)
+	</insert>
 
 </mapper>
