@@ -12,7 +12,7 @@
 <script src= "//code.jquery.com/jquery-migrate-1.2.1.min.js" ></script>
 <link rel="stylesheet" type="text/css" href="${initParam.root }/css/login.css">
 
-<script type="text/javascript" src="/IES/js/common.js">
+<script type="text/javascript">
 function FormChkModule(f){
 	if(f.id.value==""){
 		alert("아이디를 입력하세요!!");
@@ -27,7 +27,7 @@ function FormChkModule(f){
 	return true;
 }//FormChkModule
 $(function(){
-	document.frmLogin.id.focus();
+	document.frmLogin.user_id.focus();
 });
 </script>
 </head>
