@@ -56,6 +56,7 @@ public class TestValidator implements Validator {
 			if (chk.isEmpty(testVO.getCorr_answer2())){
 				err.rejectValue("corr_answer2", "test.error.corr_answer");
 			} else {
+				testVO.setAnswer_nm("");
 				testVO.setCorr_answer(testVO.getCorr_answer2());
 			}
 		}

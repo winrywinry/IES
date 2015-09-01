@@ -28,7 +28,7 @@
 					<h3>교육 등록</h3>
 				</div>
 				<div id="con">
-					<form action="input.do" name="writeFrm" method="POST">
+					<form action="save" name="writeFrm" method="POST" enctype="multipart/form-data">
 					<input type="hidden" name="state" value="${update }">
 					<input type="hidden" name="edu_no" value="${learn.edu_no }" />
 					<input type="hidden" name="dn" value="${learn.dept_no }" />
@@ -112,7 +112,7 @@
 									<ul id="testList">
 										<c:forEach var="test" items="${testlist }">
 										<li>${test.q_no }. ${test.question } 
-											<em><a href="../test/write.do?no=${test.test_no }" onclick="testWinOpen(this.href); return false;">수정</a> | <a href="../test/delete.do?no=${test.test_no }" onclick="return confirm('정말 삭제하시겠습니까?')">삭제</a></em></li>
+											<em><a href="../test/write?no=${test.test_no }" onclick="testWinOpen(this.href); return false;">수정</a> | <a href="../test/delete?no=${test.test_no }" target="ifm_test" onclick="return testDel();">삭제</a></em></li>
 										</c:forEach>
 									</ul>
 								</td>
@@ -127,5 +127,6 @@
 		</div>
 		<jsp:include page="/include/footer" />
 	</div>
+	<iframe name="ifm_test" id="ifm_test" frameborder="0" width="0" height="0"></iframe>
 </body>
 </html>

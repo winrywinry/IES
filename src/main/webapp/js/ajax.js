@@ -1,11 +1,11 @@
 //ajax2.js
-//ÆĞÅ°ÁöÁ¤ÀÇ
+//íŒ¨í‚¤ì§€ì •ì˜
 //var ajax = new Object();
 //ajax.xhr  = new Object();
 var ajax = {};
 ajax.xhr = {};
 
-//RequestÅ¬·¡½º Á¤ÀÇ
+//Requestí´ë˜ìŠ¤ ì •ì˜
 ajax.xhr.Request=function(url,params,callback,method){
 	this.url=url;
 	this.params=params;
@@ -16,22 +16,22 @@ ajax.xhr.Request=function(url,params,callback,method){
 
 ajax.xhr.Request.prototype = {
 	getXMLHttpRequest : function() {
-		if (window.ActiveXObject) { // ºê¶ó¿ìÀú¿¡¼­ ActiveXObject¸¦ Áö¿øÇÑ´Ù¸é(IE)
+		if (window.ActiveXObject) { // ë¸Œë¼ìš°ì €ì—ì„œ ActiveXObjectë¥¼ ì§€ì›í•œë‹¤ë©´(IE)
 			try {
 				return new ActiveXObject("Msxml2.XMLHTTP");
 			} catch (e) {
 				return new ActiveXObject("Microsoft.XMLHTTP");
 			}
-		} else if (window.XMLHttpRequest) { // ºñ IE
+		} else if (window.XMLHttpRequest) { // ë¹„ IE
 			return new XMLHttpRequest();
-		} else { // XMLHttpRequest °´Ã¼¸¦ Áö¿øÇÏÁö ¾Ê´Â °æ¿ì
+		} else { // XMLHttpRequest ê°ì²´ë¥¼ ì§€ì›í•˜ì§€ ì•ŠëŠ” ê²½ìš°
 			return null;
 		}
 	},
 	send : function() {
-		this.xhr = this.getXMLHttpRequest(); //Request ¸â¹ö¼Ó¼º xhr Á¤ÀÇ
+		this.xhr = this.getXMLHttpRequest(); //Request ë©¤ë²„ì†ì„± xhr ì •ì˜
 		var httpMethod = this.method ? this.method : "GET";
-		// »ïÇ× ¿¬»êÀÚ (Á¶°Ç½Ä) ? A : B
+		// ì‚¼í•­ ì—°ì‚°ì (ì¡°ê±´ì‹) ? A : B
 		if (httpMethod != "GET" && httpMethod != "POST") {
 			httpMethod = "GET"
 		}
@@ -53,6 +53,6 @@ ajax.xhr.Request.prototype = {
 		this.xhr.send(httpMethod == "POST" ? httpParams : null);
 	},
 	onStateChange : function() {
-		this.callback(this.xhr); //callback ÇÁ·ÎÆÛÆ¼¿¡ ÇÒ´çµÈ ÇÔ¼ö¸¦ È£ÃâÇÏ¸é¼­ xhr °´Ã¼¸¦ ³Ñ°Ü¶ó!!
+		this.callback(this.xhr); //callback í”„ë¡œí¼í‹°ì— í• ë‹¹ëœ í•¨ìˆ˜ë¥¼ í˜¸ì¶œí•˜ë©´ì„œ xhr ê°ì²´ë¥¼ ë„˜ê²¨ë¼!!
 	}
 }

@@ -59,6 +59,13 @@ $(function(){
 function testWinOpen(url){
 	window.open(url, 'testWin', 'width=400, height=400');
 }
+function testDel(){
+	if (confirm("정말 삭제하시겠습니까?")){
+		return true;
+	} else {
+		return false;
+	}
+}
 function categoryList(xhr){
 	if (xhr.readyState==4 && xhr.status==200) {
 		var jsonData = eval('('+ xhr.responseText +')');
@@ -90,6 +97,11 @@ function addTest(json){
 	var newDiv = creaetDiv(json);
 	$("#testList").append(newDiv);
 }
+function delTest(json){
+	var no = parseInt(json.no) - 1;
+	var thisDiv = $("#testList li:eq("+ no +")");
+	thisDiv.remove();
+}
 function modTest(json){
 	var no = parseInt(json.no) - 1;
 	var oldDiv = $("#testList li:eq("+ no +")");
@@ -99,8 +111,8 @@ function modTest(json){
 function creaetDiv(json){
 	var html = $("<li>"+ json.no +". "+ json.question +"&nbsp;</li>");
 	var em = $("<em></em>");
-	var mod = "<a href='../test/write.do?no="+ json.test_no +"' onclick='testWinOpen(this.href); return false;'>수정</a>";
-	var del = "<a href='../test/delete.do?no="+ json.test_no +"' onclick=\"return confirm('정말 삭제하시겠습니까?')\">삭제</a>";
+	var mod = "<a href='../test/write?no="+ json.test_no +"' onclick='testWinOpen(this.href); return false;'>수정</a>";
+	var del = "<a href='../test/delete?no="+ json.test_no +"' target=\"ifm_test\" onclick=\"return testDel();\">삭제</a>";
 	em.append(mod);
 	em.append(" | ");
 	em.append(del);

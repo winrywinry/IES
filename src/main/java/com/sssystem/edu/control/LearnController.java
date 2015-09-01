@@ -7,6 +7,7 @@ import javax.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
@@ -121,11 +122,15 @@ public class LearnController {
 		return "learn/view";
 	}
 	
-	@RequestMapping("learn/delete")
+	@RequestMapping("/learn/delete")
 	public String delete(Model model,
 			@RequestParam(value="edu_no")int edu_no){
 		learnService.delete(edu_no);
 		return "redirect:list";
 	}
 	
+	@RequestMapping("/learn/save")
+	public String save(LearnVO learnVO){
+		return "";
+	}
 }
