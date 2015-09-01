@@ -144,7 +144,7 @@
 	    INSERT INTO T_EDU_USER_LOG
 	    	(LOG_NO, USER_NO, GUBUN, TIME_STAMP)
 	    VALUES
-	    	(SEQ_EDU_USER_LOG.nextval, #{user_no), 'O', SYSDATE)
+	    	(SEQ_EDU_USER_LOG.nextval, #{user_no}, 'O', SYSDATE)
 	]]>
 	</insert>
 

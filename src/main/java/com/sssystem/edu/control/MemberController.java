@@ -49,21 +49,26 @@ public class MemberController{
 	
 	@RequestMapping("/member/index")
 	public String index(HttpServletRequest request){//HttpServletRequest request
-		//sessionVO = (SessionVO) request.getSession().getAttribute("user");
+//		sessionVO = (SessionVO) request.getSession().getAttribute("user");
 //		System.out.println(request.getSession().getAttribute("user"));
 //		sessionVO = (SessionVO) request.getSession().getAttribute("user");
 //		
-//		int user_no = sessionVO.getUser_no();
-//		System.out.println("user_no :"+user_no);
-//		
-////		memberService.insertLog(user_no);
-//		request.setAttribute("log", memberService.selectLogSession(user_no));//출석수
-//		request.setAttribute("write", memberService.selectWrite(user_no));//게시글수
-//		request.setAttribute("question", memberService.selectQuestion(user_no));//질문수
-//		request.setAttribute("myWriteView", memberService.myWriteView(user_no));//나의질문
-//		request.setAttribute("myQuestionView", memberService.myQuestionView(user_no));//나의게시글
-//		
+		int user_no = sessionVO.getUser_no();
+		System.out.println("user_no :"+user_no);
 		
+		memberService.insertLog(user_no);
+		request.setAttribute("log", memberService.selectLogSession(user_no));//출석수
+		request.setAttribute("write", memberService.selectWrite(user_no));//게시글수
+		request.setAttribute("question", memberService.selectQuestion(user_no));//질문수
+		request.setAttribute("myWriteView", memberService.myWriteView(user_no));//나의질문
+		request.setAttribute("myQuestionView", memberService.myQuestionView(user_no));//나의게시글
+		
+		
+		//request.setAttribute("recommendView", qna.recommendView());
+		
+		request.setAttribute("notice", board.notice());//메인화면 공지사항 view
+		request.setAttribute("reply", board.selectReply(user_no)); //댓글수
+		request.setAttribute("replyContents", board.replyContents(user_no));
 		
 		return "index";
 	}
@@ -90,7 +95,6 @@ public class MemberController{
 		
 		if(memberService.selectLogin(user_id).equals(user_pwd)){
 		sessionVO = memberService.selectSession(user_id);
-		System.out.println("logsessionVO: "+sessionVO);
 		model.addAttribute("user", sessionVO);
 		return "redirect:index";
 		}
