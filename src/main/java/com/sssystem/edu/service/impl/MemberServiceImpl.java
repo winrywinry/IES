@@ -17,7 +17,9 @@ public class MemberServiceImpl implements MemberService{
 
 	@Override
 	public boolean updateJoin(MemberVO member) {//È¸¿ø°¡ÀÔ
+		System.out.println("Èì?");
 		int t = session.update("member.join", member);
+		System.out.println(t);
 		if (t == 1) return true;
 		return false;
 	}
@@ -88,8 +90,8 @@ public class MemberServiceImpl implements MemberService{
 
 	@Override
 	public int selectID(String id) {
-		// TODO Auto-generated method stub
-		return 0;
+		int result = session.selectOne("member.selectID", id);
+		return result;
 	}
 
 	@Override

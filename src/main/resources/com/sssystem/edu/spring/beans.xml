@@ -33,6 +33,6 @@
 	<bean class= "org.mybatis.spring.SqlSessionTemplate" >
 		<constructor-arg index= "0" ref ="sqlSessionFactoryBean" />
 	</bean>
-	
+	<bean id="multipartResolver" class="org.springframework.web.multipart.commons.CommonsMultipartResolver"></bean>
 	<import resource="classpath:com/sssystem/edu/spring/DI.xml"/>
 </beans>

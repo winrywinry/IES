@@ -1,16 +1,16 @@
-<%@ page language="java" contentType="text/html; charset=EUC-KR"
-    pageEncoding="EUC-KR"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn" %>
 <c:if test="${deptjob == null }">
-	<c:redirect url="/member/check.do"></c:redirect>
+	<c:redirect url="/member/check"></c:redirect>
 </c:if>
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="utf-8">
-<title>»ç³»±³À°½Ã½ºÅÛ - È¸¿ø°¡ÀÔ</title>
+<title>ì‚¬ë‚´êµìœ¡ì‹œìŠ¤í…œ - íšŒì›ê°€ìž…</title>
 <script src= "//code.jquery.com/jquery-1.11.3.min.js" ></script>
 <script src= "//code.jquery.com/jquery-migrate-1.2.1.min.js" ></script>
 <script src="http://dmaps.daum.net/map_js_init/postcode.v2.js"></script>
@@ -25,7 +25,7 @@
 <div id="wrap">
 	<!-- header -->
 	<div id="header">
-		<h1><a href="login" class="logo hid_txt" tabindex="1">»ç³»±³À°½Ã½ºÅÛ</a></h1>
+		<h1><a href="login" class="logo hid_txt" tabindex="1">ì‚¬ë‚´êµìœ¡ì‹œìŠ¤í…œ</a></h1>
 	</div>
 	<!-- container -->
 	<div id="container">
@@ -36,24 +36,24 @@
 			<input type="hidden" name="idDup" id="idDup" required />
 			<input type="hidden" name="pwdChk" value="false" required />
 			<fieldset class="join_form">
-			<legend class="blind">È¸¿ø°¡ÀÔ</legend>
+			<legend class="blind">íšŒì›ê°€ìž…</legend>
 				<div class="dep_info">
-					<h2>ºÎ¼­</h2>
+					<h2>ë¶€ì„œ</h2>
 					<span>${deptjob.DEPT_NM } / ${deptjob.JOB_NM }</span>
 				</div>
 				<div class="row_group">
 					<div class="join_row" id="idDiv">
-						<input type="text" class="int" placeholder="¾ÆÀÌµð" maxlength="18" value="" name="user_id" id="id" required>
+						<input type="text" class="int" placeholder="ì•„ì´ë””" maxlength="18" value="" name="user_id" id="id" required>
 						<!-- class:error e_info, error, error gm  -->
-						<div class="error" id="idMsg">6~18ÀÚ¸®ÀÇ ¿µ¹®/¼ýÀÚ Á¶ÇÕ</div>
+						<div class="error" id="idMsg">6~18ìžë¦¬ì˜ ì˜ë¬¸/ìˆ«ìž ì¡°í•© </div>
 					</div>				
 					<div class="join_row" id="pswd1Div">
-						<input type="password" class="int" placeholder="ºñ¹Ð¹øÈ£" maxlength="18" name="user_pwd" id="pswd1" required>				
-						<div class="error" id="pswd1Msg">6~18ÀÚ¸®ÀÇ ¿µ¹®/¼ýÀÚ Á¶ÇÕ</div>
+						<input type="password" class="int" placeholder="ë¹„ë°€ë²ˆí˜¸" maxlength="18" name="user_pwd" id="pswd1" required>				
+						<div class="error" id="pswd1Msg">6~18ìžë¦¬ì˜ ì˜ë¬¸/ìˆ«ìž ì¡°í•©</div>
 					</div>
 					<div class="join_row" id="pswd2Div">
-						<input type="password" class="int" placeholder="ºñ¹Ð¹øÈ£ È®ÀÎ" maxlength="16" name="user_pwd2" id="pswd2" required>
-						<div class="error" id="pswd2Msg">ºñ¹Ð¹øÈ£°¡ ÀÏÄ¡ÇÏÁö ¾Ê½À´Ï´Ù.</div>
+						<input type="password" class="int" placeholder="ë¹„ë°€ë²ˆí˜¸ í™•ì¸" maxlength="16" name="user_pwd2" id="pswd2" required>
+						<div class="error" id="pswd2Msg">ë¹„ë°€ë²ˆí˜¸ê°€ ì¼ì¹˜í•˜ì§€ ì•ŠìŠµë‹ˆë‹¤.</div>
 					</div>
 				</div>
 				<!-- USER INFO -->
@@ -74,7 +74,7 @@
 						</c:forEach>
 						</c:if>
 						<div class="linenum1">
-							<input type="number" max="9999" class="int num_only" placeholder="³»¼±¹øÈ£" value="${lineno1 }" maxlength="3" name="line_no1" id="linenum1" required>
+							<input type="number" max="9999" class="int num_only" placeholder="ë‚´ì„ ë²ˆí˜¸" value="${lineno1 }" maxlength="3" name="line_no1" id="linenum1" required>
 						</div>
 						<span class="cell">-</span>
 						<div class="linenum2">
@@ -101,7 +101,7 @@
 						</c:forEach>
 						</c:if>
 						<div class="cellnum1">
-							<input type="number" max="9999" class="int num_only" placeholder="ÈÞ´ëÆù¹øÈ£" value="${phoneno1 }" maxlength="3" name="phone_no1" id="cellnum1" required>
+							<input type="number" max="9999" class="int num_only" placeholder="íœ´ëŒ€í°ë²ˆí˜¸" value="${phoneno1 }" maxlength="3" name="phone_no1" id="cellnum1" required>
 						</div>
 						<span class="cell">-</span>
 						<div class="cellnum2">
@@ -128,7 +128,7 @@
 						</c:forEach>
 						</c:if>
 						<div class="secnum1">
-							<input type="number" max="9999" class="int num_only" placeholder="ºñ»ó¿¬¶ô¸Á" value="${secondno1 }" maxlength="3" name="second_no1" id="secnum1">
+							<input type="number" max="9999" class="int num_only" placeholder="ë¹„ìƒì—°ë½ë§" value="${secondno1 }" maxlength="3" name="second_no1" id="secnum1">
 						</div>
 						<span class="cell">-</span>
 						<div class="secnum2">
@@ -140,9 +140,9 @@
 						</div>
 					</div>
 					<div class="join_row join_addr" id="addrDiv">
-						<input type="tel" class="int" placeholder="¿ìÆí¹øÈ£" value="${member.post }" pattern="\d{3}\-\d{3}" title="000-000" maxlength="4" name="post" id="addrcode" readonly="true" required>
-						<a class="btn_search" href="javascript:execDaumPostcode();">¿ìÆí¹øÈ£ Ã£±â</a>
-						<input type="text" class="int" placeholder="ÁÖ¼Ò" value="${member.address }" maxlength="100" name="address" id="addr" required>
+						<input type="tel" class="int" placeholder="ìš°íŽ¸ë²ˆí˜¸" value="${member.post }" pattern="\d{3}\-\d{3}" title="000-000" maxlength="4" name="post" id="addrcode" readonly="true" required>
+						<a class="btn_search" href="javascript:execDaumPostcode();">ìš°íŽ¸ë²ˆí˜¸ ì°¾ê¸°</a>
+						<input type="text" class="int" placeholder="ì£¼ì†Œ" value="${member.address }" maxlength="100" name="address" id="addr" required>
 					</div>
 					<div class="join_row" id="emailDiv">
 						<c:set var="email" value="${member.email }" />
@@ -158,7 +158,7 @@
 						</c:forEach>
 						</c:if>					
 						<div class="emaild1">
-							<input type="text" class="int"  placeholder="ÀÌ¸ÞÀÏ" value="${email1 }" maxlength="50" name="email1" id="email1">
+							<input type="text" class="int"  placeholder="ì´ë©”ì¼" value="${email1 }" maxlength="50" name="email1" id="email1">
 						</div>
 						<span class="cell">@</span>
 						<div class="emaild2">
@@ -168,7 +168,7 @@
 				</div>
 
 				<div class="btn_join">
-					<input type="submit" name="join" title="È¸¿ø°¡ÀÔ" alt="È¸¿ø°¡ÀÔ" tabindex="12" value="Join!">
+					<input type="submit" name="join" title="íšŒì›ê°€ìž…" alt="íšŒì›ê°€ìž…" tabindex="12" value="Join!">
 				</div>
 			</fieldset>
 			</form>

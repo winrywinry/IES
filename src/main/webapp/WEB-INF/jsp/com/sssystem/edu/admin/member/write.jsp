@@ -2,6 +2,7 @@
     pageEncoding="EUC-KR"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>    
 <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
+<%@ taglib uri="http://www.springframework.org/tags/form" prefix="form" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -15,7 +16,7 @@
 <script type="text/javascript" src="${initParam.root }/admin/js/formcheck.js"></script>
 <link rel="stylesheet" type="text/css" href="${initParam.root }/admin/css/member.css" />
 <script type="text/javascript" id="demo2-javascript">
-$(document).ready(function() {
+$(function() {
 	$("#navMenu").navgoco({accordion: true});
 	var no = $("input[name='no']").val();
 	if (no > 0){
@@ -49,6 +50,10 @@ $(document).ready(function() {
 			
 		}
 	})
+    $(".msgAlert").hide();
+    $(".msgAlert").each(function (){
+         alert($(this).text());            
+    })	
 });
 
 function del(){
@@ -111,9 +116,22 @@ function del(){
        }
    }
 </script>
-<html:messages id="msgs" property="errors">
-<script type="text/javascript">alert('<bean:write name="msgs"/>');</script>
-</html:messages>
+<form:errors path="member.user_nm" cssClass="msgAlert" />
+<form:errors path="member.birth" cssClass="msgAlert" />
+<form:errors path="member.birth_dt" cssClass="msgAlert" />
+<form:errors path="member.gender_yn" cssClass="msgAlert" />
+<form:errors path="member.hire" cssClass="msgAlert" />
+<form:errors path="member.hiredate" cssClass="msgAlert" />
+<form:errors path="member.dept" cssClass="msgAlert" />
+<form:errors path="member.dept_no" cssClass="msgAlert" />
+<form:errors path="member.job" cssClass="msgAlert" />
+<form:errors path="member.job_no" cssClass="msgAlert" />
+<form:errors path="member.line_no" cssClass="msgAlert" />
+<form:errors path="member.phone_no" cssClass="msgAlert" />
+<form:errors path="member.second_no" cssClass="msgAlert" />
+<form:errors path="member.post" cssClass="msgAlert" />
+<form:errors path="member.address" cssClass="msgAlert" />
+<form:errors path="member.email" cssClass="msgAlert" />
 <title>관리자 : 회원관리 - 사내교육시스템</title>
 </head>
 <body>

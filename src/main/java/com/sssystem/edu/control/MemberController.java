@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import com.sssystem.edu.admin.vo.MemberVO;
 import com.sssystem.edu.service.MemberService;
 import com.sssystem.edu.valitors.JoinValidator;
+import com.sssystem.edu.valitors.PasswordFindValidator;
 import com.sssystem.edu.vo.support.SessionVO;
 
 @Controller
@@ -64,7 +65,7 @@ public class MemberController{
 		}
 		
 		else if(memberService.selectEmp(user_nm, emp_serial)==null) {
-			model.addAttribute("msg", "사원번호를 정확히 입력하세요");
+			model.addAttribute("msg", "입력 정보를 정확히 입력하세요");
 			return "member/join_check";
 		}
 		
@@ -88,18 +89,21 @@ public class MemberController{
 	}//joinAccess
 	
 	@RequestMapping("member/joinAction")
-	public String joinAction(@RequestParam(value="user_no") int user_no,
-							 @RequestParam(value="user_id") String user_id,
-							 @RequestParam(value="user_pwd") String user_pwd,
-							 @RequestParam(value="line_no") String line_no,
-							 @RequestParam(value="phone") String phone_no,
-							 @RequestParam(value="second") String second_no,
-							 @RequestParam(value="post") String post,
-							 @RequestParam(value="address") String address,
-							 @RequestParam(value="email") String email,
+	public String joinAction(@RequestParam(value="user_no",required=false) int user_no,
+							 @RequestParam(value="user_id",required=false) String user_id,
+							 @RequestParam(value="user_pwd",required=false) String user_pwd,
+							 @RequestParam(value="line_no",required=false) String line_no,
+							 @RequestParam(value="phone",required=false) String phone_no,
+							 @RequestParam(value="second",required=false) String second_no,
+							 @RequestParam(value="post",required=false) String post,
+							 @RequestParam(value="address",required=false) String address,
+							 @RequestParam(value="email",required=false) String email,
 							 Model model){
 		
 		MemberVO memberVO = new MemberVO();
+		 int result = memberService.selectID(user_id);
+
+		 
 		memberVO.setUser_no(user_no);
 		memberVO.setUser_id(user_id);
 		memberVO.setUser_pwd(user_pwd);
@@ -129,11 +133,25 @@ public class MemberController{
 	
 	@RequestMapping("/member/findIdCheckAccess")
 	public String findIdCheckAccess(@RequestParam(value="user_nm",required=false) String user_nm,
-							  	    @RequestParam(value="emp_serial",required=false) String emp_serial, Model model){
+							  	    @RequestParam(value="emp_serial",required=false) String emp_serial,
+							  	    @ModelAttribute("comm") MemberVO memberVO,
+							  	    BindingResult result,
+							  	    Model model){
 		
-		if(memberService.selectEmp1(user_nm, emp_serial)==null) return "/member/search_id";
+		JoinValidator validator = new JoinValidator();
+		validator.validate(memberVO, result);
 		
-		if(memberService.selectEmp1(user_nm, emp_serial).equals(user_nm)){
+		if(result.hasErrors()) {
+			System.out.println("asdsad");
+			return "/member/search_id";
+		}
+		
+		else if(memberService.selectEmp1(user_nm, emp_serial)==null){
+			model.addAttribute("msg", "입력 정보를 정확히 입력하세요");
+			return "/member/search_id";
+		}
+		
+		else if(memberService.selectEmp1(user_nm, emp_serial).equals(user_nm)){
 			HashMap<String, String> map = new HashMap<String, String>();
 			map.put("user_nm", user_nm);
 			map.put("emp_serial", emp_serial);
@@ -158,15 +176,28 @@ public class MemberController{
 	@RequestMapping("/member/findPasswordAccess")
 	public String findPassword(@RequestParam(value="user_id",required=false) String user_id,
 							   @RequestParam(value="user_nm",required=false) String user_nm,
-	  	    				   @RequestParam(value="emp_serial",required=false) String emp_serial, Model model){
+	  	    				   @RequestParam(value="emp_serial",required=false) String emp_serial,
+	  	    				   @ModelAttribute("comm") MemberVO memberVO,
+						  	    BindingResult result, Model model){
 		HashMap<String, String> map = new HashMap<String, String>();
 		map.put("user_id", user_id);
 		map.put("user_nm", user_nm);
 		map.put("emp_serial", emp_serial);
 		
-		if(memberService.selectEmp2(map)==null) return "/member/search_pass";
+		PasswordFindValidator validator = new PasswordFindValidator();
+		validator.validate(memberVO, result);
 		
-		if(memberService.selectEmp2(map).equals(user_nm)){
+		if(result.hasErrors()) {
+			System.out.println("asdsad");
+			return "redirect:findPasswordCheck";
+		}
+		
+		else if(memberService.selectEmp2(map)==null){
+			model.addAttribute("msg", "입력 정보를 정확히 입력하세요");
+			return "/member/search_pass";
+		}
+		
+		else if(memberService.selectEmp2(map).equals(user_nm)){
 			
 			HashMap<String, Object> deptjob = memberService.selectDept(map);
 		int user_no = Integer.valueOf(String.valueOf(deptjob.get("USER_NO")));
@@ -177,6 +208,22 @@ public class MemberController{
 		else return "redirect:findPasswordCheck";
 	}//findPassword
 	
+	@RequestMapping("/member/idCheck")
+	public String idCheck(@RequestParam(value="id") String id
+			            , Model model){
+		int result = memberService.selectID(id);
+		String val = "";
+		if (result == 0) {
+			val = "success";
+			model.addAttribute("msg", "사용 가능한 아이디 입니다");
+		} else {
+			val = "fail";
+			model.addAttribute("msg", "중복된 아이디입니다");
+		}
+		model.addAttribute("val", val);
+		model.addAttribute("id", id);
+		return "member/idCheck";
+	}
 }
 
 

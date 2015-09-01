@@ -1,27 +1,27 @@
-<%@ page language="java" contentType="text/html; charset=EUC-KR"
-    pageEncoding="EUC-KR"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
 <head>
 	<meta charset="utf-8">
-	<title>»ç³»±³À°½Ã½ºÅÛ - ¾ÆÀÌµðÃ£±â</title>
+	<title>ì‚¬ë‚´êµìœ¡ì‹œìŠ¤í…œ - ì•„ì´ë””ì°¾ê¸°</title>
 	<link rel="stylesheet" type="text/css" href="${initParam.root }/css/search.css">
 </head>
 <body>
 <div id="wrap">
 	<!-- header -->
 	<div id="header">
-		<h1>${user_nm }´ÔÀÇ ¾ÆÀÌµð</h1>
+		<h1>${user_nm }ë‹˜ì˜ ì•„ì´ë””</h1>
 	</div>
 	<!-- container -->
 	<div id="container">
 		<!-- content -->
 		<div id="content">
 			<ul class="search_id">
-				<li class="li_tit">¾ÆÀÌµð</li>
+				<li class="li_tit">ì•„ì´ë””</li>
 				<li class="li_con">${id }</li>
 			</ul>
-			<a class="link" href="login">È®ÀÎ</a>
+			<a class="link" href="login">í™•ì¸</a>
 		</div>
 	</div>
 </div>
