@@ -9,55 +9,74 @@ import org.springframework.beans.factory.annotation.Autowired;
 import com.sssystem.edu.admin.vo.PageVO;
 import com.sssystem.edu.service.LearnService;
 import com.sssystem.edu.vo.LearnVO;
+import com.sssystem.edu.vo.search.SearchLearnVO;
 
-public class LearnServiceImpl implements LearnService{
+public class LearnServiceImpl implements LearnService {
 
 	@Autowired
 	SqlSession session;
-	
+
 	@Override
-	public List<LearnVO> selectAll(PageVO pageVO, int page) {
+	public List<LearnVO> selectAll(SearchLearnVO pageVO, int page) {
 		List<LearnVO> list = null;
-		list = session.selectList("learn.selectList",pageVO,new RowBounds(page*10-10,10));
+		list = session.selectList("learn.selectList", pageVO, new RowBounds(
+				page * 10 - 10, 10));
 		return list;
 	}
 
 	@Override
-	public int selectCnt(PageVO pageVO) {
+	public int selectCnt(SearchLearnVO pageVO) {
 		int cnt = 0;
-		cnt = session.selectOne("learn.selectCnt",pageVO);
+		cnt = session.selectOne("learn.selectCnt", pageVO);
 		return cnt;
 	}
 
 	@Override
 	public void updateViewCnt(int no) {
-		session.update("learn.updateViewCnt",no);
+		session.update("learn.updateViewCnt", no);
 	}
 
 	@Override
 	public LearnVO select(int no) {
 		LearnVO learnVO = null;
-		learnVO = session.selectOne("learn.select",no);
+		learnVO = session.selectOne("learn.select", no);
 		return learnVO;
 	}
 
 	@Override
-	public LearnVO selectNext(PageVO pageVO) {
+	public LearnVO selectNext(SearchLearnVO pageVO) {
 		LearnVO learnNext = null;
-		learnNext = session.selectOne("learn.selectNext",pageVO);
+		learnNext = session.selectOne("learn.selectNext", pageVO);
 		return learnNext;
 	}
 
 	@Override
-	public LearnVO selectPrev(PageVO pageVO) {
+	public LearnVO selectPrev(SearchLearnVO pageVO) {
 		LearnVO learnPrev = null;
-		learnPrev = session.selectOne("learn.selectPrev",pageVO);
+		learnPrev = session.selectOne("learn.selectPrev", pageVO);
 		return learnPrev;
 	}
 
 	@Override
 	public void delete(int no) {
-		session.delete("learn.delete",no);
+		session.delete("learn.delete", no);
+	}
+
+	@Override
+	public LearnVO selectComplete(int edu_no, int user_no) {
+		HashMap<String, Integer> map = new HashMap<String, Integer>();
+		map.put("edu_no", edu_no);
+		map.put("user_no", user_no);
+		LearnVO learnComplete = session.selectOne("learn.selectComplete", map);
+		return learnComplete;
+	}
+
+	@Override
+	public boolean updateComplete(LearnVO learnVO) {
+		int t = session.update("learn.updateComplete", learnVO);
+		if (t > 0)
+			return true;
+		return false;
 	}
 
 }

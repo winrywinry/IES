@@ -1,5 +1,5 @@
-<%@ page language="java" contentType="text/html; charset=EUC-KR"
-    pageEncoding="EUC-KR"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn" %>
 <%@ taglib uri="http://www.springframework.org/tags/form" prefix="form" %>
@@ -8,7 +8,7 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=EUC-KR">
 <link rel="stylesheet" type="text/css" href="${initParam.root }/css/test.css" />
-<title>»ç³»±³À°½Ã½ºÅÛ - ÀÌ¼öÈ®ÀÎ µî·Ï</title>
+<title>ì‚¬ë‚´êµìœ¡ì‹œìŠ¤í…œ - ì´ìˆ˜í™•ì¸ ë“±ë¡</title>
 <script src= "//code.jquery.com/jquery-1.11.3.min.js" ></script>
 <script src= "//code.jquery.com/jquery-migrate-1.2.1.min.js" ></script>
 <script src="${initParam.root }/js/jquery-ui.js"></script>
@@ -24,25 +24,25 @@
 <form:errors path="test.answer_nm" cssClass="msgAlert" />
 <form:errors path="test.corr_answer2" cssClass="msgAlert" />
 <div id="winWrap">
-	<div id="winHeader"><h3>½ÃÇè µî·Ï</h3></div>
+	<div id="winHeader"><h3>ì‹œí—˜ ë“±ë¡</h3></div>
 	<div id="winCon">	
 		<form method="post" name="writeFrm" action="save">
 		<input type="hidden" name="test" value="${test_no }" />
 		<input type="hidden" name="edu" value="${edu_no }" />
 		<table class="testWrite">
 			<tr>
-				<th>±¸ºĞ</th>
+				<th>êµ¬ë¶„</th>
 				<td>
-					<input type="radio" name="gubun" value="A" id="gubun_A" ${testBean.gubun eq 'A' || testBean.gubun == null ? 'checked=checked' : '' } /><label for="gubun_A">°´°ü½Ä</label>
-					<input type="radio" name="gubun" value="B" id="gubun_B" ${testBean.gubun eq 'B' ? 'checked=checked' : '' } /><label for="gubun_B">ÁÖ°ü½Ä</label>
+					<input type="radio" name="gubun" value="A" id="gubun_A" ${testBean.gubun eq 'A' || testBean.gubun == null ? 'checked=checked' : '' } /><label for="gubun_A">ê°ê´€ì‹</label>
+					<input type="radio" name="gubun" value="B" id="gubun_B" ${testBean.gubun eq 'B' ? 'checked=checked' : '' } /><label for="gubun_B">ì£¼ê´€ì‹</label>
 				</td>
 			</tr>
 			<tr>
-				<th>¹®Á¦</th>
+				<th>ë¬¸ì œ</th>
 				<td><input type="text" name="question" class="txt w280" value="${testBean.question }" /></td>
 			</tr>
 			<tr id="answer_A">
-				<th>Á¤´ä</th>
+				<th>ì •ë‹µ</th>
 				<td><div id="answerList">
 					<c:if test="${testBean.answer_nm == null }">
 					<div>1. <input type="radio" name="corr_answer" value="1" /><input type="text" name="answer_arr" class="txt w200" /> 
@@ -53,7 +53,7 @@
 						<c:set var="answer_arr" value="${fn:split(testBean.answer_nm, '@') }" />
 						<c:forEach var="answer_nm" items="${answer_arr }" varStatus="status">
 						<div>${status.count }. <input type="radio" name="corr_answer" value="${status.count }" ${testBean.corr_answer eq status.count ? "checked=checked" : "" } /><input type="text" name="answer_arr" class="txt w200" value="${answer_nm }" /> 
-							<c:if test="${status.count == 1 }"><img src="/iessvn/images/bt_plus.png" class="btn answer_add rollover" /> <img src="/iessvn/images/bt_minus.png" class="btn answer_del rollover" /></c:if></div>
+							<c:if test="${status.count == 1 }"><img src="${initParam.root }/images/bt_plus.png" class="btn answer_add rollover" /> <img src="${initParam.root }/images/bt_minus.png" class="btn answer_del rollover" /></c:if></div>
 							<script type="text/javascript">answer_no = ${status.count + 1};</script>
 						</c:forEach>
 					</c:if>
@@ -61,13 +61,13 @@
 				</td>
 			</tr>
 			<tr id="answer_B">
-				<th>Á¤´ä</th>
+				<th>ì •ë‹µ</th>
 				<td><textarea name="corr_answer2" class="txtArea">${testBean.corr_answer }</textarea></td>
 			</tr>
 		</table>
 		<div id="btnArea">
-			<a class="css_btn_class" onclick="submitChk();"><span id="sub">ÀÛ¼º</span></a>
-			<a class="css_btn_class" onclick="document.writeFrm.reset();">Ãë¼Ò</a>
+			<a class="css_btn_class" onclick="submitChk();"><span id="sub">ì‘ì„±</span></a>
+			<a class="css_btn_class" onclick="document.writeFrm.reset();">ì·¨ì†Œ</a>
 		</div>
 		</form>
 	</div>

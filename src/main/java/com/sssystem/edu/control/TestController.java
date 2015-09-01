@@ -1,5 +1,7 @@
 package com.sssystem.edu.control;
 
+import javax.servlet.http.HttpSession;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -12,6 +14,7 @@ import com.sssystem.edu.common.ValidateParamChk;
 import com.sssystem.edu.service.TestService;
 import com.sssystem.edu.valitors.TestValidator;
 import com.sssystem.edu.vo.TestVO;
+import com.sssystem.edu.vo.support.SessionVO;
 
 @Controller
 public class TestController {
@@ -43,7 +46,7 @@ public class TestController {
 		
 		if (test_no > 0) {
 			TestVO testVO = testService.select(test_no);
-			model.addAttribute("testVO", testVO);
+			model.addAttribute("testBean", testVO);
 		}
 		model.addAttribute("edu_no", edu_no);
 		model.addAttribute("test_no", test_no);
@@ -54,10 +57,15 @@ public class TestController {
 	@RequestMapping("/test/save")
 	public String save(@ModelAttribute("test") TestVO testVO
 					  , BindingResult result
-					  , Model model) {
+					  , Model model
+					  , HttpSession session) {
+		SessionVO sessionBean = (SessionVO) session.getAttribute("user");
+		int user_no = sessionBean.getUser_no();
+		
 		testVal.validate(testVO, result);
 		if (result.hasErrors()) return "test/write";
 		
+		testVO.setUser_no(user_no);
 		if (testVO.getTest_no() == 0) {
 			//INSERT
 			int test_no = testService.insert(testVO);
@@ -81,5 +89,28 @@ public class TestController {
 				return "test/write?";
 			}
 		}
+	}
+	
+	@RequestMapping("/test/delete")
+	public String delete(@RequestParam(value="no") String no
+			           , Model model){
+		int test_no = 0;
+		if (chk.isEmpty(no)){
+			model.addAttribute("msg", "번호가 없습니다.");
+		} else {
+			if (chk.isNumeric(no)){
+				test_no = chk.toInteger(no);
+				TestVO testVO = testService.select(test_no);
+				if (testService.delete(test_no)){
+					model.addAttribute("testBean", testVO);
+				} else {
+					model.addAttribute("msg", "삭제되지 않았습니다.");
+				}
+			} else {
+				model.addAttribute("msg", "숫자만 입력해 주세요.");
+			}
+		}
+		model.addAttribute("status", "delete");
+		return "test/result";
 	}
 }

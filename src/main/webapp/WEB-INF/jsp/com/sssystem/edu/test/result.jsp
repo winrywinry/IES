@@ -1,5 +1,5 @@
-<%@ page language="java" contentType="text/html; charset=EUC-KR"
-    pageEncoding="EUC-KR"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>    
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
@@ -7,7 +7,7 @@
 <meta http-equiv="Content-Type" content="text/html; charset=EUC-KR">
 <script src= "//code.jquery.com/jquery-1.11.3.min.js" ></script>
 <script src= "//code.jquery.com/jquery-migrate-1.2.1.min.js" ></script>
-<title>»ç³»±³À°½Ã½ºÅÛ - ÀÌ¼ö½ÃÇè µî·Ï</title>
+<title>ì‚¬ë‚´êµìœ¡ì‹œìŠ¤í…œ - ì´ìˆ˜ì‹œí—˜ ë“±ë¡</title>
 <script type="text/javascript">
 var jsonData = { 
 		no : '${testBean.q_no }'
@@ -18,7 +18,7 @@ var jsonData = {
 <c:if test="${status eq 'insert' }">
 <script type="text/javascript">
 opener.addTest(jsonData);
-if (confirm("°è¼ÓÇØ¼­ µî·ÏÇÏ½Ã°Ú½À´Ï±î?")) {
+if (confirm("ê³„ì†í•´ì„œ ë“±ë¡í•˜ì‹œê² ìŠµë‹ˆê¹Œ?")) {
 	location.href="write.do"
 } else {
 	window.close();
@@ -29,6 +29,14 @@ if (confirm("°è¼ÓÇØ¼­ µî·ÏÇÏ½Ã°Ú½À´Ï±î?")) {
 <script type="text/javascript">
 opener.modTest(jsonData);
 window.close();
+</script>
+</c:if>
+<c:if test="${status eq 'delete' }">
+	<c:if test="${msg != null }">
+		<script type="text/javascript">alert("${msg}");</script>
+	</c:if>
+<script type="text/javascript">
+parent.delTest(jsonData);
 </script>
 </c:if>
 </head>

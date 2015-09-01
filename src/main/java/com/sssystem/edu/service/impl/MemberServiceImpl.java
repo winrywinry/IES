@@ -18,6 +18,7 @@ public class MemberServiceImpl implements MemberService{
 	@Override
 	public boolean updateJoin(MemberVO member) {//회원가입
 		int t = session.update("member.join", member);
+		System.out.println(t);
 		if (t == 1) return true;
 		return false;
 	}
