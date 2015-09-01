@@ -22,5 +22,8 @@
 		<!-- Learn -->
 		<typeAlias type="com.sssystem.edu.vo.LearnVO" alias="learnVO"/>
 		<typeAlias type="com.sssystem.edu.vo.search.SearchLearnVO" alias="SearchLearnVO"/>
+		
+		<!-- member -->
+		<typeAlias type="com.sssystem.edu.vo.MemberVO" alias="memberVO"/>
 	</typeAliases>
 </configuration>
