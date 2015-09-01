@@ -4,7 +4,7 @@
 	<div id="con">
 		<div id="top">
 			<div id="logo">
-				<a href="${initParam.root }/index"><img src="${initParam.root }/images/Logo.png" alt="사내교육시스템" title="사내교육시스템" /></a>
+				<a href="/IES/member/index/"><img src="${initParam.root }/images/Logo.png" alt="사내교육시스템" title="사내교육시스템" /></a>
 			</div>
 
 		</div>
