@@ -1,4 +1,5 @@
 <%@page import="com.sssystem.edu.vo.LearnVO"%>
+<%@page import="com.sssystem.edu.vo.CompleteVO"%>
 <%@page import="com.sssystem.edu.vo.support.SessionVO"%>
 <%@ page language="java" contentType="text/html; charset=EUC-KR"
 	pageEncoding="EUC-KR"%>
@@ -91,8 +92,16 @@
 					</table>
 					<br>
 					<span style="font-size: 80%; font-weight: bolder; float: right;">
-					<a class="linlk1" onclick="location.href='/IES/learn/updateComplete'">교육시작</a> |
-					<a class="link1" onclick="">교육완료</a> |
+					<c:if test="${learnComplete.start_dt == null}">
+					<a class="link1" onclick="location.href='/IES/learn/updateComplete?no=${learn.edu_no}&start_dt=${learnComplete.start_dt }&end_dt=${learnComplete.end_dt }&dept_no=${param.dept_no }&page=${param.page }'">교육시작</a> |
+					</c:if>
+					<c:if test="${learnComplete.end_dt != null and learnComplete.end_dt == '1111-11-11 00:00:00.0'}">
+					<a class="link1" onclick="location.href='/IES/learn/updateComplete?no=${learn.edu_no}&start_dt=${learnComplete.start_dt }&end_dt=${learnComplete.end_dt }&dept_no=${param.dept_no }&page=${param.page }'">교육종료</a> |
+					</c:if>
+					<c:if test="${learnComplete.end_dt != null and learnComplete.end_dt != '1111-11-11 00:00:00.0'}">
+					<a class="link1" onclick="">시험시작${learnComplete.end_dt }</a> |					
+					</c:if>
+					<a class="link1" href="/IES/qna/write?board_gb=40&edu_no=${learn.edu_no }" >질문하기</a> | 
 					<a class="link1" onclick="del()" >삭제</a> | 
 					<a class="link1" onclick="location.href='/IES/learn/updatePage?no=${learn.edu_no}&user_no=${learn.user_no}&update=update';">수정</a> | 
 					<a class="link1" onclick="location.href='/IES/learn/list';">목록으로</a>

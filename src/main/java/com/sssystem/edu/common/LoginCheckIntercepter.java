@@ -13,13 +13,23 @@ public class LoginCheckIntercepter extends HandlerInterceptorAdapter {
 	@Override
 	public boolean preHandle(HttpServletRequest request,
 			HttpServletResponse response, Object handler) throws Exception {
-		//HttpSession session = request.getSession();
-		//SessionVO user = (SessionVO) session.getAttribute("user");
-		SessionVO user = new SessionVO(10, "À±¼ö¿¬", 7000, 40, 1, 1);
-		request.getSession().setAttribute("user", user);
+		HttpSession session = request.getSession();
+		SessionVO user = (SessionVO) session.getAttribute("user");
 		
-		if (user == null) {
-			//response.sendRedirect("/");
+		String reqUrl = request.getRequestURL().toString();
+		reqUrl = reqUrl.replace("http://localhost/IES/", "");
+		System.out.println("getURL="+ reqUrl);
+		
+		int cnt = 0;
+		String[] passUrl = {"member", "css", "js", "images"};
+		for (int i=0;i<passUrl.length;i++){
+			if (reqUrl.startsWith(passUrl[i])){
+				cnt++;
+			}
+		}
+		if(cnt > 0){
+		} else if (user == null) {
+			response.sendRedirect("/IES/member/login");
 			return false;
 		}
 		return super.preHandle(request, response, handler);
