@@ -61,6 +61,17 @@ public class LearnServiceImpl implements LearnService {
 	@Override
 	public void delete(int no) {
 		session.delete("learn.delete", no);
+		
 	}
+
+	@Override
+	public List<LearnVO> selectLeftMenuList(LearnVO learnVO) {
+		List<LearnVO> list = null;
+		list = session.selectList("learn.selectList");
+		return list;
+	}
+	
+	
+	
 
 }

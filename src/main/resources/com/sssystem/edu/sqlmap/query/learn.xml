@@ -116,7 +116,7 @@
 		
 	</select>
 	
-	<select id="selectLeftMenuList" parameterType="int" resultType="learnVO">
+	<select id="selectLeftMenuList" resultType="learnVO">
     SELECT A.DEPT_NO
 	     , A.DEPT_NM
 	     , A.CATEGORY_NO
@@ -144,6 +144,5 @@
 	       ) A
 	 START WITH A.REF_NO = 0
 	CONNECT BY PRIOR A.CATEGORY_NO = A.REF_NO
-	;
 	</select>
 </mapper>
