@@ -12,11 +12,16 @@
 	</insert>
 	 -->
 	<insert id="boardInsert" parameterType="boardVO">
+		<selectKey keyProperty="board_no" resultType="int" order="BEFORE">
+			<![CDATA[
+			SELECT SEQ_EDU_BOARD.NEXTVAL FROM DUAL
+			]]>
+		</selectKey>
 	INSERT INTO
 		T_EDU_BOARD 
 			(BOARD_NO, USER_NO, BOARD_GB, TITLE, CONTENTS, INPUT_DT)
 		VALUES
-			(SEQ_EDU_BOARD.NEXTVAL,#{user_no},#{board_gb},#{title},#{contents},SYSDATE)
+			(#{board_no},#{user_no},#{board_gb},#{title},#{contents},SYSDATE)
 	</insert>
 	
 	<select id="boardListSelectAll" parameterType="searchVO" resultType="boardVO">

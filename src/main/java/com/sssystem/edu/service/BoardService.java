@@ -15,7 +15,7 @@ public interface BoardService  {
 	 * @param bean
 	 * @return
 	 */
-	public boolean boardInsert(BoardVO bean); // 등록
+	public int boardInsert(BoardVO bean); // 등록
 	public boolean atchBoardInsert(AttachFileVO atchBean); //첨부파일
 	public boolean boardDelete(int board_no); //삭제
 	public boolean boardUpdate(BoardVO bean); //수정

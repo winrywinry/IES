@@ -24,6 +24,7 @@
 		<typeAlias type="com.sssystem.edu.vo.search.SearchLearnVO" alias="SearchLearnVO"/>
 		<typeAlias type="com.sssystem.edu.vo.CompleteVO" alias="completeVO"/> 
 		<typeAlias type="com.sssystem.edu.vo.AuthVO" alias="authVO"/> 
+		<typeAlias type="com.sssystem.edu.vo.AttachFileVO" alias="attachVO"/>
 		
 		<!-- member -->
 		<typeAlias type="com.sssystem.edu.vo.MemberVO" alias="memberVO"/>

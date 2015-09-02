@@ -26,12 +26,10 @@ public class BoardServiceImpl implements BoardService {
 	 * @return
 	 */
 	@Override
-	public boolean boardInsert(BoardVO bean) {
-		int t = session.insert("notice.boardInsert", bean);
-		if(t==1) {
-			return true;
-		}
-		return false;
+	public int boardInsert(BoardVO bean) {
+		session.insert("notice.boardInsert", bean);
+		int board_no = bean.getBoard_no();
+		return board_no;
 	}
 	
 	/**
