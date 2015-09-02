@@ -117,7 +117,7 @@
 		 WHERE USER_ID = #{user_id}
 		]]>		 
 	</select>
-	<update id="join" parameterType="memberVO">
+	<update id="join" parameterType="memberVO" >
 		<![CDATA[
 		UPDATE T_EDU_USER SET
 		       USER_ID = #{user_id}

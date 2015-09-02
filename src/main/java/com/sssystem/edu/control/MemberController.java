@@ -97,7 +97,7 @@ public class MemberController{
 		return "redirect:index";
 		}
 		else {
-			model.addAttribute("msg", "입력 정보를 정확히 입력하세요");
+			model.addAttribute("msg", "잘못된 사원이름이거나 잘못된 사원번호 입니다");
 			return "member/login";
 		}
 	}//loginAccess
@@ -124,7 +124,7 @@ public class MemberController{
 		}
 		
 		else if(memberService.selectEmp(user_nm, emp_serial)==null) {
-			model.addAttribute("msg", "입력 정보를 정확히 입력하세요");
+			model.addAttribute("msg", "잘못된 사원이름이거나 잘못된 사원번호 입니다");
 			return "member/join_check";
 		}
 		
@@ -151,19 +151,26 @@ public class MemberController{
 	public String joinAction(@RequestParam(value="user_no",required=false) int user_no,
 							 @RequestParam(value="user_id",required=false) String user_id,
 							 @RequestParam(value="user_pwd",required=false) String user_pwd,
-							 @RequestParam(value="line_no",required=false) String line_no,
-							 @RequestParam(value="phone_no",required=false) String phone_no,
-							 @RequestParam(value="second_no",required=false) String second_no,
+							 @RequestParam(value="line_no1",required=false) String line_no1,
+							 @RequestParam(value="line_no2",required=false) String line_no2,
+							 @RequestParam(value="line_no3",required=false) String line_no3,
+							 @RequestParam(value="phone_no1",required=false) String phone_no1,
+							 @RequestParam(value="phone_no2",required=false) String phone_no2,
+							 @RequestParam(value="phone_no3",required=false) String phone_no3,
+							 @RequestParam(value="second_no1",required=false) String second_no1,
+							 @RequestParam(value="second_no2",required=false) String second_no2,
+							 @RequestParam(value="second_no3",required=false) String second_no3,
 							 @RequestParam(value="post",required=false) String post,
 							 @RequestParam(value="address",required=false) String address,
-							 @RequestParam(value="email",required=false) String email,
+							 @RequestParam(value="email1",required=false) String email1,
+							 @RequestParam(value="email2",required=false) String email2,
 							 Model model){
 		
-
-		 int result = memberService.selectID(user_id);
-
-		 
-		memberVO.setUser_no(user_no);
+		String line_no = line_no1+"-"+line_no2+"-"+line_no3;
+		String phone_no = phone_no1+"-"+phone_no2+"-"+phone_no3;
+		String second_no = second_no1+"-"+second_no2+"-"+second_no3;
+		String email = email1+"-"+email2;
+		
 		memberVO.setUser_id(user_id);
 		memberVO.setUser_pwd(user_pwd);
 		memberVO.setLine_no(line_no);
@@ -172,14 +179,14 @@ public class MemberController{
 		memberVO.setPost(post);
 		memberVO.setAddress(address);
 		memberVO.setEmail(email);
+		memberVO.setUser_no(user_no);
 		
+		System.out.println(memberVO);
 		
-		if(memberService.updateJoin(memberVO)){
+		if(memberService.updateJoin(memberVO)) return "member/login";
 		
-			return "member/login";
-			}
-		else 
-		return "member/join_check";
+		else return "member/join_check";
+		
 		}
 		
 		
@@ -205,7 +212,7 @@ public class MemberController{
 		}
 		
 		else if(memberService.selectEmp1(user_nm, emp_serial)==null){
-			model.addAttribute("msg", "입력 정보를 정확히 입력하세요");
+			model.addAttribute("msg", "잘못된 사원이름이거나 잘못된 사원번호 입니다");
 			return "/member/search_id";
 		}
 		
@@ -250,7 +257,7 @@ public class MemberController{
 		}
 		
 		else if(memberService.selectEmp2(map)==null){
-			model.addAttribute("msg", "입력 정보를 정확히 입력하세요");
+			model.addAttribute("msg", "잘못된 사원이름이거나 잘못된 사원번호 입니다");
 			return "/member/search_pass";
 		}
 		
