@@ -38,7 +38,7 @@ public interface BoardService  {
 	public SessionVO checkManage(int user_no);
 	public List<BoardVO> notice();
 	public String selectReply(int user_no);
-	public List<String> replyContents(int user_no);
+	public List<BoardVO> replyContents(int user_no);
 	
 
 	}

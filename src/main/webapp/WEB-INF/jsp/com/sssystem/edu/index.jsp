@@ -85,25 +85,25 @@ $(document).ready(function() {
 						<dl>
 							<dt>나의 질문</dt>
 							<c:forEach var="myQuestion" items="${myWriteView }">
-							<dd><a href="../qna/view?board_gb=${myQuestion.board_gb}&no=${myQuestion.qna_no }">${myQuestion.title }</a></dd>
+							<dd><a href="/IES/qna/view?board_gb=${myQuestion.board_gb}&no=${myQuestion.qna_no }">${myQuestion.title }</a></dd>
 							</c:forEach>
 						</dl>
 						<dl>
 							<dt>나의 게시글</dt>
 							<c:forEach var="myWrite" items="${myQuestionView }">
-							<dd><a href="../board/view?board_gb=${myWrite.board_gb}&no=${myWrite.board_no }">${myWrite.title }</a></dd>
+							<dd><a href="/IES/board/view?board_gb=${myWrite.board_gb}&no=${myWrite.board_no }">${myWrite.title }</a></dd>
 							</c:forEach>
 						</dl>
 						<dl>
 							<dt>나의 댓글</dt>
 							<c:forEach var="contents" items="${replyContents }">
-							<dd><a href=#>${contents }</a></dd>
+							<dd><a href="/IES/board/view?board_gb=${contents.board_gb}&no=${contents.board_no }">${contents.contents }</a></dd>
 							</c:forEach>
 						</dl>
 						<dl>
 							<dt>건의사항</dt>
 							<c:forEach var="qnaBoard" items="${recommendView }">
-							<dd><a href="../qna/view?board_gb=${qnaBoard.board_gb}&no=${qnaBoard.qna_no }">${qnaBoard.title }</a></dd>
+							<dd><a href="/IES/qna/view?board_gb=${qnaBoard.board_gb}&no=${qnaBoard.qna_no }">${qnaBoard.title }</a></dd>
 							</c:forEach>
 						</dl>
 					</div>

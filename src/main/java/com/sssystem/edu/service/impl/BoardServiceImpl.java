@@ -195,8 +195,8 @@ public class BoardServiceImpl implements BoardService {
 	}
 
 	@Override
-	public List<String> replyContents(int user_no) {
-		List<String> list = session.selectList("notice.replyContents", user_no);
+	public List<BoardVO> replyContents(int user_no) {
+		List<BoardVO> list = session.selectList("notice.replyContents", user_no);
 		return list;
 	}
 
