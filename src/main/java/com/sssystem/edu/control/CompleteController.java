@@ -3,6 +3,7 @@ package com.sssystem.edu.control;
 import java.sql.Date;
 import java.util.List;
 
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -120,6 +121,14 @@ public class CompleteController {
 			@RequestParam(value="edu_no")int edu_no){
 		model.addAttribute("list",completeService.selectTest(edu_no));
 		return "test/startTest";
+	}
+	
+	@RequestMapping("test/checkFrm")
+	public String checkTest(HttpServletRequest request,
+			HttpSession session,
+			Model model){
+		
+		return "haha";
 	}
 
 }
