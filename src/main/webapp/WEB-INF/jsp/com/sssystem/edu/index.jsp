@@ -58,7 +58,7 @@ $(document).ready(function() {
 				<div id="mid">
 					<span class="title">공지사항</span>
 					<c:forEach var="notice1" items="${notice }">
-					<a href="../board/view?board_gb=${notice1.board_gb}&no=${notice1.board_no }">${notice1.title }</a>
+					<a href="/IES/board/view?board_gb=${notice1.board_gb}&no=${notice1.board_no }">${notice1.title }</a>
 					</c:forEach>
 				</div>
 				<div id="bot">
