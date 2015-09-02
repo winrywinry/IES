@@ -26,11 +26,11 @@
 <div id="winWrap">
 	<div id="winHeader"><h3>시험</h3></div>
 	<div id="winCon">	
-		<form method="post" name="writeFrm" action="save">
+		<form method="get" name="checkFrm" action="checkTest">
 		<input type="hidden" name="test" value="${test_no }" />
 		<input type="hidden" name="edu" value="${edu_no }" />
 		<table class="testWrite">
-		<c:forEach var="test" items="${list }">
+		<c:forEach var="test" items="${list }" varStatus="no">
 			<tr>
 				<th>구분</th>
 					<td><c:choose>
@@ -48,7 +48,7 @@
 					<th>정답</th>
 						<td class="last">
 						<c:set var="answer_arr" value="${fn:split(test.answer_nm, '@') }"/>
-							<c:forEach var="answer_nm" items="${answer_arr }" varStatus="no">
+							<c:forEach var="answer_nm" items="${answer_arr }">
 								<input type="radio" name="${test.q_no }" id="${test.q_no }" value="${no.index+1 }">${answer_nm }<br>
 						</c:forEach>
 						</td>
@@ -60,15 +60,16 @@
 					<tr>
 					<th>정답</th>
 						<td>
-							<input type="text"/>
-						</td>
+							<input type="text" name="${no.index+1 }"/>
+						</td>	
 					</tr>
 				</c:when>
 			</c:choose>
 		</c:forEach>
 		</table>
 		<div id="btnArea">
-			<a class="css_btn_class" onclick="submitChk();"><span id="sub">작성</span></a>
+			<input type="submit" class="css_btn_class">
+			<a class="css_btn_class" onclick="checkFrm();"><span id="sub">작성</span></a>
 			<a class="css_btn_class" onclick="document.writeFrm.reset();">취소</a>
 		</div>
 		</form>

@@ -56,20 +56,4 @@
 		</choose>
 	</select>
 	
-	<select id="selectTest" parameterType="int" resultType="testVO">
-		SELECT
-			TEST_NO,
-			GUBUN,
-			Q_NO,
-			QUESTION,
-			ANSWER_NM,
-			CORR_ANSWER
-		FROM
-			T_EDU_TEST
-		WHERE
-			EDU_NO = #{edu_no}
-			ORDER BY Q_NO
-			
-	</select>
-	
 </mapper>

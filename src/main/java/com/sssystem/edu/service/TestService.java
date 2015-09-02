@@ -10,4 +10,5 @@ public interface TestService {
 	public int insert(TestVO testVO);
 	public boolean update(TestVO testVO);
 	public boolean delete(int test_no);
+	public List<TestVO> selectTest(int edu_no);
 }

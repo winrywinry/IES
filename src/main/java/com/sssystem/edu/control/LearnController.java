@@ -104,6 +104,12 @@ public class LearnController {
 		String filename = attach.getOriginalFilename();
 		attachVO.setAttach_file(filename);
 		
+		try {
+			learnSave();
+		} catch {
+			
+		}
+		
 		ServletContext servletContext = request.getSession().getServletContext();
 		String relativeWebPath = "/images/";
 		String absoluteDiskPath = servletContext.getRealPath(relativeWebPath);

@@ -55,10 +55,4 @@ public class CompleteServiceImpl implements CompleteService {
 		return cntFavo;
 	}
 
-	@Override
-	public List<TestVO> selectTest(int edu_no) {
-		List<TestVO> list = session.selectList("complete.selectTest",edu_no);
-		return list;
-	}
-
 }

@@ -26,7 +26,6 @@ public class TestServiceImpl implements TestService {
 	}
 	@Override
 	public int insert(TestVO testVO) {
-		System.out.println(testVO);
 		session.insert("test.insert", testVO);
 		int test_no = testVO.getTest_no();
 		return test_no;
@@ -48,5 +47,12 @@ public class TestServiceImpl implements TestService {
 		if (t>0) return true;
 		return false;
 	}
+	
+	@Override
+	public List<TestVO> selectTest(int edu_no) {
+		List<TestVO> list = session.selectList("test.selectTest",edu_no);
+		return list;
+	}
+
 
 }
