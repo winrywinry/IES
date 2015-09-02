@@ -4,7 +4,7 @@
 <html>
 <head>
 	<meta charset="utf-8">
-	<title>사내교육시스템 - 아이디찾기</title>
+	<title>사내교육시스템 - 비밀번호 찾기</title>
 	<link rel="stylesheet" type="text/css" href="${initParam.root }/css/search.css">
 </head>
 <body>

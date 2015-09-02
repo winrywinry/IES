@@ -168,9 +168,9 @@
 			USER_NO = #{user_no}
 	</select> -->
 	
-	<select id="notice" resultType="String">
-		SELECT TITLE FROM (
- 		SELECT TITLE
+	<select id="notice" resultType="boardVO">
+		SELECT TITLE, BOARD_GB, BOARD_NO FROM (
+ 		SELECT TITLE, BOARD_GB, BOARD_NO
  		FROM T_EDU_BOARD
  		WHERE BOARD_GB=10
  		ORDER BY INPUT_DT DESC)
@@ -183,13 +183,16 @@
 		WHERE USER_NO = #{user_no}
 	</select>
 	
-	<select id="replyContents" parameterType="int" resultType="String">
-		SELECT CONTENTS FROM(
-		SELECT CONTENTS
-		FROM T_EDU_COMMENT
-		WHERE USER_NO = #{user_no}
-		ORDER BY INPUT_DT DESC)
-		WHERE ROWNUM BETWEEN 1 AND 6
+	<select id="replyContents" parameterType="int" resultType="boardVO">
+		 SELECT A.CONTENTS
+     			, A.BOARD_NO
+    	 		, B.BOARD_GB
+  		FROM T_EDU_COMMENT A
+       	JOIN T_EDU_BOARD B
+ 		ON A.BOARD_NO = B.BOARD_NO
+   		AND ROWNUM BETWEEN 1 AND 6
+   		AND A.USER_NO = #{user_no}
+ 		ORDER BY A.INPUT_DT DESC
 	</select>
 
 	
