@@ -17,4 +17,11 @@ public class AuthServiceImpl implements AuthService {
 		return false;
 	}
 
+	@Override
+	public boolean delete(int edu_no) {
+		int t = session.delete("auth.delete", edu_no);
+		if (t > 0) return true;
+		return false;
+	}
+
 }
