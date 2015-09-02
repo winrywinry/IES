@@ -26,9 +26,9 @@
 <div id="winWrap">
 	<div id="winHeader"><h3>시험</h3></div>
 	<div id="winCon">	
-		<form method="get" name="checkFrm" action="checkTest">
+		<form method="get" name="checkTest" action="checkTest">
 		<input type="hidden" name="test" value="${test_no }" />
-		<input type="hidden" name="edu" value="${edu_no }" />
+		<input type="hidden" name="edu_no" value="${param.edu_no }" />
 		<table class="testWrite">
 		<c:forEach var="test" items="${list }" varStatus="no">
 			<tr>

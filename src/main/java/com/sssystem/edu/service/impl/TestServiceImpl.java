@@ -53,6 +53,20 @@ public class TestServiceImpl implements TestService {
 		List<TestVO> list = session.selectList("test.selectTest",edu_no);
 		return list;
 	}
-
-
+	@Override
+	public int countTest(int edu_no) {
+		int t = session.selectOne("test.countTest",edu_no);
+		return t;
+	}
+	@Override
+	public TestVO selectAnswer(int edu_no, int q_no) {
+		System.out.println("edu_no = "+edu_no);
+		System.out.println("q_no = "+q_no);
+		HashMap<String,Integer> input_map = new HashMap<String, Integer>();
+		input_map.put("edu_no",edu_no);
+		input_map.put("q_no",q_no);
+		
+		TestVO testVO = (TestVO) session.selectOne("test.selectAnswer",input_map);
+		return testVO;
+	}
 }

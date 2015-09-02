@@ -105,4 +105,23 @@
 			ORDER BY Q_NO
 			
 	</select>
+	
+	<select id="countTest" parameterType="int" resultType="int">
+		SELECT
+			COUNT(*)
+		FROM
+			T_EDU_TEST
+		WHERE
+			EDU_NO = #{edu_no}
+	</select>
+	
+	<select id="selectAnswer" parameterType="hashmap" resultType="testVO">
+		SELECT
+			GUBUN,
+			CORR_ANSWER
+		FROM
+			T_EDU_TEST
+		WHERE
+			EDU_NO = #{edu_no} AND Q_NO = #{q_no}
+	</select>
 </mapper>

@@ -1,5 +1,7 @@
 package com.sssystem.edu.control;
 
+import java.util.HashMap;
+
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
@@ -122,11 +124,25 @@ public class TestController {
 		return "test/startTest";
 	}
 	
-	@RequestMapping("test/checkFrm")
+	@RequestMapping("test/checkTest")
 	public String checkTest(HttpServletRequest request,
 			HttpSession session,
-			Model model){
-		
+			Model model,
+			@RequestParam(value="edu_no",required=false)int edu_no){
+		int cntTest = testService.countTest(edu_no);
+		System.out.println("cntTest ="+cntTest);
+		for(int i = 1 ; i <= cntTest ; i++){
+			System.out.println("i = "+i);
+			TestVO testVO = testService.selectAnswer(88,i);
+			String[] haha = request.getParameterValues(i+"");
+			for(int b = 0; b < haha.length ; b++){
+				if(testVO.getCorr_answer().equals(haha[b]))
+				System.out.println("Á¤´ä");
+			}
+		}
+//		TestVO testVO = testService.selectAnswer(88,3);
+//		System.out.println("gubun:"+testVO.getGubun());
+//		System.out.println("corr_answer"+testVO.getCorr_answer());
 		return "haha";
 	}
 
