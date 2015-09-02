@@ -1,42 +1,43 @@
 <%@page import="com.sssystem.edu.vo.LearnVO"%>
 <%@page import="com.sssystem.edu.vo.CompleteVO"%>
 <%@page import="com.sssystem.edu.vo.support.SessionVO"%>
-<%@ page language="java" contentType="text/html; charset=EUC-KR"
-	pageEncoding="EUC-KR"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+	pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
 <!DOCTYPE html>
 <html>
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=EUC-KR">
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <link rel="stylesheet" type="text/css" href="${initParam.root }/css/learn.css" />
 <title>Insert title here</title>
 <% LearnVO learn = (LearnVO)request.getAttribute("learn");%>
 	<script type="text/javascript">
 		function del(){
-			if (confirm("Á¤¸» »èÁ¦ÇÏ½Ã°Ú½À´Ï±î??")){    //È®ÀÎ
+			if (confirm("ì •ë§ ì‚­ì œí•˜ì‹œê² ìŠµë‹ˆê¹Œ??")){    //í™•ì¸
 				location.href="./delete?edu_no="+document.frm.edu_no.value;
-			}else{   //Ãë¼Ò
+			}else{   //ì·¨ì†Œ
 			    return;
 			}
 		}
 		
+		function favoriteCnt(){
+			alert('í•˜í•˜');
+			location.href="./favorite?no="+${param.no}+"&user_no="+${user.user_no}+"&page="+${param.page}+"&searchWord="+${param.searchWord};
+		}
+
 		window.onload=function(){
 		    var essential = document.getElementById('essential');//console: Element
 		    var e = ${learn.essential_yn};
 		    var msg=null;
 		    if(e==1){
-		    	msg="ÇÊ¼ö";
+		    	msg="í•„ìˆ˜";
 		    }else{
-		    	msg="¼±ÅÃ";
+		    	msg="ì„ íƒ";
 		    }
         essential.innerHTML = msg;  
 		}		
 		
-		function favoriteCnt() {
-			location.href="./favorite?edu_no="+document.frm.edu_no.value+"&user_no="+${user.user_no};
-			document.frm.favorite
-		}
 
 	</script>
 </head>
@@ -57,64 +58,76 @@
 					<input type="hidden" name="edu_no" value="${learn.edu_no}">
 					<table class="contentTab">
 						<tr>
-							<th width="15%">Ã·ºÎÆÄÀÏ</th>
-							<td width="30%"><a class="css_btn_class" onclick="favoriteCnt">ÃßÃµ</a><span>${learn.favorite_cnt}</span></td>
-							<th width="10%">ÇÊ¼ö¿©ºÎ</th>
+							<th width="15%">ì²¨ë¶€íŒŒì¼</th>
+<!-- 							<td width="30%"><a class="css_btn_class" onclick="favoriteCnt()">ì¶”ì²œ</a></td> -->
+							<td width="30%">
+								ì²¨ë¶€íŒŒì¼
+							</td>
+							<th width="10%">í•„ìˆ˜ì—¬ë¶€</th>
 							<td width="10%"><span id="essential"></span></td>
-							<th width="10%">Á¶È¸¼ö</th>
+							<th width="10%">ì¡°íšŒìˆ˜</th>
 							<td width="10%">${learn.view_cnt }</td>
-						 	<th width="25%">ÃßÃµ¼ö</th>
+						 	<th width="25%">
+							<c:choose>
+								<c:when test="${learn.check_favorite==0 }">
+									<a class="css_btn_class" href="/IES/learn/favorite?no=${param.no}&dept_no=${param.dept_no }&page=${param.page}&searchWord=${param.searchWord}">ì¶”ì²œ</a>						
+								</c:when>
+								<c:otherwise>
+								ì¶”ì²œìˆ˜
+								</c:otherwise>
+							</c:choose>
+							</th>
 							<td width="10%">${learn.favorite_cnt}</td>
 						</tr>
 <%-- 	<tr>
-		<th>±³À°±â°£</th>
-		<td colspan="5"><fmt:formatDate value="${learn.period_st}" pattern="yyyy³â MM¿ù ddÀÏ" /> ~ <fmt:formatDate value="${learn.period_ed}" pattern="yyyy³â MM¿ù ddÀÏ" /></td>
+		<th>êµìœ¡ê¸°ê°„</th>
+		<td colspan="5"><fmt:formatDate value="${learn.period_st}" pattern="yyyyë…„ MMì›” ddì¼" /> ~ <fmt:formatDate value="${learn.period_ed}" pattern="yyyyë…„ MMì›” ddì¼" /></td>
 	</tr> --%>
 <!--<tr>
- 	<th>½ÃÀÛ</th>
-	<td colspan="5"><input type="button" value="START"><input type="button" id="favorite" value="ÃßÃµ" onclick="setDisable(favorite)"></td>
+ 	<th>ì‹œì‘</th>
+	<td colspan="5"><input type="button" value="START"><input type="button" id="favorite" value="ì¶”ì²œ" onclick="setDisable(favorite)"></td>
 </tr> -->
 						<tr>
-							<th style="height: 300px" rowspan="2">³»¿ë</th>
+							<th style="height: 300px" rowspan="2">ë‚´ìš©</th>
 							<td colspan="5">
 								<iframe width="700	px" height="400px" src="http://www.youtube.com/embed/${learn.contents_tag }" allowfullscreen="allowfullscreen"></iframe>
 							</td>
-<!-- <td colspan="3" bgcolor="yellow">Ã¤ÆÃÇü Q&AÃ¢</td> -->
+<!-- <td colspan="3" bgcolor="yellow">ì±„íŒ…í˜• Q&Aì°½</td> -->
 						</tr>
 						<tr>	
 							<td colspan="5">${learn.contents }</td>
-<!-- <td colspan="3" bgcolor="pink">ºÎ¼­º° Ãâ¼®¿©ºÎ</td> -->
+<!-- <td colspan="3" bgcolor="pink">ë¶€ì„œë³„ ì¶œì„ì—¬ë¶€</td> -->
 						</tr>
 <!-- 	<tr>
-		<th>Á¾·á</th>
+		<th>ì¢…ë£Œ</th>
 		<td colspan="5"><input type="button" value="END"></td>
 	</tr> -->
 					</table>
 					<br>
 					<span style="font-size: 80%; font-weight: bolder; float: right;">
 					<c:if test="${learnComplete.start_dt == null}">
-					<a class="link1" onclick="location.href='/IES/learn/updateComplete?no=${learn.edu_no}&start_dt=${learnComplete.start_dt }&end_dt=${learnComplete.end_dt }&dept_no=${param.dept_no }&page=${param.page }'">±³À°½ÃÀÛ</a> |
+					<a class="link1" onclick="location.href='/IES/learn/updateComplete?no=${learn.edu_no}&start_dt=${learnComplete.start_dt }&end_dt=${learnComplete.end_dt }&dept_no=${param.dept_no }&page=${param.page }&searchWord=${param.searchWord }'">êµìœ¡ì‹œì‘</a> |
 					</c:if>
 					<c:if test="${learnComplete.end_dt != null and learnComplete.end_dt == '1111-11-11 00:00:00.0'}">
-					<a class="link1" onclick="location.href='/IES/learn/updateComplete?no=${learn.edu_no}&start_dt=${learnComplete.start_dt }&end_dt=${learnComplete.end_dt }&dept_no=${param.dept_no }&page=${param.page }'">±³À°Á¾·á</a> |
+					<a class="link1" onclick="location.href='/IES/learn/updateComplete?no=${learn.edu_no}&start_dt=${learnComplete.start_dt }&end_dt=${learnComplete.end_dt }&dept_no=${param.dept_no }&page=${param.page }&searchWord=${param.searchWord }'">êµìœ¡ì¢…ë£Œ</a> |
 					</c:if>
 					<c:if test="${learnComplete.end_dt != null and learnComplete.end_dt != '1111-11-11 00:00:00.0'}">
-					<a class="link1" onclick="">½ÃÇè½ÃÀÛ${learnComplete.end_dt }</a> |					
+					<a class="link1" onclick="">ì‹œí—˜ì‹œì‘${learnComplete.end_dt }</a> |					
 					</c:if>
-					<a class="link1" href="/IES/qna/write?board_gb=40&edu_no=${learn.edu_no }" >Áú¹®ÇÏ±â</a> | 
-					<a class="link1" onclick="del()" >»èÁ¦</a> | 
-					<a class="link1" onclick="location.href='/IES/learn/updatePage?no=${learn.edu_no}&user_no=${learn.user_no}&update=update';">¼öÁ¤</a> | 
-					<a class="link1" onclick="location.href='/IES/learn/list';">¸ñ·ÏÀ¸·Î</a>
+					<a class="link1" href="/IES/qna/write?board_gb=40&edu_no=${learn.edu_no }" >ì§ˆë¬¸í•˜ê¸°</a> | 
+					<a class="link1" onclick="del()" >ì‚­ì œ</a> | 
+					<a class="link1" onclick="location.href='/IES/learn/updatePage?no=${learn.edu_no}&user_no=${learn.user_no}&update=update';">ìˆ˜ì •</a> | 
+					<a class="link1" onclick="location.href='/IES/learn/list';">ëª©ë¡ìœ¼ë¡œ</a>
 					</span>
 					<br><br>
 					<table class="moveTab">
 						<tr>
-							<td width="20%"><img src='/IES/images/up.png' /> ÀÌÀü±Û</td>
+							<td width="20%"><img src='/IES/images/up.png' /> ì´ì „ê¸€</td>
 							<td width="60%" class="left"><a href="contentsView?no=${learnPrev.edu_no}&dept_no=${param.dept_no}&page=${param.page}">${learnPrev.title }</a></td>
 							<td width="20%"><fmt:formatDate value="${learnPrev.input_dt }" pattern="MM-dd HH:mm" /></td>
 						</tr>
 						<tr>
-							<td><img src='/IES/images/down.png' /> ´ÙÀ½±Û</td>
+							<td><img src='/IES/images/down.png' /> ë‹¤ìŒê¸€</td>
 							<td class="left"><a href="contentsView?no=${learnNext.edu_no}&dept_no=${param.dept_no}&page=${param.page}">${learnNext.title }</a></td>
 							<td><fmt:formatDate value="${learnNext.input_dt }" pattern="MM-dd HH:mm" /></td>
 						</tr>

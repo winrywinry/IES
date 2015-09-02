@@ -1,8 +1,8 @@
 <%@page import="com.sssystem.edu.common.SetBoardTitle"%>
 <%@page import="com.sssystem.edu.vo.QnaBoardVO"%>
 <%@page import="com.sssystem.edu.vo.SearchVO"%>
-<%@ page language="java" contentType="text/html; charset=EUC-KR"
-	pageEncoding="EUC-KR"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+	pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
 <%@ taglib tagdir="/WEB-INF/tags" prefix="custom" %>
@@ -19,8 +19,8 @@
 	function searchFormChk() {
 		var form = document.searchForm;
 	        if (form.searchForm.value == '') {
-	            alert('°Ë»ö¾î¸¦ ÀÔ·ÂÇÏ¼¼¿ä.');
-	            // Á¦¸ñ INPUT BOX Ä¿¼­°¡ ÀÌµ¿
+	            alert('ê²€ìƒ‰ì–´ë¥¼ ì…ë ¥í•˜ì„¸ìš”.');
+	            // ì œëª© INPUT BOX ì»¤ì„œê°€ ì´ë™
 	            form.searchForm.focus();
 	            return false;
      }
@@ -28,7 +28,7 @@
      function compare(){
      	var searchWord= document.searchFrm.pSearchWord.value;
      	if(searchWord == '') {    		
-     		alert('ºñ¹Ğ¹øÈ£¸¦ ÀÔ·ÂÇØÁÖ¼¼¿ä.');
+     		alert('ë¹„ë°€ë²ˆí˜¸ë¥¼ ì…ë ¥í•´ì£¼ì„¸ìš”.');
      	}
      }
 
@@ -53,9 +53,9 @@
                     });
                 });
 </script>
-<meta http-equiv="Content-Type" content="text/html; charset=EUC-KR">
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <link rel="stylesheet" type="text/css" href="${initParam.root }/css/qna.css" />
-<title>°øÁö»çÇ×</title>
+<title>ê³µì§€ì‚¬í•­</title>
 </head>
 <body>
 	<div id="wrap">
@@ -75,9 +75,9 @@
 					<table class="listtop">
 							<tr>
 								<th valign="bottom" >
-									<c:if test="${param.board_gb==40 }"><h3>Áú¹®°ú´äº¯</h3><br></c:if>
+									<c:if test="${param.board_gb==40 }"><h3>ì§ˆë¬¸ê³¼ë‹µë³€</h3><br></c:if>
 									<c:if test="${param.board_gb==50 }"><h3>FAQ</h3><br></c:if>
-									<c:if test="${param.board_gb==60 }"><h3>°ÇÀÇ»çÇ×</h3><br></c:if>
+									<c:if test="${param.board_gb==60 }"><h3>ê±´ì˜ì‚¬í•­</h3><br></c:if>
 								</th>
 								<td>
 								<td width="20%"><input type="text" id=pSearchWord name="pSearchWord" value="${searchVO.searchWord }"/></td>
@@ -89,11 +89,11 @@
 					<c:if test="${param.board_gb!=50 }">
 					<table border="0" cellspacing="0" cellpadding="0" class="listTab">
 						<tr>
-							<th width="10%">¹øÈ£</th>
-							<th>Á¦ ¸ñ</th>			
-							<th width="10%">Ã·ºÎÆÄÀÏ</th>
-							<th width="15%">ÀÛ¼ºÀÏ</th>
-							<th width="10%">Á¶È¸¼ö</th>
+							<th width="10%">ë²ˆí˜¸</th>
+							<th>ì œ ëª©</th>			
+							<th width="10%">ì²¨ë¶€íŒŒì¼</th>
+							<th width="15%">ì‘ì„±ì¼</th>
+							<th width="10%">ì¡°íšŒìˆ˜</th>
 						</tr>
 						<c:forEach var="qnaBoard" items="${list }">
 						<tr>
@@ -109,8 +109,8 @@
 					<c:if test="${param.board_gb==50 }">
 					<table border="0" cellspacing="0" cellpadding="0" class="listTab">
 						<tr>
-							<th width="50" valign="top">¹øÈ£</th>
-							<th>³»¿ë</th>
+							<th width="50" valign="top">ë²ˆí˜¸</th>
+							<th>ë‚´ìš©</th>
 						</tr>
 							<c:forEach var="qnaBoard" items="${list }">
 						<tr>
@@ -121,8 +121,8 @@
                      				<dd>
                      					<img alt="" src="../images/faq.gif">
                      					${qnaBoard.q_contents }<br>
-                     					<a class="link1" onclick="location.href='/IES/qna/update?no=${qnaBoard.qna_no }&board_gb=${param.board_gb }';">¼öÁ¤</a>|
-                     					<a class="link1" onclick="location.href='/IES/qna/delete?no=${qnaBoard.qna_no }&board_gb=${param.board_gb}';">»èÁ¦</a>
+                     					<a class="link1" onclick="location.href='/IES/qna/update?no=${qnaBoard.qna_no }&board_gb=${param.board_gb }';">ìˆ˜ì •</a>|
+                     					<a class="link1" onclick="location.href='/IES/qna/delete?no=${qnaBoard.qna_no }&board_gb=${param.board_gb}';">ì‚­ì œ</a>
                     				</dd>
 						</dl>
 						</td>
@@ -131,12 +131,12 @@
 					</table>
 						</c:if>
 	<%--					<dl class="accordion">
-							<dt>¹øÈ£ &nbsp; &nbsp; <span style="display:block;text-align:center;">³»¿ë</span></dt>
+							<dt>ë²ˆí˜¸ &nbsp; &nbsp; <span style="display:block;text-align:center;">ë‚´ìš©</span></dt>
 							<c:forEach var="qnaBoard" items="${list }">
                      			<dt style="CURSOR: pointer">&nbsp; ${qnaBoard.rownum } &nbsp; &nbsp; <b>${qnaBoard.title }</b></dt>
                      				<dd>
                      					<img alt="" src="../images/faq.gif">
-                     					${qnaBoard.q_contents }<br><a class="link1">¼öÁ¤</a>|<a class="link1" onclick="location.href='/IES/qna/deleteForm?no=${qnaBoard.qna_no }&board_gb=${param.board_gb }&board_no';">»èÁ¦</a>
+                     					${qnaBoard.q_contents }<br><a class="link1">ìˆ˜ì •</a>|<a class="link1" onclick="location.href='/IES/qna/deleteForm?no=${qnaBoard.qna_no }&board_gb=${param.board_gb }&board_no';">ì‚­ì œ</a>
                     				</dd>
 							</c:forEach>	
 						</dl>
@@ -147,7 +147,7 @@
 <%-- 					<div id="btn">
 							<form action="writeForm" method="post">
 								<input type ="hidden" name ="board_gb" value="${param.board_gb }" >
-								<a href="/IES/qna/writeForm?board_gb=${param.board_gb }" class="css_btn_class">µî·Ï</a>
+								<a href="/IES/qna/writeForm?board_gb=${param.board_gb }" class="css_btn_class">ë“±ë¡</a>
 							</form>
 						</div> --%>
 				<custom:paging page="${searchVO.page_no}" totalCnt="${searchVO.total}" par="&board_gb=${param.board_gb}&pSearchWord=${searchVO.searchWord}"></custom:paging>

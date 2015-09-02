@@ -44,4 +44,15 @@
 		)
 	</insert>
 
+	<select id="selectFavorite" parameterType="hashmap" resultType="int">
+		SELECT
+			COUNT(*)
+		FROM
+			T_FAVORITE
+		WHERE
+		<choose>
+			<when test="user_no==0">EDU_NO = #{edu_no}</when>
+			<otherwise>EDU_NO = #{edu_no} AND USER_NO = #{user_no}</otherwise>
+		</choose>
+	</select>
 </mapper>

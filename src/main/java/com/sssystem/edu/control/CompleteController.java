@@ -54,6 +54,8 @@ public class CompleteController {
 		learnService.updateViewCnt(no);
 		
 		LearnVO learn = learnService.select(no);
+		learn.setFavorite_cnt(completeService.selectFavorite(no,0));
+		learn.setCheck_favorite(completeService.selectFavorite(no,sessionVO.getUser_no()));
 		LearnVO learnNext = learnService.selectNext(pageVO);
 		LearnVO learnPrev = learnService.selectPrev(pageVO);
 		CompleteVO learnComplete = completeService.selectComplete(no,sessionVO.getUser_no());
@@ -74,7 +76,8 @@ public class CompleteController {
 			@RequestParam(value="start_dt",required=false,defaultValue="1111-11-11")String start_dt,
 			@RequestParam(value="end_dt",required=false,defaultValue="1111-11-11")String end_dt,
 			@RequestParam(value="dept_no")String dept_no,
-			@RequestParam(value="page")String page){
+			@RequestParam(value="page")String page,
+			@RequestParam(value="searchWord",required=false)String searchWord){
 		
 		SessionVO sessionVO = (SessionVO) session.getAttribute("user");
 		int user_no = sessionVO.getUser_no();
@@ -85,10 +88,9 @@ public class CompleteController {
 		completeVO.setEnd_dt(end_dt);
 		
 		if(start_dt.equals("1111-11-11")){
-			System.out.println("gkgkgkgkgkgk");
-			if(completeService.insertComplete(completeVO)) return "redirect:view?dept_no="+dept_no+"&page="+page;
-		}else{//return 경로 외 완성
-			if(completeService.updateComplete(completeVO)) return "learn/view?dept_no="+dept_no+"&page="+page;		
+			if(completeService.insertComplete(completeVO)) return "redirect:contentsView?no="+edu_no+"&dept_no="+dept_no+"&page="+page+"&searchWord="+searchWord;
+		}else{
+			if(completeService.updateComplete(completeVO)) return "redirect:contentsView?no="+edu_no+"&dept_no="+dept_no+"&page="+page+"&searchWord="+searchWord;		
 			}
 		
 		return "learn/list";
@@ -96,10 +98,22 @@ public class CompleteController {
 	
 	@RequestMapping("learn/favorite")
 	public String favorite(HttpSession session, Model model,
-			@RequestParam(value="edu_no")int edu_no){
+			@RequestParam(value="no")int edu_no,
+			@RequestParam(value="dept_no")String dept_no,
+			@RequestParam(value="page")String page,
+			@RequestParam(value="searchWord",required=false)String searchWord){
+		SessionVO sessionVO = (SessionVO) session.getAttribute("user");
+		CompleteVO completeVO = new CompleteVO();
+		completeVO.setEdu_no(edu_no);
+		completeVO.setUser_no(sessionVO.getUser_no());
 		
-		
-		return "learn/list";
+		if(completeService.insertFavorite(completeVO)){
+			System.out.println("진입");
+			return "redirect:contentsView?no="+edu_no+"&dept_no="+dept_no+"&page="+page+"&searchWord="+searchWord;			
+		}else{
+			System.out.println("fail");
+			return "redirect:contentsView?no="+edu_no+"&dept_no="+dept_no+"&page="+page+"&searchWord="+searchWord;			
+		}
 	}
 
 }
