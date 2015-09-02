@@ -168,9 +168,9 @@
 			USER_NO = #{user_no}
 	</select> -->
 	
-	<select id="notice" resultType="String">
-		SELECT TITLE FROM (
- 		SELECT TITLE
+	<select id="notice" resultType="boardVO">
+		SELECT TITLE, BOARD_GB, BOARD_NO FROM (
+ 		SELECT TITLE, BOARD_GB, BOARD_NO
  		FROM T_EDU_BOARD
  		WHERE BOARD_GB=10
  		ORDER BY INPUT_DT DESC)

@@ -56,8 +56,10 @@ $(document).ready(function() {
 					</div>
 				</div>
 				<div id="mid">
-					<p><span class="title">공지사항</span>
-					${notice } </p>
+					<span class="title">공지사항</span>
+					<c:forEach var="notice1" items="${notice }">
+					<a href="../board/view?board_gb=${notice1.board_gb}&no=${notice1.board_no }">${notice1.title }</a>
+					</c:forEach>
 				</div>
 				<div id="bot">
 					<div id="calendar" class="left"><div id="calendar"></div></div>
@@ -82,14 +84,14 @@ $(document).ready(function() {
 						</dl>
 						<dl>
 							<dt>나의 질문</dt>
-							<c:forEach var="title" items="${myWriteView }">
-							<dd><a href=#>${title }</a></dd>
+							<c:forEach var="myQuestion" items="${myWriteView }">
+							<dd><a href="../qna/view?board_gb=${myQuestion.board_gb}&no=${myQuestion.qna_no }">${myQuestion.title }</a></dd>
 							</c:forEach>
 						</dl>
 						<dl>
 							<dt>나의 게시글</dt>
-							<c:forEach var="title" items="${myQuestionView }">
-							<dd><a href=#>${title }</a></dd>
+							<c:forEach var="myWrite" items="${myQuestionView }">
+							<dd><a href="../board/view?board_gb=${myWrite.board_gb}&no=${myWrite.board_no }">${myWrite.title }</a></dd>
 							</c:forEach>
 						</dl>
 						<dl>

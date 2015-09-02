@@ -1,6 +1,5 @@
 package com.sssystem.edu.service.impl;
 
-import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
@@ -182,9 +181,9 @@ public class BoardServiceImpl implements BoardService {
 	}
 
 	@Override
-	public ArrayList<String> notice() {
-		ArrayList<String> notice = null;
-		notice = (ArrayList) session.selectList("notice.notice");
+	public List<BoardVO> notice() {
+		List<BoardVO> notice = null;
+		notice = session.selectList("notice.notice");
 		return notice;
 	}
 

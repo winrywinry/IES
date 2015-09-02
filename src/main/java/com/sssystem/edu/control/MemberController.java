@@ -58,15 +58,15 @@ public class MemberController{
 		request.setAttribute("log", memberService.selectLogSession(user_no));//출석수
 		request.setAttribute("write", memberService.selectWrite(user_no));//게시글수
 		request.setAttribute("question", memberService.selectQuestion(user_no));//질문수
+		
 		request.setAttribute("myWriteView", memberService.myWriteView(user_no));//나의질문
 		request.setAttribute("myQuestionView", memberService.myQuestionView(user_no));//나의게시글
 		
-		System.out.println(qna.recommendView());
 		request.setAttribute("recommendView", qna.recommendView());//메인화면 건의사항view
 		
 		request.setAttribute("notice", board.notice());//메인화면 공지사항 view
 		request.setAttribute("reply", board.selectReply(user_no)); //댓글수
-		request.setAttribute("replyContents", board.replyContents(user_no));
+		request.setAttribute("replyContents", board.replyContents(user_no));//댓글뷰
 		
 		return "index";
 	}
