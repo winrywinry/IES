@@ -3,6 +3,7 @@ package com.sssystem.edu.control;
 import java.util.HashMap;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -78,7 +79,8 @@ public class MemberController{
 							  @RequestParam(value="user_pwd",required=false) String user_pwd,
 							  @ModelAttribute("member") MemberVO memberVO,
 				  			  BindingResult result,
-				  			  Model model){
+				  			  Model model,
+				  			  HttpSession session){
 		
 		logvalidator.validate(memberVO, result);
 		System.out.println("result: " + result);
@@ -95,7 +97,7 @@ public class MemberController{
 		
 		if(memberService.selectLogin(user_id).equals(user_pwd)){
 		sessionVO = memberService.selectSession(user_id);
-		model.addAttribute("user", sessionVO);
+		session.setAttribute("user", sessionVO);
 		return "redirect:index";
 		}
 		else {
