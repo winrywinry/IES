@@ -26,7 +26,6 @@ public class TestServiceImpl implements TestService {
 	}
 	@Override
 	public int insert(TestVO testVO) {
-		System.out.println(testVO);
 		session.insert("test.insert", testVO);
 		int test_no = testVO.getTest_no();
 		return test_no;
