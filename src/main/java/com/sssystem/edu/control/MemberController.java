@@ -170,7 +170,7 @@ public class MemberController{
 		String line_no = line_no1+"-"+line_no2+"-"+line_no3;
 		String phone_no = phone_no1+"-"+phone_no2+"-"+phone_no3;
 		String second_no = second_no1+"-"+second_no2+"-"+second_no3;
-		String email = email1+"-"+email2;
+		String email = email1+email2;
 		
 		memberVO.setUser_id(user_id);
 		memberVO.setUser_pwd(user_pwd);
