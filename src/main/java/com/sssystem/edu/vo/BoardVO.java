@@ -14,7 +14,7 @@ public class BoardVO {
 	private java.util.Date input_dt;//작성일
 	private Date time_stamp; //수정일
 	private String comment_cnt; //댓글수
-	private String edu_no; //교육번호
+	private int edu_no; //교육번호
 	private int next_idx;
 	private int pre_idx;
 	private String next_title;
@@ -101,11 +101,11 @@ public class BoardVO {
 		this.comment_cnt = comment_cnt;
 	}
 
-	public String getEdu_no() {
+	public int getEdu_no() {
 		return edu_no;
 	}
 
-	public void setEdu_no(String edu_no) {
+	public void setEdu_no(int edu_no) {
 		this.edu_no = edu_no;
 	}
 
