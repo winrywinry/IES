@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import com.sssystem.edu.common.ValidateParamChk;
 import com.sssystem.edu.service.CompleteService;
 import com.sssystem.edu.service.LearnService;
+import com.sssystem.edu.service.TestService;
 import com.sssystem.edu.vo.CompleteVO;
 import com.sssystem.edu.vo.LearnVO;
 import com.sssystem.edu.vo.search.SearchLearnVO;
@@ -114,21 +115,6 @@ public class CompleteController {
 		}else{
 			return "redirect:contentsView?no="+edu_no+"&dept_no="+dept_no+"&page="+page+"&searchWord="+searchWord;			
 		}
-	}
-	
-	@RequestMapping("test/startTest")
-	public String runTest(Model model,
-			@RequestParam(value="edu_no")int edu_no){
-		model.addAttribute("list",completeService.selectTest(edu_no));
-		return "test/startTest";
-	}
-	
-	@RequestMapping("test/checkFrm")
-	public String checkTest(HttpServletRequest request,
-			HttpSession session,
-			Model model){
-		
-		return "haha";
 	}
 
 }

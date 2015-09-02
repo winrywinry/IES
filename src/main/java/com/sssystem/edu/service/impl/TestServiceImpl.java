@@ -47,5 +47,12 @@ public class TestServiceImpl implements TestService {
 		if (t>0) return true;
 		return false;
 	}
+	
+	@Override
+	public List<TestVO> selectTest(int edu_no) {
+		List<TestVO> list = session.selectList("test.selectTest",edu_no);
+		return list;
+	}
+
 
 }

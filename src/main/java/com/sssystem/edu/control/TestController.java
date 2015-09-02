@@ -1,5 +1,6 @@
 package com.sssystem.edu.control;
 
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -113,4 +114,20 @@ public class TestController {
 		model.addAttribute("status", "delete");
 		return "test/result";
 	}
+	
+	@RequestMapping("test/startTest")
+	public String runTest(Model model,
+			@RequestParam(value="edu_no")int edu_no){
+		model.addAttribute("list",testService.selectTest(edu_no));
+		return "test/startTest";
+	}
+	
+	@RequestMapping("test/checkFrm")
+	public String checkTest(HttpServletRequest request,
+			HttpSession session,
+			Model model){
+		
+		return "haha";
+	}
+
 }

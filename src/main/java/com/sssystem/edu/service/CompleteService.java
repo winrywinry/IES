@@ -11,5 +11,4 @@ public interface CompleteService {
 	public boolean insertComplete(CompleteVO completeVO);
 	public boolean insertFavorite(CompleteVO completeVO);
 	public int selectFavorite(int edu_no, int user_no);
-	public List<TestVO> selectTest(int edu_no);
 }
