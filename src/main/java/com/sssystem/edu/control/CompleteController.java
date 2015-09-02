@@ -1,6 +1,7 @@
 package com.sssystem.edu.control;
 
 import java.sql.Date;
+import java.util.List;
 
 import javax.servlet.http.HttpSession;
 
@@ -108,12 +109,17 @@ public class CompleteController {
 		completeVO.setUser_no(sessionVO.getUser_no());
 		
 		if(completeService.insertFavorite(completeVO)){
-			System.out.println("¡¯¿‘");
 			return "redirect:contentsView?no="+edu_no+"&dept_no="+dept_no+"&page="+page+"&searchWord="+searchWord;			
 		}else{
-			System.out.println("fail");
 			return "redirect:contentsView?no="+edu_no+"&dept_no="+dept_no+"&page="+page+"&searchWord="+searchWord;			
 		}
+	}
+	
+	@RequestMapping("test/startTest")
+	public String runTest(Model model,
+			@RequestParam(value="edu_no")int edu_no){
+		model.addAttribute("list",completeService.selectTest(edu_no));
+		return "test/startTest";
 	}
 
 }

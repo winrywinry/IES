@@ -1,12 +1,14 @@
 package com.sssystem.edu.service.impl;
 
 import java.util.HashMap;
+import java.util.List;
 
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import com.sssystem.edu.service.CompleteService;
 import com.sssystem.edu.vo.CompleteVO;
+import com.sssystem.edu.vo.TestVO;
 
 public class CompleteServiceImpl implements CompleteService {
 	@Autowired
@@ -51,6 +53,12 @@ public class CompleteServiceImpl implements CompleteService {
 		map.put("user_no",user_no);
 		int cntFavo = session.selectOne("complete.selectFavorite",map);
 		return cntFavo;
+	}
+
+	@Override
+	public List<TestVO> selectTest(int edu_no) {
+		List<TestVO> list = session.selectList("complete.selectTest",edu_no);
+		return list;
 	}
 
 }
