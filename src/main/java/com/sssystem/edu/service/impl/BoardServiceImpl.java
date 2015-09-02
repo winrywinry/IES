@@ -191,8 +191,8 @@ public class BoardServiceImpl implements BoardService {
 	@Override
 	public String selectReply(int user_no) {
 		String reply = null;
-	//	reply = (String) session.selectList("notice.reply",user_no);
-		return null;
+		reply = (String) session.selectOne("notice.reply",user_no);
+		return reply;
 	}
 
 	@Override

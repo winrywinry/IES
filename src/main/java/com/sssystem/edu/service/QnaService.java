@@ -1,5 +1,6 @@
 package com.sssystem.edu.service;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import com.sssystem.edu.vo.QnaBoardVO;
@@ -19,4 +20,5 @@ public interface QnaService {
 	public void answerUpdate(QnaBoardVO bean);//답변 등록
 	public String answerNmSelect(int user_no);//답변자 이름 검색
 	public int haha();
+	public ArrayList<String> recommendView();
 }

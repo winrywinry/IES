@@ -49,11 +49,8 @@ public class MemberController{
 	}
 	
 	@RequestMapping("/member/index")
-	public String index(HttpServletRequest request){//HttpServletRequest request
-//		sessionVO = (SessionVO) request.getSession().getAttribute("user");
-//		System.out.println(request.getSession().getAttribute("user"));
-//		sessionVO = (SessionVO) request.getSession().getAttribute("user");
-//		
+	public String index(HttpServletRequest request){
+		
 		int user_no = sessionVO.getUser_no();
 		System.out.println("user_no :"+user_no);
 		
@@ -64,8 +61,7 @@ public class MemberController{
 		request.setAttribute("myWriteView", memberService.myWriteView(user_no));//나의질문
 		request.setAttribute("myQuestionView", memberService.myQuestionView(user_no));//나의게시글
 		
-		
-		//request.setAttribute("recommendView", qna.recommendView());
+		request.setAttribute("recommendView", qna.recommendView());//메인화면 건의사항view
 		
 		request.setAttribute("notice", board.notice());//메인화면 공지사항 view
 		request.setAttribute("reply", board.selectReply(user_no)); //댓글수
