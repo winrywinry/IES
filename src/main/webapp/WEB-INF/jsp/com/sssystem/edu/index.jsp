@@ -83,25 +83,25 @@ $(document).ready(function() {
 						<dl>
 							<dt>나의 질문</dt>
 							<c:forEach var="title" items="${myWriteView }">
-							<dd>${title }</dd>
+							<dd><a href=#>${title }</a></dd>
 							</c:forEach>
 						</dl>
 						<dl>
 							<dt>나의 게시글</dt>
 							<c:forEach var="title" items="${myQuestionView }">
-							<dd>${title }</dd>
+							<dd><a href=#>${title }</a></dd>
 							</c:forEach>
 						</dl>
 						<dl>
 							<dt>나의 댓글</dt>
 							<c:forEach var="contents" items="${replyContents }">
-							<dd>${contents }</dd>
+							<dd><a href=#>${contents }</a></dd>
 							</c:forEach>
 						</dl>
 						<dl>
 							<dt>건의사항</dt>
 							<c:forEach var="qnaBoard" items="${recommendView }">
-							<dd>${qnaBoard }</dd>
+							<dd><a href="../qna/view?board_gb=${qnaBoard.board_gb}&no=${qnaBoard.qna_no }">${qnaBoard.title }</a></dd>
 							</c:forEach>
 						</dl>
 					</div>

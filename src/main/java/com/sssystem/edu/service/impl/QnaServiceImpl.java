@@ -89,9 +89,9 @@ public class QnaServiceImpl implements QnaService {
 	}
 
 	@Override
-	public ArrayList<String> recommendView() {
-		ArrayList<String> title = null;
-		title = (ArrayList) session.selectList("qna.recommendView");
+	public List<QnaBoardVO> recommendView() {
+		List<QnaBoardVO> title = null;
+		title = session.selectList("qna.recommendView");
 		return title;
 	}
 	

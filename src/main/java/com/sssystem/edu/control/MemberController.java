@@ -61,6 +61,7 @@ public class MemberController{
 		request.setAttribute("myWriteView", memberService.myWriteView(user_no));//나의질문
 		request.setAttribute("myQuestionView", memberService.myQuestionView(user_no));//나의게시글
 		
+		System.out.println(qna.recommendView());
 		request.setAttribute("recommendView", qna.recommendView());//메인화면 건의사항view
 		
 		request.setAttribute("notice", board.notice());//메인화면 공지사항 view
@@ -124,7 +125,7 @@ public class MemberController{
 		}
 		
 		else if(memberService.selectEmp(user_nm, emp_serial)==null) {
-			model.addAttribute("msg", "잘못된 사원이름이거나 잘못된 사원번호 입니다");
+			model.addAttribute("msg", "이미 가입되었거나 검색되지 않은 사원번호 입니다");
 			return "member/join_check";
 		}
 		
