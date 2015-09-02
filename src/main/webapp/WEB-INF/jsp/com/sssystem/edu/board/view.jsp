@@ -1,5 +1,5 @@
-<%@ page language="java" contentType="text/html; charset=EUC-KR"
-	pageEncoding="EUC-KR"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+	pageEncoding="UTF-8"%>
 <%@page import="com.sssystem.edu.vo.BoardVO"%>
 <%@page import="com.sssystem.edu.vo.ReplyVO"%>
 <%-- <%@page import="kr.or.sssystem.edu.board.model.beans.CheckAuthBean"%> --%>
@@ -9,7 +9,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=EUC-KR">
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <link rel="stylesheet" type="text/css" href="${initParam.root }/css/board.css" />
 <title>Insert title here</title>
 <%BoardVO board = (BoardVO)request.getAttribute("board");%>
@@ -18,14 +18,14 @@
 <script type="text/javascript">
 	
 	function delConfirm() {
-	    if (confirm("»èÁ¦ÇÏ½Ã°Ú½À´Ï±î?")){
+	    if (confirm("ì‚­ì œí•˜ì‹œê² ìŠµë‹ˆê¹Œ?")){
 	       location.href='/IES/board/delete?no=${param.no }&board_gb=${param.board_gb }';
 	    } else {
 	       return false;
 	    }
 	 }   
 	
-	function replyAdd(){//¸®ÇÃ Ãß°¡
+	function replyAdd(){//ë¦¬í”Œ ì¶”ê°€
 	  	var params='content='+document.addForm.content.value+'&board_no='+${param.no};
 	  	new ajax.xhr.Request('/IES/board/replyInsert',params,
 	  			                       replyAddResult,'POST');    	
@@ -46,7 +46,7 @@
 
    
    
-function setReplyList(){//¸®ÇÃ Ãâ·Â
+function setReplyList(){//ë¦¬í”Œ ì¶œë ¥
    	var params='no='+${param.no}
    new ajax.xhr.Request('/IES/board/replyList',params,replyListResult,'POST');
     }
@@ -62,7 +62,7 @@ function replyListResult(xhr){
 }//replyListResult
 
 
-function replyUpdate(){//¼öÁ¤¿äÃ»
+function replyUpdate(){//ìˆ˜ì •ìš”ì²­
  	var no = document.updateForm.no.value;
  	var name = document.updateForm.name.value;
  	var content = document.updateForm.content.value;
@@ -80,10 +80,10 @@ function replyUpdate(){//¼öÁ¤¿äÃ»
  	   if(xhr.readyState==4){
  		 var dataText = doc.getElementsByTagName('data').item(0).firstChild.nodeValue;
  		 var dataJson =  eval('('+dataText+')');
- 		 var upDiv = makeDiv(dataJson);//º¯°æµÉ DIV
- 		 var oldDiv = document.getElementById('r'+dataJson.no);//±âÁ¸ DIV
+ 		 var upDiv = makeDiv(dataJson);//ë³€ê²½ë  DIV
+ 		 var oldDiv = document.getElementById('r'+dataJson.no);//ê¸°ì¡´ DIV
  		 
- 		 //¼öÁ¤Æû ¸ğ½Ã±â¿Í °¨Ãß±â
+ 		 //ìˆ˜ì •í¼ ëª¨ì‹œê¸°ì™€ ê°ì¶”ê¸°
  		  var replyUpdate = document.getElementById('replyUpdate');
  		  document.documentElement.appendChild(replyUpdate);
  		  replyUpdate.style.display='none';
@@ -97,14 +97,14 @@ function replyUpdate(){//¼öÁ¤¿äÃ»
   }//replyUpdateResult
 
 
-  function makeDiv(reply){//DIV»ı¼º
+  function makeDiv(reply){//DIVìƒì„±
   	var replyDiv = document.createElement('div');
   	    replyDiv.className='reply'; //<div class=reply>
   	    replyDiv.setAttribute('id','r'+ reply.no);//<div class=reply id=r13><input type="" name=""></div>
   //	var html = '<input type="hidden" value='+reply.name+' name=hide'+reply.no+'><b>'+reply.name+'</b><br>'+
   	var html = '<table class="replyTab"><tr><th class="left"><b>'+reply.name+'</b> <a style="font-size: 5px;">'+reply.input_dt+'</a></th>'+
-  '<th class="right"><a class="right"><a class="link1" onclick="viewUpdateForm('+reply.no+')">¼öÁ¤</a> | '+
- ' <a class="link1" onclick="replyDelete('+reply.no+')">»èÁ¦</a></a></th></tr>'+
+  '<th class="right"><a class="right"><a class="link1" onclick="viewUpdateForm('+reply.no+')">ìˆ˜ì •</a> | '+
+ ' <a class="link1" onclick="replyDelete('+reply.no+')">ì‚­ì œ</a></a></th></tr>'+
   	   '<tr><td colspan="2" class="left"><br>'+reply.content.replace(/\n/g,'<br>')+'</td><td></td></tr>';
   	replyDiv.innerHTML = html;
       replyDiv.reply = reply;
@@ -112,7 +112,7 @@ function replyUpdate(){//¼öÁ¤¿äÃ»
    }//makeDiv
 
   
-  function viewUpdateForm(no){//¼öÁ¤¹öÆ° Å¬¸¯½Ã ´ñ±Û ¾Æ·¡¿¡ ¼öÁ¤Æû Ãâ·Â
+  function viewUpdateForm(no){//ìˆ˜ì •ë²„íŠ¼ í´ë¦­ì‹œ ëŒ“ê¸€ ì•„ë˜ì— ìˆ˜ì •í¼ ì¶œë ¥
 	   
   	var replyUpdate = document.getElementById('replyUpdate');
 	var upDiv = document.getElementById("r"+no);
@@ -126,7 +126,7 @@ function replyUpdate(){//¼öÁ¤¿äÃ»
 
  
    function replyDelete(no){
-		if(!confirm('´ñ±ÛÀ» »èÁ¦ÇÏ½Ã°Ú½À´Ï±î?'))return;
+		if(!confirm('ëŒ“ê¸€ì„ ì‚­ì œí•˜ì‹œê² ìŠµë‹ˆê¹Œ?'))return;
 	 	var param = 'comment_no='+no;
 	    new ajax.xhr.Request('/IES/board/replyDelete',param,
 	     replyDeleteResult,'POST');
@@ -173,31 +173,31 @@ window.onload=function(){
 							<c:if test="${board.board_gb == 10 }">
 							<th width="15%">${board.user_no }</th>
 							<td><a href = "#">${user.user_no }</a></td>
-							<th width="10%">Á¶È¸¼ö</th>
+							<th width="10%">ì¡°íšŒìˆ˜</th>
 							<td width="10%">${board.view_cnt }</td>
 							</c:if>
 							<c:if test="${board.board_gb == 30 }">
-							<th width="15%">Á¶È¸¼ö</th>
+							<th width="15%">ì¡°íšŒìˆ˜</th>
 							<td width="85%">${board.view_cnt }</td>
 							</c:if>
 						</tr>
 						<tr>
-							<th width ="15%" style="height: 300px">³»¿ë</th>
+							<th width ="15%" style="height: 300px">ë‚´ìš©</th>
 							<td colspan="5" valign="top" class="left"><div>${board.contents }</div></td>
 						</tr>
 					</table>
 					<br>
 					<span style="font-size: 80%; font-weight: bolder; float: right;">
 						<c:if test="${(user.user_no==board.user_no)||user.manage_yn==1}">
-							<a class="link1" onclick="delConfirm()" >»èÁ¦</a> | 
+							<a class="link1" onclick="delConfirm()" >ì‚­ì œ</a> | 
 						</c:if>
 						<c:if test="${user.user_no==board.user_no }">
-							<a class="link1" onclick="location.href='/IES/board/update?no=${board.board_no }&board_gb=${param.board_gb }';">¼öÁ¤</a> | 
+							<a class="link1" onclick="location.href='/IES/board/update?no=${board.board_no }&board_gb=${param.board_gb }';">ìˆ˜ì •</a> | 
 						</c:if>
-						<a class="link1" onclick="location.href='/IES/board/list?board_gb=${board.board_gb}';">¸ñ·ÏÀ¸·Î</a>
+						<a class="link1" onclick="location.href='/IES/board/list?board_gb=${board.board_gb}';">ëª©ë¡ìœ¼ë¡œ</a>
 					</span>	
 				</form>
-					<!-- ´ñ±Û -->
+					<!-- ëŒ“ê¸€ -->
 	 				<br>
 					 <table class="replyBorder">
 						 <tr>
@@ -210,8 +210,8 @@ window.onload=function(){
 							<td>
 	   							<div id="replyAdd">
 								   <form name="addForm">
-								      <textarea rows="3" cols="20" name="content" class="replyText" placeholder="´ñ±Û ÀÛ¼º ½Ã Å¸ÀÎ¿¡ ´ëÇÑ ¹è·Á¿Í Ã¥ÀÓÀ» ´ã¾ÆÁÖ¼¼¿ä"></textarea>
-								     <input type="button" value="µî·Ï" onclick="replyAdd()" class="css_btn_class">
+								      <textarea rows="3" cols="20" name="content" class="replyText" placeholder="ëŒ“ê¸€ ì‘ì„± ì‹œ íƒ€ì¸ì— ëŒ€í•œ ë°°ë ¤ì™€ ì±…ì„ì„ ë‹´ì•„ì£¼ì„¸ìš”"></textarea>
+								     <input type="button" value="ë“±ë¡" onclick="replyAdd()" class="css_btn_class">
 								   </form>
 								</div>
 							</td>
@@ -222,18 +222,18 @@ window.onload=function(){
 						<input type="hidden" name="no">
 						<input type="hidden" name="name">
 						<input type="hidden" name="input_dt">
-						¼öÁ¤³»¿ë: <textarea rows="3" cols="20" name="content"></textarea><br>
-						<input type="button" value="µî·Ï" onclick="replyUpdate()" class="css_btn_class">
+						ìˆ˜ì •ë‚´ìš©: <textarea rows="3" cols="20" name="content"></textarea><br>
+						<input type="button" value="ë“±ë¡" onclick="replyUpdate()" class="css_btn_class">
 					</form>
 				</div>
-<!-- ´ÙÀ½±Û/ÀÌÀü±Û -->
+<!-- ë‹¤ìŒê¸€/ì´ì „ê¸€ -->
 				<table class="moveTab">
 					<tr>
-						<td width="20%"><img src='/IES/images/up.png' /> ÀÌÀü±Û</td>
+						<td width="20%"><img src='/IES/images/up.png' /> ì´ì „ê¸€</td>
 						<td width="50%" class="left">
 						<c:choose>
 							<c:when test="${board.pre_idx==0 }">
-							ÀÌÀü±ÛÀÌ ¾ø½À´Ï´Ù
+							ì´ì „ê¸€ì´ ì—†ìŠµë‹ˆë‹¤
 							</c:when>
 							<c:otherwise>
 							<a href="/IES/board/view?board_gb=${board.board_gb}&no=${board.pre_idx }">${board.pre_title }</a>
@@ -251,11 +251,11 @@ window.onload=function(){
 						</td>
 					</tr>
 					<tr>
-						<td><img src='/IES/images/down.png' /> ´ÙÀ½±Û</td>
+						<td><img src='/IES/images/down.png' /> ë‹¤ìŒê¸€</td>
 						<td width="50%" class="left">
 						<c:choose>
 							<c:when test="${board.next_idx==0 }">
-							´ÙÀ½±ÛÀÌ ¾ø½À´Ï´Ù
+							ë‹¤ìŒê¸€ì´ ì—†ìŠµë‹ˆë‹¤
 							</c:when>
 							<c:otherwise>
 							<a href="/IES/board/view?board_gb=${board.board_gb}&no=${board.next_idx }">${board.next_title }</a>

@@ -7,4 +7,5 @@ public interface CompleteService {
 	public boolean updateComplete(CompleteVO completeVO);
 	public boolean insertComplete(CompleteVO completeVO);
 	public boolean insertFavorite(CompleteVO completeVO);
+	public int selectFavorite(int edu_no, int user_no);
 }

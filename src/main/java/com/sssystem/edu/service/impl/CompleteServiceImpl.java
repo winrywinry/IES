@@ -44,4 +44,13 @@ public class CompleteServiceImpl implements CompleteService {
 		return false;
 	}
 
+	@Override
+	public int selectFavorite(int edu_no,int user_no) {
+		HashMap<String, Integer> map = new HashMap<String, Integer>();
+		map.put("edu_no",edu_no);
+		map.put("user_no",user_no);
+		int cntFavo = session.selectOne("complete.selectFavorite",map);
+		return cntFavo;
+	}
+
 }

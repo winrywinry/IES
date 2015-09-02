@@ -14,6 +14,7 @@ public class LearnVO {
 	private Date period_ed;
 	private String contents_tag;
 	private int favorite_cnt;
+	private int check_favorite;
 	private int view_cnt;
 	private int user_no;
 	private Date input_dt;
@@ -25,7 +26,7 @@ public class LearnVO {
 
 	public LearnVO(int edu_no, int dept_no, int category_no, int essential_yn,
 			String title, String contents, Date period_st, Date period_ed,
-			String contents_tag, int favorite_cnt, int view_cnt, int user_no,
+			String contents_tag, int favorite_cnt, int check_favorite, int view_cnt, int user_no,
 			Date input_dt, Date time_stamp) {
 		super();
 		this.edu_no = edu_no;
@@ -38,6 +39,7 @@ public class LearnVO {
 		this.period_ed = period_ed;
 		this.contents_tag = contents_tag;
 		this.favorite_cnt = favorite_cnt;
+		this.check_favorite=check_favorite;
 		this.view_cnt = view_cnt;
 		this.user_no = user_no;
 		this.input_dt = input_dt;
@@ -156,6 +158,14 @@ public class LearnVO {
 		this.time_stamp = time_stamp;
 	}
 
+	public int getCheck_favorite() {
+		return check_favorite;
+	}
+	
+	public void setCheck_favorite(int check_favorite) {
+		this.check_favorite = check_favorite;
+	}
+
 	@Override
 	public String toString() {
 		return "LearnVO [edu_no=" + edu_no + ", dept_no=" + dept_no
@@ -163,9 +173,9 @@ public class LearnVO {
 				+ essential_yn + ", title=" + title + ", contents=" + contents
 				+ ", period_st=" + period_st + ", period_ed=" + period_ed
 				+ ", contents_tag=" + contents_tag + ", favorite_cnt="
-				+ favorite_cnt + ", view_cnt=" + view_cnt + ", user_no="
-				+ user_no + ", input_dt=" + input_dt + ", time_stamp="
-				+ time_stamp + "]";
+				+ favorite_cnt + ", check_favorite=" + check_favorite
+				+ ", view_cnt=" + view_cnt + ", user_no=" + user_no
+				+ ", input_dt=" + input_dt + ", time_stamp=" + time_stamp + "]";
 	}
 	
 }
