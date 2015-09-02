@@ -19,7 +19,7 @@
 <script type="text/javascript" src="${initParam.root }/js/fullcalendar.js"></script>
 
 <link rel="stylesheet" type="text/css" href="${initParam.root }/css/index.css" />
-<title>Insert title here</title>
+<title>사내교육시스템 - 메인</title>
 <script type="text/javascript">
 $(document).ready(function() {
     $( "#summary" ).sortable({
