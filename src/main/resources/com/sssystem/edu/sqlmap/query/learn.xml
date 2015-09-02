@@ -115,5 +115,35 @@
 			]]></if>
 		
 	</select>
-
+	
+	<select id="selectLeftMenuList" parameterType="int" resultType="learnVO">
+    SELECT A.DEPT_NO
+	     , A.DEPT_NM
+	     , A.CATEGORY_NO
+	     , A.REF_NO
+	     , A.LEV_NO
+	     , LPAD(' ', 4*(LEVEL-1)) || A.CATEGORY_NM AS CATEGORY_NM
+	     , A.CATEGORY_CNT
+	     , A.RN
+	  FROM (
+	        SELECT A.DEPT_NO
+	             , A.DEPT_NM
+	             , B.CATEGORY_NM
+	             , NVL(B.CATEGORY_NO, -1) CATEGORY_NO
+	             , NVL(B.REF_NO, 0) REF_NO
+	             , NVL(B.LEV_NO, 0) LEV_NO
+	             , NVL(C.CATEGORY_CNT, 0) AS CATEGORY_CNT
+	             , ROW_NUMBER() OVER (ORDER BY A.DEPT_NO) RN
+	          FROM T_EDU_DEPT A 
+	               LEFT OUTER JOIN T_EDU_CATEGORY B ON (A.DEPT_NO = B.DEPT_NO)
+	               LEFT OUTER JOIN (SELECT COUNT(*) AS CATEGORY_CNT
+	                                     , CATEGORY_NO
+	                                  FROM T_EDU
+	                                 GROUP BY CATEGORY_NO
+	               ) C ON (B.CATEGORY_NO = C.CATEGORY_NO)
+	       ) A
+	 START WITH A.REF_NO = 0
+	CONNECT BY PRIOR A.CATEGORY_NO = A.REF_NO
+	;
+	</select>
 </mapper>
