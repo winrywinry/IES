@@ -79,4 +79,11 @@ public class LearnServiceImpl implements LearnService {
 		return edu_no;
 	}
 
+	@Override
+	public boolean update(LearnVO learnVO) {
+		int t = session.update("learn.update", learnVO);
+		if (t == 1) return true;
+		return false;
+	}
+
 }

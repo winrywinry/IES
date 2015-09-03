@@ -18,4 +18,5 @@ public interface LearnService {
 	public void delete(int no);
 	public int insert(LearnVO learnVO);
 	public List<HashMap<String, Object>> selectLeftMenuList();
+	public boolean update(LearnVO learnVO);
 }

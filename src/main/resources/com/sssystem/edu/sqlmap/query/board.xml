@@ -209,6 +209,19 @@
 			USER_NO=#{user_no}
 	
 	</select>
-
+	<select id="selectEdu" parameterType="int" resultType="boardVO">
+		<![CDATA[
+		SELECT BOARD_NO
+		     , USER_NO
+		     , ESSENTIAL_YN
+		     , BOARD_GB
+		     , TITLE
+		     , CONTENTS
+		     , EDU_NO
+		  FROM T_EDU_BOARD
+		 WHERE BOARD_GB = '20'
+		   AND EDU_NO = #{edu_no}
+		]]>
+	</select>
 	
 </mapper>

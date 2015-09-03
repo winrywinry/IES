@@ -143,7 +143,6 @@ public class LearnController {
 		learnVO.setDept_no(dept_no);
 		learnVO.setUser_no(user_no);
 		
-		System.out.println("learn/save");
 		String job_str = "";
 		for (int i=0;i<job.length;i++){
 			job_str += "|"+ job[i];

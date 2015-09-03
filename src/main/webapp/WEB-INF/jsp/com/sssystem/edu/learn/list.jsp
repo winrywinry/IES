@@ -14,35 +14,12 @@
 <link rel="stylesheet" type="text/css" href="${initParam.root }/css/learn.css" />
 <title>Insert title here</title>
 <script type="text/javascript">
-	window.onload=function(){
-	    if(document.searchFrm.dept_no.value=="1000"){
-	    	document.getElementById("listtitle").innerHTML = "총무부";
-	    }else if(document.searchFrm.dept_no.value=="2000"){
-	    	document.getElementById("listtitle").innerHTML = "영업부";
-	    }else if(document.searchFrm.dept_no.value=="3000"){
-	    	document.getElementById("listtitle").innerHTML = "법무부";
-	    }else if(document.searchFrm.dept_no.value=="4000"){
-	    	document.getElementById("listtitle").innerHTML = "기획부";
-	    }else if(document.searchFrm.dept_no.value=="5000"){
-	    	document.getElementById("listtitle").innerHTML = "자재부";
-	    }else if(document.searchFrm.dept_no.value=="6000"){
-	    	document.getElementById("listtitle").innerHTML = "인사부";
-	    }else if(document.searchFrm.dept_no.value=="7000"){
-	    	document.getElementById("listtitle").innerHTML = "전산부";
-	    }
-		};
-
-	function formchk() {
-		oEditors.getById["ta1"].exec("UPDATE_CONTENTS_FIELD", []);
-		return true;
-	}
-	
-	function jsGoPage(p,param){
-	       location.href= "list?page="+ p + param;
-	}
-	function viewPage(no, param) {
-			location.href="contentsView?no="+ no + param;
-	}
+function jsGoPage(p,param){
+	location.href= "list?page="+ p + param;
+}
+function viewPage(no, param) {
+	location.href="contentsView?no="+ no + param;
+}
 
 </script>
 </head>

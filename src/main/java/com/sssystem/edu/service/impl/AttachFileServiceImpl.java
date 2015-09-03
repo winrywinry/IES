@@ -19,4 +19,11 @@ public class AttachFileServiceImpl implements AttachFileService {
 		return attach_no;
 	}
 
+	@Override
+	public boolean update(AttachFileVO attachVO) {
+		int t = session.update("attach.update", attachVO);
+		if (t == 1) return true;
+		return false;
+	}
+
 }

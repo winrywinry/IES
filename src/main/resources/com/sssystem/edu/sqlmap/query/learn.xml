@@ -183,4 +183,18 @@
 	 START WITH A.REF_NO = 0
 	CONNECT BY PRIOR A.CATEGORY_NO = A.REF_NO
 	</select>
+	<update id="update" parameterType="learnVO">
+		<![CDATA[
+		UPDATE T_EDU SET
+		       CATEGORY_NO = #{category_no}
+		     , ESSENTIAL_YN = #{essential_yn}
+		     , TITLE = #{title}
+		     , CONTENTS = #{contents}
+		     , PERIOD_ST = #{period_st}
+		     , PERIOD_ED = #{period_ed}
+		     , CONTENTS_TAG = #{contents_tag}
+		     , TIME_STAMP = SYSDATE
+		 WHERE EDU_NO = #{edu_no}
+		]]>
+	</update>
 </mapper>

@@ -204,6 +204,11 @@ public class BoardServiceImpl implements BoardService {
 		return nmSelect;
 	}
 
+	@Override
+	public BoardVO selectEdu(int edu_no) {
+		return session.selectOne("notice.selectEdu", edu_no);
+	}
+
 	
 
 }
