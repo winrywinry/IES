@@ -28,6 +28,8 @@
 		      , #{title}
 		      ,	#{contents}
 		      , #{contents_tag}
+		      , #{period_st}
+		      , #{period_ed}
 		      , #{user_no}
 		)
 		]]>

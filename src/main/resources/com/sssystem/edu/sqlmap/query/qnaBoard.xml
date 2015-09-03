@@ -135,10 +135,12 @@
 	
 	</select>
 	
-	<select id="hahaha" resultType="int">
-		select
-		count(user_no)
+	<select id="selectTitle" parameterType="int" resultType="learnVO">
+		SELECT
+			TITLE, DEPT_NO
 		from
-		t_edu_user
+			T_EDU
+		WHERE
+			EDU_NO = #{edu_no}
 	</select>
 </mapper>
