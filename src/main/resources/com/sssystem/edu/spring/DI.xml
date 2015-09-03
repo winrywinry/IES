@@ -16,7 +16,6 @@
 	<bean id="completeService" class="com.sssystem.edu.service.impl.CompleteServiceImpl"/>
 	<bean id="authService" class="com.sssystem.edu.service.impl.AuthServiceImpl"/>
 	<bean id="attachFileService" class="com.sssystem.edu.service.impl.AttachFileServiceImpl"/>
-	<bean id="authService" class="com.sssystem.edu.service.impl.AuthServiceImpl"/>
 	
 	<bean id="testVal" class="com.sssystem.edu.valitors.TestValidator"/>
 	<bean id="memberVal" class="com.sssystem.edu.admin.validators.MemberValidator"/>
