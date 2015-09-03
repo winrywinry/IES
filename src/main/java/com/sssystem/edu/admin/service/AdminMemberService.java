@@ -15,7 +15,7 @@ public interface AdminMemberService {
   public int selectTotal(PageVO pageVO);
   public List<DeptVO> selectDept();
   public List<JobVO> selectJob();
-  public boolean insert(MemberVO member);
+  public MemberVO insert(MemberVO member);
   public MemberVO select(int user_no);
   public boolean delete(int no);
   public boolean update(MemberVO member);

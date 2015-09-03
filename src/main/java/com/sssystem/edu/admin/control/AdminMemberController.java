@@ -19,6 +19,7 @@ import org.springframework.web.multipart.MultipartFile;
 
 import com.sssystem.edu.admin.service.AdminMemberService;
 import com.sssystem.edu.admin.validators.MemberValidator;
+import com.sssystem.edu.admin.vo.EmailVO;
 import com.sssystem.edu.admin.vo.MemberVO;
 import com.sssystem.edu.admin.vo.PageVO;
 import com.sssystem.edu.common.ValidateParamChk;
@@ -165,11 +166,13 @@ public class AdminMemberController {
 
   @Autowired
   MemberValidator memberVal;
+  @Autowired
+  EmailSender emailSender;
   
   @RequestMapping("/admin/member/writeAction")
   public String writeAction(@ModelAttribute("member") MemberVO memberVO,
                           HttpServletRequest request,
-                          BindingResult result) {
+                          BindingResult result) throws Exception {
     memberVal.validate(memberVO, result);
     if (result.hasErrors()) return "admin/member/write";
     
@@ -197,9 +200,25 @@ public class AdminMemberController {
           } // try - catch
       } // if
       
-      adminMembeerService.insert(memberVO);
+      memberVO = adminMembeerService.insert(memberVO);
       System.out.println(memberVO.getProfil_picture());
-
+      
+      System.out.println("name = " + memberVO.getUser_nm());
+      System.out.println("email = " + memberVO.getEmail());
+      System.out.println("number = " + memberVO.getEmp_serial());
+      
+      
+      //----------이메일---------------------------------------------------------------------//
+      EmailVO email = new EmailVO();
+      
+      String reciver = memberVO.getEmail();             //받을사람의 이메일입니다.
+      String subject = memberVO.getUser_nm() + "님의 사원번호 입니다.";
+      String content = "네 녀석의 사원번호는 [" + memberVO.getEmp_serial() + "]이다";
+       
+      email.setReciver(reciver);
+      email.setSubject(subject);
+      email.setContent(content);
+      emailSender.SendEmail(email);
     
     
     return "redirect:list";
