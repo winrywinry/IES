@@ -94,6 +94,12 @@ public class QnaServiceImpl implements QnaService {
 		LearnVO learnVO = session.selectOne("qna.selectTitle",edu_no);
 		return learnVO;
 	}
+
+	@Override
+	public String nmSelect(int user_no) {
+		String user_nm = session.selectOne("qna.nmSelect",user_no);
+		return user_nm;
+	}
 	
 	
 }

@@ -15,6 +15,7 @@ public interface QnaService {
 	public boolean qnaBoardUpdate(QnaBoardVO bean);//게시글 업데이트
 	public QnaBoardVO qnaBoardView(int qna_no, int board_gb);//게시글 보기
 	public List<QnaBoardVO> qnaBoardListSelectAll(SearchBoardVO bean, int page);//게시글 목록
+	public String nmSelect(int user_no);
 	public void hitsUpdate(int qna_no);//조회수
 	public int cntSelect(SearchBoardVO bean);//검색관련
 	public void answerUpdate(QnaBoardVO bean);//답변 등록
