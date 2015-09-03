@@ -5,11 +5,13 @@
 	<insert id="insert" parameterType="authVO">
 		<![CDATA[
 		INSERT INTO T_EDU_AUTH (
-			   EDU_NO
+		       AUTH_NO
+			 , EDU_NO
 			 , DEPT_NO
 			 , JOB_STR
 		) VALUES (
-		       #{edu_no}
+		       SEQ_EDU_AUTH.NEXTVAL
+		     , #{edu_no}
 		     , #{dept_no}
 		     , #{job_str}
 		)
