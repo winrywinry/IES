@@ -41,10 +41,24 @@
 	</delete>
 
 	<select id="select" parameterType="int" resultType="learnVO">
-		select edu_no, title, input_dt, essential_yn, dept_no, view_cnt,
-		contents_tag, contents from t_edu where edu_no=#{no}
-		<!-- select edu_no, title, input_dt, essential_yn, dept_no, view_cnt, favorite_cnt, 
-			contents_tag, contents, period_st, period_ed from t_edu where edu_no=#{no} -->
+		<![CDATA[
+		SELECT EDU_NO
+		     , DEPT_NO
+		     , CATEGORY_NO
+		     , ESSENTIAL_YN
+		     , TITLE
+		     , CONTENTS
+		     , PERIOD_ST
+		     , PERIOD_ED
+		     , CONTENTS_TAG
+		     , FAVORITE_CNT
+		     , VIEW_CNT
+		     , USER_NO
+		     , INPUT_DT
+		     , TIME_STAMP
+		  FROM T_EDU
+		 WHERE EDU_NO = #{edu_no}
+		]]>
 	</select>
 
 	<select id="selectList" parameterType="SearchLearnVO" resultType="learnVO">
@@ -137,13 +151,16 @@
 		
 	</select>
 	
-	<select id="selectLeftMenuList" resultType="DeptVO">
+	<select id="selectLeftMenuList" resultType="hashmap">
     SELECT A.DEPT_NO
 	     , A.DEPT_NM
 	     , A.CATEGORY_NO
 	     , A.REF_NO
 	     , A.LEV_NO
-	     , LPAD(' ', 4*(LEVEL-1)) || A.CATEGORY_NM AS CATEGORY_NM
+	     , (CASE WHEN CATEGORY_NO = -1 THEN CATEGORY_NO
+               ELSE LEVEL
+           END) LEV
+	     , A.CATEGORY_NM
 	     , A.CATEGORY_CNT
 	     , A.RN
 	  FROM (

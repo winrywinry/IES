@@ -27,7 +27,8 @@ public class CommonController {
 	@RequestMapping("/include/left_menu_learn")
 	public String includeLeftLearn(Model model){
 		
-		List<DeptVO> list = learnService.selectLeftMenuList();
+		List<HashMap<String, Object>> list = learnService.selectLeftMenuList();
+		System.out.println(list);
 		model.addAttribute("list", list);
 	/*	for(int i = 0 ; i < list.size() ; i++){
 			System.out.println(list.get(i).getCategory_nm());
