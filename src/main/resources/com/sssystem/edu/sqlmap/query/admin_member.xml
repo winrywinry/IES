@@ -69,6 +69,13 @@
 	</select>
 	
 	<insert id="insert" parameterType="adminMemberVO">
+		<selectKey keyProperty="emp_serial" resultType="string" order="BEFORE">
+			<![CDATA[
+			SELECT TO_CHAR(SYSDATE,'YYMM')||'-'||LPAD((NVL(MAX(SUBSTR(EMP_SERIAL, 6, 3)),0) + 1),3,'0')
+			  FROM T_EDU_USER
+			 WHERE HIREDATE BETWEEN TRUNC(SYSDATE,'MONTH') AND LAST_DAY(SYSDATE)
+			]]>
+		</selectKey>
 		<![CDATA[
 		INSERT INTO T_EDU_USER (
 			   USER_NO
@@ -91,9 +98,7 @@
 			 , PROFIL_PICTURE
 		) VALUES (
 			   SEQ_EDU_USER.NEXTVAL
-			 , (SELECT TO_CHAR(SYSDATE,'YYMM')||'-'||LPAD((NVL(MAX(SUBSTR(EMP_SERIAL, 6, 3)),0) + 1),3,'0')
-			      FROM T_EDU_USER
-			     WHERE HIREDATE BETWEEN TRUNC(SYSDATE,'MONTH') AND LAST_DAY(SYSDATE))
+			 , #{emp_serial}
 			 , #{user_nm}
 			 , #{birth_dt}
 			 , #{gender_yn}
