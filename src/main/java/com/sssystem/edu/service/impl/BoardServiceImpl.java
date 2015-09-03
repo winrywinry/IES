@@ -198,6 +198,12 @@ public class BoardServiceImpl implements BoardService {
 		return list;
 	}
 
+	@Override
+	public String nmSelect(int user_no) {
+		String nmSelect = session.selectOne("notice.nmSelect",user_no);
+		return nmSelect;
+	}
+
 	
 
 }

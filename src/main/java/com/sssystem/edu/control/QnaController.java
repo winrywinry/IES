@@ -61,6 +61,7 @@ public class QnaController {
 		int qna_no = no;
 		QnaBoardVO qnaVO = qnaService.qnaBoardView(qna_no,board_gb);
 		System.out.println(qnaVO.getA_user_no());
+		qnaVO.setUser_nm(qnaService.answerNmSelect(qnaVO.getQ_user_no()));
 		qnaVO.setA_user_nm(qnaService.answerNmSelect(qnaVO.getA_user_no()));
 		qnaService.hitsUpdate(no);
 		

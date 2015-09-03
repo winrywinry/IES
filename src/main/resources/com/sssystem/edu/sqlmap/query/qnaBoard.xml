@@ -97,15 +97,6 @@
 			QNA_NO = #{qna_no}
 	</update>
 
-	<select id="checkManage" parameterType="int" resultType="sessionVO">
-		SELECT
-			MANAGE_YN,ADMIN_YN
-		FROM
-			T_EDU_USER
-		WHERE
-			USER_NO = #{qna_no}
-	</select>
-	
 	<update id="qnaBoardUpdate" parameterType="qnaVO">
 		UPDATE
 			T_EDU_QNA

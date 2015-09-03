@@ -199,6 +199,16 @@
    		AND A.USER_NO = #{user_no}
  		ORDER BY A.INPUT_DT DESC
 	</select>
+	
+	<select id="nmSelect" parameterType="int" resultType="string">
+		SELECT
+			USER_NM
+		FROM
+			T_EDU_USER
+		WHERE
+			USER_NO=#{user_no}
+	
+	</select>
 
 	
 </mapper>
