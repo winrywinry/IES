@@ -2,7 +2,6 @@ package com.sssystem.edu.control;
 
 import java.util.HashMap;
 
-import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -55,8 +54,9 @@ public class MemberController{
 	public String index(Model model){
 		
 		int user_no = sessionVO.getUser_no();
+		model.addAttribute("photo", memberService.photo(user_no));
 		
-		memberService.insertLog(user_no);
+		model.addAttribute("log", memberService.selectLogSession(user_no));//출석수
 		model.addAttribute("write", memberService.selectWrite(user_no));//게시글수
 		model.addAttribute("question", memberService.selectQuestion(user_no));//질문수
 		
@@ -70,7 +70,9 @@ public class MemberController{
 		model.addAttribute("replyContents", board.replyContents(user_no));//댓글view
 		
 		model.addAttribute("completes", completesService.myLearn(user_no));//이수예정
+		System.out.println(completesService.myLearn(user_no));
 		model.addAttribute("completes2", completesService.myLearn2(user_no));//최근이수
+		System.out.println(completesService.myLearn2(user_no));
 		
 		model.addAttribute("learnCount", completesService.learnCount(user_no));//이수예정count
 		model.addAttribute("learnCount2", completesService.learnCount2(user_no));//최근이수count
@@ -102,8 +104,8 @@ public class MemberController{
 		if(memberService.selectLogin(user_id).equals(user_pwd)){
 		sessionVO = memberService.selectSession(user_id);
 		int user_no = sessionVO.getUser_no();
-		model.addAttribute("log", memberService.selectLogSession(user_no));//출석수
-		System.out.println("출석수:"+memberService.selectLogSession(user_no));
+		memberService.insertLog(user_no);
+		
 		session.setAttribute("user", sessionVO);
 		return "redirect:index";
 		}
@@ -125,8 +127,6 @@ public class MemberController{
 			  				 BindingResult result,
 			  				 Model model){
 		
-		System.out.println("memberVO: " + memberVO);
-		
 		joinvalidator.validate(memberVO, result);
 		
 		if(result.hasErrors()) {
@@ -143,9 +143,6 @@ public class MemberController{
 			HashMap<String, String> map = new HashMap<String, String>();
 			map.put("user_nm", user_nm);
 			map.put("emp_serial", emp_serial);
-			
-			System.out.println(user_nm);
-			System.out.println(emp_serial);
 			
 			HashMap<String, Object> deptjob = memberService.selectDept1(map);
 			int user_no = Integer.valueOf(String.valueOf(deptjob.get("USER_NO")));
@@ -192,7 +189,6 @@ public class MemberController{
 		memberVO.setEmail(email);
 		memberVO.setUser_no(user_no);
 		
-		System.out.println(memberVO);
 		
 		if(memberService.updateJoin(memberVO)) return "member/login";
 		

@@ -2,6 +2,7 @@ package com.sssystem.edu.service;
 
 import java.util.List;
 
+import com.sssystem.edu.vo.LearnVO;
 import com.sssystem.edu.vo.QnaBoardVO;
 import com.sssystem.edu.vo.search.SearchBoardVO;
 import com.sssystem.edu.vo.AttachFileVO;
@@ -18,6 +19,6 @@ public interface QnaService {
 	public int cntSelect(SearchBoardVO bean);//검색관련
 	public void answerUpdate(QnaBoardVO bean);//답변 등록
 	public String answerNmSelect(int user_no);//답변자 이름 검색
-	public int haha();
 	public List<QnaBoardVO> recommendView();
+	public LearnVO searchEdu(int edu_no);
 }

@@ -6,8 +6,8 @@ $(function(){
       callPeriod($("#from, #to"));
       
     if(document.writeFrm.state.value=="update"){
-    	document.getElementById("sub").innerHTML = "¼öÁ¤";
-   		document.getElementById('pagetitle').innerHTML = "±Û¼öÁ¤";
+    	document.getElementById("sub").innerHTML = "ìˆ˜ì •";
+   		document.getElementById('pagetitle').innerHTML = "ê¸€ìˆ˜ì •";
     }
 	$(".chkAll").click(function(){
 		var area = $(this).parent().parent();
@@ -25,7 +25,7 @@ $(function(){
 		var nm = $("#category_nm").val();
 		var no = $("#category_no option:selected").val();
 		if (nm == '') {
-			alert("Ä«Å×°í¸®¸íÀ» ÀÔ·ÂÇØ ÁÖ¼¼¿ä!");
+			alert("ì¹´í…Œê³ ë¦¬ëª…ì„ ì…ë ¥í•´ ì£¼ì„¸ìš”!");
 			return false;
 		}
 		var params = "action=add&nm="+ nm +"&no="+ no;
@@ -34,10 +34,10 @@ $(function(){
 	$("#category_del").click(function(){
 		var no = $("#category_no option:selected").val();
 		if (no == '') {
-			alert("»èÁ¦ÇÏ½Ç Ä«Å×°í¸®¸¦ ¼±ÅÃÇØ ÁÖ¼¼¿ä!");
+			alert("ì‚­ì œí•˜ì‹¤ ì¹´í…Œê³ ë¦¬ë¥¼ ì„ íƒí•´ ì£¼ì„¸ìš”!");
 			return false;
 		}
-		if (confirm("Á¤¸»·Î »èÁ¦ÇÏ½Ã°Ú½À´Ï±î?")){
+		if (confirm("ì •ë§ë¡œ ì‚­ì œí•˜ì‹œê² ìŠµë‹ˆê¹Œ?")){
 			var params = "action=del&no="+ no;
 			new ajax.xhr.Request("/IES/learn/category", params, categoryList, "POST");
 		}
@@ -55,12 +55,17 @@ $(function(){
 		var src = $(this).attr("src").replace("_over", "");
 		$(this).attr("src", src);
 	})
+	$(".msgAlert").hide();
+    $(".msgAlert").each(function(){
+    		alert($( this).text());            
+    });
+    $(".css_btn_class").css("cursor", "pointer");
 });
 function testWinOpen(url){
 	window.open(url, 'testWin', 'width=400, height=400');
 }
 function testDel(){
-	if (confirm("Á¤¸» »èÁ¦ÇÏ½Ã°Ú½À´Ï±î?")){
+	if (confirm("ì •ë§ ì‚­ì œí•˜ì‹œê² ìŠµë‹ˆê¹Œ?")){
 		return true;
 	} else {
 		return false;
@@ -111,8 +116,8 @@ function modTest(json){
 function creaetDiv(json){
 	var html = $("<li>"+ json.no +". "+ json.question +"&nbsp;</li>");
 	var em = $("<em></em>");
-	var mod = "<a href='../test/write?no="+ json.test_no +"' onclick='testWinOpen(this.href); return false;'>¼öÁ¤</a>";
-	var del = "<a href='../test/delete?no="+ json.test_no +"' target=\"ifm_test\" onclick=\"return testDel();\">»èÁ¦</a>";
+	var mod = "<a href='../test/write?no="+ json.test_no +"' onclick='testWinOpen(this.href); return false;'>ìˆ˜ì •</a>";
+	var del = "<a href='../test/delete?no="+ json.test_no +"' target=\"ifm_test\" onclick=\"return testDel();\">ì‚­ì œ</a>";
 	em.append(mod);
 	em.append(" | ");
 	em.append(del);
@@ -120,47 +125,60 @@ function creaetDiv(json){
 	return html;
 }
 function FormchkModule(f){
+	var testCnt = $("#testList li").size();
 	oEditors.getById["ta1"].exec("UPDATE_CONTENTS_FIELD", []);
 	if (f.title.value == ''){
-		alert('Á¦¸ñÀ» ÀÔ·ÂÇØ ÁÖ¼¼¿ä!');
+		alert('ì œëª©ì„ ì…ë ¥í•´ ì£¼ì„¸ìš”!');
 		f.title.focus();
 		return false;
 	}
 	var dept = 0;
-	for (var i=0;i<f.dept_no.length;i++){
-		if (f.dept_no[i].checked == true){
+	for (var i=0;i<f.dept.length;i++){
+		if (f.dept[i].checked == true){
 			dept++;
 		}
 	}
 	if (dept == 0){
-		alert("¿­¶÷ºÎ¼­¸¦ ¼±ÅÃÇØ ÁÖ¼¼¿ä!");
-		f.dept_no[0].focus();
+		alert("ì—´ëŒë¶€ì„œë¥¼ ì„ íƒí•´ ì£¼ì„¸ìš”!");
+		f.dept[0].focus();
 		return false;
 	}
 	var job = 0;
-	for (var i=0;i<f.job_no.length;i++){
-		if (f.job_no[i].checked == true){
+	for (var i=0;i<f.job.length;i++){
+		if (f.job[i].checked == true){
 			job++;
 		}
 	}
 	if (job == 0){
-		alert("¿­¶÷Á÷Ã¥À» ¼±ÅÃÇØ ÁÖ¼¼¿ä!");
-		f.job_no[0].focus();
+		alert("ì—´ëŒì§ì±…ì„ ì„ íƒí•´ ì£¼ì„¸ìš”!");
+		f.job[0].focus();
 		return false;
 	}
 	if (f.category_no.value == ""){
-		alert("Ä«Å×°í¸®¸¦ ¼±ÅÃÇØ ÁÖ¼¼¿ä!");
+		alert("ì¹´í…Œê³ ë¦¬ë¥¼ ì„ íƒí•´ ì£¼ì„¸ìš”!");
 		f.category_no.focus();
 		return false;
 	}
-	if (f.contents.value.length() < 10){
-		alert("³»¿ëÀ» ÀÔ·ÂÇØ ÁÖ¼¼¿ä!");
+	if (f.contents.value.length < 15){
+		alert("ë‚´ìš©ì„ ì…ë ¥í•´ ì£¼ì„¸ìš”!");
 		return false;
 	}
-	if (f.period_st.value == ""){
-		alert("°³°­³¯Â¥¸¦ ¼±ÅÃÇØ ÁÖ¼¼¿ä!");
-		f.period_st.focus();
+	if (f.period_st_str.value == ""){
+		alert("ê°œê°•ë‚ ì§œë¥¼ ì„ íƒí•´ ì£¼ì„¸ìš”!");
+		f.period_st_str.focus();
+		return false;
+	}
+	if (testCnt == 0){
+		alert("ì‹œí—˜ì„ ë“±ë¡í•´ ì£¼ì„¸ìš”!");
 		return false;
 	}
 	return true;
+}
+
+function cancel(f){
+	if (confirm("ì‘ì„±ì„ ì·¨ì†Œí•˜ì‹œê² ìŠµë‹ˆê¹Œ?")){
+		oEditors.getById["ta1"].exec("SET_CONTENTS", [""]);
+		f.reset();
+		f.title.focus();
+	}
 }

@@ -14,12 +14,12 @@
 	</insert>
 	<select id="qnaBoardListSelectAll" parameterType="searchVO" resultType="qnaVO">
 		SELECT
-			ROWNUM, QNA_NO, TITLE, QUESTION_DT, VISIT_NO, BOARD_GB, Q_CONTENTS
+			ROWNUM, QNA_NO, TITLE, QUESTION_DT, VISIT_NO, BOARD_GB, Q_CONTENTS, USER_NM
 			FROM(
 		SELECT 
-			QNA_NO, TITLE, QUESTION_DT, VISIT_NO, BOARD_GB, q_contents
-		FROM T_EDU_QNA
-		WHERE 1=1 and BOARD_GB=#{board_gb}
+			QNA_NO, TITLE, QUESTION_DT, VISIT_NO, BOARD_GB, q_contents, USER_NM
+		FROM T_EDU_QNA, T_EDU_USER
+		WHERE 1=1 and BOARD_GB=#{board_gb} AND T_EDU_USER.USER_NO = T_EDU_QNA.Q_USER_NO
 			<if test="searchWord != null and searchWord != ''"><![CDATA[
 			 and (TITLE LIKE CONCAT('%',CONCAT(#{searchWord},'%')) 
 		  OR Q_CONTENTS LIKE CONCAT('%',CONCAT(#{searchWord},'%')))
@@ -97,15 +97,6 @@
 			QNA_NO = #{qna_no}
 	</update>
 
-	<select id="checkManage" parameterType="int" resultType="sessionVO">
-		SELECT
-			MANAGE_YN,ADMIN_YN
-		FROM
-			T_EDU_USER
-		WHERE
-			USER_NO = #{qna_no}
-	</select>
-	
 	<update id="qnaBoardUpdate" parameterType="qnaVO">
 		UPDATE
 			T_EDU_QNA
@@ -135,10 +126,12 @@
 	
 	</select>
 	
-	<select id="hahaha" resultType="int">
-		select
-		count(user_no)
+	<select id="selectTitle" parameterType="int" resultType="learnVO">
+		SELECT
+			TITLE, DEPT_NO
 		from
-		t_edu_user
+			T_EDU
+		WHERE
+			EDU_NO = #{edu_no}
 	</select>
 </mapper>

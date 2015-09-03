@@ -8,11 +8,11 @@ function callPeriod(obj, setDate){
 	}
 	var dates = $(obj).datepicker({
         dateFormat: 'yy-mm-dd',
-        monthNamesShort:['1¿ù','2¿ù','3¿ù','4¿ù','5¿ù','6¿ù','7¿ù','8¿ù','9¿ù','10¿ù','11¿ù','12¿ù'],
-        dayNamesMin : ['ÀÏ','¿ù','È­','¼ö','¸ñ','±İ','Åä'],
-        monthNames : ['1¿ù','2¿ù','3¿ù','4¿ù','5¿ù','6¿ù','7¿ù','8¿ù','9¿ù','10¿ù','11¿ù','12¿ù'],
-        prevText : 'ÀÌÀü´Ş',
-        nextText : '´ÙÀ½´Ş',
+        monthNamesShort:['1ì›”','2ì›”','3ì›”','4ì›”','5ì›”','6ì›”','7ì›”','8ì›”','9ì›”','10ì›”','11ì›”','12ì›”'],
+        dayNamesMin : ['ì¼','ì›”','í™”','ìˆ˜','ëª©','ê¸ˆ','í† '],
+        monthNames : ['1ì›”','2ì›”','3ì›”','4ì›”','5ì›”','6ì›”','7ì›”','8ì›”','9ì›”','10ì›”','11ì›”','12ì›”'],
+        prevText : 'ì´ì „ë‹¬',
+        nextText : 'ë‹¤ìŒë‹¬',
         defaultDate : dftDate,
         showMonthAfterYear: true,
         showOtherMonths: true,

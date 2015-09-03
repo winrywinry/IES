@@ -14,6 +14,7 @@ public class AttachFileVO {
 	private Date Input_DT;//첨부파일 작성일
 	private Date attachTime_stamp; //첨부수정일 
 	private int attach_seq;//파일순서
+	
 	private MultipartFile attach;
 	
 	public AttachFileVO() {

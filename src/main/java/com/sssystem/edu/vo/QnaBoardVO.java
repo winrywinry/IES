@@ -17,6 +17,7 @@ public class QnaBoardVO {
 	private Date time_stamp; //수정일
 	private int q_user_no; //작성자 번호
 	private int a_user_no; //답변자 번호
+	private String user_nm; //작성자 이름
 	private String a_user_nm;//답변자 이름
 	private int next_idx;
 	private int pre_idx;
@@ -326,6 +327,18 @@ public class QnaBoardVO {
 
 	public void setA_user_nm(String a_user_nm) {
 		this.a_user_nm = a_user_nm;
+	}
+
+
+
+	public String getUser_nm() {
+		return user_nm;
+	}
+
+
+
+	public void setUser_nm(String user_nm) {
+		this.user_nm = user_nm;
 	}
 
 }

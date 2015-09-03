@@ -9,6 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 
 import com.sssystem.edu.admin.vo.PageVO;
 import com.sssystem.edu.service.LearnService;
+import com.sssystem.edu.vo.DeptVO;
 import com.sssystem.edu.vo.LearnVO;
 import com.sssystem.edu.vo.search.SearchLearnVO;
 
@@ -61,8 +62,16 @@ public class LearnServiceImpl implements LearnService {
 	@Override
 	public void delete(int no) {
 		session.delete("learn.delete", no);
+		
 	}
 
+	@Override
+	public List<DeptVO> selectLeftMenuList() {
+		List<DeptVO> list = null;
+		list = session.selectList("learn.selectLeftMenuList");
+		return list;
+	}
+	
 	@Override
 	public int insert(LearnVO learnVO) {
 		session.insert("learn.insert", learnVO);

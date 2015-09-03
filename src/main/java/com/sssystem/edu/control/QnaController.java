@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 import com.sssystem.edu.common.ValidateParamChk;
 import com.sssystem.edu.service.QnaService;
+import com.sssystem.edu.vo.LearnVO;
 import com.sssystem.edu.vo.QnaBoardVO;
 import com.sssystem.edu.vo.search.SearchBoardVO;
 import com.sssystem.edu.vo.support.SessionVO;
@@ -59,8 +60,17 @@ public class QnaController {
 			@RequestParam(value="board_gb")int board_gb){
 		int qna_no = no;
 		QnaBoardVO qnaVO = qnaService.qnaBoardView(qna_no,board_gb);
+		System.out.println(qnaVO.getA_user_no());
+		qnaVO.setUser_nm(qnaService.answerNmSelect(qnaVO.getQ_user_no()));
 		qnaVO.setA_user_nm(qnaService.answerNmSelect(qnaVO.getA_user_no()));
 		qnaService.hitsUpdate(no);
+		
+		if(board_gb==40){
+			if(qnaVO.getEdu_no()!=0){
+				LearnVO learnVO = qnaService.searchEdu(qnaVO.getEdu_no());
+				model.addAttribute("learnVO",learnVO);
+			}
+		}
 		
 		model.addAttribute("qnaboard",qnaVO);
 		return "qna/view";
@@ -92,13 +102,13 @@ public class QnaController {
 			@RequestParam(value="qna_no",required=false)String qna_no,
 			@RequestParam(value="edu_no",required=false)String edu_no
 			){
-		
+		System.out.println("edu_no="+edu_no);
 		QnaBoardVO qnaVO = new QnaBoardVO();
 		SessionVO sessionVO = (SessionVO) session.getAttribute("user");
-		if(edu_no!=null){
+		if(!(edu_no.isEmpty() || edu_no.equals(""))){
 			qnaVO.setEdu_no(Integer.parseInt(edu_no));
 		}else{			
-			qnaVO.setEdu_no(15);
+			qnaVO.setEdu_no(0);
 		}
 		qnaVO.setBoard_gb(board_gb);
 		qnaVO.setSecret_yn(0);
@@ -126,7 +136,7 @@ public class QnaController {
 		}else if(board_gb.equals("50")){
 			if(!(qna_no.isEmpty())){
 				if(qnaService.qnaBoardUpdate(qnaVO)){
-					return "redirect:view?board_gb="+board_gb+"&no="+qna_no+"&user_no="+sessionVO.getUser_no();
+					return "redirect:list?board_gb="+board_gb;
 					}
 			}else{
 				if(qnaService.qnaBoardInsert(qnaVO)){

@@ -9,7 +9,7 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<link rel="stylesheet" type="text/css" href="${initParam.root }/css/learn.css" />
+<link rel="stylesheet" type="text/css" href="${initParam.root }/css/qna.css" />
 <title>Insert title here</title>
 	<script type="text/javascript">
 	
@@ -47,10 +47,15 @@
 					<input type="hidden" name="board_no" value="${param.board_gb}">
 					<table cellpadding="0" cellspacing="0" class="contentTab">
 						<tr>
-							<th width="15%">조회수</th>
-							<td width="35%" class="left">${qnaboard.visit_no }</td>
-							<th width="15%">공개여부</th>
-							<td width="35%" class="left"><c:if test="${qnaboard.secret_yn==0 }">공개</c:if></td>
+							<th width="10%">작성자</th>
+							<td width="25%">${qnaboard.user_nm }</td>
+							<th width="10%">조회수</th>
+							<td width="20%" class="left">${qnaboard.visit_no }</td>
+							<th width="15%">관련글</th>
+							<td width="25%" class="left"><c:choose>
+								<c:when test="${0 ne qnaboard.edu_no}"><a href="/IES/learn/contentsView?no=${qnaboard.edu_no }&dept_no=${learnVO.dept_no}&page=1 ">${learnVO.title }</a></c:when>
+								<c:otherwise>없음</c:otherwise>
+								</c:choose></td>
 						</tr>
 						<tr>
 							<th style="height: 300px">내용</th>

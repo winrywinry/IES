@@ -29,5 +29,6 @@ public interface MemberService {
 	public String selectQuestion(int log);
 	public List<QnaBoardVO> myWriteView(int log);
 	public List<BoardVO> myQuestionView(int log);
+	public String photo(int user_no);
 	
 }

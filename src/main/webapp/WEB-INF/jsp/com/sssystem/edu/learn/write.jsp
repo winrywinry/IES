@@ -3,6 +3,7 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
+<%@ taglib uri="http://www.springframework.org/tags/form" prefix="form" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -17,8 +18,14 @@
 <link href="${initParam.root }/css/jquery-ui.css" rel="stylesheet">
 <script type="text/javascript" src="${initParam.root }/js/ajax.js"></script>
 <script type="text/javascript" src="${initParam.root }/js/learn.js"></script>
+<c:if test="${msg != null }">
+<script type="text/javascript">alert("${msg}");</script>	
+</c:if>
 </head>
 <body>
+<form:errors path="learn.title" cssClass="msgAlert" /> 
+<form:errors path="learn.category_no" cssClass="msgAlert" />
+<form:errors path="learn.contents" cssClass="msgAlert" />
 	<div id="wrap">
 		<jsp:include page="/include/header" />
 		<div id="content">
@@ -30,8 +37,7 @@
 				<div id="con">
 					<form action="save" name="writeFrm" method="POST" enctype="multipart/form-data">
 					<input type="hidden" name="state" value="${update }">
-					<input type="hidden" name="edu_no" value="${learn.edu_no }" />
-					<input type="hidden" name="dn" value="${learn.dept_no }" />
+					<input type="hidden" name="edu" value="${learn.edu_no }" />
 						<table class="writeTab">
 							<tr>
 								<th width="15%">제목</th>
@@ -46,7 +52,7 @@
 									<ul>
 										<li><input type="checkbox" name="dept_all" class="chk chkAll" id="dept_all" /><label for="dept_all"><b>전체</b></label></li>
 										<c:forEach var="dept" items="${deptlist }">
-										<li><input type="checkbox" name="dept_no" value="${dept.dept_no	}" class="chk" id="dept_${dept.dept_no }" /><label for="dept_${dept.dept_no }">${dept.dept_nm }</label>
+										<li><input type="checkbox" name="dept" value="${dept.dept_no	}" class="chk" id="dept_${dept.dept_no }" /><label for="dept_${dept.dept_no }">${dept.dept_nm }</label>
 										</c:forEach>
 									</ul>
 								</td>
@@ -57,7 +63,7 @@
 									<ul>
 										<li><input type="checkbox" name="job_all" class="chk chkAll" id="job_all" /><label for="job_all"><b>전체</b></label></li>
 										<c:forEach var="job" items="${joblist }">
-										<li><input type="checkbox" name="job_no" value="${job.job_no }" class="chk" id="job_${job.job_no }" /><label for="job_${job.job_no }">${job.job_nm }</label>
+										<li><input type="checkbox" name="job" value="${job.job_no }" class="chk" id="job_${job.job_no }" /><label for="job_${job.job_no }">${job.job_nm }</label>
 										</c:forEach>
 									</ul>
 								</td>
@@ -95,14 +101,14 @@
 								<td class="left">
 								<fmt:formatDate value="${learn.period_st}" type="date" pattern="yyyy-MM-dd" var="period_st" />
 								<fmt:formatDate value="${learn.period_ed}" type="date" pattern="yyyy-MM-dd" var="period_ed" />
-								<input type="text" name="period_st" id="from" value="${period_st}" class="txt w150 cen"> ~ 
-								<input type="text" name="period_ed" id="to" value="${period_ed}" class="txt w150 cen" >
+								<input type="text" name="period_st_str" id="from" value="${period_st}" class="txt w150 cen"> ~ 
+								<input type="text" name="period_ed_str" id="to" value="${period_ed}" class="txt w150 cen" >
 								</td>
 							</tr>
 							<tr>
 								<th>첨부</th>
 								<td class="left">
-									<p><input type="file" name="attach_file" /></p>
+									<p><input type="file" name="attach" /></p>
 								</td>
 							</tr>
 							<tr>
@@ -119,8 +125,10 @@
 							</tr>
 						</table>
 						<br>
-						<a class="css_btn_class" onclick="submitchk();"><span id="sub">작성</span></a>
-						<a class="css_btn_class" onclick="location.href='/iessvn/learn/list.do';">취소</a>
+						<div style="width:100%; text-align:center;">
+						<a href="#" class="css_btn_class" onclick="submitchk();"><span id="sub">작성</span></a>
+						<a href="#" class="css_btn_class" onclick="cancel(document.writeFrm);">취소</a>
+						</div>
 						</form>
 					</div>
 			</section>
