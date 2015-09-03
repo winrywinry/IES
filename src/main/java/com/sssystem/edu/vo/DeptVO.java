@@ -7,8 +7,15 @@ public class DeptVO {
 	private String section_nm;
 	private String team_nm;
 	private int user_no;
+	private String category_nm;
 
 	public DeptVO() {
+	}
+	
+	public DeptVO(int dept_no, String dept_nm) {
+		super();
+		this.dept_no = dept_no;
+		this.dept_nm = dept_nm;
 	}
 
 	public DeptVO(int dept_no, String dept_nm, String section_nm,
@@ -67,6 +74,14 @@ public class DeptVO {
 
 	public void setUser_no(int user_no) {
 		this.user_no = user_no;
+	}
+
+	public String getCategory_nm() {
+		return category_nm;
+	}
+
+	public void setCategory_nm(String category_nm) {
+		this.category_nm = category_nm;
 	}
 
 }
