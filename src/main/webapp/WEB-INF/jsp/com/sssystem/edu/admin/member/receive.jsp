@@ -4,7 +4,7 @@
     pageEncoding="UTF-8"%>
 <%
     	 request.setCharacterEncoding("UTF-8"); 
-       System.out.print(request.getAttribute("result"));
+       System.out.println(request.getAttribute("result"));
        int result = Integer.parseInt(request.getAttribute("result").toString());
        String user_nm = (String) request.getAttribute("user_nm");
        Date birth_dt = (Date) request.getAttribute("birth");
