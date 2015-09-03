@@ -53,10 +53,9 @@
 		<li><a href="#"> 부서</a>
 			<ul>
 			<c:forEach items="${list }" var="li">
-				<li><a href="/IES/learn/list?dept_no=1000"> ${li.dept_nm}</a></li><br>			
+				<li><a href="/IES/learn/list?dept_no=1000" > ${li.dept_nm}</a><br>			
 			</c:forEach>
-				<ul>
-					<c:forEach items="${li }" var="li">
+					<c:forEach items="${list }" var="li">
 						<li><a href="#"> ${li.category_nm }</a></li><br>
 					</c:forEach>
 				</ul>
@@ -65,7 +64,7 @@
 				<li><a href="/IES/learn/list?dept_no=4000"> 기획부</a></li><br>
 				<li><a href="/IES/learn/list?dept_no=5000"> 자재부</a></li><br>
 				<li><a href="/IES/learn/list?dept_no=6000"> 인사부</a></li><br> -->
-				<li><a href="/IES/learn/list?dept_no=7000"> 전산부</a>
+ <!-- 				<li><a href="/IES/learn/list?dept_no=7000"> 전산부</a>
 					<ul>
 						<li><a href="#"> 공문서</a></li><br>
 						<li><a href="#"> 인사문서</a></li><br>
@@ -73,6 +72,7 @@
 						<li><a href="#"> 보고서</a></li><br>
 					</ul>
 				</li>
+				 -->
 			</ul>
 		</li>
 	</ul>				

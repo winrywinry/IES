@@ -29,9 +29,9 @@ public class CommonController {
 		
 		List<DeptVO> list = learnService.selectLeftMenuList();
 		model.addAttribute("list", list);
-		for(int i = 0 ; i < list.size() ; i++){
-			System.out.println(list.get(i));
-		}
+	/*	for(int i = 0 ; i < list.size() ; i++){
+			System.out.println(list.get(i).getCategory_nm());
+		}*/
 		return "include/left_menu_learn";
 	}
 	

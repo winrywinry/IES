@@ -8,7 +8,7 @@ public class DeptVO {
 	private String team_nm;
 	private int user_no;
 	private String category_nm;
-
+	
 	public DeptVO() {
 	}
 	
@@ -19,13 +19,14 @@ public class DeptVO {
 	}
 
 	public DeptVO(int dept_no, String dept_nm, String section_nm,
-			String team_nm, int user_no) {
+			String team_nm, int user_no, String category_nm) {
 		super();
 		this.dept_no = dept_no;
 		this.dept_nm = dept_nm;
 		this.section_nm = section_nm;
 		this.team_nm = team_nm;
 		this.user_no = user_no;
+		this.category_nm = category_nm;
 	}
 
 	public int[] getDept() {
