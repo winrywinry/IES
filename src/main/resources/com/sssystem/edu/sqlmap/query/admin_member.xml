@@ -121,7 +121,7 @@
 	
 	<select id="selectDuple" parameterType="adminMemberVO" resultType="int">
 		<![CDATA[
-		SELECT count(*) as cnt FROM t_edu_user WHERE user_nm=#{user_nm} and birth_dt = #{birth_dt}
+		SELECT count(*) as cnt FROM t_edu_user WHERE phone_no=#{phone_no} and birth_dt = #{birth_dt}
 		]]>
 	</select>
 	

@@ -77,10 +77,11 @@ function del(){
     // Ajax 객체를 이용한 데이터 전송 과정
     function ajaxSend() {
        createAjax();
-       var user_nm = document.getElementById("user_nm").value;
+       var phone_no = document.getElementById("phone_no").value;
+       alert(phone_no)
        var birth = document.getElementById("birth").value;
 	       xmlReq.onreadystatechange = callBack; // 괄호 열고닫고가 틀리다.!
-	       xmlReq.open("GET", "receive?user_nm="+user_nm+"&birth="+birth, true);
+	       xmlReq.open("GET", "receive?phone_no="+phone_no+"&birth="+birth, true);
 	       xmlReq.send(null);
        // send가 끝나고나면 비동기식이기 때문에 프로그램이 계속 진행된다.
    }
@@ -103,11 +104,11 @@ function del(){
        var rootValue = rootNode.firstChild.nodeValue;
        var rootTag = document.getElementById("error");
        
-       var nameNode = rootNode.getElementsByTagName("name");
-       var nameValue = nameNode.item(0).firstChild.nodeValue;
+       var phoneNode = rootNode.getElementsByTagName("phone");
+       var phoneValue = phoneNode.item(0).firstChild.nodeValue;
        var birthValue = rootNode.getElementsByTagName("birth").item(0).firstChild.nodeValue;
 
-       if (nameValue != 'unknown' && birthValue != 'unknown'){
+       if (phoneValue != 'unknown' && birthValue != 'unknown'){
 	       if(rootValue == "true") {
 	           rootTag.innerHTML = "<font color=blue>* 등록 가능한 사용자입니다.</font>";
 	       } else {
@@ -145,7 +146,7 @@ function del(){
 	<section>
 		<div id="content">
 			<div id="top">
-				<h3>회원관리</h3><span id="error" style="margin-left:20px"></span>
+				<h3>회원관리</h3><span id="error" style="margin-left:20px">ㅡㅡ</span>
 			</div>
 			<form method="post" name="insertFrm" action="writeAction" onsubmit="return Formchk(this)" novalidate="novalidate" enctype="multipart/form-data">
 			<input type="hidden" name="page" value="${page }" />
@@ -190,7 +191,7 @@ function del(){
 					</tr>
 					<tr>
 						<th>연락처</th>
-						<td><input type="text" pattern="\d{3}\-\d{4}\-\d{3}" name="phone_no" maxlength="13" class="txt" value="${member.phone_no }" /></td>
+						<td><input type="text" pattern="\d{3}\-\d{4}\-\d{3}" name="phone_no" id="phone_no" maxlength="13" class="txt" value="${member.phone_no }" /></td>
 						<th>비상연락처</th>
 						<td><input type="text" pattern="\d{3}\-\d{4}\-\d{3}" name="second_no" maxlength="13" class="txt" value="${member.second_no }" /></td>
 						<th>내선</th>
