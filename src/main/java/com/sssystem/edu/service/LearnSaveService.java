@@ -2,9 +2,11 @@ package com.sssystem.edu.service;
 
 import org.springframework.transaction.annotation.Transactional;
 
+import com.sssystem.edu.common.AttachNotInsertException;
 import com.sssystem.edu.common.AuthNotInsertException;
 import com.sssystem.edu.common.BoardNotInsertException;
 import com.sssystem.edu.common.LearnNotInsertException;
+import com.sssystem.edu.common.TestNotUpdateException;
 import com.sssystem.edu.common.ValidateParamChk;
 import com.sssystem.edu.vo.AttachFileVO;
 import com.sssystem.edu.vo.AuthVO;
@@ -14,19 +16,32 @@ import com.sssystem.edu.vo.LearnVO;
 
 public class LearnSaveService {
 
-	private LearnVO learnVO;
-	private DeptVO deptVO;
-	private AuthVO authVO;
-	private AttachFileVO attachVO;
 	private LearnService learnService;
 	private AuthService authService;
 	private BoardService boardService;
 	private AttachFileService attachFileService;
+	private TestService testService;
 	
+	public LearnSaveService() {
+		// TODO Auto-generated constructor stub
+	}
 	
-	
+	public LearnSaveService(LearnService learnService, AuthService authService,
+			BoardService boardService, AttachFileService attachFileService,
+			TestService testService) {
+		super();
+		this.learnService = learnService;
+		this.authService = authService;
+		this.boardService = boardService;
+		this.attachFileService = attachFileService;
+		this.testService = testService;
+	}
+
 	@Transactional
-	public	void LearnSave(String job_str){
+	public	void learnSave(LearnVO learnVO
+			              , DeptVO deptVO
+			              , String job_str
+			              , AttachFileVO attachVO){
 		ValidateParamChk chk = new ValidateParamChk();
 		
 		//1. 교육등록
@@ -57,9 +72,15 @@ public class LearnSaveService {
 			}
 		
 		//4. 첨부파일저장
-			attachFileService.insert(attachVO);
+			int attach_no = attachFileService.insert(attachVO);
+			if (attach_no < 1){
+				throw new AttachNotInsertException();
+			}
 		}
 		
 		//5. 시험등록
+		if (!(testService.eduInsert(edu_no, learnVO.getUser_no()))){
+			throw new TestNotUpdateException();
+		}
 	}
 }

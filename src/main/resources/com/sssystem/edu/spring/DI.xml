@@ -8,18 +8,41 @@
 	<bean id="caetgoryService" class="com.sssystem.edu.service.impl.CategoryServiceImpl"/>
 	<bean id="testService" class="com.sssystem.edu.service.impl.TestServiceImpl"/>
 	<bean id="qnaService" class="com.sssystem.edu.service.impl.QnaServiceImpl"/>
-	<bean id="BoardService" class="com.sssystem.edu.service.impl.BoardServiceImpl"/>
+	<bean id="boardService" class="com.sssystem.edu.service.impl.BoardServiceImpl"/>
 	<bean id="chk" class="com.sssystem.edu.common.ValidateParamChk"/>
 	<bean id="adminMemberService" class="com.sssystem.edu.admin.service.impl.AdminMemberServiceImpl"/>
 	<bean id="memberService" class="com.sssystem.edu.service.impl.MemberServiceImpl"/>
 	<bean id="learnService" class="com.sssystem.edu.service.impl.LearnServiceImpl"/>
 	<bean id="completeService" class="com.sssystem.edu.service.impl.CompleteServiceImpl"/>
+	<bean id="authService" class="com.sssystem.edu.service.impl.AuthServiceImpl"/>
+	<bean id="attachFileService" class="com.sssystem.edu.service.impl.AttachFileServiceImpl"/>
+	
 	<bean id="testVal" class="com.sssystem.edu.valitors.TestValidator"/>
 	<bean id="memberVal" class="com.sssystem.edu.admin.validators.MemberValidator"/>
 	<bean id="logvalidator" class="com.sssystem.edu.valitors.LoginValidator"/>
-	<bean id="sessionVO" class="com.sssystem.edu.vo.support.SessionVO"/>
 	<bean id="joinvalidator" class="com.sssystem.edu.valitors.JoinValidator"/>
 	<bean id="passFindVal" class="com.sssystem.edu.valitors.PasswordFindValidator"/>
+	
+	<bean id="sessionVO" class="com.sssystem.edu.vo.support.SessionVO"/>
 	<bean id="memberVO" class="com.sssystem.edu.vo.MemberVO"/>
 	
+	<bean id="learnSaveService" class="com.sssystem.edu.service.LearnSaveService">
+		<constructor-arg ref="learnService" />
+		<constructor-arg ref="authService" />
+		<constructor-arg ref="boardService" />
+		<constructor-arg ref="attachFileService" />
+		<constructor-arg ref="testService" />
+	</bean>
+	
+	<bean id="mailSender" class ="org.springframework.mail.javamail.JavaMailSenderImpl" >
+	    <property name="host" value="smtp.gmail.com" />
+	    <property name="port" value="587" />
+	    <property name="username" value="bbqbbb@gmail.com" />
+	    <property name="password" value="qkdfk1212" />
+	    <property name="javaMailProperties">
+	    <props>
+	        <prop key="mail.smtp.starttls.enable">true</prop>
+	    </props>
+    </property>
+</bean>
 </beans>

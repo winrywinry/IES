@@ -14,4 +14,5 @@ public interface TestService {
 	public List<TestVO> selectTest(int edu_no);
 	public int countTest (int edu_no);
 	public TestVO selectAnswer(int edu_no,int q_no);
+	public boolean eduInsert(int edu_no, int user_no);
 }

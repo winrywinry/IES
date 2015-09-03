@@ -60,13 +60,20 @@ public class TestServiceImpl implements TestService {
 	}
 	@Override
 	public TestVO selectAnswer(int edu_no, int q_no) {
-		System.out.println("edu_no = "+edu_no);
-		System.out.println("q_no = "+q_no);
 		HashMap<String,Integer> input_map = new HashMap<String, Integer>();
 		input_map.put("edu_no",edu_no);
 		input_map.put("q_no",q_no);
 		
 		TestVO testVO = (TestVO) session.selectOne("test.selectAnswer",input_map);
 		return testVO;
+	}
+	@Override
+	public boolean eduInsert(int edu_no, int user_no) {
+		HashMap<String, Object> info = new HashMap<String, Object>();
+		info.put("edu_no", edu_no);
+		info.put("user_no", user_no);
+		int t = session.update("test.eduInsert", info);
+		if (t > 0) return true;
+		return false;
 	}
 }
