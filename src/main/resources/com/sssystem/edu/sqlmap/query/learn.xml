@@ -137,7 +137,7 @@
 		
 	</select>
 	
-	<select id="selectLeftMenuList" resultType="learnVO">
+	<select id="selectLeftMenuList" resultType="DeptVO">
     SELECT A.DEPT_NO
 	     , A.DEPT_NM
 	     , A.CATEGORY_NO
