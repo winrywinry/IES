@@ -17,6 +17,14 @@
 		     , ATTACH_SEQ
 		) VALUES (
 		       #{attach_no}
+		     , #{ref_no}
+		     , #{table_nm}
+		     , #attach_file}
+		     , (SELECT NVL(MAX(ATTACH_SEQ), 0) + 1
+		          FROM T_EDU_ATTACH
+		         WHERE TABLE_NM = #{table_nm}
+		           AND REF_NO = #{ref_no}
+		       )
 		)
 		]]>
 	</insert>

@@ -124,4 +124,13 @@
 		WHERE
 			EDU_NO = #{edu_no} AND Q_NO = #{q_no}
 	</select>
+	
+	<update id="eduInsert" parameterType="hashmap">
+		<![CDATA[
+		UPDATE T_EDU_TEST SET
+		       EDU_NO = #{edu_no}
+		 WHERE EDU_NO = 0
+		   AND USER_NO = #{user_no}
+		]]>
+	</update>
 </mapper>

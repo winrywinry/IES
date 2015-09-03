@@ -14,15 +14,8 @@
 <script src="${initParam.root }/js/jquery-ui.js"></script>
 <script type="text/javascript" src="${initParam.root }/js/test.js"></script>
 <link href="${initParam.root }/css/jquery-ui.css" rel="stylesheet">
-<c:if test="${msg != null }">
-<script type="text/javascript">alert("${msg }");</script>
-</c:if>
 </head>
 <body>
-<form:errors path="test.gubun" cssClass="msgAlert" />
-<form:errors path="test.question" cssClass="msgAlert" />
-<form:errors path="test.answer_nm" cssClass="msgAlert" />
-<form:errors path="test.corr_answer2" cssClass="msgAlert" />
 <div id="winWrap">
 	<div id="winHeader"><h3>시험</h3></div>
 	<div id="winCon">	
