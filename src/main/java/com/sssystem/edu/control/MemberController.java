@@ -2,7 +2,6 @@ package com.sssystem.edu.control;
 
 import java.util.HashMap;
 
-import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -103,8 +102,8 @@ public class MemberController{
 		sessionVO = memberService.selectSession(user_id);
 		int user_no = sessionVO.getUser_no();
 		memberService.insertLog(user_no);
-		
-		System.out.println("출석수:"+memberService.selectLogSession(user_no));
+		model.addAttribute("photo", memberService.photo(user_no));
+		System.out.println("사진: " + memberService.photo(user_no));
 		session.setAttribute("user", sessionVO);
 		return "redirect:index";
 		}
@@ -126,8 +125,6 @@ public class MemberController{
 			  				 BindingResult result,
 			  				 Model model){
 		
-		System.out.println("memberVO: " + memberVO);
-		
 		joinvalidator.validate(memberVO, result);
 		
 		if(result.hasErrors()) {
@@ -144,9 +141,6 @@ public class MemberController{
 			HashMap<String, String> map = new HashMap<String, String>();
 			map.put("user_nm", user_nm);
 			map.put("emp_serial", emp_serial);
-			
-			System.out.println(user_nm);
-			System.out.println(emp_serial);
 			
 			HashMap<String, Object> deptjob = memberService.selectDept1(map);
 			int user_no = Integer.valueOf(String.valueOf(deptjob.get("USER_NO")));
@@ -193,7 +187,6 @@ public class MemberController{
 		memberVO.setEmail(email);
 		memberVO.setUser_no(user_no);
 		
-		System.out.println(memberVO);
 		
 		if(memberService.updateJoin(memberVO)) return "member/login";
 		

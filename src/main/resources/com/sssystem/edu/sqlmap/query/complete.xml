@@ -66,7 +66,7 @@
 	FROM T_EDU_COMPLETE B JOIN T_EDU A
            ON A.EDU_NO = B.EDU_NO
            AND ROWNUM BETWEEN 1 AND 6
-           AND B.END_DT = '1111-11-11'
+           AND B.ANSWER = '미응시'
            AND B.USER_NO = #{user_no}
            ORDER BY B.START_DT
 	</select>
@@ -83,7 +83,7 @@
 	FROM T_EDU_COMPLETE B JOIN T_EDU A
            ON A.EDU_NO = B.EDU_NO
            AND ROWNUM BETWEEN 1 AND 6
-           AND B.END_DT <> '1111-11-11'
+           AND B.ANSWER = '응시'
            AND B.USER_NO = #{user_no}
            ORDER BY B.START_DT
            ]]>
