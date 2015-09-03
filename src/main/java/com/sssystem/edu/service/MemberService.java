@@ -1,9 +1,11 @@
 package com.sssystem.edu.service;
 
-import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 
-import com.sssystem.edu.admin.vo.MemberVO;
+import com.sssystem.edu.vo.BoardVO;
+import com.sssystem.edu.vo.MemberVO;
+import com.sssystem.edu.vo.QnaBoardVO;
 import com.sssystem.edu.vo.support.SessionVO;
 
 
@@ -25,7 +27,7 @@ public interface MemberService {
 	public String selectWrite(int log);
 	public void insertLog(int log);
 	public String selectQuestion(int log);
-	public ArrayList<String> myWriteView(int log);
-	public ArrayList<String> myQuestionView(int log);
+	public List<QnaBoardVO> myWriteView(int log);
+	public List<BoardVO> myQuestionView(int log);
 	
 }

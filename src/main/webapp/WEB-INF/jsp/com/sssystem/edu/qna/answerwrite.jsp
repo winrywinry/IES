@@ -1,16 +1,16 @@
-<%@ page language="java" contentType="text/html; charset=EUC-KR"
-	pageEncoding="EUC-KR"%>
+	<%@ page language="java" contentType="text/html; charset=UTF-8"
+	pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
-<% request.setCharacterEncoding("euc-kr"); %>
+<%-- request.setCharacterEncoding("euc-kr"); --%>
 <!DOCTYPE html>
 <html>
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=EUC-KR">
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <link rel="stylesheet" type="text/css" href="${initParam.root }/css/qna.css" />
 <title>Insert title here</title>
 	<script src= "//code.jquery.com/jquery-1.11.3.min.js" ></script>
 	<script src= "//code.jquery.com/jquery-migrate-1.2.1.min.js" ></script>
-	<script type= "text/javascript" src ="${initParam.root }/js/SEditor.js" charset="euc-kr" ></script>
+	<script type= "text/javascript" src ="${initParam.root }/js/SEditor.js" charset="UTF-8" ></script>
 	<script type= "text/javascript">
 	$(function(){
 	       callEditor( "ta1");   
@@ -40,20 +40,20 @@
 					</c:if>
 						<table class="listtop">
 							<tr>
-								<th height="36px" valign="bottom" style="padding-top:10px;"><h3><div id="pagetitle">´äº¯ÀÛ¼º</div></h3></th>
+								<th height="36px" valign="bottom" style="padding-top:10px;"><h3><div id="pagetitle">ë‹µë³€ìž‘ì„±</div></h3></th>
 							</tr>
 						</table>
 						<table cellspacing="0" class="contentTab">
 							<tr>
-								<th width="100">³»¿ë</th>
+								<th width="100">ë‚´ìš©</th>
 								<td class="left">
 									<textarea name="a_contents" id="ta1" rows="10" cols="100" style="width :620px; height:200px; display: none;">
 									</textarea>
 								</td>
 							</tr>
 						</table>
-						<input style="width: 50px; height: 25px; margin: 10px 5px 0px 430px" class="ml-button-1" type="submit" value="ÀúÀå" onclick="titleChk()">
-						<input style="width: 50px; height: 25px; margin: 10px 0px 0px 5px" class="ml-button-1" type="reset" value="Ãë¼Ò" onclick="history.go(-1)">				
+						<input style="width: 50px; height: 25px; margin: 10px 5px 0px 430px" class="ml-button-1" type="submit" value="ì €ìž¥" onclick="titleChk()">
+						<input style="width: 50px; height: 25px; margin: 10px 0px 0px 5px" class="ml-button-1" type="reset" value="ì·¨ì†Œ" onclick="history.go(-1)">				
 					</form>
 					</div>
 			</section>

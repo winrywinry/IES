@@ -1,7 +1,9 @@
 package com.sssystem.edu.control;
 
 import java.sql.Date;
+import java.util.List;
 
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -13,6 +15,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import com.sssystem.edu.common.ValidateParamChk;
 import com.sssystem.edu.service.CompleteService;
 import com.sssystem.edu.service.LearnService;
+import com.sssystem.edu.service.TestService;
 import com.sssystem.edu.vo.CompleteVO;
 import com.sssystem.edu.vo.LearnVO;
 import com.sssystem.edu.vo.search.SearchLearnVO;
@@ -54,6 +57,8 @@ public class CompleteController {
 		learnService.updateViewCnt(no);
 		
 		LearnVO learn = learnService.select(no);
+		learn.setFavorite_cnt(completeService.selectFavorite(no,0));
+		learn.setCheck_favorite(completeService.selectFavorite(no,sessionVO.getUser_no()));
 		LearnVO learnNext = learnService.selectNext(pageVO);
 		LearnVO learnPrev = learnService.selectPrev(pageVO);
 		CompleteVO learnComplete = completeService.selectComplete(no,sessionVO.getUser_no());
@@ -71,25 +76,45 @@ public class CompleteController {
 	@RequestMapping("learn/updateComplete")
 	public String updateComplete(HttpSession session, Model model,
 			@RequestParam(value="no")int edu_no,
-			@RequestParam(value="start_dt",required=false,defaultValue="1111-11-11")Date start_dt,
-			@RequestParam(value="end_dt",required=false,defaultValue="1111-11-11")Date end_dt){
+			@RequestParam(value="start_dt",required=false,defaultValue="1111-11-11")String start_dt,
+			@RequestParam(value="end_dt",required=false,defaultValue="1111-11-11")String end_dt,
+			@RequestParam(value="dept_no")String dept_no,
+			@RequestParam(value="page")String page,
+			@RequestParam(value="searchWord",required=false)String searchWord){
 		
 		SessionVO sessionVO = (SessionVO) session.getAttribute("user");
+		int user_no = sessionVO.getUser_no();
 		CompleteVO completeVO = new CompleteVO();
 		completeVO.setEdu_no(edu_no);
-		completeVO.setUser_no(sessionVO.getUser_no());
+		completeVO.setUser_no(user_no);
 		completeVO.setStart_dt(start_dt);
 		completeVO.setEnd_dt(end_dt);
 		
 		if(start_dt.equals("1111-11-11")){
-			if(completeService.insertComplete(completeVO)) return "learn/view";
+			if(completeService.insertComplete(completeVO)) return "redirect:contentsView?no="+edu_no+"&dept_no="+dept_no+"&page="+page+"&searchWord="+searchWord;
 		}else{
-			if(completeService.updateComplete(completeVO)){
-				return "learn/view";			
+			if(completeService.updateComplete(completeVO)) return "redirect:contentsView?no="+edu_no+"&dept_no="+dept_no+"&page="+page+"&searchWord="+searchWord;		
 			}
-		}
 		
 		return "learn/list";
+	}
+	
+	@RequestMapping("learn/favorite")
+	public String favorite(HttpSession session, Model model,
+			@RequestParam(value="no")int edu_no,
+			@RequestParam(value="dept_no")String dept_no,
+			@RequestParam(value="page")String page,
+			@RequestParam(value="searchWord",required=false)String searchWord){
+		SessionVO sessionVO = (SessionVO) session.getAttribute("user");
+		CompleteVO completeVO = new CompleteVO();
+		completeVO.setEdu_no(edu_no);
+		completeVO.setUser_no(sessionVO.getUser_no());
+		
+		if(completeService.insertFavorite(completeVO)){
+			return "redirect:contentsView?no="+edu_no+"&dept_no="+dept_no+"&page="+page+"&searchWord="+searchWord;			
+		}else{
+			return "redirect:contentsView?no="+edu_no+"&dept_no="+dept_no+"&page="+page+"&searchWord="+searchWord;			
+		}
 	}
 
 }

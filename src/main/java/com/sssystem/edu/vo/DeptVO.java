@@ -1,6 +1,7 @@
 package com.sssystem.edu.vo;
 
 public class DeptVO {
+	private int[] dept;
 	private int dept_no;
 	private String dept_nm;
 	private String section_nm;
@@ -18,6 +19,14 @@ public class DeptVO {
 		this.section_nm = section_nm;
 		this.team_nm = team_nm;
 		this.user_no = user_no;
+	}
+
+	public int[] getDept() {
+		return dept;
+	}
+
+	public void setDept(int[] dept) {
+		this.dept = dept;
 	}
 
 	public int getDept_no() {

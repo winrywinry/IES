@@ -19,4 +19,5 @@ public interface QnaService {
 	public void answerUpdate(QnaBoardVO bean);//답변 등록
 	public String answerNmSelect(int user_no);//답변자 이름 검색
 	public int haha();
+	public List<QnaBoardVO> recommendView();
 }

@@ -1,41 +1,50 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
+<%@ page language="java" contentType="text/html; charset=EUC-KR"
+    pageEncoding="EUC-KR"%>
 <%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
-<%@taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
-<%@taglib prefix="tags" uri="http://www.springframework.org/tags"%>
+<%@ taglib uri="http://www.springframework.org/tags/form" prefix="form" %>
 <!DOCTYPE html>
 <html>
 <head>
-<meta http-equiv="Content-Type" content="text/html" charset="UTF-8">
-<title>ì‚¬ë‚´êµìœ¡ì‹œìŠ¤í…œ - ë¡œê·¸ì¸</title>
+<meta charset="utf-8">
+<title>»ç³»±³À°½Ã½ºÅÛ - ·Î±×ÀÎ</title>
 <script src= "//code.jquery.com/jquery-1.11.3.min.js" ></script>
 <script src= "//code.jquery.com/jquery-migrate-1.2.1.min.js" ></script>
 <link rel="stylesheet" type="text/css" href="${initParam.root }/css/login.css">
 
-<script type="text/javascript" src="/IES/js/common.js">
+<script type="text/javascript">
 function FormChkModule(f){
-	if(f.id.value==""){
-		alert("ì•„ì´ë””ë¥¼ ì…ë ¥í•˜ì„¸ìš”!!");
-		f.id.focus();
+	if(f.user_id.value==""){
+		alert("¾ÆÀÌµğ¸¦ ÀÔ·ÂÇÏ¼¼¿ä!!");
+		f.user_id.focus();
 		return false;
 	}
-	if(f.pass.value==""){
-		alert("ë¹„ë°€ë²ˆí˜¸ë¥¼ ì…ë ¥í•˜ì„¸ìš”!!");
-		f.pass.focus();
+	if(f.user_pwd.value==""){
+		alert("ºñ¹Ğ¹øÈ£¸¦ ÀÔ·ÂÇÏ¼¼¿ä!!");
+		f.user_pwd.focus();
 		return false;
 	}
 	return true;
 }//FormChkModule
 $(function(){
-	document.frmLogin.id.focus();
+	document.frmLogin.user_id.focus();
+	 $(".msgAlert").hide();
+     $(".msgAlert").each(function(){
+           alert($( this).text());            
+     })
 });
 </script>
+<c:if test="${msg != null }">
+	<script type="text/javascript">alert('${msg}');</script>
+</c:if>
 </head>
+
 <body>
+<form:errors path="member.user_id" cssClass="msgAlert"/>
+<form:errors path="member.user_pwd" cssClass="msgAlert"/>
 <div id="wrap">
 	<!-- header -->
 	<div id="header">
-		<h1><a href="login" class="logo hid_txt" tabindex="1">ì‚¬ë‚´êµìœ¡ì‹œìŠ¤í…œ</a></h1>
+		<h1><a href="login" class="logo hid_txt" tabindex="1">»ç³»±³À°½Ã½ºÅÛ</a></h1>
 	</div>
 	<!-- container -->
 	<div id="container">
@@ -43,31 +52,26 @@ $(function(){
 		<div id="content">
 			<form id="frmLogin" name="frmLogin" target="_top" AUTOCOMPLETE="off" action="loginAccess" method="post" onsubmit="return FormChkModule(this)">
 			<fieldset class="login_form">
-			<legend class="blind">ë¡œê·¸ì¸ </legend>
+			<legend class="blind">·Î±×ÀÎ</legend>
 				<div class="input_row" id="id_area">
 					<span class="input_box">
-						<label for="id" id="label_id_area" class="lbl">ì•„ì´ë””</label>
-						<input type="text" id="user_id" name="user_id" tabindex="7" accesskey="L" placeholder="ì•„ì´ë””" class="int" maxlength="20" value="">
+						<label for="id" id="label_id_area" class="lbl">¾ÆÀÌµğ</label>
+						<input type="text" id="id" name="user_id" tabindex="7" accesskey="L" placeholder="¾ÆÀÌµğ" class="int" maxlength="20" value="">
 					</span>
-					<form:errors path="member.user_id" cssClass="error" id="passlMsg" element="div"/>
 				</div>
 				<div class="input_row" id="pw_area">
 					<span class="input_box">
-						<label for="pw" id="label_pw_area" class="lbl" >ë¹„ë°€ë²ˆí˜¸</label>
-						<input type="password" id="user_pwd" name="user_pwd" tabindex="8" placeholder="ë¹„ë°€ë²ˆí˜¸" class="int" maxlength="20">
+						<label for="pw" id="label_pw_area" class="lbl" >ºñ¹Ğ¹øÈ£</label>
+						<input type="password" id="pw" name="user_pwd" tabindex="8" placeholder="ºñ¹Ğ¹øÈ£" class="int" maxlength="20">
 					</span>
-					<form:errors path="member.user_pwd" cssClass="error" id="passlMsg" element="div"/>
-						<c:if test="${msg != null }">
-						<div class="error" id="passMsg">${msg }</div>
-						</c:if>
 				</div>
 				<div class="btn_login">
-					<input type="submit" title="ë¡œê·¸ì¸" alt="ë¡œê·¸ì¸" tabindex="12" value="login">
+					<input type="submit" title="·Î±×ÀÎ" alt="·Î±×ÀÎ" tabindex="12" value="login">
 				</div>
 			</fieldset>
 			</form>
 			<div class="find_info">
-				<a href="findIdCheck" onclick="">ì•„ì´ë”” ì°¾ê¸°</a> / <a href="findPasswordCheck" onclick="">ë¹„ë°€ë²ˆí˜¸ ì°¾ê¸°</a> <span class="bar">|</span> <a href="joinCheck">íšŒì›ê°€ì…</a>
+				<a href="findIdCheck" onclick="">¾ÆÀÌµğ Ã£±â</a> / <a href="findPasswordCheck" onclick="">ºñ¹Ğ¹øÈ£ Ã£±â</a> <span class="bar">|</span> <a href="joinCheck">È¸¿ø°¡ÀÔ</a>
 			</div>
 		</div>
 	</div>

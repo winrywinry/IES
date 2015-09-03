@@ -1,8 +1,8 @@
-<?xml version='1.0' encoding='EUC-KR'?>
-<%@ page language="java" contentType="text/xml; charset=EUC-KR"
-    pageEncoding="EUC-KR"%>
+<?xml version='1.0' encoding='UTF-8'?>
+<%@ page language="java" contentType="text/xml; charset=UTF-8"
+    pageEncoding="UTF-8"%>
 <%-- replyDelete.jsp --%>
 <result>
   <commet_no>${commet_no }</commet_no>
-  <msg>昏力己傍~!!</msg>
+  <msg>靷牅靹标车~!!</msg>
 </result> 

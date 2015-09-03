@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="auth">
+	<insert id="insert" parameterType="authVO">
+		<![CDATA[
+		INSERT INTO T_EDU_AUTH (
+			   EDU_NO
+			 , DEPT_NO
+			 , JOB_STR
+		) VALUES (
+		       #{edu_no}
+		     , #{dept_no}
+		     , #{job_str}
+		)
+		]]>
+	</insert>
+	<delete id="delete" parameterType="int">
+		<![CDATA[
+		DELETE
+		  FROM T_EDU_AUTH
+		 WHERE EDU_NO = #{edu_no}
+		]]>
+	</delete>
+</mapper>

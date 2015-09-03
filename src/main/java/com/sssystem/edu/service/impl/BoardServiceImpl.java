@@ -1,6 +1,5 @@
 package com.sssystem.edu.service.impl;
 
-import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
@@ -27,12 +26,10 @@ public class BoardServiceImpl implements BoardService {
 	 * @return
 	 */
 	@Override
-	public boolean boardInsert(BoardVO bean) {
-		int t = session.insert("notice.boardInsert", bean);
-		if(t==1) {
-			return true;
-		}
-		return false;
+	public int boardInsert(BoardVO bean) {
+		session.insert("notice.boardInsert", bean);
+		int board_no = bean.getBoard_no();
+		return board_no;
 	}
 	
 	/**
@@ -182,22 +179,22 @@ public class BoardServiceImpl implements BoardService {
 	}
 
 	@Override
-	public ArrayList<String> notice() {
-		ArrayList<String> notice = null;
-		notice = (ArrayList) session.selectList("notice.notice");
+	public List<BoardVO> notice() {
+		List<BoardVO> notice = null;
+		notice = session.selectList("notice.notice");
 		return notice;
 	}
 
 	@Override
 	public String selectReply(int user_no) {
 		String reply = null;
-	//	reply = (String) session.selectList("notice.reply",user_no);
-		return null;
+		reply = (String) session.selectOne("notice.reply",user_no);
+		return reply;
 	}
 
 	@Override
-	public List<String> replyContents(int user_no) {
-		List<String> list = session.selectList("notice.replyContents", user_no);
+	public List<BoardVO> replyContents(int user_no) {
+		List<BoardVO> list = session.selectList("notice.replyContents", user_no);
 		return list;
 	}
 

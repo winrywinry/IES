@@ -1,25 +1,25 @@
-<%@ page language="java" contentType="text/html; charset=EUC-KR"
-	pageEncoding="EUC-KR"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+	pageEncoding="UTF-8"%>
 <%@page import="com.sssystem.edu.vo.BoardVO"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
-<% request.setCharacterEncoding("euc-kr"); %>
+<%-- request.setCharacterEncoding("euc-kr"); --%>
 <%
-	String board_gb = "10"; //10:°øÁö»çÇ× 30:ÀÚÀ¯°Ô½ÃÆÇ
+	String board_gb = "10"; //10:ê³µì§€ì‚¬í•­ 30:ììœ ê²Œì‹œíŒ
 
 	request.setAttribute("board_gb", board_gb);
 	BoardVO board = (BoardVO)request.getAttribute("bean");
 	
-	//º¯¼öÇÏ³ª¿¡ ´ã¾Æ¼­ Ã³¸® ÇÏ¸éµÊ..
+	//ë³€ìˆ˜í•˜ë‚˜ì— ë‹´ì•„ì„œ ì²˜ë¦¬ í•˜ë©´ë¨..
 %>
 <!DOCTYPE html>
 <html>
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=EUC-KR">
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <link rel="stylesheet" type="text/css" href="${initParam.root }/css/board.css" />
 <title>Insert title here</title>
 	<script src= "//code.jquery.com/jquery-1.11.3.min.js" ></script>
 	<script src= "//code.jquery.com/jquery-migrate-1.2.1.min.js" ></script>
-	<script type= "text/javascript" src ="${initParam.root }/js/SEditor.js" charset="euc-kr" ></script>
+	<script type= "text/javascript" src ="${initParam.root }/js/SEditor.js" charset="UTF-8" ></script>
 	<script type= "text/javascript">
 	$(function(){
 	       callEditor( "ta1");   
@@ -31,11 +31,11 @@
 		var title = document.pWriteForm.title.value;
 		var contents = document.pWriteForm.contents.value;
 		if(title == '') {
-			alert('Á¦¸ñÀ» ÀÔ·ÂÇØÁÖ¼¼¿ä!!');
+			alert('ì œëª©ì„ ì…ë ¥í•´ì£¼ì„¸ìš”!!');
 			document.pWriteForm.title.focus();
 			return false;
 		} else if(contents.length < 20) {
-			alert('³»¿ëÀ» ÀÔ·ÂÇØÁÖ¼¼¿ä!!');
+			alert('ë‚´ìš©ì„ ì…ë ¥í•´ì£¼ì„¸ìš”!!');
 			document.pWriteForm.contents.focus();
 			return false;
 		} else {
@@ -49,11 +49,11 @@
 		var contents = document.pWriteForm.contents.value;
 		
 		if(title == '') {
-			alert('Á¦¸ñÀ» ÀÔ·ÂÇØÁÖ¼¼¿ä!!');
+			alert('ì œëª©ì„ ì…ë ¥í•´ì£¼ì„¸ìš”!!');
 			document.pWriteForm.title.focus();
 			return false;
 		} else if(contents == '') {
-			alert('³»¿ëÀ» ÀÔ·ÂÇØÁÖ¼¼¿ä!!');
+			alert('ë‚´ìš©ì„ ì…ë ¥í•´ì£¼ì„¸ìš”!!');
 			document.pWriteForm.contents.focus();
 			return false;
 		} else {
@@ -88,16 +88,16 @@
 					</c:if>
 						<table class="listtop">
 									<tr>
-										<th height="36px" valign="bottom" style="padding-top:10px;"><h3><div id="pagetitle">±Û¾²±â</div></h3></th>
+										<th height="36px" valign="bottom" style="padding-top:10px;"><h3><div id="pagetitle">ê¸€ì“°ê¸°</div></h3></th>
 									</tr>
 						</table>
 						<table class="contentTab">
 							<tr>
-								<th width="100">Á¦¸ñ</th>
+								<th width="100">ì œëª©</th>
 								<td class="left"><input type="text" name="title" style="width: 700px;" value="${board.title }"></td>
 							</tr>
 							<tr>
-								<th>³»¿ë</th>
+								<th>ë‚´ìš©</th>
 								<td class="left">
 									<textarea name="contents" id="ta1" rows="10" cols="100" style="width :700px; height:200px; display: none;">
 										${board.contents }
@@ -105,8 +105,8 @@
 								</td>
 							</tr>
 						</table>
-						<input style="width: 50px; height: 25px; margin: 10px 5px 0px 0px" class="ml-button-1" type="submit" value="ÀúÀå" onclick="validationChk()">
-						<input style="width: 50px; height: 25px; margin: 10px 0px 0px 5px" class="ml-button-1" type="reset" value="Ãë¼Ò" onclick="history.go(-1)">				
+						<input style="width: 50px; height: 25px; margin: 10px 5px 0px 0px" class="ml-button-1" type="submit" value="ì €ì¥" onclick="validationChk()">
+						<input style="width: 50px; height: 25px; margin: 10px 0px 0px 5px" class="ml-button-1" type="reset" value="ì·¨ì†Œ" onclick="history.go(-1)">				
 					</form>
 					</div>
 			</section>

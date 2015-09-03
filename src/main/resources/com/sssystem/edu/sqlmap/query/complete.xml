@@ -18,22 +18,42 @@
 		SET
 			END_DT = SYSDATE
 		WHERE
-			EDU_NO = #{edu_no} AND USER_NO = #{uesr_no}		
+			EDU_NO = #{edu_no} AND USER_NO = #{user_no}		
 	</update>
 	
 	<insert id="insertComplete" parameterType="completeVO">
 		INSERT INTO 
-			T_EUD_COMPLETE
+			T_EDU_COMPLETE
 		VALUES(
-			EDU_NO = #{edu_no},
-			USER_NO = #{user_no}
-			SCORE = -1,
-			ANSWER = '미응시',
-			INPUT_DT = SYSDATE,
-			START_DT = SYSDATE,
-			END_DT = #{end_dt}
+			#{edu_no},
+			#{user_no},
+			-1,
+			'미응시',
+			SYSDATE,
+			#{end_dt}
+		)
+	</insert>
+	
+	<insert id="insertFavorite" parameterType="completeVO">
+		INSERT INTO 
+			T_FAVORITE
+		VALUES(
+			#{edu_no},
+			#{user_no},
+			SYSDATE
 		)
 	</insert>
 
-
+	<select id="selectFavorite" parameterType="hashmap" resultType="int">
+		SELECT
+			COUNT(*)
+		FROM
+			T_FAVORITE
+		WHERE
+		<choose>
+			<when test="user_no==0">EDU_NO = #{edu_no}</when>
+			<otherwise>EDU_NO = #{edu_no} AND USER_NO = #{user_no}</otherwise>
+		</choose>
+	</select>
+	
 </mapper>

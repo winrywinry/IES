@@ -1,5 +1,6 @@
 package com.sssystem.edu.service.impl;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
@@ -85,6 +86,13 @@ public class QnaServiceImpl implements QnaService {
 		// TODO Auto-generated method stub
 		int haha = session.selectOne("qna.hahaha");
 		return haha;
+	}
+
+	@Override
+	public List<QnaBoardVO> recommendView() {
+		List<QnaBoardVO> title = null;
+		title = session.selectList("qna.recommendView");
+		return title;
 	}
 	
 	

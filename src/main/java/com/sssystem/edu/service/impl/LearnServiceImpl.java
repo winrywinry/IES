@@ -63,4 +63,11 @@ public class LearnServiceImpl implements LearnService {
 		session.delete("learn.delete", no);
 	}
 
+	@Override
+	public int insert(LearnVO learnVO) {
+		session.insert("learn.insert", learnVO);
+		int edu_no = learnVO.getEdu_no();
+		return edu_no;
+	}
+
 }

@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="attach">
+	<insert id="insert" parameterType="attachVO">
+		<selectKey keyProperty="attach_no" resultType="int" order="BEFORE">
+			<![CDATA[
+			SELECT SEQ_EDU_ATTACH.NEXTVAL FROM DUAL
+			]]>
+		</selectKey>
+		<![CDATA[
+		INSERT INTO T_EDU_ATTACH (
+		       ATTACH_NO
+		     , REF_NO
+		     , TABLE_NM
+		     , ATTACH_FILE
+		     , ATTACH_SEQ
+		) VALUES (
+		       #{attach_no}
+		)
+		]]>
+	</insert>
+</mapper>

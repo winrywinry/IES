@@ -2,14 +2,18 @@ package com.sssystem.edu.control;
 
 import java.util.List;
 
+import javax.servlet.ServletContext;
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpRequest;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.multipart.MultipartFile;
 
 import com.sssystem.edu.common.ValidateParamChk;
 import com.sssystem.edu.service.CategoryService;
@@ -17,6 +21,7 @@ import com.sssystem.edu.service.DeptService;
 import com.sssystem.edu.service.JobService;
 import com.sssystem.edu.service.LearnService;
 import com.sssystem.edu.service.TestService;
+import com.sssystem.edu.vo.AttachFileVO;
 import com.sssystem.edu.vo.CategoryVO;
 import com.sssystem.edu.vo.DeptVO;
 import com.sssystem.edu.vo.JobVO;
@@ -92,13 +97,17 @@ public class LearnController {
 	}
 	
 	@RequestMapping("/learn/save")
-	public String save(LearnVO learnVO){
+	public String save(@ModelAttribute("learn") LearnVO learnVO
+			          , AttachFileVO attachVO
+			          , HttpServletRequest request){
+		MultipartFile attach = attachVO.getAttach();
+		String filename = attach.getOriginalFilename();
+		attachVO.setAttach_file(filename);
+		
+		ServletContext servletContext = request.getSession().getServletContext();
+		String relativeWebPath = "/images/";
+		String absoluteDiskPath = servletContext.getRealPath(relativeWebPath);
 		return "";
 	}
 	
-	@RequestMapping("learn/favorite")
-	public String favorite(){
-		
-		return "learn/test";
-	}
 }

@@ -1,7 +1,7 @@
 <%@page import="com.sssystem.edu.vo.ReplyVO"%> 
 <%@page import="java.util.List"%>
-<%@ page language="java" contentType="text/html; charset=EUC-KR"
-    pageEncoding="EUC-KR"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
 <%
    List<ReplyVO> list = (List<ReplyVO>)request.getAttribute("list");
 

@@ -1,6 +1,6 @@
 <%@page import="com.sssystem.edu.vo.LearnVO"%>
-<%@ page language="java" contentType="text/html; charset=EUC-KR"
-	pageEncoding="EUC-KR"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+	pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
 <%@ taglib tagdir="/WEB-INF/tags" prefix="custom" %>
@@ -8,25 +8,25 @@
 <!DOCTYPE html>
 <html>
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=EUC-KR">
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <link rel="stylesheet" type="text/css" href="${initParam.root }/css/learn.css" />
 <title>Insert title here</title>
 <script type="text/javascript">
 	window.onload=function(){
 	    if(document.searchFrm.dept_no.value=="1000"){
-	    	document.getElementById("listtitle").innerHTML = "ÃÑ¹«ºÎ";
+	    	document.getElementById("listtitle").innerHTML = "ì´ë¬´ë¶€";
 	    }else if(document.searchFrm.dept_no.value=="2000"){
-	    	document.getElementById("listtitle").innerHTML = "¿µ¾÷ºÎ";
+	    	document.getElementById("listtitle").innerHTML = "ì˜ì—…ë¶€";
 	    }else if(document.searchFrm.dept_no.value=="3000"){
-	    	document.getElementById("listtitle").innerHTML = "¹ı¹«ºÎ";
+	    	document.getElementById("listtitle").innerHTML = "ë²•ë¬´ë¶€";
 	    }else if(document.searchFrm.dept_no.value=="4000"){
-	    	document.getElementById("listtitle").innerHTML = "±âÈ¹ºÎ";
+	    	document.getElementById("listtitle").innerHTML = "ê¸°íšë¶€";
 	    }else if(document.searchFrm.dept_no.value=="5000"){
-	    	document.getElementById("listtitle").innerHTML = "ÀÚÀçºÎ";
+	    	document.getElementById("listtitle").innerHTML = "ìì¬ë¶€";
 	    }else if(document.searchFrm.dept_no.value=="6000"){
-	    	document.getElementById("listtitle").innerHTML = "ÀÎ»çºÎ";
+	    	document.getElementById("listtitle").innerHTML = "ì¸ì‚¬ë¶€";
 	    }else if(document.searchFrm.dept_no.value=="7000"){
-	    	document.getElementById("listtitle").innerHTML = "Àü»êºÎ";
+	    	document.getElementById("listtitle").innerHTML = "ì „ì‚°ë¶€";
 	    }
 		};
 
@@ -51,13 +51,13 @@
 			<jsp:include page="/include/left_menu_learn" />
 			<section id="cen">
 			
-						<!-------------------------------------°Ë»ö------------------------------------------------------------------>
+						<!-------------------------------------ê²€ìƒ‰------------------------------------------------------------------>
 				<div id="center">
 				<form name="searchFrm" action="/IES/learn/list" method="POST" onsubmit="return formchk();" id="searchFrm">
 					<input type="hidden" name="dept_no" value="${pageBean.dept_no }" />
 						<table class="listtop">
 							<tr>
-								<th valign="bottom" style="padding-top:10px;"><h3><div id="listtitle">±³À°</div></h3></th>
+								<th valign="bottom" style="padding-top:10px;"><h3><div id="listtitle">êµìœ¡</div></h3></th>
 								<td>
 								<td width="20%"><input type="text" name="searchWord" value="${pageBean.searchWord }"></td>
 								<td width="6%" id="text"><img src="../images/glasses2.png" onclick="document.searchFrm.submit();"></td>
@@ -66,15 +66,15 @@
 						</table>
 					</form>
 					
-				<!-------------------------------------¸®½ºÆ®Ãâ·Â-------------------------------------------------------------->
+				<!-------------------------------------ë¦¬ìŠ¤íŠ¸ì¶œë ¥-------------------------------------------------------------->
 					<table class="listTab">
 						<tr>
-							<th width="10%">¹øÈ£</th>
-							<th>Á¦¸ñ</th>
-<!-- <th width="100">ÇĞ½À»óÅÂ</th> -->
-							<th width="20%">ÀÛ¼ºÀÏ</th>
-							<th width="10%">Á¶È¸¼ö</th>
-<!-- <th width="8%">ÃßÃµ¼ö</th> -->
+							<th width="10%">ë²ˆí˜¸</th>
+							<th>ì œëª©</th>
+<!-- <th width="100">í•™ìŠµìƒíƒœ</th> -->
+							<th width="20%">ì‘ì„±ì¼</th>
+							<th width="10%">ì¡°íšŒìˆ˜</th>
+<!-- <th width="8%">ì¶”ì²œìˆ˜</th> -->
 						</tr>
 						<c:set var="firstNo" value="${pageBean.total - ((pageBean.page_no-1) * 10) }" />
 						<c:forEach var="learn" items="${list}">
@@ -87,14 +87,14 @@
 							</td>
 							<td class="left">
 								<c:if test="${learn.essential_yn == 1}">
-								<font color="red">[ÇÊ¼ö]</font>
+								<font color="red">[í•„ìˆ˜]</font>
 								</c:if>
 								<a href="#" onclick="viewPage(${learn.edu_no }, '&page=${pageBean.page_no }&dept_no=${pageBean.dept_no}&searchWord=${pageBean.searchWord}');">${learn.title }</a>
 								<c:if test="${inp == tod}">
 								<img src='/IES/images/new.jpg' />
 								</c:if>
 							</td>
-<!-- <td>ÇĞ½À»óÅÂ....</td> -->
+<!-- <td>í•™ìŠµìƒíƒœ....</td> -->
 							<td><fmt:formatDate value="${learn.input_dt }" pattern="yyyy-MM-dd HH:mm" /></td>
 							<td>${learn.view_cnt}</td>
 <%-- <td>${learn.favorite_cnt }</td> --%>

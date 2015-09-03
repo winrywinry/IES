@@ -1,8 +1,8 @@
 <%@page import="com.sssystem.edu.common.SetBoardTitle"%>
 <%@page import="com.sssystem.edu.vo.BoardVO"%>
 <%@page import="com.sssystem.edu.vo.search.SearchVO"%>  
-<%@ page language="java" contentType="text/html; charset=EUC-KR"
-	pageEncoding="EUC-KR"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+	pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@ taglib tagdir="/WEB-INF/tags" prefix="custom" %>
 <%@taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fm" %>
@@ -19,8 +19,8 @@
 	function searchFormChk() {
 		var form = document.searchForm;
 	        if (form.searchForm.value == '') {
-	            alert('°Ë»ö¾î¸¦ ÀÔ·ÂÇÏ¼¼¿ä.');
-	            // Á¦¸ñ INPUT BOX Ä¿¼­°¡ ÀÌµ¿
+	            alert('ê²€ìƒ‰ì–´ë¥¼ ì…ë ¥í•˜ì„¸ìš”.');
+	            // ì œëª© INPUT BOX ì»¤ì„œê°€ ì´ë™
 	            form.searchForm.focus();
 	            return false;
      }
@@ -28,7 +28,7 @@
      function compare(){
      	var searchWord= document.searchFrm.pSearchWord.value;
      	if(searchWord == '') {    		
-     		alert('ºñ¹Ğ¹øÈ£¸¦ ÀÔ·ÂÇØÁÖ¼¼¿ä.');
+     		alert('ë¹„ë°€ë²ˆí˜¸ë¥¼ ì…ë ¥í•´ì£¼ì„¸ìš”.');
      	}
      }
 
@@ -40,9 +40,9 @@ function jsGoPage(p,param){
 }
 	
 	</script>
-<meta http-equiv="Content-Type" content="text/html; charset=EUC-KR">
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <link rel="stylesheet" type="text/css" href="${initParam.root }/css/board.css" /> 
-<title>°øÁö»çÇ×</title>
+<title>ê³µì§€ì‚¬í•­</title>
 
 </head>
 <body>
@@ -63,9 +63,9 @@ function jsGoPage(p,param){
 					<table class="listtop">
 							<tr>
 								<th valign="bottom" >
-									<c:if test="${param.board_gb==10 }"><h3>°øÁö»çÇ×</h3><br></c:if>
-									<c:if test="${param.board_gb==30 }"><h3>ÀÚÀ¯°Ô½ÃÆÇ</h3><br></c:if>
-									<c:if test="${param.board_gb==20 }"><h3>ÀÚ·á½Ç</h3><br></c:if>
+									<c:if test="${param.board_gb==10 }"><h3>ê³µì§€ì‚¬í•­</h3><br></c:if>
+									<c:if test="${param.board_gb==30 }"><h3>ììœ ê²Œì‹œíŒ</h3><br></c:if>
+									<c:if test="${param.board_gb==20 }"><h3>ìë£Œì‹¤</h3><br></c:if>
 								</th>
 								<td>
 								<td width="20%"><input type="text" id=pSearchWord name="pSearchWord" value="${searchBean.searchWord }"/></td>
@@ -76,11 +76,11 @@ function jsGoPage(p,param){
 					</form>	
 					<table class="listTab">
 						<tr>
-							<th width="10%">¹øÈ£</th>
-							<th>Á¦ ¸ñ</th>			
-							<c:if test="${param.board_gb != 30 }"><th width="10%">Ã·ºÎÆÄÀÏ</th></c:if>
-							<th width="15%">ÀÛ¼ºÀÏ</th>
-							<th width="10%">Á¶È¸¼ö</th>
+							<th width="10%">ë²ˆí˜¸</th>
+							<th>ì œ ëª©</th>			
+							<c:if test="${param.board_gb != 30 }"><th width="10%">ì²¨ë¶€íŒŒì¼</th></c:if>
+							<th width="15%">ì‘ì„±ì¼</th>
+							<th width="10%">ì¡°íšŒìˆ˜</th>
 						</tr>
 						<c:forEach var="board" items="${list }">
 						<tr>

@@ -1,5 +1,5 @@
-<%@ page language="java" contentType="text/html; charset=EUC-KR"
-	pageEncoding="EUC-KR"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+	pageEncoding="UTF-8"%>
 <%@page import="com.sssystem.edu.vo.QnaBoardVO"%>
 <%@page import="com.sssystem.edu.vo.support.SessionVO"%>
 <%-- <%@page import="kr.or.sssystem.edu.qnaBoard.model.beans.CheckAuthBean"%> --%>
@@ -8,13 +8,13 @@
 <!DOCTYPE html>
 <html>
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=EUC-KR">
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <link rel="stylesheet" type="text/css" href="${initParam.root }/css/learn.css" />
 <title>Insert title here</title>
 	<script type="text/javascript">
 	
 	function delConfirm() {
-	    if (confirm("»èÁ¦ÇÏ½Ã°Ú½À´Ï±î?")){
+	    if (confirm("ì‚­ì œí•˜ì‹œê² ìŠµë‹ˆê¹Œ?")){
 	       location.href='/IES/qna/delete?no=${qnaboard.qna_no }&board_gb=${param.board_gb }';
 	    } else {
 	       return false;
@@ -47,13 +47,13 @@
 					<input type="hidden" name="board_no" value="${param.board_gb}">
 					<table cellpadding="0" cellspacing="0" class="contentTab">
 						<tr>
-							<th width="15%">Á¶È¸¼ö</th>
+							<th width="15%">ì¡°íšŒìˆ˜</th>
 							<td width="35%" class="left">${qnaboard.visit_no }</td>
-							<th width="15%">°ø°³¿©ºÎ</th>
-							<td width="35%" class="left"><c:if test="${qnaboard.secret_yn==0 }">°ø°³</c:if></td>
+							<th width="15%">ê³µê°œì—¬ë¶€</th>
+							<td width="35%" class="left"><c:if test="${qnaboard.secret_yn==0 }">ê³µê°œ</c:if></td>
 						</tr>
 						<tr>
-							<th style="height: 300px">³»¿ë</th>
+							<th style="height: 300px">ë‚´ìš©</th>
 							<td colspan="5" valign="top" class="left"><div>${qnaboard.q_contents }</div></td>
 						</tr>
 					</table>
@@ -61,13 +61,13 @@
 					<c:if test="${0 ne qnaboard.a_user_no}">
 									<table cellpadding="0" cellspacing="0" class="contentTab">
 						<tr>
-							<th width="15%">´äº¯ÀÚ</th>
+							<th width="15%">ë‹µë³€ì</th>
 							<td width="35%" class="left">${qnaboard.a_user_nm}</td>
-							<th width="15%">´äº¯ÀÏÀÚ</th>
+							<th width="15%">ë‹µë³€ì¼ì</th>
 							<td width="35%" class="left"><fm:formatDate value="${qnaboard.answer_dt }" pattern="yyyy-MM-dd a hh:mm"/></td>
 						</tr>
 						<tr>
-							<th style="height: 300px">´äº¯³»¿ë</th>
+							<th style="height: 300px">ë‹µë³€ë‚´ìš©</th>
 							<td colspan="5" valign="top" class="left"><div>${qnaboard.a_contents }</div></td>
 						</tr>
 					</table>
@@ -75,11 +75,11 @@
 					</c:if>
 					<table class="moveTab">
 						<tr>
-							<td width="20%"><img src='/IES/images/up.png' /> ÀÌÀü±Û</td>
+							<td width="20%"><img src='/IES/images/up.png' /> ì´ì „ê¸€</td>
 							<td width="50%" class="left">
 							<c:choose>
 								<c:when test="${qnaboard.pre_idx==0 }">
-								ÀÌÀü±ÛÀÌ ¾ø½À´Ï´Ù
+								ì´ì „ê¸€ì´ ì—†ìŠµë‹ˆë‹¤
 								</c:when>
 								<c:otherwise>
 								<a href="/IES/qna/view?board_gb=${qnaboard.board_gb}&no=${qnaboard.pre_idx }">${qnaboard.pre_title }</a>
@@ -97,11 +97,11 @@
 							</td>
 						</tr>
 						<tr>
-							<td><img src='/IES/images/down.png' /> ´ÙÀ½±Û</td>
+							<td><img src='/IES/images/down.png' /> ë‹¤ìŒê¸€</td>
 							<td width="50%" class="left">
 							<c:choose>
 								<c:when test="${qnaboard.next_idx==0 }">
-								´ÙÀ½±ÛÀÌ ¾ø½À´Ï´Ù
+								ë‹¤ìŒê¸€ì´ ì—†ìŠµë‹ˆë‹¤
 								</c:when>
 								<c:otherwise>
 								<a href="/IES/qna/view?board_gb=${qnaboard.board_gb}&no=${qnaboard.next_idx }">${qnaboard.next_title }</a>
@@ -120,13 +120,13 @@
 						</tr>
 					</table>
 						<c:if test="${user.manage_yn==1 && 0 eq qnaboard.a_user_no}">
-						<input type="button" class="ml-button-1" value="´äº¯" onclick="location.href='/IES/qna/answer?qna_no=${qnaboard.qna_no }&board_gb=${param.board_gb }';">
+						<input type="button" class="ml-button-1" value="ë‹µë³€" onclick="location.href='/IES/qna/answer?qna_no=${qnaboard.qna_no }&board_gb=${param.board_gb }';">
 						</c:if>
 						<c:if test="${user.manage_yn==1 && 0 ne qnaboard.a_user_no}">
-						<input type="button" class="ml-button-1" value="´äº¯¼öÁ¤" onclick="location.href='/IES/qna/answer?qna_no=${qnaboard.qna_no }&board_gb=${param.board_gb }';">
+						<input type="button" class="ml-button-1" value="ë‹µë³€ìˆ˜ì •" onclick="location.href='/IES/qna/answer?qna_no=${qnaboard.qna_no }&board_gb=${param.board_gb }';">
 						</c:if>
-						<input type="button" class="ml-button-1" value="»èÁ¦" onclick="delConfirm()">
-						<input type="button" class="ml-button-1" value="¸ñ·ÏÀ¸·Î" onclick="location.href='/IES/qna/list?board_gb=${qnaboard.board_gb}';">
+						<input type="button" class="ml-button-1" value="ì‚­ì œ" onclick="delConfirm()">
+						<input type="button" class="ml-button-1" value="ëª©ë¡ìœ¼ë¡œ" onclick="location.href='/IES/qna/list?board_gb=${qnaboard.board_gb}';">
 					</form>
 				</div>
 			</section>
