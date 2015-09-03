@@ -56,8 +56,8 @@
 				<li><a href="/IES/learn/list?dept_no=1000"> ${li.dept_nm}</a></li><br>			
 			</c:forEach>
 				<ul>
-					<c:forEach items="${list }" var="li">
-						<li><a href="#"> 공문서</a></li><br>
+					<c:forEach items="${li }" var="li">
+						<li><a href="#"> ${li.category_nm }</a></li><br>
 					</c:forEach>
 				</ul>
 <!-- 				<li><a href="/IES/learn/list?dept_no=2000"> 영업부</a></li><br>
