@@ -6,12 +6,12 @@
     	 request.setCharacterEncoding("UTF-8"); 
        System.out.println(request.getAttribute("result"));
        int result = Integer.parseInt(request.getAttribute("result").toString());
-       String user_nm = (String) request.getAttribute("user_nm");
+       String phone_no = (String) request.getAttribute("phone_no");
        Date birth_dt = (Date) request.getAttribute("birth");
        String birth = new SimpleDateFormat("yyyy-MM-dd").format(birth_dt);
-       System.out.println(user_nm);
-       System.out.println(birth);
-       if (user_nm == null || user_nm.equals("")) user_nm = "unknown";
+       System.out.println("p:"+phone_no);
+       System.out.println("b:"+birth);
+       if (phone_no == null || phone_no.equals("")) phone_no = "unknown";
        if (birth == null || birth.equals("")) birth = "unknown";
        
        StringBuffer str = new StringBuffer();
@@ -22,7 +22,7 @@
 	       } else {
          	 str.append("false");
        }
-       str.append("<name>" + user_nm + "</name>");
+       str.append("<phone>" + phone_no + "</phone>");
        str.append("<birth>" + birth + "</birth>");
        str.append("</root>");
        

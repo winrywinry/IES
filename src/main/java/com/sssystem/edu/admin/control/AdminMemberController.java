@@ -233,7 +233,7 @@ public class AdminMemberController {
   
   @RequestMapping("/admin/member/receive")
   public String receive(
-      @RequestParam(value = "user_nm", required = false) String user_nm,
+      @RequestParam(value = "phone_no", required = false) String phone_no,
       @RequestParam(value = "birth", required = false) String birth,
       Model model     
       ){
@@ -247,14 +247,13 @@ public class AdminMemberController {
     System.out.println("birth_dt = " + birth_dt);
     
     MemberVO member = new MemberVO();
-    member.setUser_nm(user_nm);
+    member.setPhone_no(phone_no);
     member.setBirth_dt(birth_dt);
     
     
     int result = adminMemberService.selectDuple(member);
-    System.out.println("result = "+result);
     model.addAttribute("result", result);
-    model.addAttribute("user_nm", user_nm);
+    model.addAttribute("phone_no", phone_no);
     model.addAttribute("birth", birth_dt);
     
     return "admin/member/receive";
