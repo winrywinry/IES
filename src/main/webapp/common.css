@@ -31,6 +31,7 @@ aside ul.leftMenu li a:hover { font-weight:bold; }
 
 #eduMenuList { width:100%; }
 #eduMenuList li { display:list-item; }
+#eduMenuList li ul { right:0;}
 
 section { width:970px; min-height:600px; background:#FFF; float:left; padding-bottom:40px; }
 

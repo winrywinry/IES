@@ -25,7 +25,7 @@ $(function() {
 			<c:if test="${li.LEV != '1' and li.LEV != lev }">
 			<ul>
 			</c:if>
-			<li><a href="/IES/learn/list?dept=${li.DEPT_NO }&category=${li.CATEGORY_NO > -1 ? li.CATEGORY_NO : ''}" > ${li.REF_NO == 0 ?li.DEPT_NM:li.CATEGORY_NM }</a>
+			<li class="${li.DEPT_NO == param.dept or li.CATEGORY_NO == param.category? 'active' : '' }"><a href="/IES/learn/list?dept=${li.DEPT_NO }&category=${li.CATEGORY_NO > -1 ? li.CATEGORY_NO : ''}" > ${li.REF_NO == 0 ?li.DEPT_NM:li.CATEGORY_NM }</a>
 			<c:if test="${li.LEV == '1' and li.LEV != lev }">
 			<ul>
 				<li><a href="/IES/learn/list?dept=${li.DEPT_NO }&category=${li.CATEGORY_NO > -1 ? li.CATEGORY_NO : ''}">${li.CATEGORY_NM }</a>
