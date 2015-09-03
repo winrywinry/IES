@@ -171,6 +171,8 @@ window.onload=function(){
 					<table cellpadding="0" cellspacing="0" class="contentTab">
 						<tr>
 							<c:if test="${board.board_gb == 10 }">
+							<th>작성자</th>
+							<td>${board.user_nm }</td>
 							<th width="15%">${board.user_no }</th>
 							<td><a href = "#">${user.user_no }</a></td>
 							<th width="10%">조회수</th>

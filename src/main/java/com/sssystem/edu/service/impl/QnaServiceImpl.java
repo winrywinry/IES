@@ -94,6 +94,6 @@ public class QnaServiceImpl implements QnaService {
 		LearnVO learnVO = session.selectOne("qna.selectTitle",edu_no);
 		return learnVO;
 	}
-	
+
 	
 }
