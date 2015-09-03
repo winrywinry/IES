@@ -1,58 +1,58 @@
-// ajax.js
+//ajax2.js
+//패키지정의
+//var ajax = new Object();
+//ajax.xhr  = new Object();
+var ajax = {};
+ajax.xhr = {};
 
-var xhr=null; //XMLHttpRequest (비동기 서버통신)
+//Request클래스 정의
+ajax.xhr.Request=function(url,params,callback,method){
+	this.url=url;
+	this.params=params;
+	this.callback=callback;
+	this.method=method;
+	this.send();
+}   
 
-function getXMLHttpRequest(){
-   if(window.ActiveXObject){//브라우저에서 ActiveXObject를 지원한다면(IE라면)
-     try{
-	   return new ActiveXObject("Msxml2.XMLHTTP");
-     }catch(e){
-       return new ActiveXObject("Microsoft.XMLHTTP");
-     }
-   }else if(window.XMLHttpRequest){//비 IE라면
-      return new XMLHttpRequest();
-   }else{//XMLHttpRequest를 지원하지 않는다면
-	  return null;
-   }
-}//getXMLHttpRequest
+ajax.xhr.Request.prototype = {
+	getXMLHttpRequest : function() {
+		if (window.ActiveXObject) { // 브라우저에서 ActiveXObject를 지원한다면(IE)
+			try {
+				return new ActiveXObject("Msxml2.XMLHTTP");
+			} catch (e) {
+				return new ActiveXObject("Microsoft.XMLHTTP");
+			}
+		} else if (window.XMLHttpRequest) { // 비 IE
+			return new XMLHttpRequest();
+		} else { // XMLHttpRequest 객체를 지원하지 않는 경우
+			return null;
+		}
+	},
+	send : function() {
+		this.xhr = this.getXMLHttpRequest(); //Request 멤버속성 xhr 정의
+		var httpMethod = this.method ? this.method : "GET";
+		// 삼항 연산자 (조건식) ? A : B
+		if (httpMethod != "GET" && httpMethod != "POST") {
+			httpMethod = "GET"
+		}
 
-/*
-xhr.open('HTTP요청방식','요청URL',비동기);
-//예1) xhr.open('GET','getName.jsp',true)
-//예1_2) xhr.open('GET','getName.jsp?name=gildong&age=13',true)
-//예2) xhr.open('POST','getName.jsp',true)
+		var httpParams = (this.params == null || this.params == "") ? null : this.params;
 
-xhr.send('파라미터');
-//예1) xhr.send(null);
-//예2)
-    xhr.setRequestHeader('Content-Type','application/x-www-form-urlencoded');
-    xhr.send('name=gildong&age=13');
-*/
-
-function sendRequest(url, params, callback, method){//사용자 정의 메소드(open,send메소드 호출)
-   xhr = getXMLHttpRequest();
-   var httpMethod = method ? method : 'GET';
-      //삼항 연산자 :  (조건식) ? A : B
-      //예) sendRequest('getName.jsp',null,call);
-   if(httpMethod != 'GET' && httpMethod != 'POST') httpMethod='GET';
-	  //예) sendRequest('getName.jsp',null,call,'GETS');
-   
-   var httpParams = (params==null || params=='') ? null : params;
-   
-   var httpUrl = url;
-   if(httpMethod=='GET' && httpParams !=null){
-	  httpUrl = httpUrl + "?"+ httpParams;
-   }
-   
-   xhr.open(httpMethod, httpUrl, true);
-   xhr.setRequestHeader('Content-Type','application/x-www-form-urlencoded');
-   xhr.onreadystatechange = callback;//요청후 응답데이터를 받아줄 함수를 정의.
-   xhr.send(httpMethod=='POST' ? httpParams : null);
+		var httpUrl = this.url;
+		if (httpMethod == "GET" && httpParams != null) {
+			httpUrl = httpUrl + "?" + httpParams;
+		}
+		this.xhr.open(httpMethod, httpUrl, true);
+		this.xhr.setRequestHeader("Content-Type",
+				"application/x-www-form-urlencoded")
+		var request = this; //Request
+		this.xhr.onreadystatechange = function(){
+			request.onStateChange.call(request);
+			//call(this) ----> this : onStateChange
+		}
+		this.xhr.send(httpMethod == "POST" ? httpParams : null);
+	},
+	onStateChange : function() {
+		this.callback(this.xhr); //callback 프로퍼티에 할당된 함수를 호출하면서 xhr 객체를 넘겨라!!
+	}
 }
-
-
-
-
-
-
-

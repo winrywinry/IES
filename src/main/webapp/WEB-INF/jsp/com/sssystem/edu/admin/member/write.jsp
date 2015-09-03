@@ -13,8 +13,9 @@
 <link rel="stylesheet" type="text/css" href="${initParam.root }/admin/css/jquery.navgoco.css" />
 <script src="http://dmaps.daum.net/map_js_init/postcode.v2.js"></script>
 <script type="text/javascript" src="${initParam.root }/js/postSearch.js"></script>
-<script type="text/javascript" src="${initParam.root }/admin/js/formcheck.js"></script>
 <link rel="stylesheet" type="text/css" href="${initParam.root }/admin/css/member.css" />
+<script type="text/javascript" src="${initParam.root }/admin/js/ajax.js"></script>
+<script type="text/javascript" src="${initParam.root }/admin/js/formcheck.js"></script>
 <script type="text/javascript" id="demo2-javascript">
 $(function() {
 	$("#navMenu").navgoco({accordion: true});
@@ -67,53 +68,37 @@ function del(){
 </script>
 <script type="text/javascript">
     
-    var xmlReq; // 전역변수로 지정.
-    // Ajax 객체 생성 과정
-    function createAjax() {
-        xmlReq = new XMLHttpRequest();
-    }
-     
     // Ajax 객체를 이용한 데이터 전송 과정
     function ajaxSend() {
-       createAjax();
-       var user_nm = document.getElementById("user_nm").value;
-       var birth = document.getElementById("birth").value;
-	       xmlReq.onreadystatechange = callBack; // 괄호 열고닫고가 틀리다.!
-	       xmlReq.open("GET", "receive?user_nm="+user_nm+"&birth="+birth, true);
-	       xmlReq.send(null);
-       // send가 끝나고나면 비동기식이기 때문에 프로그램이 계속 진행된다.
+    	var params = "user_nm="+user_nm+"&birth="+birth;
+    	new ajax.xhr.Request("receive", params, callBack, "POST");
    }
     
    // 콜백 함수 과정
-   function callBack() {
-       if(xmlReq.readyState == 4) {
-           if(xmlReq.status == 200) {
-               printData();
-           }
-       }
-   }
-    
-   // 결과 출력 과정
-   function printData() {
-       var result = xmlReq.responseXML;
-       
-       var rootNode = result.documentElement;
-       // <root>true</root> , <root>false</root>
-       var rootValue = rootNode.firstChild.nodeValue;
-       var rootTag = document.getElementById("error");
-       
-       var nameNode = rootNode.getElementsByTagName("name");
-       var nameValue = nameNode.item(0).firstChild.nodeValue;
-       var birthValue = rootNode.getElementsByTagName("birth").item(0).firstChild.nodeValue;
+   function callBack(xhr) {
+       if(xhr.readyState == 4) {
+           if(xhr.status == 200) {
+               alert(xhr.responseText);
+               var result = xhr.responseXML;
+               var rootNode = result.documentElement;
+               // <root>true</root> , <root>false</root>
+               var rootValue = rootNode.firstChild.nodeValue;
+               var rootTag = document.getElementById("error");
+               
+               var nameNode = rootNode.getElementsByTagName("name");
+               var nameValue = nameNode.item(0).firstChild.nodeValue;
+               var birthValue = rootNode.getElementsByTagName("birth").item(0).firstChild.nodeValue;
 
-       if (nameValue != 'unknown' && birthValue != 'unknown'){
-	       if(rootValue == "true") {
-	           rootTag.innerHTML = "<font color=blue>* 등록 가능한 사용자입니다.</font>";
-	       } else {
-	           rootTag.innerHTML = "* 이미 등록된 사용자입니다.";
-	       }
-       } else {
-    	   rootTag.innerHTML = "";
+               if (nameValue != 'unknown' && birthValue != 'unknown'){
+        	       if(rootValue == "true") {
+        	           rootTag.innerHTML = "<font color=blue>* 등록 가능한 사용자입니다.</font>";
+        	       } else {
+        	           rootTag.innerHTML = "* 이미 등록된 사용자입니다.";
+        	       }
+               } else {
+            	   rootTag.innerHTML = "";
+               }
+           }
        }
    }
 </script>
@@ -134,6 +119,9 @@ function del(){
 <form:errors path="member.address" cssClass="msgAlert" />
 <form:errors path="member.email" cssClass="msgAlert" />
 <title>관리자 : 회원관리 - 사내교육시스템</title>
+<c:if test="${param.msg != null }">
+<script type="text/javascript">alert("${param.msg}");</script>
+</c:if>
 </head>
 <body>
 <div id="wrap">
@@ -224,7 +212,7 @@ function del(){
 					<a href="list?page=${page }" class="css_btn_class">목록</a>
 				</div>
 				<div id="right">
-					<a onclick="document.insertFrm.submit();" class="css_btn_class" id="addbt"><span id="add">추가</span></a>
+					<a onclick="formSubmit();" class="css_btn_class" id="addbt"><span id="add">추가</span></a>
 					<a onclick="del();" class="css_btn_class" id="delete">삭제</a>
 					<a class="css_btn_class" id="reset"><span id="re">초기화</span></a>
 				</div>
