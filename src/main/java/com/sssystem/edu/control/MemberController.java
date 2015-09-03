@@ -56,7 +56,7 @@ public class MemberController{
 		
 		int user_no = sessionVO.getUser_no();
 		
-		memberService.insertLog(user_no);
+		model.addAttribute("log", memberService.selectLogSession(user_no));//출석수
 		model.addAttribute("write", memberService.selectWrite(user_no));//게시글수
 		model.addAttribute("question", memberService.selectQuestion(user_no));//질문수
 		
@@ -102,7 +102,8 @@ public class MemberController{
 		if(memberService.selectLogin(user_id).equals(user_pwd)){
 		sessionVO = memberService.selectSession(user_id);
 		int user_no = sessionVO.getUser_no();
-		model.addAttribute("log", memberService.selectLogSession(user_no));//출석수
+		memberService.insertLog(user_no);
+		
 		System.out.println("출석수:"+memberService.selectLogSession(user_no));
 		session.setAttribute("user", sessionVO);
 		return "redirect:index";
