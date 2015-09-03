@@ -201,7 +201,7 @@ function del(){
 					</tr>
 					<tr>
 						<th>이메일</th>
-						<td colspan="3"><input type="email" name="email" class="txt1" maxlength="20" value="${member.email }" /></td>
+						<td colspan="3"><input type="email" name="email" class="txt1" value="${member.email }" /></td>
 						<th>권한</th>
 						<td>
 							<c:if test="${member.manage_yn == 1 }"><c:set var="manage_yn" value="checked" /></c:if>
