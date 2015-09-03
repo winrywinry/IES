@@ -1,31 +1,31 @@
 
-<%@ page language="java" contentType="text/html; charset=EUC-KR"
-    pageEncoding="EUC-KR"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=EUC-KR">
-<title>Ajax µ¥ÀÌÅÍ Àü¼Û Å×½ºÆ® 2</title>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>Ajax ë°ì´í„° ì „ì†¡ í…ŒìŠ¤íŠ¸ 2</title>
 <script type="text/javascript">
     
-    var xmlReq; // Àü¿ªº¯¼ö·Î ÁöÁ¤.
-    // Ajax °´Ã¼ »ı¼º °úÁ¤
+    var xmlReq; // ì „ì—­ë³€ìˆ˜ë¡œ ì§€ì •.
+    // Ajax ê°ì²´ ìƒì„± ê³¼ì •
     function createAjax() {
         xmlReq = new XMLHttpRequest();
     }
      
-    // Ajax °´Ã¼¸¦ ÀÌ¿ëÇÑ µ¥ÀÌÅÍ Àü¼Û °úÁ¤
+    // Ajax ê°ì²´ë¥¼ ì´ìš©í•œ ë°ì´í„° ì „ì†¡ ê³¼ì •
     function ajaxSend() {
        createAjax();
        var user_nm = document.getElementById("user_nm").value;
        var birth = document.getElementById("birth").value;
-	       xmlReq.onreadystatechange = callBack; // °ıÈ£ ¿­°í´İ°í°¡ Æ²¸®´Ù.!
+	       xmlReq.onreadystatechange = callBack; // ê´„í˜¸ ì—´ê³ ë‹«ê³ ê°€ í‹€ë¦¬ë‹¤.!
 	       xmlReq.open("GET", "receive.jsp?user_nm="+user_nm+"&birth="+birth, true);
 	       xmlReq.send(null);
-       // send°¡ ³¡³ª°í³ª¸é ºñµ¿±â½ÄÀÌ±â ¶§¹®¿¡ ÇÁ·Î±×·¥ÀÌ °è¼Ó ÁøÇàµÈ´Ù.
+       // sendê°€ ëë‚˜ê³ ë‚˜ë©´ ë¹„ë™ê¸°ì‹ì´ê¸° ë•Œë¬¸ì— í”„ë¡œê·¸ë¨ì´ ê³„ì† ì§„í–‰ëœë‹¤.
    }
     
-   // Äİ¹é ÇÔ¼ö °úÁ¤
+   // ì½œë°± í•¨ìˆ˜ ê³¼ì •
    function callBack() {
        if(xmlReq.readyState == 4) {
            if(xmlReq.status == 200) {
@@ -34,7 +34,7 @@
        }
    }
     
-   // °á°ú Ãâ·Â °úÁ¤
+   // ê²°ê³¼ ì¶œë ¥ ê³¼ì •
    function printData() {
        var result = xmlReq.responseXML;
        
@@ -48,9 +48,9 @@
        
        if (nameValue != 'unknown'){
 	       if(rootValue == "true") {
-	           rootTag.innerHTML = "»ç¿ë °¡´ÉÇÑ ¾ÆÀÌµğ";
+	           rootTag.innerHTML = "ì‚¬ìš© ê°€ëŠ¥í•œ ì•„ì´ë””";
 	       } else {
-	           rootTag.innerHTML = "Áßº¹µÈ ¾ÆÀÌµğ";
+	           rootTag.innerHTML = "ì¤‘ë³µëœ ì•„ì´ë””";
 	       }
        } else {
     	   rootTag.innerHTML = "";
@@ -59,12 +59,12 @@
 </script>
 </head>
 <body>
-<div>ID Áßº¹ È®ÀÎ</div>
+<div>ID ì¤‘ë³µ í™•ì¸</div>
 <div>
-¾ÆÀÌµğ: <input type="text" id="user_nm" onkeyup="ajaxSend()"> <br>
-»ıÀÏ: <input type="text" id="birth" onkeyup="ajaxSend()"> <br>
+ì•„ì´ë””: <input type="text" id="user_nm" onkeyup="ajaxSend()"> <br>
+ìƒì¼: <input type="text" id="birth" onkeyup="ajaxSend()"> <br>
 <span id="error" style="color: blue;"></span>
-<a href="http://localhost/iessvn/admin/member/receive.jsp?user_nm=¹Úº´Ã¶&birth=0000-00-00">ÀÌµ¿</a>
+<a href="http://localhost/IES/admin/member/receive.jsp?user_nm=ë°•ë³‘ì² &birth=1992-01-09">ì´ë™</a>
 </div>
 </body>
 </html>

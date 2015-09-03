@@ -2,8 +2,11 @@ package com.sssystem.edu.admin.control;
 
 import java.io.File;
 import java.io.IOException;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
+import java.util.Locale;
 
 import javax.servlet.ServletContext;
 import javax.servlet.http.HttpServletRequest;
@@ -32,7 +35,7 @@ import com.sssystem.edu.vo.JobVO;
 public class AdminMemberController {
 
   @Autowired
-  AdminMemberService adminMembeerService;
+  AdminMemberService adminMemberService;
   @Autowired
   DeptService deptService;
   @Autowired
@@ -94,7 +97,7 @@ public class AdminMemberController {
     pageVO.setManage_yn(manage_yn);
     pageVO.setAdmin_yn(admin_yn);
 
-    int total = adminMembeerService.selectTotal(pageVO);
+    int total = adminMemberService.selectTotal(pageVO);
     pageVO.setTotal(total);
 
     model.addAttribute("pageVO", pageVO);
@@ -108,7 +111,7 @@ public class AdminMemberController {
     model.addAttribute("joblist", joblist);
 
     // -------------------------------리스트 출력----------------------------//
-    List<MemberVO> list = adminMembeerService.selectAll(pageVO,
+    List<MemberVO> list = adminMemberService.selectAll(pageVO,
         pageVO.getPage());
 
     model.addAttribute("member", list);
@@ -140,9 +143,9 @@ public class AdminMemberController {
 
     // --------------------------------------------------------//
     if (user_no > 0)
-      member = adminMembeerService.select(user_no);
-    List<DeptVO> dept = adminMembeerService.selectDept();
-    List<JobVO> job = adminMembeerService.selectJob();
+      member = adminMemberService.select(user_no);
+    List<DeptVO> dept = adminMemberService.selectDept();
+    List<JobVO> job = adminMemberService.selectJob();
 
     // --------------------------setAttribute------------------------------//
     model.addAttribute("member", member);
@@ -160,7 +163,7 @@ public class AdminMemberController {
       ){
     int no = chk.toInteger(sno);
 
-    adminMembeerService.delete(no);
+    adminMemberService.delete(no);
     return "redirect:list";
   }
 
@@ -174,7 +177,7 @@ public class AdminMemberController {
                           HttpServletRequest request,
                           BindingResult result) throws Exception {
     memberVal.validate(memberVO, result);
-    if (result.hasErrors()) return "admin/member/write";
+    if (result.hasErrors()) return "redirect:writePage?msg=Confirm Input Data!!";
     
     //insert
       MultipartFile uploadfile = memberVO.getProfil();
@@ -200,28 +203,65 @@ public class AdminMemberController {
           } // try - catch
       } // if
       
-      memberVO = adminMembeerService.insert(memberVO);
-      System.out.println(memberVO.getProfil_picture());
+      if(memberVO.getUser_no() > 0){
+        adminMemberService.update(memberVO);
+      }else{
       
-      System.out.println("name = " + memberVO.getUser_nm());
-      System.out.println("email = " + memberVO.getEmail());
-      System.out.println("number = " + memberVO.getEmp_serial());
-      
-      
-      //----------이메일---------------------------------------------------------------------//
-      EmailVO email = new EmailVO();
-      
-      String reciver = memberVO.getEmail();             //받을사람의 이메일입니다.
-      String subject = memberVO.getUser_nm() + "님의 사원번호 입니다.";
-      String content = "네 녀석의 사원번호는 [" + memberVO.getEmp_serial() + "]이다";
-       
-      email.setReciver(reciver);
-      email.setSubject(subject);
-      email.setContent(content);
-      emailSender.SendEmail(email);
-    
+        memberVO = adminMemberService.insert(memberVO);
+        System.out.println(memberVO.getProfil_picture());
+        
+        System.out.println("name = " + memberVO.getUser_nm());
+        System.out.println("email = " + memberVO.getEmail());
+        System.out.println("number = " + memberVO.getEmp_serial());
+        
+        
+        //----------이메일---------------------------------------------------------------------//
+        EmailVO email = new EmailVO();
+        
+        String reciver = memberVO.getEmail();             //받을사람의 이메일입니다.
+        String subject = memberVO.getUser_nm() + "님의 사원번호 입니다.";
+        String content = "네 녀석의 사원번호는 [" + memberVO.getEmp_serial() + "]이다";
+         
+        email.setReciver(reciver);
+        email.setSubject(subject);
+        email.setContent(content);
+        emailSender.SendEmail(email);
+      }//if
     
     return "redirect:list";
+  }
+  
+  @RequestMapping("/admin/member/receive")
+  public String receive(
+      @RequestParam(value = "user_nm", required = false) String user_nm,
+      @RequestParam(value = "birth", required = false) String birth,
+      Model model     
+      ){
+    System.out.println("birth = "+birth);
+    Date birth_dt;
+    try {
+      SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+      birth_dt = null;
+      if (birth != null) birth_dt = sdf.parse(birth);
+    
+    System.out.println("birth_dt = " + birth_dt);
+    
+    MemberVO member = new MemberVO();
+    member.setUser_nm(user_nm);
+    member.setBirth_dt(birth_dt);
+    
+    
+    int result = adminMemberService.selectDuple(member);
+    System.out.println("result = "+result);
+    model.addAttribute("result", result);
+    model.addAttribute("user_nm", user_nm);
+    model.addAttribute("birth", birth_dt);
+    
+    return "admin/member/receive";
+    } catch (ParseException e) {
+      e.printStackTrace();
+    }
+    return "admin/member/receive";
   }
 
 }
