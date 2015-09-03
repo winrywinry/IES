@@ -1,6 +1,7 @@
 package com.sssystem.edu.control;
 
 import java.util.HashMap;
+import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
@@ -129,6 +130,19 @@ public class TestController {
 			HttpSession session,
 			Model model,
 			@RequestParam(value="edu_no",required=false)int edu_no){
+//		List<TestVO> testList = testService.selectTest(edu_no);
+//		int i=0;
+//		int correct = 0;
+//		for (TestVO testVO : testList){
+//			String corr_answer = request.getParameter(""+ testVO.getQ_no());
+//			if (testVO.getCorr_answer().equals(corr_answer)) correct++;
+//			i++;
+//		}
+//		int jumsu = 0;
+//		jumsu = (100/testList.size()) * correct;
+//		model.addAttribute("jumsu", jumsu);
+//		System.out.println(jumsu);
+		
 		int cntTest = testService.countTest(edu_no);
 		System.out.println("cntTest ="+cntTest);
 		for(int i = 1 ; i <= cntTest ; i++){
@@ -140,9 +154,9 @@ public class TestController {
 				System.out.println("Á¤´ä");
 			}
 		}
-//		TestVO testVO = testService.selectAnswer(88,3);
-//		System.out.println("gubun:"+testVO.getGubun());
-//		System.out.println("corr_answer"+testVO.getCorr_answer());
+		TestVO testVO = testService.selectAnswer(88,3);
+		System.out.println("gubun:"+testVO.getGubun());
+		System.out.println("corr_answer"+testVO.getCorr_answer());
 		return "haha";
 	}
 
