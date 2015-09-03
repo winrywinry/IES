@@ -38,7 +38,7 @@ $(document).ready(function() {
 					<div id="userInfo" class="left">
 					<dl>
 						<dt class="prfl_thmb">
-						<img src="${initParam.root }/images/${photo }.jpg" />
+						<img src="${initParam.root }/images/${photo }" />
 						<div class="mask"></div>
 						</dt>
 						<dd><em>${user.user_nm }</em> 님</dd>
