@@ -10,6 +10,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 
 import com.sssystem.edu.service.QnaService;
 import com.sssystem.edu.vo.AttachFileVO;
+import com.sssystem.edu.vo.LearnVO;
 import com.sssystem.edu.vo.QnaBoardVO;
 import com.sssystem.edu.vo.search.SearchBoardVO;
 
@@ -82,17 +83,16 @@ public class QnaServiceImpl implements QnaService {
 	}
 
 	@Override
-	public int haha() {
-		// TODO Auto-generated method stub
-		int haha = session.selectOne("qna.hahaha");
-		return haha;
-	}
-
-	@Override
 	public List<QnaBoardVO> recommendView() {
 		List<QnaBoardVO> title = null;
 		title = session.selectList("qna.recommendView");
 		return title;
+	}
+
+	@Override
+	public LearnVO searchEdu(int edu_no) {
+		LearnVO learnVO = session.selectOne("qna.selectTitle",edu_no);
+		return learnVO;
 	}
 	
 	

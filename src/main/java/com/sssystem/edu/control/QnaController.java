@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 import com.sssystem.edu.common.ValidateParamChk;
 import com.sssystem.edu.service.QnaService;
+import com.sssystem.edu.vo.LearnVO;
 import com.sssystem.edu.vo.QnaBoardVO;
 import com.sssystem.edu.vo.search.SearchBoardVO;
 import com.sssystem.edu.vo.support.SessionVO;
@@ -61,6 +62,13 @@ public class QnaController {
 		QnaBoardVO qnaVO = qnaService.qnaBoardView(qna_no,board_gb);
 		qnaVO.setA_user_nm(qnaService.answerNmSelect(qnaVO.getA_user_no()));
 		qnaService.hitsUpdate(no);
+		
+		if(board_gb==40){
+			if(qnaVO.getEdu_no()!=0){
+				LearnVO learnVO = qnaService.searchEdu(qnaVO.getEdu_no());
+				model.addAttribute("learnVO",learnVO);
+			}
+		}
 		
 		model.addAttribute("qnaboard",qnaVO);
 		return "qna/view";

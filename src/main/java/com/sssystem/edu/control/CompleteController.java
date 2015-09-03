@@ -30,7 +30,7 @@ public class CompleteController {
 	@Autowired
 	CompleteService completeService;
 	
-	@RequestMapping("/learn/contentsView")
+	@RequestMapping("learn/contentsView")
 	public String contentsView(HttpSession session, Model model,
 			@RequestParam(value="searchWord",required=false)String searchWord,
 			@RequestParam(value="dept_no")String dn,
