@@ -9,7 +9,7 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<link rel="stylesheet" type="text/css" href="${initParam.root }/css/learn.css" />
+<link rel="stylesheet" type="text/css" href="${initParam.root }/css/qna.css" />
 <title>Insert title here</title>
 	<script type="text/javascript">
 	
@@ -85,7 +85,7 @@
 								이전글이 없습니다
 								</c:when>
 								<c:otherwise>
-								<a href="/IES/qna/view?board_gb=${qnaboard.board_gb}?no=${qnaboard.pre_idx }">${qnaboard.pre_title }</a>
+								<a href="/IES/qna/view?board_gb=${qnaboard.board_gb}&no=${qnaboard.pre_idx }">${qnaboard.pre_title }</a>
 								</c:otherwise>
 							</c:choose>
 							</td>

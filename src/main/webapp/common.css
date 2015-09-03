@@ -38,7 +38,7 @@ footer #con { width:1160px; margin:0 auto; text-align:center; font:12px Dotum; c
 .paging a {display:inline-block; height:23px; line-height:22px; border:1px solid #ccc; background-color:#fff; text-decoration:none; vertical-align:top; overflow:hidden;}
 .paging a span {display:block; height:23px; vertical-align:middle; font-size:12px; font-family:verdana, tahoma, sans-serif; color:#555; min-width:8px; padding:0 8px 0 7px; letter-spacing:-1px;}
 .paging a.arrow {background-color:#fff;}
-.paging a.arrow span {background-image:url(/iessvn/admin/images/paging_arrow.gif); background-repeat:no-repeat; text-indent:-9999px; width:23px; padding:0;}
+.paging a.arrow span {background-image:url(/IES/admin/images/paging_arrow.gif); background-repeat:no-repeat; text-indent:-9999px; width:23px; padding:0;}
 .paging a.current {background-color:#fff; border:1px solid #d50c0c; color:#d50c0c; font-weight:bold;}
 .paging a.current span {color:#d50c0c;}
 .paging a.current:hover {background-color:#fff;}

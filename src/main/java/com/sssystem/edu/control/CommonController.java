@@ -1,10 +1,23 @@
 package com.sssystem.edu.control;
 
+import java.util.HashMap;
+import java.util.List;
+
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+
+import com.sssystem.edu.service.LearnService;
+import com.sssystem.edu.vo.DeptVO;
+import com.sssystem.edu.vo.LearnVO;
 
 @Controller
 public class CommonController {
+	
+	@Autowired
+	LearnService learnService;
 	
 	@RequestMapping("/include/header")
 	public String includeHeader(){
@@ -12,7 +25,13 @@ public class CommonController {
 	}
 
 	@RequestMapping("/include/left_menu_learn")
-	public String includeLeftLearn(){
+	public String includeLeftLearn(Model model){
+		
+		List<DeptVO> list = learnService.selectLeftMenuList();
+		model.addAttribute("list", list);
+		for(int i = 0 ; i < list.size() ; i++){
+			System.out.println(list.get(i));
+		}
 		return "include/left_menu_learn";
 	}
 	
@@ -40,4 +59,5 @@ public class CommonController {
 	public String Logout(){
 		return "redirect:member/login";
 	}
+
 }

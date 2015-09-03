@@ -72,6 +72,7 @@ public class LearnSaveService {
 			}
 		
 		//4. 첨부파일저장
+			attachVO.setRef_no(board_no);
 			int attach_no = attachFileService.insert(attachVO);
 			if (attach_no < 1){
 				throw new AttachNotInsertException();
