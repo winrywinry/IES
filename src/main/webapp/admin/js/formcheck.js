@@ -1,14 +1,20 @@
 /**
  * 
  */
+function formSubmit(){
+	var f = document.insertFrm;
+	if (Formchk(f)){
+		f.submit();
+	}
+}
 function Formchk(f){
 	if (f.user_nm.value == ""){
-		alert("ÀÌ¸§À» ÀÔ·ÂÇØ ÁÖ¼¼¿ä!");
+		alert("ì´ë¦„ì„ ì…ë ¥í•´ ì£¼ì„¸ìš”!");
 		f.user_nm.focus();
 		return false;
 	}
  	if (f.birth.value == ""){
-		alert("»ı³â¿ùÀÏÀ» ÀÔ·ÂÇØ ÁÖ¼¼¿ä!");
+		alert("ìƒë…„ì›”ì¼ì„ ì…ë ¥í•´ ì£¼ì„¸ìš”!");
 		f.birth.focus();
 		return false;
 	}
@@ -19,58 +25,58 @@ function Formchk(f){
 		}
 	}
 	if (gender == 0){
-		alert("¼ºº°À» ¼±ÅÃÇØ ÁÖ¼¼¿ä!");
+		alert("ì„±ë³„ì„ ì„ íƒí•´ ì£¼ì„¸ìš”!");
 		f.gender_yn[0].focus();
 		return false;
 	}
 	if (f.hire.value == ""){
-		alert("ÀÔ»çÀÏÀ» ÀÔ·ÂÇØ ÁÖ¼¼¿ä!");
+		alert("ì…ì‚¬ì¼ì„ ì…ë ¥í•´ ì£¼ì„¸ìš”!");
 		f.hire.focus();
 		return false;
 	}
 	if (f.dept.value == ""){
-		alert("ºÎ¼­¸¦ ÀÔ·ÂÇØ ÁÖ¼¼¿ä!");
+		alert("ë¶€ì„œë¥¼ ì…ë ¥í•´ ì£¼ì„¸ìš”!");
 		f.dept.focus();
 		return false;
 	}
 	if (f.job.value == ""){
-		alert("Á÷Ã¥À» ÀÔ·ÂÇØ ÁÖ¼¼¿ä!");
+		alert("ì§ì±…ì„ ì…ë ¥í•´ ì£¼ì„¸ìš”!");
 		f.job.focus();
 		return false;
 	}
 	if (f.line_no.value == ""){
-		alert("³»¼±¹øÈ£¸¦ ÀÔ·ÂÇØ ÁÖ¼¼¿ä!");
+		alert("ë‚´ì„ ë²ˆí˜¸ë¥¼ ì…ë ¥í•´ ì£¼ì„¸ìš”!");
 		f.line_no.focus();
 		return false;
 	}
 	if (f.phone_no.value == ""){
-		alert("¿¬¶ôÃ³¸¦ ÀÔ·ÂÇØ ÁÖ¼¼¿ä!");
+		alert("ì—°ë½ì²˜ë¥¼ ì…ë ¥í•´ ì£¼ì„¸ìš”!");
 		f.phone_no.focus();
 		return false;
 	}
 	if (f.second_no.value == ""){
-		alert("ºñ»ó¿¬¶ôÃ³¸¦ ÀÔ·ÂÇØ ÁÖ¼¼¿ä!");
+		alert("ë¹„ìƒì—°ë½ì²˜ë¥¼ ì…ë ¥í•´ ì£¼ì„¸ìš”!");
 		f.second_no.focus();
 		return false;
 	}
 	if (f.post.value == ""){
-		alert("¿ìÆí¹øÈ£Ã£±â¸¦ ÅëÇØ¼­ ÁÖ¼Ò¸¦ ÀÔ·ÂÇØ ÁÖ¼¼¿ä!");
+		alert("ìš°í¸ë²ˆí˜¸ì°¾ê¸°ë¥¼ í†µí•´ì„œ ì£¼ì†Œë¥¼ ì…ë ¥í•´ ì£¼ì„¸ìš”!");
 		f.post.focus();
 		return false;
 	}
 	if (f.address.value == ""){
-		alert("¿ìÆí¹øÈ£Ã£±â¸¦ ÅëÇØ¼­ ÁÖ¼Ò¸¦ ÀÔ·ÂÇØ ÁÖ¼¼¿ä!");
+		alert("ìš°í¸ë²ˆí˜¸ì°¾ê¸°ë¥¼ í†µí•´ì„œ ì£¼ì†Œë¥¼ ì…ë ¥í•´ ì£¼ì„¸ìš”!");
 		f.address.focus();
 		return false;
 	}
 	if (f.email.value == ""){
-		alert("ÀÌ¸ŞÀÏÀ» ÀÔ·ÂÇØ ÁÖ¼¼¿ä!");
+		alert("ì´ë©”ì¼ì„ ì…ë ¥í•´ ì£¼ì„¸ìš”!");
 		f.email.focus();
 		return false;
 	}
-	if (f.user_no.value == ""){
+	if (f.no.value == ""){
 		if (f.profil_picture.value == ""){
-			alert("»çÁøÀ» ÀÔ·ÂÇØ ÁÖ¼¼¿ä!");
+			alert("ì‚¬ì§„ì„ ì…ë ¥í•´ ì£¼ì„¸ìš”!");
 			f.profil_picture.focus();
 			return false;
 		}
