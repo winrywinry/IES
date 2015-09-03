@@ -9,6 +9,8 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<script src= "//code.jquery.com/jquery-1.11.3.min.js" ></script>
+<script src= "//code.jquery.com/jquery-migrate-1.2.1.min.js" ></script>
 <link rel="stylesheet" type="text/css" href="${initParam.root }/css/learn.css" />
 <title>Insert title here</title>
 <script type="text/javascript">

@@ -24,4 +24,14 @@
 		 WHERE EDU_NO = #{edu_no}
 		]]>
 	</delete>
+	<select id="select" parameterType="int" resultType="authVO">
+		<![CDATA[
+		SELECT AUTH_NO
+		     , DEPT_NO
+		     , JOB_STR
+		  FROM T_EDU_AUTH
+		 WHERE EDU_NO = #{edu_no}
+		 ORDER BY DEPT_NO DESC
+		]]>
+	</select>
 </mapper>

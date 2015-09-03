@@ -36,7 +36,6 @@
 				</div>
 				<div id="con">
 					<form action="save" name="writeFrm" method="POST" enctype="multipart/form-data">
-					<input type="hidden" name="state" value="${update }">
 					<input type="hidden" name="edu" value="${learn.edu_no }" />
 						<table class="writeTab">
 							<tr>
@@ -51,8 +50,13 @@
 								<td>
 									<ul>
 										<li><input type="checkbox" name="dept_all" class="chk chkAll" id="dept_all" /><label for="dept_all"><b>전체</b></label></li>
+										<c:set var="index" value="0" />
 										<c:forEach var="dept" items="${deptlist }">
-										<li><input type="checkbox" name="dept" value="${dept.dept_no	}" class="chk" id="dept_${dept.dept_no }" /><label for="dept_${dept.dept_no }">${dept.dept_nm }</label>
+										<c:set var="authVO" value="${authlist[index] }" />
+										<li><input type="checkbox" name="dept" value="${dept.dept_no}" class="chk" id="dept_${dept.dept_no }" ${dept.dept_no eq authVO.dept_no? 'checked' : '' } /><label for="dept_${dept.dept_no }">${dept.dept_nm }</label>
+										<c:if test="${dept.dept_no eq authVO.dept_no }">
+											<c:if test="${fn:length(authlist) > index}"><c:set var="index" value="${index+1 }"/></c:if>
+										</c:if>
 										</c:forEach>
 									</ul>
 								</td>

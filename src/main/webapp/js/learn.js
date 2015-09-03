@@ -5,10 +5,6 @@ $(function(){
       callEditor( "ta1"); 
       callPeriod($("#from, #to"));
       
-    if(document.writeFrm.state.value=="update"){
-    	document.getElementById("sub").innerHTML = "수정";
-   		document.getElementById('pagetitle').innerHTML = "글수정";
-    }
 	$(".chkAll").click(function(){
 		var area = $(this).parent().parent();
 		area.find('input:checkbox').not(this).prop('checked', this.checked);

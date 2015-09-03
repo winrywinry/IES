@@ -1,5 +1,7 @@
 package com.sssystem.edu.service.impl;
 
+import java.util.List;
+
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
 
@@ -22,6 +24,12 @@ public class AuthServiceImpl implements AuthService {
 		int t = session.delete("auth.delete", edu_no);
 		if (t > 0) return true;
 		return false;
+	}
+
+	@Override
+	public List<AuthVO> select(int edu_no) {
+		List<AuthVO> authlist = session.selectList("auth.select", edu_no);
+		return authlist;
 	}
 
 }

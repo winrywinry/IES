@@ -66,8 +66,8 @@ public class LearnServiceImpl implements LearnService {
 	}
 
 	@Override
-	public List<DeptVO> selectLeftMenuList() {
-		List<DeptVO> list = null;
+	public List<HashMap<String, Object>> selectLeftMenuList() {
+		List<HashMap<String, Object>> list = null;
 		list = session.selectList("learn.selectLeftMenuList");
 		return list;
 	}
