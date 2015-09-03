@@ -1,8 +1,12 @@
 package com.sssystem.edu.control;
 
+import java.awt.color.CMMException;
+import java.io.File;
+import java.io.IOException;
 import java.io.UnsupportedEncodingException;
 import java.sql.Date;
 import java.util.List;
+import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
@@ -13,10 +17,15 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.multipart.MultipartFile;
+import org.springframework.web.multipart.MultipartHttpServletRequest;
+import org.springframework.web.multipart.commons.CommonsMultipartFile;
 
 import com.sssystem.edu.common.ConvertStr;
 import com.sssystem.edu.common.ValidateParamChk;
+import com.sssystem.edu.service.AttachFileService;
 import com.sssystem.edu.service.BoardService;
+import com.sssystem.edu.vo.AttachFileVO;
 import com.sssystem.edu.vo.BoardVO;
 import com.sssystem.edu.vo.ReplyVO;
 import com.sssystem.edu.vo.search.SearchBoardVO;
@@ -27,6 +36,9 @@ public class BoardController {
 
 	@Autowired
 	BoardService boardServie;
+	
+	@Autowired
+	AttachFileService attachFileService;
 	
 	@RequestMapping("board/list")
 	public String boardList(@RequestParam(value="pSearchWord", required=false)String searchWord,
@@ -76,7 +88,8 @@ public class BoardController {
 	}
 	
 	@RequestMapping("board/writeForm")
-	public String boardWrite (HttpSession session,Model model, 
+	public String boardWrite (HttpSession session,Model model,
+			MultipartHttpServletRequest request,
 			@RequestParam (value="board_gb", required=false)String board_gb,
 			@RequestParam (value="title", required=false)String title,
 			@RequestParam (value="contents", required=false)String contents,
@@ -94,13 +107,55 @@ public class BoardController {
 		
 		if(!(board_no.isEmpty())){
 			if(boardServie.boardUpdate(boardVO)){
+				
+				Map<String, MultipartFile> files = request.getFileMap();
+				CommonsMultipartFile cmf = (CommonsMultipartFile) files.get("uploadFile");//경로설정
+				String path = "c:/uploadTest/"+cmf.getOriginalFilename();
+				File file = new File(path);
+				try {
+					cmf.transferTo(file);
+					AttachFileVO attahFileVO = new AttachFileVO();
+					attahFileVO.setRef_no(80);
+					attahFileVO.setTable_nm("refroom");
+					attahFileVO.setAttach_file(cmf.getOriginalFilename());
+					attachFileService.insert(attahFileVO);
+				} catch (IllegalStateException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				} catch (IOException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+
 				return "redirect:view?board_gb="+board_gb+"&no="+board_no;
 			}
 		}else{
 			if(boardServie.boardInsert(boardVO)>0){
+				
+				Map<String, MultipartFile> files = request.getFileMap();
+				CommonsMultipartFile cmf = (CommonsMultipartFile) files.get("uploadFile");//경로설정
+				String path = "c:/uploadTest/"+cmf.getOriginalFilename();
+				File file = new File(path);
+				try {
+					cmf.transferTo(file);
+					AttachFileVO attahFileVO = new AttachFileVO();
+					attahFileVO.setRef_no(80);//임시값80임, insert후 진행하므로 board_no의 max값을 체크하면 됨.
+					attahFileVO.setTable_nm("refroom");
+					attahFileVO.setAttach_file(cmf.getOriginalFilename());
+					attachFileService.insert(attahFileVO);
+				} catch (IllegalStateException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				} catch (IOException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+
 				return "redirect:list?board_gb="+board_gb;
 			}
 		}
+
+		
 		
 		return "board/list";
 	}

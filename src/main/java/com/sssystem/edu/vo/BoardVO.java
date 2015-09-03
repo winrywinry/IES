@@ -1,6 +1,9 @@
 package com.sssystem.edu.vo;
 
 import java.sql.Date;
+import java.util.List;
+
+import org.springframework.web.multipart.MultipartFile;
 
 public class BoardVO {
 	
@@ -25,6 +28,7 @@ public class BoardVO {
 	private int page_no;
 	private int total;
 	private String user_nm;
+	private List<MultipartFile> files;	
 	
 	public BoardVO() {
 		
@@ -189,4 +193,13 @@ public class BoardVO {
 	public void setUser_nm(String user_nm) {
 		this.user_nm = user_nm;
 	}
+
+	public List<MultipartFile> getFiles() {
+		return files;
+	}
+
+	public void setFiles(List<MultipartFile> files) {
+		this.files = files;
+	}
+
 }

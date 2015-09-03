@@ -79,7 +79,7 @@
 			<div id="center">
 <!--<form action="/iessvn/board/write.do?" name="pAtchFile" method="post" enctype="multipart/form-data">
  -->
-				<form action="writeForm" method="post" name="pWriteForm" onsubmit="return formchk();">
+				<form action="writeForm" method="post" name="pWriteForm" onsubmit="return formchk();" enctype="multipart/form-data">
 					<input type = "hidden" name="board_gb" value="${param.board_gb }">
 					<input type = "hidden" name="board_no" value="${board.board_no }">
 					<input type = "hidden" name="user_no" value="${board.user_no }">
@@ -105,6 +105,7 @@
 								</td>
 							</tr>
 						</table>
+						        <input type="file" id="uploadFile" name="uploadFile">
 						<input style="width: 50px; height: 25px; margin: 10px 5px 0px 0px" class="ml-button-1" type="submit" value="저장" onclick="validationChk()">
 						<input style="width: 50px; height: 25px; margin: 10px 0px 0px 5px" class="ml-button-1" type="reset" value="취소" onclick="history.go(-1)">				
 					</form>
