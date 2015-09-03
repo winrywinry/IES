@@ -125,8 +125,10 @@
 							</tr>
 						</table>
 						<br>
-						<a class="css_btn_class" onclick="submitchk();"><span id="sub">작성</span></a>
-						<a class="css_btn_class" onclick="location.href='/iessvn/learn/list.do';">취소</a>
+						<div style="width:100%; text-align:center;">
+						<a href="#" class="css_btn_class" onclick="submitchk();"><span id="sub">작성</span></a>
+						<a href="#" class="css_btn_class" onclick="cancel(document.writeFrm);">취소</a>
+						</div>
 						</form>
 					</div>
 			</section>

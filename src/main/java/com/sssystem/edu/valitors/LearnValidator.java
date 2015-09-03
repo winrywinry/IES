@@ -43,6 +43,9 @@ public class LearnValidator implements Validator {
 		if (chk.isEmpty(learnVO.getContents())){
 			err.rejectValue("contents", "learn.contents");
 		}
+		if (chk.isEmpty(learnVO.getContents_tag())){
+			learnVO.setContents_tag(" ");
+		}
 		if (chk.isEmpty(learnVO.getPeriod_st_str())){
 			err.rejectValue("period_st", "learn.period_st");
 		} else {
