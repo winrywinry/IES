@@ -14,15 +14,8 @@
 <script src="${initParam.root }/js/jquery-ui.js"></script>
 <script type="text/javascript" src="${initParam.root }/js/test.js"></script>
 <link href="${initParam.root }/css/jquery-ui.css" rel="stylesheet">
-<c:if test="${msg != null }">
-<script type="text/javascript">alert("${msg }");</script>
-</c:if>
 </head>
 <body>
-<form:errors path="test.gubun" cssClass="msgAlert" />
-<form:errors path="test.question" cssClass="msgAlert" />
-<form:errors path="test.answer_nm" cssClass="msgAlert" />
-<form:errors path="test.corr_answer2" cssClass="msgAlert" />
 <div id="winWrap">
 	<div id="winHeader"><h3>시험</h3></div>
 	<div id="winCon">	
@@ -48,8 +41,8 @@
 					<th>정답</th>
 						<td class="last">
 						<c:set var="answer_arr" value="${fn:split(test.answer_nm, '@') }"/>
-							<c:forEach var="answer_nm" items="${answer_arr }">
-								<input type="radio" name="${test.q_no }" id="${test.q_no }" value="${no.index+1 }">${answer_nm }<br>
+							<c:forEach var="answer_nm" items="${answer_arr }" varStatus="status">
+								<input type="radio" name="${test.q_no }" id="${test.q_no }" value="${status.count }">${answer_nm }<br>
 						</c:forEach>
 						</td>
 					</tr>
