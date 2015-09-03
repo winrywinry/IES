@@ -45,8 +45,8 @@ $(document).ready(function() {
 						<dd>회원정보수정 | <a href="${initParam.root }/member/login" onclick="return confirm('로그아웃 하시겠습니까?');">로그아웃</a></dd>
 					</dl>
 					<p>출석수<span>${log }</span></p>
-					<p>교육이수<span></span></p>
-					<p>교육예정<span></span></p>
+					<p>교육이수<span>${learnCount2 }</span></p>
+					<p>교육예정<span>${learnCount }</span></p>
 					<p>게시글수<span>${write }</span></p>
 					<p>질문수<span>${question }</span></p>
 					<p>댓글수<span>${reply }</span></p>
@@ -66,21 +66,18 @@ $(document).ready(function() {
 					<div id="summary" class="right">
 						<dl>
 							<dt>최근 이수 교육</dt>
-							<dd>영어 초급 교육 1</dd>
-							<dd>영어 초급 교육 1</dd>
-							<dd>영어 초급 교육 1</dd>
-							<dd>영어 초급 교육 1</dd>
-							<dd>영어 초급 교육 1</dd>
-							<dd>영어 초급 교육 1</dd>
+							 <c:forEach var="mylearn" items="${completes }">
+							 <dd>${mylearn.title }</dd>
+							 </c:forEach>
+							<%--
+							<dd><a href="/IES/learn/contentsView?no=${completes.edu_no }&page=1&dept_no=${mylearn.dept_no }&searchWord=">c</a></dd>
+							</c:forEach> --%>
 						</dl>
 						<dl>
 							<dt>이수 예정 교육</dt>
-							<dd>영어 초급 교육 1</dd>
-							<dd>영어 초급 교육 1</dd>
-							<dd>영어 초급 교육 1</dd>
-							<dd>영어 초급 교육 1</dd>
-							<dd>영어 초급 교육 1</dd>
-							<dd>영어 초급 교육 1</dd>
+							<c:forEach var="mylearn" items="${completes2 }">
+							 <dd>${mylearn.title }</dd>
+							 </c:forEach>
 						</dl>
 						<dl>
 							<dt>나의 질문</dt>

@@ -6,7 +6,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=EUC-KR">
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <link rel="stylesheet" type="text/css" href="${initParam.root }/css/test.css" />
 <title>사내교육시스템 - 시험</title>
 <script src= "//code.jquery.com/jquery-1.11.3.min.js" ></script>
@@ -62,7 +62,6 @@
 		</table>
 		<div id="btnArea">
 			<input type="submit" class="css_btn_class">
-			<a class="css_btn_class" onclick="checkFrm();"><span id="sub">작성</span></a>
 			<a class="css_btn_class" onclick="document.writeFrm.reset();">취소</a>
 		</div>
 		</form>

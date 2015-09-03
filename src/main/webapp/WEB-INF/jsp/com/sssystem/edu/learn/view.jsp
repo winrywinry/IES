@@ -24,7 +24,7 @@
 		function runTest(){
 			var no = ${learn.edu_no}
 			var url = "../test/startTest?edu_no="+${learn.edu_no}
-			window.open(url,'startTest','width=400,height=400')
+			window.open(url,'startTest','scrollbars=yes,resizable=no,width=400,height=400')
 		}
 
 		window.onload=function(){

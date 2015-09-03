@@ -76,4 +76,15 @@ public class TestServiceImpl implements TestService {
 		if (t > 0) return true;
 		return false;
 	}
+	
+	public boolean updateTest(int jumsu, int edu_no, int user_no){
+		HashMap<String, Integer> map = new HashMap<String, Integer>();
+		map.put("score", jumsu);
+		map.put("edu_no", edu_no);
+		map.put("user_no", user_no);
+		int t = session.update("test.updateTest",map);
+		if(t > 0) return true;
+		return false;
+		
+	}
 }
