@@ -36,7 +36,7 @@
 	
 	<insert id="insertFavorite" parameterType="completeVO">
 		INSERT INTO 
-			T_FAVORITE
+			T_EDU_FAVORITE
 		VALUES(
 			#{edu_no},
 			#{user_no},
@@ -48,7 +48,7 @@
 		SELECT
 			COUNT(*)
 		FROM
-			T_FAVORITE
+			T_EDU_FAVORITE
 		WHERE
 		<choose>
 			<when test="user_no==0">EDU_NO = #{edu_no}</when>

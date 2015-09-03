@@ -117,7 +117,7 @@
 					</c:if>
 					<a class="link1" href="/IES/qna/write?board_gb=40&edu_no=${learn.edu_no }" >질문하기</a> | 
 					<a class="link1" onclick="del()" >삭제</a> | 
-					<a class="link1" onclick="location.href='/IES/learn/updatePage?no=${learn.edu_no}&user_no=${learn.user_no}&update=update';">수정</a> | 
+					<a class="link1" href="/IES/learn/write?no=${learn.edu_no}">수정</a> | 
 					<a class="link1" onclick="location.href='/IES/learn/list';">목록으로</a>
 					</span>
 					<br><br>
