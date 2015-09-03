@@ -41,8 +41,8 @@
 					<th>정답</th>
 						<td class="last">
 						<c:set var="answer_arr" value="${fn:split(test.answer_nm, '@') }"/>
-							<c:forEach var="answer_nm" items="${answer_arr }">
-								<input type="radio" name="${test.q_no }" id="${test.q_no }" value="${no.index+1 }">${answer_nm }<br>
+							<c:forEach var="answer_nm" items="${answer_arr }" varStatus="status">
+								<input type="radio" name="${test.q_no }" id="${test.q_no }" value="${status.count }">${answer_nm }<br>
 						</c:forEach>
 						</td>
 					</tr>
