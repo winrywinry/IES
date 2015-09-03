@@ -18,7 +18,7 @@
 			<value>classpath:/com/sssystem/edu/property/conn.properties</value>
 		</property>
 	</bean>
-	<bean id= "driverManagerDataSource" class="org.springframework.jdbc.datasource.DriverManagerDataSource" >
+	<bean id="driverManagerDataSource" class="org.springframework.jdbc.datasource.DriverManagerDataSource" >
 		<property name= "driverClassName" value ="${jdbc.driver}" />
 		<property name= "url" value ="${jdbc.url}" />
 		<property name= "username" value ="${jdbc.user}" />
@@ -34,5 +34,8 @@
 		<constructor-arg index= "0" ref ="sqlSessionFactoryBean" />
 	</bean>
 	<bean id="multipartResolver" class="org.springframework.web.multipart.commons.CommonsMultipartResolver"></bean>
+	<bean id="transactionManager" class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
+		<property name="dataSource" ref="driverManagerDataSource"></property>
+	</bean>
 	<import resource="classpath:com/sssystem/edu/spring/DI.xml"/>
 </beans>

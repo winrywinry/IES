@@ -15,4 +15,5 @@ public interface LearnService {
 	public LearnVO selectPrev(SearchLearnVO pageVO);
 	public void delete(int no);
 	public List<LearnVO> selectLeftMenuList(LearnVO learnVO);
+	public int insert(LearnVO learnVO);
 }

@@ -1,7 +1,9 @@
 package com.sssystem.edu.control;
 
 import java.sql.Date;
+import java.util.List;
 
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -13,6 +15,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import com.sssystem.edu.common.ValidateParamChk;
 import com.sssystem.edu.service.CompleteService;
 import com.sssystem.edu.service.LearnService;
+import com.sssystem.edu.service.TestService;
 import com.sssystem.edu.vo.CompleteVO;
 import com.sssystem.edu.vo.LearnVO;
 import com.sssystem.edu.vo.search.SearchLearnVO;
@@ -108,10 +111,8 @@ public class CompleteController {
 		completeVO.setUser_no(sessionVO.getUser_no());
 		
 		if(completeService.insertFavorite(completeVO)){
-			System.out.println("¡¯¿‘");
 			return "redirect:contentsView?no="+edu_no+"&dept_no="+dept_no+"&page="+page+"&searchWord="+searchWord;			
 		}else{
-			System.out.println("fail");
 			return "redirect:contentsView?no="+edu_no+"&dept_no="+dept_no+"&page="+page+"&searchWord="+searchWord;			
 		}
 	}

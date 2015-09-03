@@ -1,6 +1,9 @@
 package com.sssystem.edu.service;
 
+import java.util.List;
+
 import com.sssystem.edu.vo.CompleteVO;
+import com.sssystem.edu.vo.TestVO;
 
 public interface CompleteService {
 	public CompleteVO selectComplete(int edu_no, int user_no);

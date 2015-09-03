@@ -62,6 +62,8 @@
 						<li><a href="#"> 보고서</a></li><br>
 					</ul>
 				</li>
+			</ul>
+		</li>
 	</ul>				
 	<p class="external">
 		<a href="#" id="collapseAll">접기</a> | <a href="#" id="expandAll">펼치기</a>

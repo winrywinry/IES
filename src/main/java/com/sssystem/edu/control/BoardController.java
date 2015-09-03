@@ -90,36 +90,14 @@ public class BoardController {
 		if(!(board_no.isEmpty())){
 			boardVO.setBoard_no(Integer.parseInt(board_no));
 		}
-
-		if(board_gb.equals("10")){
-			if(!(board_no.isEmpty())){
-				if(boardServie.boardUpdate(boardVO)){
-					return "redirect:view?board_gb="+board_gb+"&no="+board_no;
-				}
-			}else{
-				if(boardServie.boardInsert(boardVO)){
-					return "redirect:list?board_gb="+board_gb;
-				}
+		
+		if(!(board_no.isEmpty())){
+			if(boardServie.boardUpdate(boardVO)){
+				return "redirect:view?board_gb="+board_gb+"&no="+board_no;
 			}
-		}else if(board_gb.equals("20")){
-			if(!(board_no.isEmpty())){
-				if(boardServie.boardUpdate(boardVO)){
-					return "redirect:view?board_gb="+board_gb+"&no="+board_no;
-				}
-			}else{
-				if(boardServie.boardInsert(boardVO)){
-					return "redirect:list?board_gb="+board_gb;
-				}
-			}
-		}else if(board_gb.equals("30")){
-			if(!(board_no.isEmpty())){
-				if(boardServie.boardUpdate(boardVO)){
-					return "redirect:view?board_gb="+board_gb+"&no="+board_no;
-				}
-			}else{
-				if(boardServie.boardInsert(boardVO)){
-					return "redirect:list?board_gb="+board_gb;
-				}
+		}else{
+			if(boardServie.boardInsert(boardVO)>0){
+				return "redirect:list?board_gb="+board_gb;
 			}
 		}
 		

@@ -116,9 +116,9 @@
 			QNA_NO=#{qna_no}
 	</update>
 	
-	<select id="recommendView" resultType="string">
-	  SELECT TITLE FROM (
-  	    SELECT TITLE
+	<select id="recommendView" resultType="qnaVO">
+	SELECT TITLE, BOARD_GB, QNA_NO FROM (
+  	    SELECT TITLE, BOARD_GB, QNA_NO
   	    FROM T_EDU_QNA
   	    WHERE BOARD_GB = 60
   	    ORDER BY QUESTION_DT DESC)

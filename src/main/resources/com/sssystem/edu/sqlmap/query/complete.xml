@@ -55,4 +55,5 @@
 			<otherwise>EDU_NO = #{edu_no} AND USER_NO = #{user_no}</otherwise>
 		</choose>
 	</select>
+	
 </mapper>

@@ -1,12 +1,14 @@
 package com.sssystem.edu.service.impl;
 
-import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
 
+import com.sssystem.edu.vo.BoardVO;
 import com.sssystem.edu.vo.MemberVO;
+import com.sssystem.edu.vo.QnaBoardVO;
 import com.sssystem.edu.service.MemberService;
 import com.sssystem.edu.vo.support.SessionVO;
 
@@ -83,7 +85,6 @@ public class MemberServiceImpl implements MemberService{
 
 	@Override
 	public MemberVO select2(int user_no) {
-		// TODO Auto-generated method stub
 		return null;
 	}
 
@@ -116,21 +117,20 @@ public class MemberServiceImpl implements MemberService{
 	public String selectQuestion(int log) {
 		String question = null;
 		question = (String) session.selectOne("member.selectQuestion", log);
-		System.out.println(question);
 		return question;
 	}
 
 	@Override
-	public ArrayList<String> myWriteView(int log) {
-		ArrayList<String> title = null;
-		 title = (ArrayList) session.selectList("member.myWriteView", log);
+	public List<QnaBoardVO> myWriteView(int log) {
+		List<QnaBoardVO> title = null;
+		 title = session.selectList("member.myWriteView", log);
 		return title;
 	}
 
 	@Override
-	public ArrayList<String> myQuestionView(int log) {
-		ArrayList<String> title = null;
-		title = (ArrayList) session.selectList("member.myQuestionView", log);
+	public List<BoardVO> myQuestionView(int log) {
+		List<BoardVO> title = null;
+		title = session.selectList("member.myQuestionView", log);
 		return title;
 	}
 

@@ -21,6 +21,14 @@ public class DeptVO {
 		this.user_no = user_no;
 	}
 
+	public int[] getDept() {
+		return dept;
+	}
+
+	public void setDept(int[] dept) {
+		this.dept = dept;
+	}
+
 	public int getDept_no() {
 		return dept_no;
 	}
