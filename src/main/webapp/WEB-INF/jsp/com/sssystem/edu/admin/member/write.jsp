@@ -68,37 +68,53 @@ function del(){
 </script>
 <script type="text/javascript">
     
+    var xmlReq; // 전역변수로 지정.
+    // Ajax 객체 생성 과정
+    function createAjax() {
+        xmlReq = new XMLHttpRequest();
+    }
+     
     // Ajax 객체를 이용한 데이터 전송 과정
     function ajaxSend() {
-    	var params = "user_nm="+user_nm+"&birth="+birth;
-    	new ajax.xhr.Request("receive", params, callBack, "POST");
+       createAjax();
+       var user_nm = document.getElementById("user_nm").value;
+       var birth = document.getElementById("birth").value;
+	       xmlReq.onreadystatechange = callBack; // 괄호 열고닫고가 틀리다.!
+	       xmlReq.open("GET", "receive?user_nm="+user_nm+"&birth="+birth, true);
+	       xmlReq.send(null);
+       // send가 끝나고나면 비동기식이기 때문에 프로그램이 계속 진행된다.
    }
     
    // 콜백 함수 과정
-   function callBack(xhr) {
-       if(xhr.readyState == 4) {
-           if(xhr.status == 200) {
-               alert(xhr.responseText);
-               var result = xhr.responseXML;
-               var rootNode = result.documentElement;
-               // <root>true</root> , <root>false</root>
-               var rootValue = rootNode.firstChild.nodeValue;
-               var rootTag = document.getElementById("error");
-               
-               var nameNode = rootNode.getElementsByTagName("name");
-               var nameValue = nameNode.item(0).firstChild.nodeValue;
-               var birthValue = rootNode.getElementsByTagName("birth").item(0).firstChild.nodeValue;
-
-               if (nameValue != 'unknown' && birthValue != 'unknown'){
-        	       if(rootValue == "true") {
-        	           rootTag.innerHTML = "<font color=blue>* 등록 가능한 사용자입니다.</font>";
-        	       } else {
-        	           rootTag.innerHTML = "* 이미 등록된 사용자입니다.";
-        	       }
-               } else {
-            	   rootTag.innerHTML = "";
-               }
+   function callBack() {
+       if(xmlReq.readyState == 4) {
+           if(xmlReq.status == 200) {
+               printData();
            }
+       }
+   }
+    
+   // 결과 출력 과정
+   function printData() {
+       var result = xmlReq.responseXML;
+       
+       var rootNode = result.documentElement;
+       // <root>true</root> , <root>false</root>
+       var rootValue = rootNode.firstChild.nodeValue;
+       var rootTag = document.getElementById("error");
+       
+       var nameNode = rootNode.getElementsByTagName("name");
+       var nameValue = nameNode.item(0).firstChild.nodeValue;
+       var birthValue = rootNode.getElementsByTagName("birth").item(0).firstChild.nodeValue;
+
+       if (nameValue != 'unknown' && birthValue != 'unknown'){
+	       if(rootValue == "true") {
+	           rootTag.innerHTML = "<font color=blue>* 등록 가능한 사용자입니다.</font>";
+	       } else {
+	           rootTag.innerHTML = "* 이미 등록된 사용자입니다.";
+	       }
+       } else {
+    	   rootTag.innerHTML = "";
        }
    }
 </script>
