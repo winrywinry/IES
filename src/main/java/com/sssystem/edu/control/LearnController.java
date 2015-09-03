@@ -1,7 +1,10 @@
 package com.sssystem.edu.control;
 
+import java.io.File;
+import java.io.IOException;
 import java.util.List;
 
+import javax.annotation.Resource;
 import javax.servlet.ServletContext;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
@@ -19,6 +22,7 @@ import com.sssystem.edu.common.ValidateParamChk;
 import com.sssystem.edu.service.CategoryService;
 import com.sssystem.edu.service.DeptService;
 import com.sssystem.edu.service.JobService;
+import com.sssystem.edu.service.LearnSaveService;
 import com.sssystem.edu.service.LearnService;
 import com.sssystem.edu.service.TestService;
 import com.sssystem.edu.vo.AttachFileVO;
@@ -42,6 +46,8 @@ public class LearnController {
 	TestService testService;
 	@Autowired
 	LearnService learnService;
+	@Resource(name="learnSaveService")
+	LearnSaveService learnSave;
 	
 	@RequestMapping("/learn/write")
 	public String write(HttpSession session, Model model){
@@ -98,16 +104,54 @@ public class LearnController {
 	
 	@RequestMapping("/learn/save")
 	public String save(@ModelAttribute("learn") LearnVO learnVO
+			          , DeptVO deptVO
+			          , @RequestParam(value="job") String[] job
 			          , AttachFileVO attachVO
-			          , HttpServletRequest request){
+			          , HttpServletRequest request
+			          , HttpSession session
+			          , Model model){
+		SessionVO sessionBean = (SessionVO) session.getAttribute("user");
+		int dept_no = sessionBean.getDept_no();
+		int user_no = sessionBean.getUser_no();
+		learnVO.setDept_no(dept_no);
+		learnVO.setUser_no(user_no);
+		
+		System.out.println("learn/save");
+		String job_str = "";
+		for (int i=0;i<job.length;i++){
+			job_str += "|"+ job[i];
+		}
+		if (!job_str.equals("")) job_str += "|";
+		
+		// Ã·ºÎÆÄÀÏ
 		MultipartFile attach = attachVO.getAttach();
 		String filename = attach.getOriginalFilename();
 		attachVO.setAttach_file(filename);
 		
 		ServletContext servletContext = request.getSession().getServletContext();
-		String relativeWebPath = "/images/";
+		String relativeWebPath = "/images/"+ filename;
 		String absoluteDiskPath = servletContext.getRealPath(relativeWebPath);
-		return "";
+		
+		try {
+			File file = new File(absoluteDiskPath);
+			attach.transferTo(file);
+		} catch (IllegalStateException e) {
+			e.printStackTrace();
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+		
+		try {
+			learnSave.learnSave(learnVO, deptVO, job_str, attachVO);
+		} catch (RuntimeException e) {
+			 model.addAttribute("msg", e.getMessage());
+			 return "learn/write";
+		} catch (Exception e) {
+			e.printStackTrace();
+			return "learn/write";
+		}
+		
+		return "redirect:list";
 	}
 	
 }

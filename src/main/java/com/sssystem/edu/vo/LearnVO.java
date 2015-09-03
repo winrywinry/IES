@@ -4,6 +4,10 @@ import java.util.Date;
 
 public class LearnVO {
 
+	private String edu;
+	private String period_st_str;
+	private String period_ed_str;
+	
 	private int edu_no;
 	private int dept_no;
 	private int category_no;
@@ -44,6 +48,30 @@ public class LearnVO {
 		this.user_no = user_no;
 		this.input_dt = input_dt;
 		this.time_stamp = time_stamp;
+	}
+
+	public String getPeriod_st_str() {
+		return period_st_str;
+	}
+
+	public void setPeriod_st_str(String period_st_str) {
+		this.period_st_str = period_st_str;
+	}
+
+	public String getPeriod_ed_str() {
+		return period_ed_str;
+	}
+
+	public void setPeriod_ed_str(String period_ed_str) {
+		this.period_ed_str = period_ed_str;
+	}
+
+	public String getEdu() {
+		return edu;
+	}
+
+	public void setEdu(String edu) {
+		this.edu = edu;
 	}
 
 	public int getEdu_no() {
