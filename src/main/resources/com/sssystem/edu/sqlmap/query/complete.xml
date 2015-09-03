@@ -55,5 +55,74 @@
 			<otherwise>EDU_NO = #{edu_no} AND USER_NO = #{user_no}</otherwise>
 		</choose>
 	</select>
+	<select id="learnTest" parameterType="int" resultType="completeVO">
+	SELECT A.TITLE,
+           A.DEPT_NO,
+           A.EDU_NO,
+           B.SCORE,
+           B.ANSWER,
+           B.START_DT,
+           B.END_DT
+	FROM T_EDU_COMPLETE B JOIN T_EDU A
+           ON A.EDU_NO = B.EDU_NO
+           AND ROWNUM BETWEEN 1 AND 6
+           AND B.END_DT = '1111-11-11'
+           AND B.USER_NO = #{user_no}
+           ORDER BY B.START_DT
+	</select>
+	
+	<select id="learnTest2" parameterType="int" resultType="completeVO">
+	<![CDATA[
+	SELECT A.TITLE,
+           A.DEPT_NO,
+           A.EDU_NO,
+           B.SCORE,
+           B.ANSWER,
+           B.START_DT,
+           B.END_DT
+	FROM T_EDU_COMPLETE B JOIN T_EDU A
+           ON A.EDU_NO = B.EDU_NO
+           AND ROWNUM BETWEEN 1 AND 6
+           AND B.END_DT <> '1111-11-11'
+           AND B.USER_NO = #{user_no}
+           ORDER BY B.START_DT
+           ]]>
+	</select>
+           
+	<select id="learnCount" parameterType="int" resultType="int">
+	SELECT COUNT(*) FROM(
+	SELECT A.TITLE,
+       A.DEPT_NO,
+       A.EDU_NO,
+       B.SCORE,
+       B.ANSWER,
+       B.START_DT,
+       B.END_DT
+	FROM T_EDU_COMPLETE B JOIN T_EDU A
+       ON A.EDU_NO = B.EDU_NO
+       AND ROWNUM BETWEEN 1 AND 6 
+       AND B.ANSWER = '응시'
+       AND B.USER_NO = #{user_no}
+       ORDER BY B.START_DT)
+	</select>
+	
+	<select id="learnCount2" parameterType="int" resultType="int">
+	<![CDATA[
+	SELECT COUNT(*) FROM(
+	SELECT A.TITLE,
+       A.DEPT_NO,
+       A.EDU_NO,
+       B.SCORE,
+       B.ANSWER,
+       B.START_DT,
+       B.END_DT
+	FROM T_EDU_COMPLETE B JOIN T_EDU A
+       ON A.EDU_NO = B.EDU_NO
+       AND ROWNUM BETWEEN 1 AND 6 
+       AND B.ANSWER = '미응시'
+       AND B.USER_NO = #{user_no}
+       ORDER BY B.START_DT)
+       ]]>
+	</select>
 	
 </mapper>

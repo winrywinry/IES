@@ -8,7 +8,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 
 import com.sssystem.edu.service.CompleteService;
 import com.sssystem.edu.vo.CompleteVO;
-import com.sssystem.edu.vo.TestVO;
 
 public class CompleteServiceImpl implements CompleteService {
 	@Autowired
@@ -53,6 +52,31 @@ public class CompleteServiceImpl implements CompleteService {
 		map.put("user_no",user_no);
 		int cntFavo = session.selectOne("complete.selectFavorite",map);
 		return cntFavo;
+	}
+
+	@Override
+	public List<CompleteVO> myLearn(int user_no) {
+		List<CompleteVO> list = session.selectList("complete.learnTest", user_no);
+		return list;
+	}
+
+	@Override
+	public List<CompleteVO> myLearn2(int user_no) {
+		List<CompleteVO> list = session.selectList("complete.learnTest2", user_no);
+		return list;
+	}
+	
+	@Override
+	public int learnCount2(int user_no) {
+		int t = session.selectOne("complete.learnCount", user_no);
+		return t;
+	}
+	
+	@Override
+	public int learnCount(int user_no) {
+		int t = session.selectOne("complete.learnCount2", user_no);
+		System.out.println(t);
+		return t;
 	}
 
 }
