@@ -48,10 +48,9 @@ public class AdminMemberServiceImpl implements AdminMemberService {
   }
 
   @Override
-  public boolean insert(MemberVO member) {
-    int t = session.delete("admin.member.insert",member);
-    if(t > 0) return true;
-    return false;
+  public MemberVO insert(MemberVO member) {
+    session.insert("admin.member.insert",member);
+    return member;
   }
 
   @Override

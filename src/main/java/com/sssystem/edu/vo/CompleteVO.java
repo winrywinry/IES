@@ -10,6 +10,7 @@ public class CompleteVO {
 	private Date input_dt;
 	private String start_dt;
 	private String end_dt;
+	private String title;
 	
 	public CompleteVO() {
 		super();
@@ -17,7 +18,7 @@ public class CompleteVO {
 	}
 
 	public CompleteVO(int edu_no, int user_no, int score, String aNSWER,
-			Date input_dt, String start_dt, String end_dt) {
+			Date input_dt, String start_dt, String end_dt, String title) {
 		super();
 		this.edu_no = edu_no;
 		this.user_no = user_no;
@@ -26,6 +27,7 @@ public class CompleteVO {
 		this.input_dt = input_dt;
 		this.start_dt = start_dt;
 		this.end_dt = end_dt;
+		this.title = title;
 	}
 
 
@@ -96,5 +98,13 @@ public class CompleteVO {
 
 	public void setEnd_dt(String end_dt) {
 		this.end_dt = end_dt;
+	}
+	
+	public String getTitle() {
+		return title;
+	}
+
+	public void setTitle(String title) {
+		this.title = title;
 	}
 }
