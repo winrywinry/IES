@@ -54,6 +54,7 @@ public class MemberController{
 	public String index(Model model){
 		
 		int user_no = sessionVO.getUser_no();
+		model.addAttribute("photo", memberService.photo(user_no));
 		
 		model.addAttribute("log", memberService.selectLogSession(user_no));//출석수
 		model.addAttribute("write", memberService.selectWrite(user_no));//게시글수
@@ -69,7 +70,9 @@ public class MemberController{
 		model.addAttribute("replyContents", board.replyContents(user_no));//댓글view
 		
 		model.addAttribute("completes", completesService.myLearn(user_no));//이수예정
+		System.out.println(completesService.myLearn(user_no));
 		model.addAttribute("completes2", completesService.myLearn2(user_no));//최근이수
+		System.out.println(completesService.myLearn2(user_no));
 		
 		model.addAttribute("learnCount", completesService.learnCount(user_no));//이수예정count
 		model.addAttribute("learnCount2", completesService.learnCount2(user_no));//최근이수count
@@ -102,8 +105,7 @@ public class MemberController{
 		sessionVO = memberService.selectSession(user_id);
 		int user_no = sessionVO.getUser_no();
 		memberService.insertLog(user_no);
-		model.addAttribute("photo", memberService.photo(user_no));
-		System.out.println("사진: " + memberService.photo(user_no));
+		
 		session.setAttribute("user", sessionVO);
 		return "redirect:index";
 		}
