@@ -1,7 +1,12 @@
 package com.sssystem.edu.admin.control;
 
+import java.io.File;
+import java.io.IOException;
 import java.util.Date;
 import java.util.List;
+
+import javax.servlet.ServletContext;
+import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -10,9 +15,11 @@ import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.multipart.MultipartFile;
 
 import com.sssystem.edu.admin.service.AdminMemberService;
 import com.sssystem.edu.admin.validators.MemberValidator;
+import com.sssystem.edu.admin.vo.EmailVO;
 import com.sssystem.edu.admin.vo.MemberVO;
 import com.sssystem.edu.admin.vo.PageVO;
 import com.sssystem.edu.common.ValidateParamChk;
@@ -159,16 +166,60 @@ public class AdminMemberController {
 
   @Autowired
   MemberValidator memberVal;
+  @Autowired
+  EmailSender emailSender;
   
   @RequestMapping("/admin/member/writeAction")
-  public String writeAction(@ModelAttribute("member") MemberVO memberVO
-                          , BindingResult result) {
+  public String writeAction(@ModelAttribute("member") MemberVO memberVO,
+                          HttpServletRequest request,
+                          BindingResult result) throws Exception {
     memberVal.validate(memberVO, result);
     if (result.hasErrors()) return "admin/member/write";
     
     //insert
-    adminMembeerService.insert(memberVO);
-    System.out.println(memberVO.toString());
+      MultipartFile uploadfile = memberVO.getProfil();
+      if (uploadfile != null) {
+          String fileName = uploadfile.getOriginalFilename();
+          memberVO.setProfil_picture(fileName);
+          try {
+              // 1. FileOutputStream 사용
+              // byte[] fileData = file.getBytes();
+              // FileOutputStream output = new FileOutputStream("C:/images/" + fileName);
+              // output.write(fileData);
+            
+            ServletContext servletContext = request.getSession().getServletContext();
+            String relativeWebPath = "/images/profil/"+ fileName;
+            String absoluteDiskPath = servletContext.getRealPath(relativeWebPath);
+            System.out.println(absoluteDiskPath);
+              // 2. File 사용
+              File file = new File(absoluteDiskPath);
+              file.mkdir();
+              uploadfile.transferTo(file);
+          } catch (IOException e) {
+              e.printStackTrace();
+          } // try - catch
+      } // if
+      
+      memberVO = adminMembeerService.insert(memberVO);
+      System.out.println(memberVO.getProfil_picture());
+      
+      System.out.println("name = " + memberVO.getUser_nm());
+      System.out.println("email = " + memberVO.getEmail());
+      System.out.println("number = " + memberVO.getEmp_serial());
+      
+      
+      //----------이메일---------------------------------------------------------------------//
+      EmailVO email = new EmailVO();
+      
+      String reciver = memberVO.getEmail();             //받을사람의 이메일입니다.
+      String subject = memberVO.getUser_nm() + "님의 사원번호 입니다.";
+      String content = "네 녀석의 사원번호는 [" + memberVO.getEmp_serial() + "]이다";
+       
+      email.setReciver(reciver);
+      email.setSubject(subject);
+      email.setContent(content);
+      emailSender.SendEmail(email);
+    
     
     return "redirect:list";
   }

@@ -6,7 +6,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=EUC-KR">
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <link rel="stylesheet" type="text/css" href="${initParam.root }/css/test.css" />
 <title>사내교육시스템 - 이수확인 등록</title>
 <script src= "//code.jquery.com/jquery-1.11.3.min.js" ></script>
@@ -25,7 +25,7 @@
 <form:errors path="test.corr_answer2" cssClass="msgAlert" />
 <div id="winWrap">
 	<div id="winHeader"><h3>시험 등록</h3></div>
-	<div id="winCon">	
+	<div id="winCon">
 		<form method="post" name="writeFrm" action="save">
 		<input type="hidden" name="test" value="${test_no }" />
 		<input type="hidden" name="edu" value="${edu_no }" />

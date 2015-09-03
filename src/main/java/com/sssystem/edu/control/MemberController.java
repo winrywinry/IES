@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 import com.sssystem.edu.vo.MemberVO;
 import com.sssystem.edu.service.BoardService;
+import com.sssystem.edu.service.CompleteService;
 import com.sssystem.edu.service.MemberService;
 import com.sssystem.edu.service.QnaService;
 import com.sssystem.edu.valitors.JoinValidator;
@@ -41,6 +42,8 @@ public class MemberController{
 	QnaService qna;
 	@Autowired
 	BoardService board;
+	@Autowired
+	CompleteService completesService;
 	
 
 	@RequestMapping("/member/login")
@@ -52,10 +55,8 @@ public class MemberController{
 	public String index(Model model){
 		
 		int user_no = sessionVO.getUser_no();
-		System.out.println("user_no :"+user_no);
 		
 		memberService.insertLog(user_no);
-		model.addAttribute("log", memberService.selectLogSession(user_no));//출석수
 		model.addAttribute("write", memberService.selectWrite(user_no));//게시글수
 		model.addAttribute("question", memberService.selectQuestion(user_no));//질문수
 		
@@ -67,6 +68,12 @@ public class MemberController{
 		model.addAttribute("notice", board.notice());//메인화면 공지사항 view
 		model.addAttribute("reply", board.selectReply(user_no)); //댓글수
 		model.addAttribute("replyContents", board.replyContents(user_no));//댓글view
+		
+		model.addAttribute("completes", completesService.myLearn(user_no));//이수예정
+		model.addAttribute("completes2", completesService.myLearn2(user_no));//최근이수
+		
+		model.addAttribute("learnCount", completesService.learnCount(user_no));//이수예정count
+		model.addAttribute("learnCount2", completesService.learnCount2(user_no));//최근이수count
 		
 		return "index";
 	}
@@ -94,6 +101,9 @@ public class MemberController{
 		
 		if(memberService.selectLogin(user_id).equals(user_pwd)){
 		sessionVO = memberService.selectSession(user_id);
+		int user_no = sessionVO.getUser_no();
+		model.addAttribute("log", memberService.selectLogSession(user_no));//출석수
+		System.out.println("출석수:"+memberService.selectLogSession(user_no));
 		session.setAttribute("user", sessionVO);
 		return "redirect:index";
 		}
