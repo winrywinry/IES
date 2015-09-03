@@ -12,7 +12,7 @@ if(request.getAttribute("reply") != null){%>
        name:'${reply.user_nm }',
        no:${reply.comment_no},
        user_no:${reply.user_no},
-       input_dt:${reply.input_dt},
+       input_dt:'${reply.input_dt}',
        content:'${reply.contents }'
     }
   ]]></data>

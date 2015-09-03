@@ -134,4 +134,11 @@ public class MemberServiceImpl implements MemberService{
 		return title;
 	}
 
+	@Override
+	public String photo(int user_no) {
+		String photo = null;
+		photo = session.selectOne("member.photo", user_no);
+		return photo;
+	}
+
 }

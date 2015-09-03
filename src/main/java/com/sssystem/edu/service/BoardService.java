@@ -23,6 +23,7 @@ public interface BoardService  {
 	public List<BoardVO> boardListSelectAll(SearchBoardVO bean, int page); //검색(전체행)
 	public void upHits(int board_no); //조회수
 	public int selectCnt(SearchBoardVO bean); //
+	public String nmSelect(int user_no);
 	
 	/**
 	 * 리플

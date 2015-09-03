@@ -24,6 +24,7 @@ public class BoardVO {
 	private int rownum;
 	private int page_no;
 	private int total;
+	private String user_nm;
 	
 	public BoardVO() {
 		
@@ -179,5 +180,13 @@ public class BoardVO {
 
 	public void setPre_dt(java.util.Date pre_dt) {
 		this.pre_dt = pre_dt;
+	}
+
+	public String getUser_nm() {
+		return user_nm;
+	}
+
+	public void setUser_nm(String user_nm) {
+		this.user_nm = user_nm;
 	}
 }

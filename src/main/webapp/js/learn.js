@@ -59,6 +59,7 @@ $(function(){
     $(".msgAlert").each(function(){
     		alert($( this).text());            
     });
+    $(".css_btn_class").css("cursor", "pointer");
 });
 function testWinOpen(url){
 	window.open(url, 'testWin', 'width=400, height=400');
@@ -124,6 +125,7 @@ function creaetDiv(json){
 	return html;
 }
 function FormchkModule(f){
+	var testCnt = $("#testList li").size();
 	oEditors.getById["ta1"].exec("UPDATE_CONTENTS_FIELD", []);
 	if (f.title.value == ''){
 		alert('제목을 입력해 주세요!');
@@ -166,5 +168,17 @@ function FormchkModule(f){
 		f.period_st_str.focus();
 		return false;
 	}
+	if (testCnt == 0){
+		alert("시험을 등록해 주세요!");
+		return false;
+	}
 	return true;
+}
+
+function cancel(f){
+	if (confirm("작성을 취소하시겠습니까?")){
+		oEditors.getById["ta1"].exec("SET_CONTENTS", [""]);
+		f.reset();
+		f.title.focus();
+	}
 }

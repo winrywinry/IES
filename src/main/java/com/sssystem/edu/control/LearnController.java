@@ -13,6 +13,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpRequest;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -25,6 +26,7 @@ import com.sssystem.edu.service.JobService;
 import com.sssystem.edu.service.LearnSaveService;
 import com.sssystem.edu.service.LearnService;
 import com.sssystem.edu.service.TestService;
+import com.sssystem.edu.valitors.LearnValidator;
 import com.sssystem.edu.vo.AttachFileVO;
 import com.sssystem.edu.vo.CategoryVO;
 import com.sssystem.edu.vo.DeptVO;
@@ -48,6 +50,8 @@ public class LearnController {
 	LearnService learnService;
 	@Resource(name="learnSaveService")
 	LearnSaveService learnSave;
+	@Autowired
+	LearnValidator learnVal;
 	
 	@RequestMapping("/learn/write")
 	public String write(HttpSession session, Model model){
@@ -104,12 +108,16 @@ public class LearnController {
 	
 	@RequestMapping("/learn/save")
 	public String save(@ModelAttribute("learn") LearnVO learnVO
+			          , BindingResult result
 			          , DeptVO deptVO
 			          , @RequestParam(value="job") String[] job
 			          , AttachFileVO attachVO
 			          , HttpServletRequest request
 			          , HttpSession session
 			          , Model model){
+		learnVal.validate(learnVO, result);
+		if (result.hasErrors()) return "test/write";
+		
 		SessionVO sessionBean = (SessionVO) session.getAttribute("user");
 		int dept_no = sessionBean.getDept_no();
 		int user_no = sessionBean.getUser_no();
@@ -127,6 +135,7 @@ public class LearnController {
 		MultipartFile attach = attachVO.getAttach();
 		String filename = attach.getOriginalFilename();
 		attachVO.setAttach_file(filename);
+		attachVO.setTable_nm("T_EDU_BOARD");
 		
 		ServletContext servletContext = request.getSession().getServletContext();
 		String relativeWebPath = "/images/"+ filename;
@@ -141,6 +150,7 @@ public class LearnController {
 			e.printStackTrace();
 		}
 		
+		System.out.println(learnVO.toString());
 		try {
 			learnSave.learnSave(learnVO, deptVO, job_str, attachVO);
 		} catch (RuntimeException e) {

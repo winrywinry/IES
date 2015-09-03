@@ -63,6 +63,7 @@ public class BoardController {
 
 			
 		BoardVO boardVO = boardServie.boardDetailSelect(no, gb);
+		boardVO.setUser_nm(boardServie.nmSelect(boardVO.getUser_no()));
 		boardServie.upHits(no);	
 		model.addAttribute("board", boardVO);
 		return "board/view";

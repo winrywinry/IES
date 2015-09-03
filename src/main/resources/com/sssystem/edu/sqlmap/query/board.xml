@@ -26,12 +26,12 @@
 	
 	<select id="boardListSelectAll" parameterType="searchVO" resultType="boardVO">
 		SELECT
-			ROWNUM, BOARD_NO, TITLE, INPUT_DT, VIEW_CNT, BOARD_GB
+			ROWNUM, BOARD_NO, TITLE, INPUT_DT, VIEW_CNT, BOARD_GB, USER_NM
 			FROM(
 		SELECT 
-			BOARD_NO, TITLE, INPUT_DT, VIEW_CNT, BOARD_GB
-		FROM T_EDU_BOARD
-		WHERE 1=1 and BOARD_GB=#{board_gb}
+			BOARD_NO, TITLE, T_EDU_BOARD.INPUT_DT AS INPUT_DT, VIEW_CNT, BOARD_GB, USER_NM
+		FROM T_EDU_BOARD, T_EDU_USER
+		WHERE 1=1 and BOARD_GB=#{board_gb} AND T_EDU_USER.USER_NO = T_EDU_BOARD.USER_NO
 			<if test="searchWord != null and searchWord != ''"><![CDATA[			
 			and (TITLE LIKE CONCAT('%',CONCAT(#{searchWord},'%')) 
 		  OR CONTENTS LIKE CONCAT('%',CONCAT(#{searchWord},'%')))
@@ -198,6 +198,16 @@
    		AND ROWNUM BETWEEN 1 AND 6
    		AND A.USER_NO = #{user_no}
  		ORDER BY A.INPUT_DT DESC
+	</select>
+	
+	<select id="nmSelect" parameterType="int" resultType="string">
+		SELECT
+			USER_NM
+		FROM
+			T_EDU_USER
+		WHERE
+			USER_NO=#{user_no}
+	
 	</select>
 
 	

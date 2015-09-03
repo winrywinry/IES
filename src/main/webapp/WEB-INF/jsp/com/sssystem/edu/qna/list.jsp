@@ -91,7 +91,7 @@
 						<tr>
 							<th width="10%">번호</th>
 							<th>제 목</th>			
-							<th width="10%">첨부파일</th>
+							<th width="10%">작성자</th>
 							<th width="15%">작성일</th>
 							<th width="10%">조회수</th>
 						</tr>
@@ -99,7 +99,8 @@
 						<tr>
 							<td>${qnaBoard.rownum }</td>
 							<td class="left"><a href="view?board_gb=${qnaBoard.board_gb}&no=${qnaBoard.qna_no }&user_no=${user.user_no }">${qnaBoard.title }</a></td>
-							<td><a href=#><img src="../images/ico_file_def.gif"></a></td>
+							<td>${qnaBoard.user_nm }</td>
+							<!-- <td><a href=#><img src="../images/ico_file_def.gif"></a></td> -->
 							<td><fmt:formatDate value="${qnaBoard.question_dt}" pattern="yyyy-MM-dd'<br>'HH:mm"/>${qnaboard.question_dt }</td>
 							<td>${qnaBoard.visit_no }</td>
 						</tr>	
