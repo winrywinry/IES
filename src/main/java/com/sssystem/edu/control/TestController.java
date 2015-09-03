@@ -130,34 +130,48 @@ public class TestController {
 			HttpSession session,
 			Model model,
 			@RequestParam(value="edu_no",required=false)int edu_no){
-//		List<TestVO> testList = testService.selectTest(edu_no);
-//		int i=0;
-//		int correct = 0;
-//		for (TestVO testVO : testList){
-//			String corr_answer = request.getParameter(""+ testVO.getQ_no());
-//			if (testVO.getCorr_answer().equals(corr_answer)) correct++;
-//			i++;
-//		}
-//		int jumsu = 0;
-//		jumsu = (100/testList.size()) * correct;
-//		model.addAttribute("jumsu", jumsu);
-//		System.out.println(jumsu);
-		
-		int cntTest = testService.countTest(edu_no);
-		System.out.println("cntTest ="+cntTest);
-		for(int i = 1 ; i <= cntTest ; i++){
-			System.out.println("i = "+i);
-			TestVO testVO = testService.selectAnswer(88,i);
-			String[] haha = request.getParameterValues(i+"");
-			for(int b = 0; b < haha.length ; b++){
-				if(testVO.getCorr_answer().equals(haha[b]))
-				System.out.println("정답");
-			}
+		List<TestVO> testList = testService.selectTest(edu_no);
+		int i=0;
+		int correct = 0;
+		for (TestVO testVO : testList){
+			String corr_answer = request.getParameter(""+ testVO.getQ_no());
+			if (testVO.getCorr_answer().equals(corr_answer)) correct++;
+			i++;
 		}
-		TestVO testVO = testService.selectAnswer(88,3);
-		System.out.println("gubun:"+testVO.getGubun());
-		System.out.println("corr_answer"+testVO.getCorr_answer());
-		return "haha";
+		int jumsu = 0;
+		System.out.println("testList.size의 크기는 "+testList.size());
+		System.out.println("correct의 크기는 = "+correct);
+		if(testList.size()==correct) jumsu = 100;
+		else jumsu = (100/testList.size()) * correct;			
+		
+		SessionVO sessionVO = (SessionVO) session.getAttribute("user");
+		if(testService.updateTest(jumsu, edu_no, sessionVO.getUser_no())){
+			System.out.println("입력 성공");			
+		}else{
+			System.out.println("입력 실패");			
+		}
+		
+		model.addAttribute("jumsu", jumsu);
+		model.addAttribute("edu_no",edu_no);
+		model.addAttribute("size",testList.size());
+		model.addAttribute("correct",correct);
+		System.out.println(jumsu);
+		
+//		int cntTest = testService.countTest(edu_no);
+//		System.out.println("cntTest ="+cntTest);
+//		for(int i = 1 ; i <= cntTest ; i++){
+//			System.out.println("i = "+i);
+//			TestVO testVO = testService.selectAnswer(88,i);
+//			String[] haha = request.getParameterValues(i+"");
+//			for(int b = 0; b < haha.length ; b++){
+//				if(testVO.getCorr_answer().equals(haha[b]))
+//				System.out.println("정답");
+//			}
+//		}
+//		TestVO testVO = testService.selectAnswer(88,3);
+//		System.out.println("gubun:"+testVO.getGubun());
+//		System.out.println("corr_answer"+testVO.getCorr_answer());
+		return "test/redirect";
 	}
 
 }

@@ -38,7 +38,7 @@ public class LearnSaveService {
 	}
 
 	@Transactional
-	public	void LearnSave(LearnVO learnVO
+	public	void learnSave(LearnVO learnVO
 			              , DeptVO deptVO
 			              , String job_str
 			              , AttachFileVO attachVO){
