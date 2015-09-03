@@ -3,6 +3,8 @@ package com.sssystem.edu.vo;
 import java.sql.Date;
 
 public class CompleteVO {
+	private int dept_no;
+
 	private int edu_no;
 	private int user_no;
 	private int score;
@@ -17,9 +19,10 @@ public class CompleteVO {
 		// TODO Auto-generated constructor stub
 	}
 
-	public CompleteVO(int edu_no, int user_no, int score, String aNSWER,
+	public CompleteVO(int dept_no, int edu_no, int user_no, int score, String aNSWER,
 			Date input_dt, String start_dt, String end_dt, String title) {
 		super();
+		this.dept_no = dept_no;
 		this.edu_no = edu_no;
 		this.user_no = user_no;
 		this.score = score;
@@ -30,6 +33,13 @@ public class CompleteVO {
 		this.title = title;
 	}
 
+	public int getDept_no() {
+		return dept_no;
+	}
+	
+	public void setDept_no(int dept_no) {
+		this.dept_no = dept_no;
+	}
 
 	public int getEdu_no() {
 		return edu_no;

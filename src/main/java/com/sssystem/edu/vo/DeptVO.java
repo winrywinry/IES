@@ -7,18 +7,26 @@ public class DeptVO {
 	private String section_nm;
 	private String team_nm;
 	private int user_no;
-
+	private String category_nm;
+	
 	public DeptVO() {
+	}
+	
+	public DeptVO(int dept_no, String dept_nm) {
+		super();
+		this.dept_no = dept_no;
+		this.dept_nm = dept_nm;
 	}
 
 	public DeptVO(int dept_no, String dept_nm, String section_nm,
-			String team_nm, int user_no) {
+			String team_nm, int user_no, String category_nm) {
 		super();
 		this.dept_no = dept_no;
 		this.dept_nm = dept_nm;
 		this.section_nm = section_nm;
 		this.team_nm = team_nm;
 		this.user_no = user_no;
+		this.category_nm = category_nm;
 	}
 
 	public int[] getDept() {
@@ -67,6 +75,14 @@ public class DeptVO {
 
 	public void setUser_no(int user_no) {
 		this.user_no = user_no;
+	}
+
+	public String getCategory_nm() {
+		return category_nm;
+	}
+
+	public void setCategory_nm(String category_nm) {
+		this.category_nm = category_nm;
 	}
 
 }

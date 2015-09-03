@@ -138,7 +138,6 @@ public class MemberServiceImpl implements MemberService{
 	public String photo(int user_no) {
 		String photo = null;
 		photo = session.selectOne("member.photo", user_no);
-		System.out.println("Æ÷Åä :"+photo);
 		return photo;
 	}
 
