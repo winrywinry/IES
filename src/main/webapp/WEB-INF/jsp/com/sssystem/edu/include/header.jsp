@@ -1,6 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=EUC-KR"
 	pageEncoding="EUC-KR"%>
-	<%@page import="com.sssystem.edu.vo.support.SessionVO"%>
 	
 <%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <header>
@@ -15,8 +14,7 @@
 			<span id="userIntro"><em>${user.user_nm } | ${user.admin_yn }</em> 사원님 환영합니다 :)</span> <span
 				id="userManu"> <a
 				href="${initParam.root }/member/login" onclick="return confirm('로그아웃 하시겠습니까?');">로그아웃</a>
-				<c:set var="admin_yn1" value="${user.admin_yn }"></c:set>
-				<c:if test="${user.admin_yn==1} "> &nbsp;| &nbsp;<a href="${initParam.root }/admin/member/list">관리자</a></c:if>
+				<c:if test="${user.admin_yn==1}"> &nbsp;| &nbsp;<a href="${initParam.root }/admin/member/list">관리자</a></c:if>
 			</span>
 		</div>
 		<nav>
