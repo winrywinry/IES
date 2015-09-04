@@ -22,16 +22,7 @@ $(function() {
 	<ul id="eduMenuList" class="nav">
 		<c:set var="lev" value="-1" />
 		<c:forEach var="li" items="${list }" varStatus="status">
-			<c:if test="${li.LEV != '1' and li.LEV != lev }">
-			<ul>
-			</c:if>
-			<li class="${li.DEPT_NO == param.dept or li.CATEGORY_NO == param.category? 'active' : '' }"><a href="/IES/learn/list?dept=${li.DEPT_NO }&category=${li.CATEGORY_NO > -1 ? li.CATEGORY_NO : ''}" > ${li.REF_NO == 0 ?li.DEPT_NM:li.CATEGORY_NM }</a>
-			<c:if test="${li.LEV == '1' and li.LEV != lev }">
-			<ul>
-				<li><a href="/IES/learn/list?dept=${li.DEPT_NO }&category=${li.CATEGORY_NO > -1 ? li.CATEGORY_NO : ''}">${li.CATEGORY_NM }</a>
-			</c:if>
-			<c:set var="lev" value="${li.LEV }" />
-			<c:if test="${fn:length(list) == status.count }"></ul></c:if>
+			<li class="${li.DEPT_NO == param.dept_no? 'active' : '' }"><a href="/IES/learn/list?dept_no=${li.DEPT_NO }" > ${li.DEPT_NM }</a>
 		</c:forEach>
 	</ul>
 	</div>

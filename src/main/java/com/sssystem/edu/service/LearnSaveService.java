@@ -136,4 +136,30 @@ public class LearnSaveService {
 			}
 		}
 	}
+	
+	@Transactional
+	public	void learnDelete(int edu_no){
+		//1. 교육등록
+		if (!(learnService.delete(edu_no))) throw new LearnNotInsertException();
+		
+		//2. 권한등록
+		if (!(authService.delete(edu_no))){
+			throw new AuthNotInsertException();
+		}
+		
+		//3. 자료실저장 (20)
+		if (!(boardService.deleteEdu(edu_no))){
+			throw new BoardNotInsertException();
+		}
+		
+		//4. 첨부파일저장
+		if (!(attachFileService.deleteEdu(edu_no))){
+			throw new AttachNotInsertException();
+		}
+		
+		//5. 시험등록
+		if (!(testService.delete(edu_no))){
+			throw new TestNotUpdateException();
+		}
+	}
 }

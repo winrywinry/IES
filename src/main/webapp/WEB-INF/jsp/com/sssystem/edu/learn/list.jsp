@@ -14,6 +14,23 @@
 <link rel="stylesheet" type="text/css" href="${initParam.root }/css/learn.css" />
 <title>Insert title here</title>
 <script type="text/javascript">
+	window.onload=function(){
+ 	    if(document.searchFrm.dept_no.value=="1000"){
+	    	document.getElementById("listtitle").innerHTML = "총무부";
+ 	    }else if(document.searchFrm.dept_no.value=="2000"){
+	    	document.getElementById("listtitle").innerHTML = "영업부";
+ 	    }else if(document.searchFrm.dept_no.value=="3000"){
+	    	document.getElementById("listtitle").innerHTML = "법무부";
+ 	    }else if(document.searchFrm.dept_no.value=="4000"){
+	    	document.getElementById("listtitle").innerHTML = "기획부";
+ 	    }else if(document.searchFrm.dept_no.value=="5000"){
+	    	document.getElementById("listtitle").innerHTML = "자재부";
+ 	    }else if(document.searchFrm.dept_no.value=="6000"){
+	    	document.getElementById("listtitle").innerHTML = "인사부";
+ 	    }else if(document.searchFrm.dept_no.value=="7000"){
+	    	document.getElementById("listtitle").innerHTML = "전산부";
+ 	    }
+ 		};
 function jsGoPage(p,param){
 	location.href= "list?page="+ p + param;
 }
