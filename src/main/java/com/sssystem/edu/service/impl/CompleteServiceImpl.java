@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 
 import com.sssystem.edu.service.CompleteService;
 import com.sssystem.edu.vo.CompleteVO;
+import com.sssystem.edu.vo.LearnVO;
 
 public class CompleteServiceImpl implements CompleteService {
 	@Autowired
@@ -80,8 +81,8 @@ public class CompleteServiceImpl implements CompleteService {
 	}
 
 	@Override
-	public List<CompleteVO> cal() {
-		List<CompleteVO> list = session.selectList("complete.cal");
+	public List<LearnVO> cal() {
+		List<LearnVO> list = session.selectList("complete.cal");
 		return list;
 	}
 
