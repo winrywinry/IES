@@ -176,7 +176,8 @@ public class QnaController {
 	@RequestMapping("qna/answerForm")
 	public String qnaAnswerForm(HttpSession session,Model model,
 			@RequestParam(value="qna_no")String qna_no,
-			@RequestParam(value="a_contents")String a_contents){
+			@RequestParam(value="a_contents")String a_contents,
+			@RequestParam(value="board_gb")int board_gb){
 		SessionVO sessionVO = (SessionVO) session.getAttribute("user");
 		QnaBoardVO qnaVO = new QnaBoardVO();
 		qnaVO.setQna_no(Integer.parseInt(qna_no));
@@ -184,7 +185,7 @@ public class QnaController {
 		qnaVO.setA_contents(a_contents);
 		qnaService.answerUpdate(qnaVO);
 		
-		return "redirect:view?board_gb=60&no="+qna_no+"&user_no="+sessionVO.getUser_no();
+		return "redirect:view?board_gb="+board_gb+"&no="+qna_no+"&user_no="+sessionVO.getUser_no();
 		
 	}
 	

@@ -6,13 +6,13 @@
 [
 		
 		<c:forEach var="cale" items="${cal }" varStatus="status">
-		<c:set var="start_dt" value="${fn:substring(cale.start_dt, 0, 10) }" />
-		<c:set var="end_dt" value="${fn:substring(cale.end_dt, 0, 10) }" />
+		<fmt:formatDate var="start_dt" value="${cale.period_st }" pattern="yyyy-MM-dd" />
+		<fmt:formatDate var="end_dt" value="${cale.period_ed }" pattern="yyyy-MM-dd" />
 		{
 		  title: '${cale.title}'
 		, start: '${start_dt}'
 		, url: '/IES/learn/contentsView?no=${cale.edu_no}&page=1&dept_no=0&searchWord='
-		<c:if test="${end_dt != '1111-11-11' }">, end: '${end_dt}'</c:if>
+		<c:if test="${end_dt != null }">, end: '${end_dt}'</c:if>
 		}${fn:length(cal) > status.count? ',' : ''}
 		</c:forEach>
 ]

@@ -88,7 +88,7 @@
 										<td width="6%"><img src="../images/write.png" onclick="location.href='/IES/qna/write?board_gb=${param.board_gb }';"></td>											
 									</c:when>
 									<c:otherwise>
-										<c:if test="${user.manage_yn==0 }">
+										<c:if test="${user.manage_yn==1 }">
 											<td width="6%"><img src="../images/write.png" onclick="location.href='/IES/qna/write?board_gb=${param.board_gb }';"></td>								
 										</c:if>
 									</c:otherwise>
@@ -132,8 +132,8 @@
                      				<dd>
                      					<img alt="" src="../images/faq.gif">
                      					${qnaBoard.q_contents }<br>
-                     					<a class="link1" onclick="location.href='/IES/qna/update?no=${qnaBoard.qna_no }&board_gb=${param.board_gb }';">수정</a>|
-                     					<a class="link1" onclick="location.href='/IES/qna/delete?no=${qnaBoard.qna_no }&board_gb=${param.board_gb}';">삭제</a>
+                     					<c:if test="${qnaBoard.q_user_no==user.user_no}"><a class="link1" onclick="location.href='/IES/qna/update?no=${qnaBoard.qna_no }&board_gb=${param.board_gb }';">수정</a>|</c:if>
+                     					<c:if test="${qnaBoard.q_user_no==user.user_no||user.manage_yn==1}"><a class="link1" onclick="location.href='/IES/qna/delete?no=${qnaBoard.qna_no }&board_gb=${param.board_gb}';">삭제</a></c:if>
                     				</dd>
 						</dl>
 						</td>
