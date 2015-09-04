@@ -54,7 +54,7 @@ public class LearnSaveService {
 			}
 		}
 		
-		if (attachVO.getAttach_file() != null || attachVO.getAttach_file().equals("")) {
+		if (attachVO.getAttach_file() != null || !(attachVO.getAttach_file().equals(""))) {
 		//3. 자료실저장 (20)
 			BoardVO boardVO = new BoardVO();
 			boardVO.setEdu_no(edu_no);
