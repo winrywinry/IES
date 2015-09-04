@@ -157,7 +157,16 @@
 	</select>
 	
 	<select id="selectLeftMenuList" resultType="hashmap">
-    SELECT A.DEPT_NO
+	    SELECT DEPT_NO
+	     , DEPT_NM
+	     , -1 CATEGORY_NO
+	     , 0 REF_NO
+	     , 0 LEV_NO
+	     , 0 LEV
+	     , ''
+	     , 0
+	  FROM T_EDU_DEPT
+    <!-- SELECT A.DEPT_NO
 	     , A.DEPT_NM
 	     , A.CATEGORY_NO
 	     , A.REF_NO
@@ -186,6 +195,6 @@
 	               ) C ON (B.CATEGORY_NO = C.CATEGORY_NO)
 	       ) A
 	 START WITH A.REF_NO = 0
-	CONNECT BY PRIOR A.CATEGORY_NO = A.REF_NO
+	CONNECT BY PRIOR A.CATEGORY_NO = A.REF_NO -->
 	</select>
 </mapper>
