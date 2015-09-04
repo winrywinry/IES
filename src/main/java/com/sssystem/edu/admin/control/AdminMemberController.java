@@ -284,7 +284,7 @@ public class AdminMemberController {
 	  + "</head>"
 	  + "<body>"
 	  + "<div id=\"wrap\">"
-	  + "	<div><img src=\"http://localhost/IES/images/newmail_header_0.jpg\" width=\"683\" height=\"172\" alt=\"기압환영\" title=\"가입해 주셔서 감사합니다\" /></div>"
+	  + "	<div><img src=\"http://192.168.7.55/IES/images/newmail_header_0.jpg\" width=\"683\" height=\"172\" alt=\"기압환영\" title=\"가입해 주셔서 감사합니다\" /></div>"
 	  + "	<div id=\"con\">"
 	  + "		<p class=\"title\"><em>"+ name +"</em>님 입사를 축하드립니다.</p>"
 	  + "		<p>"
