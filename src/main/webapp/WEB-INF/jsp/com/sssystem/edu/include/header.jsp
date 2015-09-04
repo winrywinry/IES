@@ -11,7 +11,7 @@
 
 		</div>
 		<div id="userInfo">
-			<span id="userIntro"><em>${user.user_nm }</em> 사원님 환영합니다 :)</span> <span
+			<span id="userIntro"><em>${user.user_nm }</em> 님 환영합니다 :)</span> <span
 				id="userManu"> <a
 				href="${initParam.root }/member/login" onclick="return confirm('로그아웃 하시겠습니까?');">로그아웃</a>
 				<c:if test="${user.admin_yn==1}"> &nbsp;| &nbsp;<a href="${initParam.root }/admin/member/list">관리자</a></c:if>
