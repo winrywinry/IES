@@ -14,4 +14,5 @@ public interface CompleteService {
 	public List<CompleteVO> myLearn2(int user_no);
 	public int learnCount(int user_no);
 	public int learnCount2(int user_no);
+	public List<CompleteVO> cal();
 }

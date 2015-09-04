@@ -15,7 +15,8 @@ public interface LearnService {
 	public LearnVO select(int no);
 	public LearnVO selectNext(SearchLearnVO pageVO);
 	public LearnVO selectPrev(SearchLearnVO pageVO);
-	public void delete(int no);
+	public boolean delete(int no);
 	public int insert(LearnVO learnVO);
-	public List<DeptVO> selectLeftMenuList();
+	public List<HashMap<String, Object>> selectLeftMenuList();
+	public boolean update(LearnVO learnVO);
 }

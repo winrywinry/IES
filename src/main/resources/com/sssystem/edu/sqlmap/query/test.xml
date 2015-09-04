@@ -139,7 +139,8 @@
 			T_EDU_COMPLETE
 		SET
 			SCORE = #{score},
-			ANSWER = '응시'
+			ANSWER = '응시',
+			END_DT = SYSDATE
 		WHERE
 			EDU_NO = #{edu_no} AND
 			USER_NO = #{user_no}

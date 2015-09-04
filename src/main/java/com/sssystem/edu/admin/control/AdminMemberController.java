@@ -223,7 +223,7 @@ public class AdminMemberController {
         
         String reciver = memberVO.getEmail();             //받을사람의 이메일입니다.
         String subject = memberVO.getUser_nm() + "님의 사원번호 입니다.";
-        String content = "네 녀석의 사원번호는 [" + memberVO.getEmp_serial() + "]이다";
+        String content = getMailHTML(memberVO.getUser_nm(), memberVO.getEmp_serial());
          
         email.setReciver(reciver);
         email.setSubject(subject);
@@ -264,6 +264,48 @@ public class AdminMemberController {
       e.printStackTrace();
     }
     return "admin/member/receive";
+  }
+  
+  public String getMailHTML(String name, String emp_serial){
+	  String html = ""
+	  + "<!DOCTYPE html>"
+	  + "<html>"
+	  + "<head>"
+	  + "<meta charset=\"EUC-KR\">"
+	  + "<title>사내교육시스템</title>"
+	  + "<style type=\"text/css\">"
+	  + "body { margin:0; padding:0;}"
+	  + "#wrap { width:683px; border:1px solid #B5BCC8; }"
+	  + "#con { padding:10px 0 20px 20px; }"
+	  + "#con p { font:12px Dotum; color:#9FA8B9;}"
+	  + "#con p.title { font:12px Dotum; color:#000; }"
+	  + "#con em { font-weight:bold; font-style:normal; text-decoration:none;}"
+	  + "#footer { height:50px; margin:0 auto; width:100%; padding:20px 0 0 0; text-align:center; font:11px Dotum; color:#FFF; background:#B5BCC8; }"
+	  + "#footer p { margin:0; padding-bottom:5px; }"
+	  + "#footer p.domain { font:11px Arial; font-weight:bold;}"
+	  + "</style>"
+	  + "</head>"
+	  + "<body>"
+	  + "<div id=\"wrap\">"
+	  + "	<div><img src=\"http://192.168.7.55/IES/images/newmail_header_0.jpg\" width=\"683\" height=\"172\" alt=\"기압환영\" title=\"가입해 주셔서 감사합니다\" /></div>"
+	  + "	<div id=\"con\">"
+	  + "		<p class=\"title\"><em>"+ name +"</em>님 입사를 축하드립니다.</p>"
+	  + "		<p>"
+	  + "			"+ name +"님 안녕하세요?<br />"
+	  + "			SSsystem에 가족이 되신 것을 축하드립니다.<br /><br />"
+	  + "			귀하의 사원번호는 <em>"+ emp_serial +"</em>입니다.<br />"
+	  + "			가족 여러분에게 좋은 서비스를 제공하기 위해 최선을 다하겠습니다.<br />"
+	  + "			감사합니다.<br />"
+	  + "		</p>"
+	  + "	</div>"
+	  + "	<div id=\"footer\">"
+	  + "		<p>항상 여러분과 함께하는 SixSibling입니다.</p>"
+	  + "		<p class=\"domain\">www.sssystem.com</p>"
+	  + "	</div>"
+	  + "</div>"
+	  + "</body>"
+	  + "</html>";
+	  return html;
   }
 
 }

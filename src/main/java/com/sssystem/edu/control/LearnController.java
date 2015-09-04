@@ -20,6 +20,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
 
 import com.sssystem.edu.common.ValidateParamChk;
+import com.sssystem.edu.service.AuthService;
 import com.sssystem.edu.service.CategoryService;
 import com.sssystem.edu.service.DeptService;
 import com.sssystem.edu.service.JobService;
@@ -28,6 +29,7 @@ import com.sssystem.edu.service.LearnService;
 import com.sssystem.edu.service.TestService;
 import com.sssystem.edu.valitors.LearnValidator;
 import com.sssystem.edu.vo.AttachFileVO;
+import com.sssystem.edu.vo.AuthVO;
 import com.sssystem.edu.vo.CategoryVO;
 import com.sssystem.edu.vo.DeptVO;
 import com.sssystem.edu.vo.JobVO;
@@ -39,25 +41,41 @@ import com.sssystem.edu.vo.support.SessionVO;
 @Controller
 public class LearnController {
 	@Autowired
-	DeptService deptService;
+	private DeptService deptService;
 	@Autowired
-	JobService jobService;
+	private JobService jobService;
 	@Autowired
-	CategoryService categoryService;
+	private CategoryService categoryService;
 	@Autowired
-	TestService testService;
+	private TestService testService;
 	@Autowired
-	LearnService learnService;
+	private LearnService learnService;
 	@Resource(name="learnSaveService")
-	LearnSaveService learnSave;
+	private LearnSaveService learnSave;
 	@Autowired
-	LearnValidator learnVal;
+	private LearnValidator learnVal;
+	@Autowired
+	private ValidateParamChk chk;
+	@Autowired
+	private AuthService authService;
 	
 	@RequestMapping("/learn/write")
-	public String write(HttpSession session, Model model){
+	public String write(@RequestParam(value="no", required=false) String no
+			           , HttpSession session
+			           , Model model){
 		SessionVO sessionBean = (SessionVO) session.getAttribute("user");
 		int dept_no = sessionBean.getDept_no();
 		int user_no = sessionBean.getUser_no();
+		int manage_yn = sessionBean.getManage_yn();
+		
+		int edu_no = 0;
+		if (!chk.isEmpty(no)){
+			if (chk.isNumeric(no)){
+				edu_no = chk.toInteger(no);
+			}
+		}
+		LearnVO learnVO = learnService.select(edu_no);
+		List<AuthVO> authlist = authService.select(edu_no);
 		
 		List<DeptVO> deptlist = deptService.selectAll();
 		List<JobVO> joblist = jobService.selectAll();
@@ -68,6 +86,7 @@ public class LearnController {
 		model.addAttribute("joblist", joblist);
 		model.addAttribute("categorylist", categorylist);
 		model.addAttribute("testlist", testlist);
+		model.addAttribute("learn", learnVO);
 		
 		return "learn/write";
 	}
@@ -124,7 +143,6 @@ public class LearnController {
 		learnVO.setDept_no(dept_no);
 		learnVO.setUser_no(user_no);
 		
-		System.out.println("learn/save");
 		String job_str = "";
 		for (int i=0;i<job.length;i++){
 			job_str += "|"+ job[i];

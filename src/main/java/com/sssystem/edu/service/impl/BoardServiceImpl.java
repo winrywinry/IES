@@ -204,6 +204,24 @@ public class BoardServiceImpl implements BoardService {
 		return nmSelect;
 	}
 
+	@Override
+	public BoardVO selectEdu(int edu_no) {
+		return session.selectOne("notice.selectEdu", edu_no);
+	}
+
+	@Override
+	public int maxNoSelect() {
+		int max = session.selectOne("notice.maxNoSelect");
+		return max;
+	}
+	
+	@Override
+	public boolean deleteEdu(int edu_no) {
+		int t = session.delete("notice.deleteEdu", edu_no);
+		if (t > 0) return true; 
+		return false;
+	}
+
 	
 
 }

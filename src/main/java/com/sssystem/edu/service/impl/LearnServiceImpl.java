@@ -60,14 +60,16 @@ public class LearnServiceImpl implements LearnService {
 	}
 
 	@Override
-	public void delete(int no) {
-		session.delete("learn.delete", no);
+	public boolean delete(int no) {
+		int t = session.delete("learn.delete", no);
+		if (t>0) return true;
+		return false;
 		
 	}
 
 	@Override
-	public List<DeptVO> selectLeftMenuList() {
-		List<DeptVO> list = null;
+	public List<HashMap<String, Object>> selectLeftMenuList() {
+		List<HashMap<String, Object>> list = null;
 		list = session.selectList("learn.selectLeftMenuList");
 		return list;
 	}
@@ -77,6 +79,13 @@ public class LearnServiceImpl implements LearnService {
 		session.insert("learn.insert", learnVO);
 		int edu_no = learnVO.getEdu_no();
 		return edu_no;
+	}
+
+	@Override
+	public boolean update(LearnVO learnVO) {
+		int t = session.update("learn.update", learnVO);
+		if (t == 1) return true;
+		return false;
 	}
 
 }

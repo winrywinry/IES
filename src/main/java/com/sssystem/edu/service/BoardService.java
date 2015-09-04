@@ -24,6 +24,9 @@ public interface BoardService  {
 	public void upHits(int board_no); //조회수
 	public int selectCnt(SearchBoardVO bean); //
 	public String nmSelect(int user_no);
+	public BoardVO selectEdu(int edu_no);
+	public int maxNoSelect();
+	public boolean deleteEdu(int edu_no);
 	
 	/**
 	 * 리플
