@@ -13,6 +13,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import com.sssystem.edu.vo.MemberVO;
+import com.sssystem.edu.admin.control.EmailSender;
+import com.sssystem.edu.admin.vo.EmailVO;
 import com.sssystem.edu.service.BoardService;
 import com.sssystem.edu.service.CompleteService;
 import com.sssystem.edu.service.MemberService;
@@ -43,6 +45,8 @@ public class MemberController{
 	BoardService board;
 	@Autowired
 	CompleteService completesService;
+	@Autowired
+	EmailSender emailSender;
 	
 
 	@RequestMapping("/member/login")
@@ -51,7 +55,9 @@ public class MemberController{
 	}
 	
 	@RequestMapping("index")
-	public String index(Model model){
+	public String index(Model model, HttpSession session){
+		
+		session.setAttribute("user", sessionVO);
 		
 		int user_no = sessionVO.getUser_no();
 		model.addAttribute("photo", memberService.photo(user_no));
@@ -107,6 +113,7 @@ public class MemberController{
 		memberService.insertLog(user_no);
 		
 		session.setAttribute("user", sessionVO);
+		System.out.println("user:"+session.getAttribute("user"));
 		return "redirect:/index";
 		}
 		else {
@@ -250,7 +257,7 @@ public class MemberController{
 							   @RequestParam(value="user_nm",required=false) String user_nm,
 	  	    				   @RequestParam(value="emp_serial",required=false) String emp_serial,
 	  	    				   @ModelAttribute("comm") MemberVO memberVO,
-						  	    BindingResult result, Model model){
+						  	    BindingResult result, Model model) throws Exception{
 		HashMap<String, String> map = new HashMap<String, String>();
 		map.put("user_id", user_id);
 		map.put("user_nm", user_nm);
@@ -274,6 +281,18 @@ public class MemberController{
 		int user_no = Integer.valueOf(String.valueOf(deptjob.get("USER_NO")));
 		MemberVO memverVO = memberService.select(user_no);
 		model.addAttribute("member", memverVO);
+		
+//		  EmailVO email = new EmailVO();
+//	        
+//	        String reciver = memberVO.getEmail();             //받을사람의 이메일입니다.
+//	        String subject = memberVO.getUser_nm() + "님의 비밀번호 입니다.";
+//	        String content = "당신의 비밀번호는";
+//	         
+//	        email.setReciver(reciver);
+//	        email.setSubject(subject);
+//	        email.setContent(content);
+//	        emailSender.SendEmail(email);
+		
 		return "member/search_pass_ok";
 		}
 		else return "redirect:findPasswordCheck";
