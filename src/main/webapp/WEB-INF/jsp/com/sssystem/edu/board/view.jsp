@@ -173,8 +173,15 @@ window.onload=function(){
 							<c:if test="${board.board_gb == 10 }">
 							<th>작성자</th>
 							<td>${board.user_nm }</td>
-							<th width="15%">${board.user_no }</th>
-							<td><a href = "#">${user.user_no }</a></td>
+							<th width="15%">첨부파일</th>
+							<td>
+							<c:forEach var="file" items="${list }">
+								<c:choose>
+									<c:when test="${empty file.attach_file}">첨부파일이 없습니다</c:when>
+									<c:otherwise><a href = "/IES/images/${file.attach_file }">${file.attach_file }</a></c:otherwise>
+								</c:choose>
+							</c:forEach>
+							</td>
 							<th width="10%">조회수</th>
 							<td width="10%">${board.view_cnt }</td>
 							</c:if>

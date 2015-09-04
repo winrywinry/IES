@@ -110,11 +110,11 @@
 					<a class="link1" onclick="location.href='/IES/learn/updateComplete?no=${learn.edu_no}&start_dt=${learnComplete.start_dt }&end_dt=${learnComplete.end_dt }&dept_no=${param.dept_no }&page=${param.page }&searchWord=${param.searchWord }'">교육시작</a> |
 					</c:if>
 					<c:if test="${learnComplete.end_dt != null and learnComplete.end_dt == '1111-11-11 00:00:00.0'}">
-					<a class="link1" onclick="location.href='/IES/learn/updateComplete?no=${learn.edu_no}&start_dt=${learnComplete.start_dt }&end_dt=${learnComplete.end_dt }&dept_no=${param.dept_no }&page=${param.page }&searchWord=${param.searchWord }'">교육종료</a> |
+					<a class="link1" onclick="runTest()">교육종료</a> |
 					</c:if>
-					<c:if test="${learnComplete.end_dt != null and learnComplete.end_dt != '1111-11-11 00:00:00.0'}">
+<!-- 					<c:if test="${learnComplete.end_dt != null and learnComplete.end_dt != '1111-11-11 00:00:00.0'}">
 					<a class="link1" onclick="runTest()">시험시작${learnComplete.end_dt }</a> |					
-					</c:if>
+					</c:if> -->
 					<a class="link1" href="/IES/qna/write?board_gb=40&edu_no=${learn.edu_no }" >질문하기</a> | 
 					<a class="link1" onclick="del()" >삭제</a> | 
 					<a class="link1" href="/IES/learn/write?no=${learn.edu_no}">수정</a> | 
