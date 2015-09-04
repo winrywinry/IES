@@ -91,7 +91,8 @@
 						<tr>
 							<th style="height: 300px" rowspan="2">내용</th>
 							<td colspan="5">
-								<iframe width="700	px" height="400px" src="http://www.youtube.com/embed/${learn.contents_tag }" allowfullscreen="allowfullscreen"></iframe>
+							${learn.contents_tag }
+								
 							</td>
 <!-- <td colspan="3" bgcolor="yellow">채팅형 Q&A창</td> -->
 						</tr>
@@ -116,12 +117,6 @@
 					<a class="link1" onclick="runTest()">시험시작${learnComplete.end_dt }</a> |					
 					</c:if> -->
 					<a class="link1" href="/IES/qna/write?board_gb=40&edu_no=${learn.edu_no }" >질문하기</a> | 
-					<c:if test="${learn.user_no == user.user_no||user.manage_yn==1}">					
-					<a class="link1" onclick="del()" >삭제</a> | 
-					</c:if>
-					<c:if test="${learn.user_no == user.user_no }">
-					<a class="link1" href="/IES/learn/write?no=${learn.edu_no}">수정</a> | 
-					</c:if>
 					<a class="link1" onclick="location.href='/IES/learn/list';">목록으로</a>
 					</span>
 					<br><br>
