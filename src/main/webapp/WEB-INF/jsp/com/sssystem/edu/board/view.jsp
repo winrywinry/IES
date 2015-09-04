@@ -104,7 +104,7 @@ function replyUpdate(){//수정요청
   //	var html = '<input type="hidden" value='+reply.name+' name=hide'+reply.no+'><b>'+reply.name+'</b><br>'+
   	var html = '<table class="replyTab"><tr><th class="left"><b>'+reply.name+'</b> <a style="font-size: 5px;">'+reply.input_dt+'</a></th>'+
   '<th class="right"><a class="right"><a class="link1" onclick="viewUpdateForm('+reply.no+')">수정</a> | '+
- ' <a class="link1" onclick="replyDelete('+reply.no+')">삭제</a></a></th></tr>'+
+  '<a class="link1" onclick="replyDelete('+reply.no+')">삭제</a></a></th></tr>'+
   	   '<tr><td colspan="2" class="left"><br>'+reply.content.replace(/\n/g,'<br>')+'</td><td></td></tr>';
   	replyDiv.innerHTML = html;
       replyDiv.reply = reply;
@@ -173,15 +173,17 @@ window.onload=function(){
 							<c:if test="${board.board_gb == 10 }">
 							<th>작성자</th>
 							<td>${board.user_nm }</td>
-							<th width="15%">첨부파일</th>
+							<c:if test="${param.board_gb != 30 }"><th width="15%">첨부파일</th>
 							<td>
-							<c:forEach var="file" items="${list }">
 								<c:choose>
-									<c:when test="${empty file.attach_file}">첨부파일이 없습니다</c:when>
-									<c:otherwise><a href = "/IES/images/${file.attach_file }">${file.attach_file }</a></c:otherwise>
-								</c:choose>
+									<c:when test="${null eq list}">gd</c:when>
+									<c:otherwise>
+							<c:forEach var="file" items="${list }">
+									<a href = "/IES/images/${file.attach_file }">${file.attach_file }</a>
 							</c:forEach>
-							</td>
+									</c:otherwise>
+								</c:choose>
+							</td></c:if>
 							<th width="10%">조회수</th>
 							<td width="10%">${board.view_cnt }</td>
 							</c:if>
