@@ -123,12 +123,7 @@
 					<table class="moveTab">
 						<tr>
 							<td width="20%"><img src='/IES/images/up.png' /> 이전글</td>
-							<c:choose>
-							<c:when test="${null eq learnPrev.title }">
 							<td width="60%" class="left"><a href="contentsView?no=${learnPrev.edu_no}&dept_no=${param.dept_no}&page=${param.page}">${learnPrev.title }</a></td>							
-							</c:when>
-							<c:otherwise><td width="60%" class="left">이전글이 없습니다</td></c:otherwise>
-							</c:choose>
 							<td width="20%"><fmt:formatDate value="${learnPrev.input_dt }" pattern="MM-dd HH:mm" /></td>
 						</tr>
 						<tr>
