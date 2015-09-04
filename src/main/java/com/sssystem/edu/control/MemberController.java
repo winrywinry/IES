@@ -50,7 +50,7 @@ public class MemberController{
 		return "member/login";
 	}
 	
-	@RequestMapping("/member/index")
+	@RequestMapping("index")
 	public String index(Model model){
 		
 		int user_no = sessionVO.getUser_no();
@@ -107,7 +107,7 @@ public class MemberController{
 		memberService.insertLog(user_no);
 		
 		session.setAttribute("user", sessionVO);
-		return "redirect:index";
+		return "redirect:/index";
 		}
 		else {
 			model.addAttribute("msg", "잘못된 사원이름이거나 잘못된 사원번호 입니다");
@@ -295,6 +295,12 @@ public class MemberController{
 		model.addAttribute("id", id);
 		return "member/idCheck";
 	}
+	
+	@RequestMapping("/calendar")
+	public String calendar(){
+		return "/calendar";
+	}
+	
 }
 
 
