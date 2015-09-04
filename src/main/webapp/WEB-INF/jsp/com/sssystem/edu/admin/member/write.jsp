@@ -110,8 +110,10 @@ function del(){
        if (phoneValue != 'unknown' && birthValue != 'unknown'){
 	       if(rootValue == "true") {
 	           rootTag.innerHTML = "<font color=blue>* 등록 가능한 사용자입니다.</font>";
+	           document.insertFrm.error.value = 'true';
 	       } else {
 	           rootTag.innerHTML = "* 이미 등록된 사용자입니다.";
+	           document.insertFrm.error.value = 'false';
 	       }
        } else {
     	   rootTag.innerHTML = "";
@@ -145,9 +147,10 @@ function del(){
 	<section>
 		<div id="content">
 			<div id="top">
-				<h3>회원관리</h3><span id="error" style="margin-left:20px">ㅡㅡ</span>
+				<h3>회원관리</h3><span id="error" style="margin-left:20px"></span>
 			</div>
 			<form method="post" name="insertFrm" action="writeAction" onsubmit="return Formchk(this)" novalidate="novalidate" enctype="multipart/form-data">
+			<input type="hidden" name="error" id="error" />
 			<input type="hidden" name="page" value="${page }" />
 			<input type="hidden" name="no" value="${member.user_no }"/>	
 			<div id="con">
@@ -190,7 +193,7 @@ function del(){
 					</tr>
 					<tr>
 						<th>연락처</th>
-						<td><input type="text" pattern="\d{3}\-\d{4}\-\d{3}" name="phone_no" id="phone_no" maxlength="13" class="txt" value="${member.phone_no }" /></td>
+						<td><input type="text" pattern="\d{3}\-\d{4}\-\d{3}" name="phone_no" id="phone_no" maxlength="13" class="txt" value="${member.phone_no }" onkeyup="ajaxSend()"/></td>
 						<th>비상연락처</th>
 						<td><input type="text" pattern="\d{3}\-\d{4}\-\d{3}" name="second_no" maxlength="13" class="txt" value="${member.second_no }" /></td>
 						<th>내선</th>
@@ -218,7 +221,7 @@ function del(){
 						<th>사진</th>
 						<td colspan="5">
 							<input type="hidden" name="origin" value="${member.profil_picture }" />
-							<c:set var="origin_pic" value="/IES/images/profile/${member.profil_picture }" />
+							<c:set var="origin_pic" value="/IES/images/profil/${member.profil_picture }" />
 							<c:if test="${member.profil_picture != null }"><c:set var="profil_url" value="/IES/images/profil/${member.profil_picture }" /></c:if>
 							<img id="profil" src="${profil_url }" width="150" height="200" /><br /><input type="file" name="profil" id="profil" onchange="imageURL(this)" /></td>
 					</tr>
