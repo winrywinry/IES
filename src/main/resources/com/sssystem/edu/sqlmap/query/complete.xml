@@ -125,16 +125,13 @@
        ]]>
 	</select>
 	
-	<select id="cal" resultType="completeVO">
+	<select id="cal" resultType="learnVO">
 	SELECT A.TITLE,
-       A.DEPT_NO,
        A.EDU_NO,
-       B.SCORE,
-       B.ANSWER,
-       B.START_DT,
-       B.END_DT
-	FROM T_EDU_COMPLETE B JOIN T_EDU A
-       ON A.EDU_NO = B.EDU_NO
+       A.PERIOD_ST,
+       A.PERIOD_ED
+	FROM  T_EDU A
+	ORDER BY EDU_NO ASC
 	</select>
 	
 </mapper>
