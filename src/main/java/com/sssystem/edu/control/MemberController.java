@@ -297,7 +297,8 @@ public class MemberController{
 	}
 	
 	@RequestMapping("/calendar")
-	public String calendar(){
+	public String calendar(Model model){
+		model.addAttribute("cal", completesService.cal());
 		return "/calendar";
 	}
 	

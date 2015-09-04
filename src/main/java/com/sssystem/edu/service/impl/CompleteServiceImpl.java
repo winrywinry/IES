@@ -79,4 +79,10 @@ public class CompleteServiceImpl implements CompleteService {
 		return t;
 	}
 
+	@Override
+	public List<CompleteVO> cal() {
+		List<CompleteVO> list = session.selectList("complete.cal");
+		return list;
+	}
+
 }

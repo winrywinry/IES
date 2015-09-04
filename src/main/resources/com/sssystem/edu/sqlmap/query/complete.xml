@@ -125,4 +125,16 @@
        ]]>
 	</select>
 	
+	<select id="cal" resultType="completeVO">
+	SELECT A.TITLE,
+       A.DEPT_NO,
+       A.EDU_NO,
+       B.SCORE,
+       B.ANSWER,
+       B.START_DT,
+       B.END_DT
+	FROM T_EDU_COMPLETE B JOIN T_EDU A
+       ON A.EDU_NO = B.EDU_NO
+	</select>
+	
 </mapper>
