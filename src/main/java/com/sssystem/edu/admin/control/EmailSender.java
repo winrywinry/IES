@@ -13,7 +13,7 @@ import com.sssystem.edu.admin.vo.EmailVO;
  
  
 @Component
-public class EmailSender{
+public class EmailSender {
      
     @Autowired
     protected JavaMailSender  mailSender;

@@ -81,6 +81,10 @@ function Formchk(f){
 			return false;
 		}
 	}
+	if (f.error.value == "false"){
+		alert("이미 등록된 사용자입니다.");
+		return false;
+	}
 	return true;
 }
 

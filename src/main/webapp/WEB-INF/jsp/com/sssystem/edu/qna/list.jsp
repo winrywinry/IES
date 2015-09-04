@@ -1,6 +1,7 @@
 <%@page import="com.sssystem.edu.common.SetBoardTitle"%>
 <%@page import="com.sssystem.edu.vo.QnaBoardVO"%>
 <%@page import="com.sssystem.edu.vo.SearchVO"%>
+<%@page import="com.sssystem.edu.vo.support.SessionVO"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
@@ -82,7 +83,16 @@
 								<td>
 								<td width="20%"><input type="text" id=pSearchWord name="pSearchWord" value="${searchVO.searchWord }"/></td>
 								<td width="6%" id="text"><img src="../images/glasses2.png" onclick="document.searchFrm.submit();"></td>
-								<td width="6%"><img src="../images/write.png" onclick="location.href='/IES/qna/write?board_gb=${param.board_gb }';"></td>
+								<c:choose>
+									<c:when test="${param.board_gb!=50 }">
+										<td width="6%"><img src="../images/write.png" onclick="location.href='/IES/qna/write?board_gb=${param.board_gb }';"></td>											
+									</c:when>
+									<c:otherwise>
+										<c:if test="${user.manage_yn==0 }">
+											<td width="6%"><img src="../images/write.png" onclick="location.href='/IES/qna/write?board_gb=${param.board_gb }';"></td>								
+										</c:if>
+									</c:otherwise>
+								</c:choose>
 							</tr>
 						</table>
 					</form>	

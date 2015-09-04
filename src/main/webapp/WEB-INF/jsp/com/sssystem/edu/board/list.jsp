@@ -78,7 +78,6 @@ function jsGoPage(p,param){
 						<tr>
 							<th width="10%">번호</th>
 							<th>제 목</th>			
-							<c:if test="${param.board_gb != 30 }"><th width="10%">첨부파일</th></c:if>
 							<th width="10%">작성자</th>
 							<th width="15%">작성일</th>
 							<th width="10%">조회수</th>
@@ -87,8 +86,6 @@ function jsGoPage(p,param){
 						<tr>
 							<td>${board.rownum }</td>
 							<td class="left"><a href="view?board_gb=${board.board_gb}&no=${board.board_no }">${board.title }</a></td>
-
-							<c:if test="${param.board_gb != 30 }"><td><a href=#><img src="../images/ico_file_def.gif"></a></td></c:if>
 							<td>${board.user_nm }</td>
 							<td><fm:formatDate value="${board.input_dt }" pattern="yyyy-MM-dd'<br>'HH:mm"/></td>
 							<td>${board.view_cnt }</td>
