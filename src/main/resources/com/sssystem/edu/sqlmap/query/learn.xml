@@ -34,6 +34,20 @@
 		)
 		]]>
 	</insert>
+	<update id="update" parameterType="learnVO">
+		<![CDATA[
+		UPDATE T_EDU SET
+		       CATEGORY_NO = #{category_no}
+		     , ESSENTIAL_YN = #{essential_yn}
+		     , TITLE = #{title}
+		     , CONTENTS = #{contents}
+		     , PERIOD_ST = #{period_st}
+		     , PERIOD_ED = #{period_ed}
+		     , CONTENTS_TAG = #{contents_tag}
+		     , TIME_STAMP = SYSDATE
+		 WHERE EDU_NO = #{edu_no}
+		]]>
+	</update>
 
 	<delete id="delete" parameterType="int">
 		delete from t_edu where
@@ -107,15 +121,6 @@
 			contents_tag, contents, period_st, period_ed from t_edu where edu_no=#{no} -->
 	</select>
 
-	<update id="update" parameterType="learnVO">
-		update t_edu set title=#{title}, essential_yn=#{essential_yn},
-		dept_no=#{dept_no}, contents_tag=#{contents_tag}, contents=#{contents},
-		time_stamp=sysdate where edu_no=#{edu_no}
-		<!-- update t_edu set title=#{title}, essential_yn=#{essential_yn}, dept_no=#{dept_no}, 
-			contents_tag=#{contents_tag}, contents=#{contents}, period_st=#{period_st}, 
-			period_ed=#{period_ed}, time_stamp=sysdate where edu_no=#{edu_no} -->
-	</update>
-
 	<select id="selectNext" parameterType="SearchLearnVO" resultType="learnVO">
 		<![CDATA[
 
@@ -183,18 +188,4 @@
 	 START WITH A.REF_NO = 0
 	CONNECT BY PRIOR A.CATEGORY_NO = A.REF_NO
 	</select>
-	<update id="update" parameterType="learnVO">
-		<![CDATA[
-		UPDATE T_EDU SET
-		       CATEGORY_NO = #{category_no}
-		     , ESSENTIAL_YN = #{essential_yn}
-		     , TITLE = #{title}
-		     , CONTENTS = #{contents}
-		     , PERIOD_ST = #{period_st}
-		     , PERIOD_ED = #{period_ed}
-		     , CONTENTS_TAG = #{contents_tag}
-		     , TIME_STAMP = SYSDATE
-		 WHERE EDU_NO = #{edu_no}
-		]]>
-	</update>
 </mapper>
