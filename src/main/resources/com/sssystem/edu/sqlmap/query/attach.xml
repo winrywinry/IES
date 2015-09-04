@@ -37,10 +37,25 @@
 		]]>
 	</update>
 	
+	<select id="selectFile" parameterType="int" resultType="attachVO">
+		SELECT 
+			ATTACH_NO,
+			TABLE_NM,
+			ATTACH_FILE,
+			ATTACH_SEQ
+		FROM
+			T_EDU_ATTACH
+		WHERE
+			REF_NO=#{ref_no}
+			
+	</select>
+
+
 	<delete id="deleteEdu" parameterType="int">
 		DELETE
 		  FROM T_EDU_ATTACH
 		 WHERE TABLE_NM = 'T_EDU_BOARD'
 		   AND REF_NO = (SELECT BOARD_NO FROM T_EDU_BOARD WHERE BOARD_GB='20' AND EDU_NO = #{edu_no})
 	</delete>
+	
 </mapper>

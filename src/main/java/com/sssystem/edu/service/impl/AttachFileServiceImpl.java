@@ -1,7 +1,8 @@
 package com.sssystem.edu.service.impl;
 
-import org.apache.ibatis.session.SqlSession;
+import java.util.List;
 
+import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import com.sssystem.edu.service.AttachFileService;
@@ -24,6 +25,12 @@ public class AttachFileServiceImpl implements AttachFileService {
 		int t = session.update("attach.update", attachVO);
 		if (t == 1) return true;
 		return false;
+	}
+
+	@Override
+	public List<AttachFileVO> selectFile(int ref_no) {
+		List<AttachFileVO> list = session.selectList("attach.selectFile",ref_no);
+		return list;
 	}
 
 	@Override

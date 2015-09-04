@@ -210,6 +210,12 @@ public class BoardServiceImpl implements BoardService {
 	}
 
 	@Override
+	public int maxNoSelect() {
+		int max = session.selectOne("notice.maxNoSelect");
+		return max;
+	}
+	
+	@Override
 	public boolean deleteEdu(int edu_no) {
 		int t = session.delete("notice.deleteEdu", edu_no);
 		if (t > 0) return true; 

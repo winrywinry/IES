@@ -20,6 +20,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.multipart.MultipartHttpServletRequest;
 import org.springframework.web.multipart.commons.CommonsMultipartFile;
+import org.springframework.web.servlet.ModelAndView;
 
 import com.sssystem.edu.common.ConvertStr;
 import com.sssystem.edu.common.ValidateParamChk;
@@ -78,6 +79,8 @@ public class BoardController {
 		boardVO.setUser_nm(boardServie.nmSelect(boardVO.getUser_no()));
 		boardServie.upHits(no);	
 		model.addAttribute("board", boardVO);
+		List<AttachFileVO> list = attachFileService.selectFile(no);
+		model.addAttribute("list",list);
 		return "board/view";
 	}
 	
@@ -107,16 +110,16 @@ public class BoardController {
 		
 		if(!(board_no.isEmpty())){
 			if(boardServie.boardUpdate(boardVO)){
-				
 				Map<String, MultipartFile> files = request.getFileMap();
 				CommonsMultipartFile cmf = (CommonsMultipartFile) files.get("uploadFile");//경로설정
-				String path = "c:/uploadTest/"+cmf.getOriginalFilename();
+				if(!(cmf.getOriginalFilename().equals(""))){
+				String path = "E:/waagh/workspace/IES/src/main/webapp/images/"+cmf.getOriginalFilename();
 				File file = new File(path);
 				try {
 					cmf.transferTo(file);
 					AttachFileVO attahFileVO = new AttachFileVO();
-					attahFileVO.setRef_no(80);
-					attahFileVO.setTable_nm("refroom");
+					attahFileVO.setRef_no(boardServie.maxNoSelect());
+					attahFileVO.setTable_nm("T_EDU_BOARD");
 					attahFileVO.setAttach_file(cmf.getOriginalFilename());
 					attachFileService.insert(attahFileVO);
 				} catch (IllegalStateException e) {
@@ -126,7 +129,7 @@ public class BoardController {
 					// TODO Auto-generated catch block
 					e.printStackTrace();
 				}
-
+				}
 				return "redirect:view?board_gb="+board_gb+"&no="+board_no;
 			}
 		}else{
@@ -134,13 +137,15 @@ public class BoardController {
 				
 				Map<String, MultipartFile> files = request.getFileMap();
 				CommonsMultipartFile cmf = (CommonsMultipartFile) files.get("uploadFile");//경로설정
-				String path = "c:/uploadTest/"+cmf.getOriginalFilename();
+				if(!(cmf.getOriginalFilename().equals(""))){
+
+				String path = "E:/waagh/workspace/IES/src/main/webapp/images/"+cmf.getOriginalFilename();
 				File file = new File(path);
 				try {
 					cmf.transferTo(file);
 					AttachFileVO attahFileVO = new AttachFileVO();
-					attahFileVO.setRef_no(80);//임시값80임, insert후 진행하므로 board_no의 max값을 체크하면 됨.
-					attahFileVO.setTable_nm("refroom");
+					attahFileVO.setRef_no(boardServie.maxNoSelect());//임시값80임, insert후 진행하므로 board_no의 max값을 체크하면 됨.
+					attahFileVO.setTable_nm("T_EDU_BOARD");
 					attahFileVO.setAttach_file(cmf.getOriginalFilename());
 					attachFileService.insert(attahFileVO);
 				} catch (IllegalStateException e) {
@@ -150,7 +155,7 @@ public class BoardController {
 					// TODO Auto-generated catch block
 					e.printStackTrace();
 				}
-
+				}
 				return "redirect:list?board_gb="+board_gb;
 			}
 		}
@@ -246,5 +251,5 @@ public class BoardController {
 		
 		return "board/replyAdd";
 	}
-
+	
 }	
