@@ -78,7 +78,6 @@ function del(){
     function ajaxSend() {
        createAjax();
        var phone_no = document.getElementById("phone_no").value;
-       alert(phone_no)
        var birth = document.getElementById("birth").value;
 	       xmlReq.onreadystatechange = callBack; // 괄호 열고닫고가 틀리다.!
 	       xmlReq.open("GET", "receive?phone_no="+phone_no+"&birth="+birth, true);

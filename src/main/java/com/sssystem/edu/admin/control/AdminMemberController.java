@@ -154,6 +154,9 @@ public class AdminMemberController {
     model.addAttribute("nowDate", new Date());
     model.addAttribute("page", page);
     model.addAttribute("no", no);
+    
+    System.out.println(member.getUser_no());
+    
     return "admin/member/write";
   }
 
@@ -193,7 +196,7 @@ public class AdminMemberController {
             ServletContext servletContext = request.getSession().getServletContext();
             String relativeWebPath = "/images/profil/"+ fileName;
             String absoluteDiskPath = servletContext.getRealPath(relativeWebPath);
-            System.out.println(absoluteDiskPath);
+            System.out.println("path = "+absoluteDiskPath);
               // 2. File »ç¿ë
               File file = new File(absoluteDiskPath);
               file.mkdir();
