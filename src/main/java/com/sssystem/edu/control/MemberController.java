@@ -279,19 +279,24 @@ public class MemberController{
 			
 			HashMap<String, Object> deptjob = memberService.selectDept(map);
 		int user_no = Integer.valueOf(String.valueOf(deptjob.get("USER_NO")));
-		MemberVO memverVO = memberService.select(user_no);
-		model.addAttribute("member", memverVO);
+		System.out.println(user_no);
+		MemberVO member = memberService.select(user_no);
+		model.addAttribute("member", member);
 		
-//		  EmailVO email = new EmailVO();
-//	        
-//	        String reciver = memberVO.getEmail();             //받을사람의 이메일입니다.
-//	        String subject = memberVO.getUser_nm() + "님의 비밀번호 입니다.";
-//	        String content = "당신의 비밀번호는";
-//	         
-//	        email.setReciver(reciver);
-//	        email.setSubject(subject);
-//	        email.setContent(content);
-//	        emailSender.SendEmail(email);
+		  EmailVO email = new EmailVO();
+	        
+      String reciver = member.getEmail();             //받을사람의 이메일입니다.
+      String subject = member.getUser_nm() + "님의 비밀번호 입니다.";
+      String content = "당신의 비밀번호는 [" + member.getUser_pwd()+ "] 입니다.";
+       
+      email.setReciver(reciver);
+      email.setSubject(subject);
+      email.setContent(content);
+      emailSender.SendEmail(email);
+//      System.out.println("번호 = " + member.getUser_no());
+//      System.out.println("메일 = " + member.getEmail());
+//      System.out.println("이름 = " + member.getUser_nm());
+//      System.out.println("비번 = " + member.getUser_pwd());
 		
 		return "member/search_pass_ok";
 		}
