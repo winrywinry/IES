@@ -209,6 +209,13 @@ public class BoardServiceImpl implements BoardService {
 		return session.selectOne("notice.selectEdu", edu_no);
 	}
 
+	@Override
+	public boolean deleteEdu(int edu_no) {
+		int t = session.delete("notice.deleteEdu", edu_no);
+		if (t > 0) return true; 
+		return false;
+	}
+
 	
 
 }

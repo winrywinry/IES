@@ -26,4 +26,11 @@ public class AttachFileServiceImpl implements AttachFileService {
 		return false;
 	}
 
+	@Override
+	public boolean deleteEdu(int edu_no) {
+		int t = session.delete("attach.deleteEdu", edu_no);
+		if (t > 0) return true;
+		return false;
+	}
+
 }

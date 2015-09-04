@@ -25,6 +25,7 @@ public interface BoardService  {
 	public int selectCnt(SearchBoardVO bean); //
 	public String nmSelect(int user_no);
 	public BoardVO selectEdu(int edu_no);
+	public boolean deleteEdu(int edu_no);
 	
 	/**
 	 * ¸®ÇÃ
