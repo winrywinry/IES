@@ -223,7 +223,8 @@ public class AdminMemberController {
         
         String reciver = memberVO.getEmail();             //받을사람의 이메일입니다.
         String subject = memberVO.getUser_nm() + "님의 사원번호 입니다.";
-        String content = getMailHTML(memberVO.getUser_nm(), memberVO.getEmp_serial());
+        String content = "사원번호는 "+ memberVO.getEmp_serial() +" 입니다.";
+//        String content = getMailHTML(memberVO.getUser_nm(), memberVO.getEmp_serial());
          
         email.setReciver(reciver);
         email.setSubject(subject);

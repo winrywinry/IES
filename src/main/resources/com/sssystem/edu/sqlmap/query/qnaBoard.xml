@@ -14,10 +14,10 @@
 	</insert>
 	<select id="qnaBoardListSelectAll" parameterType="searchVO" resultType="qnaVO">
 		SELECT
-			ROWNUM, QNA_NO, TITLE, QUESTION_DT, VISIT_NO, BOARD_GB, Q_CONTENTS, USER_NM
+			ROWNUM, QNA_NO, TITLE, QUESTION_DT, VISIT_NO, BOARD_GB, Q_CONTENTS, USER_NM, Q_USER_NO
 			FROM(
 		SELECT 
-			QNA_NO, TITLE, QUESTION_DT, VISIT_NO, BOARD_GB, q_contents, USER_NM
+			QNA_NO, TITLE, QUESTION_DT, VISIT_NO, BOARD_GB, q_contents, USER_NM, Q_USER_NO
 		FROM T_EDU_QNA, T_EDU_USER
 		WHERE 1=1 and BOARD_GB=#{board_gb} AND T_EDU_USER.USER_NO = T_EDU_QNA.Q_USER_NO
 			<if test="searchWord != null and searchWord != ''"><![CDATA[
