@@ -18,7 +18,7 @@ public class LoginCheckIntercepter extends HandlerInterceptorAdapter {
 		
 		String reqUrl = request.getRequestURL().toString();
 		reqUrl = reqUrl.replace("http://localhost/IES/", "");
-		reqUrl = reqUrl.replace("http://192.168.7.110/IES/", "");
+		reqUrl = reqUrl.replace("http://192.168.7.55/IES/", "");
 		reqUrl = reqUrl.replace("http://localhost:8080/IES/", "");
 		System.out.println("getURL="+ reqUrl);
 		
